@@ -1,0 +1,106 @@
+:root {
+    /* Override Bootstrap Colors for "Enterprise" Look */
+    --bs-primary: #0f172a; /* Navy 900 */
+    --bs-primary-rgb: 15, 23, 42;
+    --bs-secondary: #64748b; /* Slate 500 */
+    --bs-body-color: #334155; /* Slate 700 */
+    --bs-body-bg: #ffffff;
+    --bs-link-color: #2563eb; /* Blue 600 */
+    --bs-link-hover-color: #1d4ed8;
+
+    /* Custom Spacing */
+    --bs-nav-link-font-size: 1rem;
+    --bs-nav-link-font-weight: 500;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    overflow-x: hidden;
+}
+
+/* --- Custom Animations --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Component Styling --- */
+.btn-primary {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+    padding: 10px 24px;
+}
+.btn-primary:hover {
+    background-color: #1e293b; /* Slate 800 */
+    border-color: #1e293b;
+}
+
+/* Navbar styling */
+.navbar {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+/* Hero Background Blob Animation */
+.blob {
+    position: absolute;
+    filter: blur(80px);
+    z-index: 0;
+    opacity: 0.3;
+    animation: moveBlob 10s infinite alternate;
+}
+@keyframes moveBlob {
+    from {
+        transform: translate(0, 0);
+    }
+    to {
+        transform: translate(20px, -20px);
+    }
+}
+
+/* Dashboard Browser Simulation */
+.browser-mockup {
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+.browser-header {
+    background: #e2e8f0;
+    padding: 10px 15px;
+    border-bottom: 1px solid #cbd5e1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Process Timeline Line */
+.process-line::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #e2e8f0;
+    z-index: -1;
+    transform: translateY(-50%);
+}
+
+/* Toast Container */
+.toast-container {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1055;
+}
