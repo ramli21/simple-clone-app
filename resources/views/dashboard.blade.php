@@ -1,234 +1,192 @@
 @extends('layouts.dashboard')
 @section('title-page')
-    <!-- Header -->
-    <div class="d-flex justify-content-between align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h2 class="h4 mb-0">Overview</h2>
-        <div class="btn-group">
-            <button class="btn btn-outline-secondary btn-sm">7 Hari</button>
-            <button class="btn btn-outline-secondary btn-sm">30 Hari</button>
-            <button class="btn btn-outline-secondary btn-sm">90 Hari</button>
+    <!-- Header dengan Filter -->
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Dashboard Report</h1>
+        <div>
+            <form method="GET" action="{{ route('admin.dashboard') }}" class="d-inline-block">
+                @csrf
+                <select name="period" onchange="this.form.submit()" class="form-select form-select-sm">
+                    <option value="7" {{ $period == 7 ? 'selected' : '' }}>Last 7 Days</option>
+                    <option value="30" {{ $period == 30 ? 'selected' : '' }}>Last 30 Days</option>
+                </select>
+            </form>
         </div>
     </div>
 @endsection
+@push('styles')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+@endpush
 @section('content')
-    <!-- KPI Cards -->
-    <div class="row g-3">
-        <div class="col-sm-6 col-lg-3">
-            <div class="card shadow-sm">
+    <!-- Kartu Ringkasan -->
+    <div class="row">
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
-                    <h6 class="text-secondary mb-1">Total Pengunjung</h6>
-                    <div class="h3 mb-2">12.345</div>
-                    <span class="badge bg-success">+8.2% WoW</span>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-lg-3">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h6 class="text-secondary mb-1">Bounce Rate</h6>
-                    <div class="h3 mb-2">47%</div>
-                    <span class="badge bg-danger">+2.1%</span>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-lg-3">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h6 class="text-secondary mb-1">Durasi Sesi</h6>
-                    <div class="h3 mb-2">3m 25s</div>
-                    <span class="badge bg-success">+12s</span>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-lg-3">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h6 class="text-secondary mb-1">CTR Organik</h6>
-                    <div class="h3 mb-2">4.9%</div>
-                    <span class="badge bg-info text-dark">Stabil</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- SEO Summary -->
-    <div class="row g-3 mt-1">
-        <div class="col-lg-6">
-            <div class="card shadow-sm">
-                <div class="card-header bg-white">
-                    Audit SEO Sederhana
-                </div>
-                <div class="card-body">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <span>Page indexed</span>
-                            <span class="badge bg-success">98%</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <span>Core Web Vitals (LCP)</span>
-                            <span class="badge bg-info text-dark">Baik</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <span>Broken links</span>
-                            <span class="badge bg-warning text-dark">12</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <span>Meta title/desc lengkap</span>
-                            <span class="badge bg-success">92%</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- Traffic Line Chart -->
-        <div class="col-lg-6">
-            <div class="card shadow-sm">
-                <div class="card-header bg-white">
-                    Trafik Pengunjung (7 Hari)
-                </div>
-                <div class="card-body">
-                    <div id="trafficChart"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Sources & Rankings -->
-    <div class="row g-3 mt-1">
-        <!-- Traffic Sources Pie -->
-        <div class="col-lg-6">
-            <div class="card shadow-sm">
-                <div class="card-header bg-white">
-                    Sumber Trafik
-                </div>
-                <div class="card-body">
-                    <div id="sourceChart"></div>
-                    <div class="mt-3">
-                        <span class="badge bg-success me-2">Organik</span>
-                        <span class="badge bg-primary me-2">Referral</span>
-                        <span class="badge bg-warning text-dark me-2">Sosial</span>
-                        <span class="badge bg-secondary">Direct</span>
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-md font-weight-bold text-primary text-uppercase mb-1">Total Inquiries</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $totalInquiries }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-envelope fa-2x text-gray-300"></i>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Simple Rankings -->
-        <div class="col-lg-6">
-            <div class="card shadow-sm">
-                <div class="card-header bg-white">
-                    Kata Kunci Utama
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-md font-weight-bold text-success text-uppercase mb-1">New Inquiries</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $newInquiries }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-envelope-open-text fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-md font-weight-bold text-info text-uppercase mb-1">Active Services</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $totalServices }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-box fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-md font-weight-bold text-warning text-uppercase mb-1">Contacted</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $contactedInquiries }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-phone fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Grafik Tren dan Tabel Aktivitas -->
+    <div class="row">
+        <!-- Grafik Tren -->
+        <div class="col-lg-8 mb-4">
+            <div class="card shadow">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Inquiries Trend (Last {{ $period }} Days)</h6>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-sm align-middle">
-                            <thead>
-                                <tr>
-                                    <th>Keyword</th>
-                                    <th>Posisi</th>
-                                    <th>Volume</th>
-                                    <th>CTR</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>sepatu lari pria</td>
-                                    <td>#3</td>
-                                    <td>6.6k</td>
-                                    <td>5.2%</td>
-                                </tr>
-                                <tr>
-                                    <td>running shoes</td>
-                                    <td>#8</td>
-                                    <td>12k</td>
-                                    <td>3.8%</td>
-                                </tr>
-                                <tr>
-                                    <td>sepatu olahraga</td>
-                                    <td>#12</td>
-                                    <td>9.1k</td>
-                                    <td>2.9%</td>
-                                </tr>
-                                <tr>
-                                    <td>diskon sepatu</td>
-                                    <td>#15</td>
-                                    <td>3.2k</td>
-                                    <td>4.1%</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="chart-area">
+                        <canvas id="inquiryTrendChart" style="height: 530px"></canvas>
                     </div>
-                    <small class="text-secondary">Data contoh untuk tampilan—hubungkan ke API/DB untuk live
-                        data.</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabel Aktivitas Terkini -->
+        <div class="col-lg-4 mb-4">
+            <div class="card shadow">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Recent Inquiries</h6>
+                </div>
+                <div class="card-body">
+                    @forelse($recentInquiries as $inquiry)
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <strong>{{ $inquiry->name }}</strong>
+                                <span
+                                    class="badge bg-{{ $inquiry->status == 'new' ? 'primary' : ($inquiry->status == 'contacted' ? 'info' : 'secondary') }}">
+                                    {{ ucfirst($inquiry->status) }}
+                                </span>
+                            </div>
+                            <p class="text-muted mb-1">{{ Str::limit($inquiry->subject, 30) }}</p>
+                            <small class="text-muted">{{ $inquiry->created_at->diffForHumans() }}</small>
+                        </div>
+                        <hr>
+                    @empty
+                        <p class="text-muted">No recent inquiries.</p>
+                    @endforelse
+                    <div class="text-center mt-3">
+                        <a href="{{ route('admin.inquiries.index') }}" class="btn btn-sm btn-primary">View All
+                            Inquiries</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 @endsection
 
-@section('scripts')
+@push('scripts')
+    <!-- Tambahkan Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <script>
-        // Line chart: Visitors (last 7 days)
-        const optionsLine = {
-            chart: {
-                type: 'line',
-                height: 280,
-                toolbar: {
-                    show: false
-                }
-            },
-            series: [{
-                name: 'Pengunjung',
-                data: [1200, 1500, 1800, 1700, 2000, 2200, 2500]
-            }],
-            xaxis: {
-                categories: ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'],
-                labels: {
-                    style: {
-                        colors: '#6c757d'
-                    }
-                }
-            },
-            stroke: {
-                curve: 'smooth',
-                width: 3
-            },
-            colors: ['#0dcaf0'],
-            markers: {
-                size: 4,
-                colors: ['#0dcaf0'],
-                strokeColors: '#0dcaf0'
-            },
-            grid: {
-                borderColor: '#e9ecef'
-            },
-            yaxis: {
-                labels: {
-                    style: {
-                        colors: '#6c757d'
-                    }
-                }
-            }
-        };
-        new ApexCharts(document.querySelector("#trafficChart"), optionsLine).render();
+        document.addEventListener('DOMContentLoaded', function() {
+            // Data dari Laravel di-encode ke JSON
+            const chartLabels = @json($chartLabels);
+            const chartData = @json($chartData);
 
-        // Pie chart: Traffic sources
-        const optionsPie = {
-            chart: {
-                type: 'donut',
-                height: 300
-            },
-            series: [44, 28, 18, 10],
-            labels: ['Organik', 'Referral', 'Sosial', 'Direct'],
-            colors: ['#198754', '#0d6efd', '#ffc107', '#6c757d'],
-            legend: {
-                position: 'bottom'
-            },
-            dataLabels: {
-                enabled: true
-            }
-        };
-        new ApexCharts(document.querySelector("#sourceChart"), optionsPie).render();
+            const ctx = document.getElementById('inquiryTrendChart').getContext('2d');
+            const inquiryTrendChart = new Chart(ctx, {
+                type: 'line', // Tipe grafik garis
+                data: {
+                    labels: chartLabels,
+                    datasets: [{
+                        label: 'Number of Inquiries',
+                        data: chartData,
+                        lineTension: 0.1,
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 2,
+                        pointBackgroundColor: 'rgba(54, 162, 235, 1)',
+                        fill: true,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                stepSize: 1 // Pastikan sumbu Y hanya menampilkan bilangan bulat
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0,0,0,0.8)',
+                            titleFont: {
+                                size: 14
+                            },
+                            bodyFont: {
+                                size: 12
+                            }
+                        }
+                    }
+                }
+            });
+        });
     </script>
-@endsection
+@endpush

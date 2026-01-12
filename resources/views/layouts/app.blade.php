@@ -12,6 +12,7 @@
 
     <link rel="stylesheet" href="{{ asset('vendors/bootstrap-dist/css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('vendors/bootstrap-dist/icons/bootstrap-icons.min.css') }}" />
+    <link href="{{ asset('vendors/aos/aos.css') }}" rel="stylesheet">
 
     @stack('styles')
 </head>
@@ -20,7 +21,14 @@
     {{-- Main Content --}}
     @yield('content')
 
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
+        integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
     <script src="{{ asset('vendors/bootstrap-dist/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('vendors/aos/aos.js') }}"></script>
+    <script src="{{ asset('vendors/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
+    <script src="{{ asset('vendors/isotope-layout/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ asset('vendors/glightbox/js/glightbox.min.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 
     @stack('scripts')
 </body>

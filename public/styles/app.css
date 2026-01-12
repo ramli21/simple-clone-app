@@ -1,20 +1,27 @@
 :root {
     /* Override Bootstrap Colors for "Enterprise" Look */
-    --bs-primary: #0f172a; /* Navy 900 */
-    --bs-primary-rgb: 15, 23, 42;
+    --bs-primary: #197c93; /* Navy 900 */
+    --bs-primary-rgb: 25, 124, 147;
     --bs-secondary: #64748b; /* Slate 500 */
     --bs-body-color: #334155; /* Slate 700 */
     --bs-body-bg: #ffffff;
-    --bs-link-color: #2563eb; /* Blue 600 */
-    --bs-link-hover-color: #1d4ed8;
+    --bs-link-color: #197c93; /* Blue 600 */
+    --bs-link-hover-color: #126c80;
 
     /* Custom Spacing */
     --bs-nav-link-font-size: 1rem;
     --bs-nav-link-font-weight: 500;
+
+    --background-color: #ffffff; /* Background color for the entire website, including individual sections */
+    --default-color: #4e4e4e; /* Default color used for the majority of the text content across the entire website */
+    --heading-color: #197c93; /* Color for headings, subheadings and title throughout the website */
+    --accent-color: #334155; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
+    --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
+    --contrast-color: #ffffff;
 }
 
 body {
-    font-family: "Inter", sans-serif;
+    font-family: 'Inter', sans-serif;
     overflow-x: hidden;
 }
 
@@ -36,8 +43,8 @@ body {
     padding: 10px 24px;
 }
 .btn-primary:hover {
-    background-color: #1e293b; /* Slate 800 */
-    border-color: #1e293b;
+    background-color: #0d5c6e; /* Slate 800 */
+    border-color: #0d5c6e;
 }
 
 /* Navbar styling */
@@ -85,7 +92,7 @@ body {
 
 /* Process Timeline Line */
 .process-line::before {
-    content: "";
+    content: '';
     position: absolute;
     top: 50%;
     left: 0;
@@ -103,4 +110,114 @@ body {
     left: 50%;
     transform: translateX(-50%);
     z-index: 1055;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+    background-color: var(--bs-primary);
+}
+
+.opacity-10 {
+    opacity: 0.1;
+}
+
+/*--------------------------------------------------------------
+# Portfolio Section
+--------------------------------------------------------------*/
+.portfolio {
+    padding: 76px 0;
+}
+.portfolio .portfolio-filters {
+    padding: 0;
+    margin: 0 auto 20px auto;
+    list-style: none;
+    text-align: center;
+}
+
+.portfolio .portfolio-filters li {
+    cursor: pointer;
+    display: inline-block;
+    padding: 0;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 10px;
+    line-height: 1;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+.portfolio .portfolio-filters li:hover,
+.portfolio .portfolio-filters li.filter-active {
+    color: var(--accent-color);
+}
+
+.portfolio .portfolio-filters li:first-child {
+    margin-left: 0;
+}
+
+.portfolio .portfolio-filters li:last-child {
+    margin-right: 0;
+}
+
+@media (max-width: 575px) {
+    .portfolio .portfolio-filters li {
+        font-size: 14px;
+        margin: 0 5px;
+    }
+}
+
+.portfolio .portfolio-item {
+    position: relative;
+}
+
+.portfolio .portfolio-item .portfolio-info {
+    opacity: 0;
+    position: absolute;
+    left: 30px;
+    right: 30px;
+    bottom: 0;
+    z-index: 3;
+    transition: all ease-in-out 0.3s;
+    background: color-mix(in srgb, var(--background-color), transparent 10%);
+    padding: 15px;
+}
+
+.portfolio .portfolio-item .portfolio-info h4 {
+    font-size: 18px;
+    font-weight: 600;
+    padding-right: 50px;
+}
+
+.portfolio .portfolio-item .portfolio-info p {
+    color: color-mix(in srgb, var(--default-color), transparent 30%);
+    font-size: 14px;
+    margin-bottom: 0;
+    padding-right: 50px;
+}
+
+.portfolio .portfolio-item .portfolio-info .preview-link,
+.portfolio .portfolio-item .portfolio-info .details-link {
+    position: absolute;
+    right: 50px;
+    font-size: 24px;
+    top: calc(50% - 14px);
+    color: color-mix(in srgb, var(--default-color), transparent 30%);
+    transition: 0.3s;
+    line-height: 0;
+}
+
+.portfolio .portfolio-item .portfolio-info .preview-link:hover,
+.portfolio .portfolio-item .portfolio-info .details-link:hover {
+    color: var(--accent-color);
+}
+
+.portfolio .portfolio-item .portfolio-info .details-link {
+    right: 14px;
+    font-size: 28px;
+}
+
+.portfolio .portfolio-item:hover .portfolio-info {
+    opacity: 1;
+    bottom: 20px;
 }

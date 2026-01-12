@@ -9,6 +9,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InquiryController;
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/templates', [HomeController::class, 'themes'])->name('home.templates');
 
 Route::get('/ex/travel', [HomeController::class, 'travelHome']);
 Route::get('/service/{slug}', [HomeController::class, 'serviceDetail'])->name('service.detail');
@@ -19,7 +20,7 @@ Auth::routes();
 Route::prefix('admin')
     ->name('admin.')
     ->group(function () {
-        Route::get('/', [DashboardController::class, 'index'])->name('index');
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
         Route::resource('itineraries', ItineraryController::class)->only(['update', 'edit']);
         Route::resource('inquiries', InquiryController::class)->only(['index', 'show', 'destroy', 'update']);
         Route::resource('service-items', ServiceItemController::class);

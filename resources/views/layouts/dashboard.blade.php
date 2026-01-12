@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Mantis HTML Admin Template</title>
+    <title>AkhriTech Admin Panel</title>
     <!-- [Meta] -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
@@ -35,6 +35,8 @@
     <link rel="stylesheet" href="{{ asset('vendors/mantis-v.1.0/css/style-preset.css') }}">
 
     {{-- <link rel="stylesheet" href="{{ asset('vendors/mantis-v.1.0/css/landing.css') }}"> --}}
+
+    @stack('styles')
 </head>
 
 <body data-pc-preset="preset-1" data-pc-direction="ltr" data-pc-theme="light">
@@ -59,7 +61,7 @@
             <div class="navbar-content">
                 <ul class="pc-navbar">
                     <li class="pc-item">
-                        <a href="/dashboard" class="pc-link">
+                        <a href="{{ route('admin.dashboard') }}" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-dashboard"></i></span>
                             <span class="pc-mtext">Dashboard</span>
                         </a>
@@ -84,7 +86,7 @@
                     <li class="pc-item">
                         <a href="../elements/bc_color.html" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-shopping-cart"></i></span>
-                            <span class="pc-mtext">RFQ / </span>
+                            <span class="pc-mtext">RFQ / Booking</span>
                         </a>
                     </li>
                     <li class="pc-item">
@@ -110,7 +112,7 @@
                         <h5 class="mt-3">Ada pertanyaan atau kendala?</h5>
                         {{-- <p></p> --}}
                         <p>Hubungi admin sekarang untuk solusi cepat.</p>
-                        <a href="https://codedthemes.com/item/berry-bootstrap-5-admin-template/" target="_blank"
+                        <a href="https://wa.me/{{ config('app.superadmin_wa') }}" target="_blank"
                             class="btn btn-success">Hubungi Sekarang</a>
                     </div>
                 </div>
@@ -279,7 +281,7 @@
         }
     </script>
 
-    @yield('scripts')
+    @stack('scripts')
 </body>
 
 </html>
