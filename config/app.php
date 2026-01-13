@@ -118,6 +118,6 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
-    'no_wa' => env('NO_WA', null),
+    'superadmin_wa' => env('SUPERADMIN_WA', null),
 ];
 

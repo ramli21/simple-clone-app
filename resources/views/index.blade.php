@@ -228,9 +228,8 @@
                                 </div>
                             </div>
 
-                            <div class="row g-0" style="min-height: 500px;">
-                                <img src="{{ asset('images/dashboard.jpg') }}" alt="" srcset=""
-                                    width="100%" />
+                            <div class="row g-0">
+                                <img src="{{ asset('images/dashboard.jpg') }}" alt="dashboard-example" />
                             </div>
                         </div>
                     </div>
