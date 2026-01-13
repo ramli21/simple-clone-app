@@ -19,11 +19,11 @@
         <section id="home" class="position-relative text-white d-flex align-items-center min-vh-100"
             style="background-color: #085c6f; padding-top: 80px;">
             <!-- Decoration Blobs -->
-            <div class="blob bg-primary rounded-circle" style="width: 300px; height: 300px; top: -100px; right: -50px;">
-            </div>
-            <div class="blob bg-info rounded-circle"
+            {{-- <div class="blob bg-primary rounded-circle" style="width: 300px; height: 300px; top: -100px; right: -50px;">
+            </div> --}}
+            {{-- <div class="blob bg-info rounded-circle"
                 style="width: 250px; height: 250px; bottom: 0; left: -50px; opacity: 0.2;">
-            </div>
+            </div> --}}
 
             <div class="container position-relative z-1">
                 <div class="row justify-content-center text-center reveal active">

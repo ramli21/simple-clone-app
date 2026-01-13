@@ -20,6 +20,10 @@
     --contrast-color: #ffffff;
 }
 
+html {
+    width: 100%;
+    overflow-x: hidden;
+}
 body {
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
