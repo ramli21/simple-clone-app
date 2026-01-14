@@ -13,7 +13,8 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('index');
+        $company = CompanyProfile::first();
+        return view('index', compact('company'));
     }
 
     public function travelHome()

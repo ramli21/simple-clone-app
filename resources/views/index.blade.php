@@ -371,9 +371,8 @@
                                 BEST VALUE</div>
                             <div class="card-body p-4">
                                 <h5 class="fw-bold text-primary mb-2">Enterprise System</h5>
-                                <p class="text-secondary small mb-4">Solusi lengkap Pabrik/Travel.</p>
-                                {{-- <h3 class="fw-bold mb-4">Rp 7.500.000</h3> --}}
-                                <h3 class="fw-bold mb-4">( Cooming Soon )</h3>
+                                <p class="text-secondary small mb-4">Solusi lengkap untuk kebutuhan Bisnis Anda.</p>
+                                <h3 class="fw-bold mb-4">Rp 7.500.000</h3>
                                 <ul class="list-unstyled mb-4 text-secondary small">
                                     <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Multi
                                         Halaman
@@ -426,7 +425,8 @@
                                         <i class="bi bi-geo-alt-fill fs-4 me-3 mt-1"></i>
                                         <div>
                                             <h6 class="fw-bold mb-1">Area Layanan</h6>
-                                            <p class="small text-white-50 mb-0">Berbasis di Bandung, Jawa Barat. Melayani
+                                            <p class="small text-white-50 mb-0">Berbasis di {{ $company->address }}.
+                                                Melayani
                                                 klien
                                                 di seluruh Indonesia secara Remote.</p>
                                         </div>
@@ -436,7 +436,7 @@
                                         <i class="bi bi-envelope-fill fs-4 me-3 mt-1"></i>
                                         <div>
                                             <h6 class="fw-bold mb-1">Email</h6>
-                                            <p class="small text-white-50 mb-0">hello@enterprisedev.com</p>
+                                            <p class="small text-white-50 mb-0">{{ $company->email }}</p>
                                         </div>
                                     </div>
 
@@ -444,7 +444,8 @@
                                         <i class="bi bi-telephone-fill fs-4 me-3 mt-1"></i>
                                         <div>
                                             <h6 class="fw-bold mb-1">WhatsApp / Telepon</h6>
-                                            <p class="small text-white-50 mb-0">+62 812 3456 7890</p>
+                                            <p class="small text-white-50 mb-0">
+                                                {{ $company->phone }}</p>
                                         </div>
                                     </div>
 
@@ -462,12 +463,13 @@
                                 <div class="mt-5">
                                     <h6 class="fw-bold mb-3">Ikuti Kami</h6>
                                     <div class="d-flex gap-3">
-                                        <a href="#" class="btn btn-outline-light rounded-circle btn-sm"><i
-                                                class="bi bi-linkedin"></i></a>
-                                        <a href="#" class="btn btn-outline-light rounded-circle btn-sm"><i
+                                        <a href="https://www.instagram.com/akhritech" target="_blank"
+                                            class="btn btn-outline-light rounded-circle btn-sm"><i
                                                 class="bi bi-instagram"></i></a>
-                                        <a href="#" class="btn btn-outline-light rounded-circle btn-sm"><i
-                                                class="bi bi-facebook"></i></a>
+                                        <button class="btn btn-outline-light rounded-circle btn-sm" title="Coming Soon"><i
+                                                class="bi bi-facebook"></i></button>
+                                        <button class="btn btn-outline-light rounded-circle btn-sm" title="Coming Soon"><i
+                                                class="bi bi-linkedin"></i></button>
                                     </div>
                                 </div>
                             </div>
