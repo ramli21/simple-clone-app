@@ -1,14 +1,8 @@
 @extends('layouts.app')
 
-@push('metadata')
-    <title>Solusi Digital Enterprise | Fullstack Developer</title>
-
-    <!-- Fonts -->
+@push('styles')
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-@endpush
-
-@push('styles')
     <link rel="stylesheet" href="{{ asset('styles/app.css') }}" />
 @endpush
 

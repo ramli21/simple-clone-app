@@ -8,7 +8,9 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    @stack('metadata')
+    {{-- @stack('metadata') --}}
+
+    @include('partials.meta-tags')
 
     <link rel="stylesheet" href="{{ asset('vendors/bootstrap-dist/css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('vendors/bootstrap-dist/icons/bootstrap-icons.min.css') }}" />
