@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Ramsey\Uuid\Uuid;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,11 +18,15 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
+        User::create([
+            'id' => (string) Uuid::uuid4(),
             'name' => 'Admin User',
-            'email' => 'admin@example.com',
-            'password' => bcrypt('password@123'),
+            'email' => 'admin@akhritech.com',
+            'password' => bcrypt('5t4r3e2w!Q'),
             'email_verified_at' => now(),
         ]);
+
+        $this->call([CategorySeeder::class, BlogSeeder::class]);
     }
 }
+
