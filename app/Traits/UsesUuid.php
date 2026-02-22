@@ -10,7 +10,9 @@ trait UsesUuid
     protected static function bootUsesUuid()
     {
         static::creating(function ($model) {
-            $model->{$model->getKeyName()} = (string) Uuid::uuid4();
+            if (empty($model->{$model->getKeyName()})) {
+                $model->{$model->getKeyName()} = (string) Uuid::uuid4();
+            }
         });
     }
 

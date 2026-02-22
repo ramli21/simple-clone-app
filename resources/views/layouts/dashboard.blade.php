@@ -100,6 +100,12 @@
                         <i class="ti ti-dashboard"></i>
                     </li>
                     <li class="pc-item">
+                        <a href="{{ route('admin.blogs.index') }}" class="pc-link">
+                            <span class="pc-micon"><i class="ti ti-book"></i></span>
+                            <span class="pc-mtext">Blogs</span>
+                        </a>
+                    </li>
+                    <li class="pc-item">
                         <a href="#" class="pc-link text-danger" onClick="submitLogout()">
                             <span class="pc-micon"><i class="ti ti-logout"></i></span>
                             <span class="pc-mtext">Logout</span>
@@ -228,6 +234,8 @@
     </form>
 
     <!-- Required Js -->
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
+        integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
     <script src="{{ asset('vendors/mantis-v.1.0/js/plugins/popper.min.js') }}"></script>
     <script src="{{ asset('vendors/mantis-v.1.0/js/plugins/simplebar.min.js') }}"></script>
     <script src="{{ asset('vendors/mantis-v.1.0/js/plugins/bootstrap.min.js') }}"></script>

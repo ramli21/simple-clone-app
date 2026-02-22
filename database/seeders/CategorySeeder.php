@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Category;
+use Ramsey\Uuid\Uuid;
 
 class CategorySeeder extends Seeder
 {
@@ -38,6 +39,7 @@ class CategorySeeder extends Seeder
         ];
 
         foreach ($categories as $category) {
+            $category['id'] = (string) Uuid::uuid4();
             Category::create($category);
         }
     }
