@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -14,7 +13,7 @@ return new class extends Migration
         Schema::create('company_profiles', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
-            $table->enum('category', ['manufacturing', 'travel']);
+            $table->enum('category', ['tech', 'manufacturing', 'travel']);
             $table->text('about_us')->nullable();
             $table->text('vision_mission')->nullable();
             $table->string('address')->nullable();
@@ -34,3 +33,4 @@ return new class extends Migration
         Schema::dropIfExists('company_profiles');
     }
 };
+

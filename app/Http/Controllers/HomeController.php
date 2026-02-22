@@ -58,11 +58,50 @@ class HomeController extends Controller
     {
         // Validasi data yang masuk
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'whatsapp_number' => 'required|string|max:20',
-            'subject' => 'required|string|max:255',
-            'message' => 'required|string',
+            'name' => [
+                'required',
+                'string',
+                'min:3', // Minimal 3 karakter agar tidak terlalu pendek (misal: "A")
+                'max:20', // Batas maksimal yang wajar untuk subjek
+                function ($attribute, $value, $fail) {
+                    if ($value != strip_tags($value)) {
+                        $fail('Nama tidak boleh mengandung HTML.');
+                    }
+                },
+            ],
+            'email' => [
+                'required',
+                'string',
+                'min:3', // Minimal 3 karakter agar tidak terlalu pendek (misal: "A")
+                'max:30', // Batas maksimal yang wajar untuk subjek
+                function ($attribute, $value, $fail) {
+                    if ($value != strip_tags($value)) {
+                        $fail('Email tidak boleh mengandung HTML.');
+                    }
+                },
+            ],
+            'whatsapp_number' => 'required|string|max:16',
+            'subject' => [
+                'required',
+                'string',
+                'min:3', // Minimal 3 karakter agar tidak terlalu pendek (misal: "A")
+                'max:100', // Batas maksimal yang wajar untuk subjek
+                function ($attribute, $value, $fail) {
+                    if ($value != strip_tags($value)) {
+                        $fail('Subjek tidak boleh mengandung HTML.');
+                    }
+                },
+            ],
+            'message' => [
+                'required',
+                'string',
+                'max:1000',
+                function ($attribute, $value, $fail) {
+                    if ($value != strip_tags($value)) {
+                        $fail('Pesan tidak boleh mengandung tag HTML atau link.');
+                    }
+                },
+            ],
         ]);
 
         $company = CompanyProfile::first();

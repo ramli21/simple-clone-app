@@ -20,8 +20,27 @@
 </head>
 
 <body>
-    {{-- Main Content --}}
-    @yield('content')
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W6KW4DSK" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <div id="app">
+        @include('home.components.navbar')
+        {{-- Main Content --}}
+        @yield('content')
+
+        @include('home.components.footer')
+    </div>
+
+    <!-- Floating WhatsApp -->
+    @if (config('app.superadmin_wa'))
+        <a href="https://wa.me/{{ config('app.superadmin_wa') }}?text=Halo%20EnterpriseDev%2C%20saya%20tertarik%20konsultasi%20pembuatan%20website%20bisnis.%20Bisa%20dibantu%20infonya%3F"
+            target="_blank"
+            class="btn btn-success rounded-circle p-3 position-fixed bottom-0 end-0 m-4 shadow-lg z-3 d-flex align-items-center justify-content-center animate-bounce"
+            style="width: 60px; height: 60px;">
+            <i class="bi bi-whatsapp fs-3 text-white"></i>
+        </a>
+    @endif
 
     <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
         integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>

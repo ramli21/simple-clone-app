@@ -14,6 +14,7 @@
                 <li class="nav-item"><a class="nav-link" href="/#showcase">Showcase</a></li>
                 <li class="nav-item"><a class="nav-link" href="/#pricing">Pricing</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('home.templates') }}">Template</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('blogs.index') }}">Blog</a></li>
                 <li class="nav-item ms-lg-2">
                     <a href="#contact" class="btn btn-primary rounded-pill">Hubungi Kami</a>
                 </li>

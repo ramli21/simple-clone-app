@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\BlogController as PublicBlogController;
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/templates', [HomeController::class, 'themes'])->name('home.templates');
@@ -16,6 +17,8 @@ Route::get('/ex/travel', [HomeController::class, 'travelHome']);
 Route::get('/service/{slug}', [HomeController::class, 'serviceDetail'])->name('service.detail');
 
 Route::post('/inquiry', [HomeController::class, 'inquiry'])->name('inquiry.store');
+Route::get('/blogs', [PublicBlogController::class, 'index'])->name('blogs.index');
+Route::get('/blogs/{blog}', [PublicBlogController::class, 'show'])->name('blogs.show');
 
 Auth::routes();
 Route::prefix('admin')
