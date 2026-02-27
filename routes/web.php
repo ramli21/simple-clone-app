@@ -10,7 +10,7 @@ use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\BlogController as PublicBlogController;
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/templates', [HomeController::class, 'themes'])->name('home.templates');
 
 Route::get('/ex/travel', [HomeController::class, 'travelHome']);

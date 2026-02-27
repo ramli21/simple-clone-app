@@ -199,6 +199,123 @@
         </div>
     </section>
 
+    <!-- Featured Product: App Management Travel Haji & Umroh -->
+    <section class="py-5" style="background: linear-gradient(135deg, #0d7377 0%, #4DB8C4 100%);">
+        <div class="container py-5">
+            <div class="row align-items-center g-4 reveal">
+                <!-- Left: Product Image/Visual -->
+                <div class="col-lg-6 text-center">
+                    <div class="position-relative d-inline-block">
+                        <div class="bg-white rounded-4 shadow-lg p-4" style="max-width: 400px;">
+                            <div class="bg-light rounded-3 p-5 mb-3"
+                                style="min-height: 300px; display: flex; align-items: center; justify-content: center;">
+                                <div class="text-center">
+                                    <i class="bi bi-airplane-fill text-primary" style="font-size: 4rem;"></i>
+                                    <p class="text-secondary mt-3 fw-bold">App Management<br>Travel Haji & Umroh</p>
+                                </div>
+                            </div>
+                            <p class="text-center text-secondary small">Sistem manajemen jamaah & paket haji/umroh yang
+                                terintegrasi</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Product Information -->
+                <div class="col-lg-6">
+                    <p class="badge bg-light text-dark mb-3 px-3 py-2">
+                        <i class="bi bi-star-fill me-2"></i>Produk Unggulan
+                    </p>
+                    <h2 class="fw-bold text-white mb-3" style="font-size: 2.2rem;">
+                        Kelola Jamaah & Paket dengan Mudah
+                    </h2>
+                    <p class="text-white-50 mb-4" style="font-size: 1.05rem; line-height: 1.6;">
+                        Platform all-in-one untuk mengelola seluruh aspek bisnis travel haji dan umroh Anda. Dari
+                        pendaftaran jamaah hingga pembayaran dan pelaporan—semua terintegrasi dalam satu dashboard.
+                    </p>
+
+                    <!-- Key Features -->
+                    <div class="mb-5">
+                        <h5 class="text-white mb-3 fw-bold">Fitur Unggulan:</h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-3 d-flex gap-3 text-white">
+                                <div class="flex-shrink-0">
+                                    <div class="d-flex align-items-center justify-content-center h-8 w-8 rounded-lg bg-white bg-opacity-20"
+                                        style="width: 32px; height: 32px;">
+                                        <i class="bi bi-people-fill small"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <strong>Manajemen Jamaah</strong>
+                                    <p class="text-white-50 small mb-0">Database lengkap & terorganisir untuk setiap jamaah
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="mb-3 d-flex gap-3 text-white">
+                                <div class="flex-shrink-0">
+                                    <div class="d-flex align-items-center justify-content-center h-8 w-8 rounded-lg bg-white bg-opacity-20"
+                                        style="width: 32px; height: 32px;">
+                                        <i class="bi bi-calendar-check small"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <strong>Jadwal & Itinerary</strong>
+                                    <p class="text-white-50 small mb-0">Kelola itinerary hari-per-hari dengan detail &
+                                        media</p>
+                                </div>
+                            </li>
+                            <li class="mb-3 d-flex gap-3 text-white">
+                                <div class="flex-shrink-0">
+                                    <div class="d-flex align-items-center justify-content-center h-8 w-8 rounded-lg bg-white bg-opacity-20"
+                                        style="width: 32px; height: 32px;">
+                                        <i class="bi bi-credit-card small"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <strong>Manajemen Pembayaran</strong>
+                                    <p class="text-white-50 small mb-0">Tracking & laporan keuangan sederhana</p>
+                                </div>
+                            </li>
+                            <li class="mb-3 d-flex gap-3 text-white">
+                                <div class="flex-shrink-0">
+                                    <div class="d-flex align-items-center justify-content-center h-8 w-8 rounded-lg bg-white bg-opacity-20"
+                                        style="width: 32px; height: 32px;">
+                                        <i class="bi bi-graph-up small"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <strong>Analytics & Reporting</strong>
+                                    <p class="text-white-50 small mb-0">Dashboard statistik untuk monitoring performa</p>
+                                </div>
+                            </li>
+                            <li class="mb-3 d-flex gap-3 text-white">
+                                <div class="flex-shrink-0">
+                                    <div class="d-flex align-items-center justify-content-center h-8 w-8 rounded-lg bg-white bg-opacity-20"
+                                        style="width: 32px; height: 32px;">
+                                        <i class="bi bi-chat-dots small"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <strong>Komunikasi Terintegrasi</strong>
+                                    <p class="text-white-50 small mb-0">WhatsApp & Email blast untuk update jamaah</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- CTA Buttons -->
+                    <div class="d-flex flex-column flex-sm-row gap-3">
+                        <a href="#contact" class="btn btn-light text-primary fw-bold btn-lg px-5 rounded-pill">
+                            <i class="bi bi-chat-dots me-2"></i> Coba Demo
+                        </a>
+                        <a href="{{ route('blogs.index') }}" class="btn btn-outline-light btn-lg px-4 rounded-pill">
+                            <i class="bi bi-file-earmark-text me-2"></i> Pelajari Lebih
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- 3. Fitur Rahasia: "Live Demo Dashboard" -->
     <section id="showcase" class="py-5 bg-dark text-white position-relative overflow-hidden">
         <div class="container py-5">
@@ -364,7 +481,7 @@
                         <div class="card-body p-4">
                             <h5 class="fw-bold text-primary mb-2">Enterprise System</h5>
                             <p class="text-secondary small mb-4">Solusi lengkap untuk kebutuhan Bisnis Anda.</p>
-                            <h3 class="fw-bold mb-4">Rp 7.500.000</h3>
+                            <h3 class="fw-bold mb-4">Contact Now</h3>
                             <ul class="list-unstyled mb-4 text-secondary small">
                                 <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Multi
                                     Halaman
