@@ -66,8 +66,8 @@
                     <h2 class="fw-bold display-6 mb-4">Kenapa Bisnis Anda Butuh Website Sekarang?</h2>
                     <div class="vstack gap-4">
                         <div class="d-flex gap-3">
-                            <div class="flex-shrink-0 bg-info bg-opacity-10 text-info rounded-circle d-flex justify-content-center align-items-center"
-                                style="width: 48px; height: 48px;">
+                            <div class="flex-shrink-0 rounded-circle d-flex justify-content-center align-items-center"
+                                style="width: 48px; height: 48px; background-color: #1ac4d7; color: white;">
                                 <i class="bi bi-person-workspace fs-5"></i>
                             </div>
                             <div>
@@ -77,8 +77,8 @@
                             </div>
                         </div>
                         <div class="d-flex gap-3">
-                            <div class="flex-shrink-0 bg-success bg-opacity-10 text-success rounded-circle d-flex justify-content-center align-items-center"
-                                style="width: 48px; height: 48px;">
+                            <div class="flex-shrink-0 rounded-circle d-flex justify-content-center align-items-center"
+                                style="width: 48px; height: 48px; background-color: #1ac4d7; color: white;">
                                 <i class="bi bi-graph-up-arrow fs-5"></i>
                             </div>
                             <div>
@@ -199,6 +199,136 @@
         </div>
     </section>
 
+    <!-- Featured Product: App Management Travel Haji & Umroh -->
+    <section class="py-5" style="background: linear-gradient(135deg, #0d7377 0%, #4DB8C4 100%);">
+        <div class="container py-5">
+            <div class="row align-items-center g-4 reveal">
+                <!-- Left: Product Image/Visual -->
+                <div class="col-lg-6 text-center">
+                    <div class="position-relative d-inline-block">
+                        <div class="bg-white rounded-4 shadow-lg p-4" style="max-width: 400px;">
+                            <div class="bg-light rounded-3 p-5 mb-3"
+                                style="min-height: 300px; display: flex; align-items: center; justify-content: center;">
+                                <div class="text-center">
+                                    <i class="bi bi-airplane-fill text-primary" style="font-size: 4rem;"></i>
+                                    <p class="text-secondary mt-3 fw-bold">App Management<br>Travel Haji & Umroh</p>
+                                </div>
+                            </div>
+                            <p class="text-center text-secondary small">Sistem manajemen jamaah & paket haji/umroh yang
+                                terintegrasi</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Product Information -->
+                <div class="col-lg-6">
+                    <p class="badge bg-light text-dark mb-3 px-3 py-2">
+                        <i class="bi bi-star-fill me-2"></i>Produk Unggulan
+                    </p>
+                    <h2 class="fw-bold text-white mb-3" style="font-size: 2.2rem;">
+                        Kelola Jamaah & Paket dengan Mudah
+                    </h2>
+                    <p class="text-white-50 mb-4" style="font-size: 1.05rem; line-height: 1.6;">
+                        Platform all-in-one untuk mengelola seluruh aspek bisnis travel haji dan umroh Anda. Dari
+                        pendaftaran jamaah hingga pembayaran dan pelaporan—semua terintegrasi dalam satu dashboard.
+                    </p>
+
+                    <!-- Key Features -->
+                    <div class="mb-5">
+                        <h5 class="text-white mb-3 fw-bold">Fitur Unggulan:</h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-3 d-flex gap-3 text-white">
+                                <div class="flex-shrink-0">
+                                    <div class="d-flex align-items-center justify-content-center h-10 w-10 rounded-lg"
+                                        style="width: 42px; height: 42px; background-color: #1ac4d7; color: white;">
+                                        <i class="bi bi-people-fill fs-5"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <strong>Manajemen Jamaah</strong>
+                                    <p class="text-white-50 small mb-0">Database lengkap & terorganisir untuk setiap jamaah
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="mb-3 d-flex gap-3 text-white">
+                                <div class="flex-shrink-0">
+                                    <div class="d-flex align-items-center justify-content-center h-10 w-10 rounded-lg"
+                                        style="width: 42px; height: 42px; background-color: #1ac4d7; color: white;">
+                                        <i class="bi bi-calendar-check fs-5"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <strong>Jadwal & Itinerary</strong>
+                                    <p class="text-white-50 small mb-0">Kelola itinerary hari-per-hari dengan detail &
+                                        media</p>
+                                </div>
+                            </li>
+                            <li class="mb-3 d-flex gap-3 text-white">
+                                <div class="flex-shrink-0">
+                                    <div class="d-flex align-items-center justify-content-center h-10 w-10 rounded-lg"
+                                        style="width: 42px; height: 42px; background-color: #1ac4d7; color: white;">
+                                        <i class="bi bi-credit-card fs-5"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <strong>Manajemen Pembayaran</strong>
+                                    <p class="text-white-50 small mb-0">Tracking & laporan keuangan sederhana</p>
+                                </div>
+                            </li>
+                            <li class="mb-3 d-flex gap-3 text-white">
+                                <div class="flex-shrink-0">
+                                    <div class="d-flex align-items-center justify-content-center h-10 w-10 rounded-lg"
+                                        style="width: 42px; height: 42px; background-color: #1ac4d7; color: white;">
+                                        <i class="bi bi-graph-up fs-5"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <strong>Analytics & Reporting</strong>
+                                    <p class="text-white-50 small mb-0">Dashboard statistik untuk monitoring performa</p>
+                                </div>
+                            </li>
+                            <li class="mb-3 d-flex gap-3 text-white">
+                                <div class="flex-shrink-0">
+                                    <div class="d-flex align-items-center justify-content-center h-10 w-10 rounded-lg"
+                                        style="width: 42px; height: 42px; background-color: #1ac4d7; color: white;">
+                                        <i class="bi bi-chat-dots fs-5"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <strong>Komunikasi Terintegrasi</strong>
+                                    <p class="text-white-50 small mb-0">WhatsApp & Email blast untuk update jamaah</p>
+                                </div>
+                            </li>
+                            <li class="mb-3 d-flex gap-3 text-white">
+                                <div class="flex-shrink-0">
+                                    <div class="d-flex align-items-center justify-content-center h-10 w-10 rounded-lg"
+                                        style="width: 42px; height: 42px; background-color: #1ac4d7; color: white;">
+                                        <i class="bi bi-file-earmark-text fs-5"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <strong>Manifest Keberangkatan</strong>
+                                    <p class="text-white-50 small mb-0">Kelola dokumen manifest dan tracking penerbangan
+                                        jamaah</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- CTA Buttons -->
+                    <div class="d-flex flex-column flex-sm-row gap-3">
+                        <a href="#contact" class="btn btn-light text-primary fw-bold btn-lg px-5 rounded-pill">
+                            <i class="bi bi-chat-dots me-2"></i> Coba Demo
+                        </a>
+                        <a href="{{ route('blogs.index') }}" class="btn btn-outline-light btn-lg px-4 rounded-pill">
+                            <i class="bi bi-file-earmark-text me-2"></i> Pelajari Lebih
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- 3. Fitur Rahasia: "Live Demo Dashboard" -->
     <section id="showcase" class="py-5 bg-dark text-white position-relative overflow-hidden">
         <div class="container py-5">
@@ -243,8 +373,8 @@
                 <div class="col-md-4">
                     <div class="card h-100 border-0 shadow-sm p-4 hover:shadow transition">
                         <div class="card-body text-center">
-                            <div class="bg-primary bg-opacity-10 text-primary rounded-circle d-inline-flex justify-content-center align-items-center mb-3"
-                                style="width: 64px; height: 64px;">
+                            <div class="rounded-circle d-inline-flex justify-content-center align-items-center mb-3"
+                                style="width: 64px; height: 64px; background-color: #1ac4d7; color: white;">
                                 <i class="bi bi-lightning-charge-fill fs-2"></i>
                             </div>
                             <h5 class="fw-bold">Ultra Fast Loading</h5>
@@ -256,8 +386,8 @@
                 <div class="col-md-4">
                     <div class="card h-100 border-0 shadow-sm p-4 hover:shadow transition">
                         <div class="card-body text-center">
-                            <div class="bg-success bg-opacity-10 text-success rounded-circle d-inline-flex justify-content-center align-items-center mb-3"
-                                style="width: 64px; height: 64px;">
+                            <div class="rounded-circle d-inline-flex justify-content-center align-items-center mb-3"
+                                style="width: 64px; height: 64px; background-color: #1ac4d7; color: white;">
                                 <i class="bi bi-phone-fill fs-2"></i>
                             </div>
                             <h5 class="fw-bold">Mobile First</h5>
@@ -269,8 +399,8 @@
                 <div class="col-md-4">
                     <div class="card h-100 border-0 shadow-sm p-4 hover:shadow transition">
                         <div class="card-body text-center">
-                            <div class="bg-danger bg-opacity-10 text-danger rounded-circle d-inline-flex justify-content-center align-items-center mb-3"
-                                style="width: 64px; height: 64px;">
+                            <div class="rounded-circle d-inline-flex justify-content-center align-items-center mb-3"
+                                style="width: 64px; height: 64px; background-color: #1ac4d7; color: white;">
                                 <i class="bi bi-shield-lock-fill fs-2"></i>
                             </div>
                             <h5 class="fw-bold">Secure Code</h5>
@@ -292,8 +422,9 @@
                 <!-- Step 1 -->
                 <div class="col-md-4 text-center mb-4 mb-md-0 position-relative">
                     <div class="card border-0 bg-white shadow-sm p-4 mx-auto" style="max-width: 300px;">
-                        <div class="bg-primary text-white rounded-circle d-inline-flex justify-content-center align-items-center mx-auto mb-3 border border-4 border-white"
-                            style="width: 48px; height: 48px; position: relative; z-index: 2;">1</div>
+                        <div class="text-white rounded-circle d-inline-flex justify-content-center align-items-center mx-auto mb-3 border border-4 border-white"
+                            style="width: 48px; height: 48px; position: relative; z-index: 2; background-color: #1ac4d7;">1
+                        </div>
                         <h5 class="fw-bold">Domain & Hosting</h5>
                         <p class="text-secondary small">Setup server cepat & aman.</p>
                     </div>
@@ -301,8 +432,9 @@
                 <!-- Step 2 -->
                 <div class="col-md-4 text-center mb-4 mb-md-0">
                     <div class="card border-0 bg-white shadow-sm p-4 mx-auto" style="max-width: 300px;">
-                        <div class="bg-primary text-white rounded-circle d-inline-flex justify-content-center align-items-center mx-auto mb-3 border border-4 border-white"
-                            style="width: 48px; height: 48px; position: relative; z-index: 2;">2</div>
+                        <div class="text-white rounded-circle d-inline-flex justify-content-center align-items-center mx-auto mb-3 border border-4 border-white"
+                            style="width: 48px; height: 48px; position: relative; z-index: 2; background-color: #1ac4d7;">2
+                        </div>
                         <h5 class="fw-bold">Design & Coding</h5>
                         <p class="text-secondary small">Desain UI/UX modern & fungsional.</p>
                     </div>
@@ -310,8 +442,9 @@
                 <!-- Step 3 -->
                 <div class="col-md-4 text-center">
                     <div class="card border-0 bg-white shadow-sm p-4 mx-auto" style="max-width: 300px;">
-                        <div class="bg-primary text-white rounded-circle d-inline-flex justify-content-center align-items-center mx-auto mb-3 border border-4 border-white"
-                            style="width: 48px; height: 48px; position: relative; z-index: 2;">3</div>
+                        <div class="text-white rounded-circle d-inline-flex justify-content-center align-items-center mx-auto mb-3 border border-4 border-white"
+                            style="width: 48px; height: 48px; position: relative; z-index: 2; background-color: #1ac4d7;">3
+                        </div>
                         <h5 class="fw-bold">Maintenance</h5>
                         <p class="text-secondary small">Support teknis & update keamanan.</p>
                     </div>
@@ -364,7 +497,7 @@
                         <div class="card-body p-4">
                             <h5 class="fw-bold text-primary mb-2">Enterprise System</h5>
                             <p class="text-secondary small mb-4">Solusi lengkap untuk kebutuhan Bisnis Anda.</p>
-                            <h3 class="fw-bold mb-4">Rp 7.500.000</h3>
+                            <h3 class="fw-bold mb-4">Contact Now</h3>
                             <ul class="list-unstyled mb-4 text-secondary small">
                                 <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Multi
                                     Halaman
