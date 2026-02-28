@@ -66,8 +66,8 @@
                     <h2 class="fw-bold display-6 mb-4">Kenapa Bisnis Anda Butuh Website Sekarang?</h2>
                     <div class="vstack gap-4">
                         <div class="d-flex gap-3">
-                            <div class="flex-shrink-0 bg-info bg-opacity-10 text-info rounded-circle d-flex justify-content-center align-items-center"
-                                style="width: 48px; height: 48px;">
+                            <div class="flex-shrink-0 rounded-circle d-flex justify-content-center align-items-center"
+                                style="width: 48px; height: 48px; background-color: #1ac4d7; color: white;">
                                 <i class="bi bi-person-workspace fs-5"></i>
                             </div>
                             <div>
@@ -77,8 +77,8 @@
                             </div>
                         </div>
                         <div class="d-flex gap-3">
-                            <div class="flex-shrink-0 bg-success bg-opacity-10 text-success rounded-circle d-flex justify-content-center align-items-center"
-                                style="width: 48px; height: 48px;">
+                            <div class="flex-shrink-0 rounded-circle d-flex justify-content-center align-items-center"
+                                style="width: 48px; height: 48px; background-color: #1ac4d7; color: white;">
                                 <i class="bi bi-graph-up-arrow fs-5"></i>
                             </div>
                             <div>
@@ -239,9 +239,9 @@
                         <ul class="list-unstyled">
                             <li class="mb-3 d-flex gap-3 text-white">
                                 <div class="flex-shrink-0">
-                                    <div class="d-flex align-items-center justify-content-center h-8 w-8 rounded-lg bg-white bg-opacity-20"
-                                        style="width: 32px; height: 32px;">
-                                        <i class="bi bi-people-fill small"></i>
+                                    <div class="d-flex align-items-center justify-content-center h-10 w-10 rounded-lg"
+                                        style="width: 42px; height: 42px; background-color: #1ac4d7; color: white;">
+                                        <i class="bi bi-people-fill fs-5"></i>
                                     </div>
                                 </div>
                                 <div>
@@ -252,9 +252,9 @@
                             </li>
                             <li class="mb-3 d-flex gap-3 text-white">
                                 <div class="flex-shrink-0">
-                                    <div class="d-flex align-items-center justify-content-center h-8 w-8 rounded-lg bg-white bg-opacity-20"
-                                        style="width: 32px; height: 32px;">
-                                        <i class="bi bi-calendar-check small"></i>
+                                    <div class="d-flex align-items-center justify-content-center h-10 w-10 rounded-lg"
+                                        style="width: 42px; height: 42px; background-color: #1ac4d7; color: white;">
+                                        <i class="bi bi-calendar-check fs-5"></i>
                                     </div>
                                 </div>
                                 <div>
@@ -265,9 +265,9 @@
                             </li>
                             <li class="mb-3 d-flex gap-3 text-white">
                                 <div class="flex-shrink-0">
-                                    <div class="d-flex align-items-center justify-content-center h-8 w-8 rounded-lg bg-white bg-opacity-20"
-                                        style="width: 32px; height: 32px;">
-                                        <i class="bi bi-credit-card small"></i>
+                                    <div class="d-flex align-items-center justify-content-center h-10 w-10 rounded-lg"
+                                        style="width: 42px; height: 42px; background-color: #1ac4d7; color: white;">
+                                        <i class="bi bi-credit-card fs-5"></i>
                                     </div>
                                 </div>
                                 <div>
@@ -277,9 +277,9 @@
                             </li>
                             <li class="mb-3 d-flex gap-3 text-white">
                                 <div class="flex-shrink-0">
-                                    <div class="d-flex align-items-center justify-content-center h-8 w-8 rounded-lg bg-white bg-opacity-20"
-                                        style="width: 32px; height: 32px;">
-                                        <i class="bi bi-graph-up small"></i>
+                                    <div class="d-flex align-items-center justify-content-center h-10 w-10 rounded-lg"
+                                        style="width: 42px; height: 42px; background-color: #1ac4d7; color: white;">
+                                        <i class="bi bi-graph-up fs-5"></i>
                                     </div>
                                 </div>
                                 <div>
@@ -289,14 +289,27 @@
                             </li>
                             <li class="mb-3 d-flex gap-3 text-white">
                                 <div class="flex-shrink-0">
-                                    <div class="d-flex align-items-center justify-content-center h-8 w-8 rounded-lg bg-white bg-opacity-20"
-                                        style="width: 32px; height: 32px;">
-                                        <i class="bi bi-chat-dots small"></i>
+                                    <div class="d-flex align-items-center justify-content-center h-10 w-10 rounded-lg"
+                                        style="width: 42px; height: 42px; background-color: #1ac4d7; color: white;">
+                                        <i class="bi bi-chat-dots fs-5"></i>
                                     </div>
                                 </div>
                                 <div>
                                     <strong>Komunikasi Terintegrasi</strong>
                                     <p class="text-white-50 small mb-0">WhatsApp & Email blast untuk update jamaah</p>
+                                </div>
+                            </li>
+                            <li class="mb-3 d-flex gap-3 text-white">
+                                <div class="flex-shrink-0">
+                                    <div class="d-flex align-items-center justify-content-center h-10 w-10 rounded-lg"
+                                        style="width: 42px; height: 42px; background-color: #1ac4d7; color: white;">
+                                        <i class="bi bi-file-earmark-text fs-5"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <strong>Manifest Keberangkatan</strong>
+                                    <p class="text-white-50 small mb-0">Kelola dokumen manifest dan tracking penerbangan
+                                        jamaah</p>
                                 </div>
                             </li>
                         </ul>
@@ -360,8 +373,8 @@
                 <div class="col-md-4">
                     <div class="card h-100 border-0 shadow-sm p-4 hover:shadow transition">
                         <div class="card-body text-center">
-                            <div class="bg-primary bg-opacity-10 text-primary rounded-circle d-inline-flex justify-content-center align-items-center mb-3"
-                                style="width: 64px; height: 64px;">
+                            <div class="rounded-circle d-inline-flex justify-content-center align-items-center mb-3"
+                                style="width: 64px; height: 64px; background-color: #1ac4d7; color: white;">
                                 <i class="bi bi-lightning-charge-fill fs-2"></i>
                             </div>
                             <h5 class="fw-bold">Ultra Fast Loading</h5>
@@ -373,8 +386,8 @@
                 <div class="col-md-4">
                     <div class="card h-100 border-0 shadow-sm p-4 hover:shadow transition">
                         <div class="card-body text-center">
-                            <div class="bg-success bg-opacity-10 text-success rounded-circle d-inline-flex justify-content-center align-items-center mb-3"
-                                style="width: 64px; height: 64px;">
+                            <div class="rounded-circle d-inline-flex justify-content-center align-items-center mb-3"
+                                style="width: 64px; height: 64px; background-color: #1ac4d7; color: white;">
                                 <i class="bi bi-phone-fill fs-2"></i>
                             </div>
                             <h5 class="fw-bold">Mobile First</h5>
@@ -386,8 +399,8 @@
                 <div class="col-md-4">
                     <div class="card h-100 border-0 shadow-sm p-4 hover:shadow transition">
                         <div class="card-body text-center">
-                            <div class="bg-danger bg-opacity-10 text-danger rounded-circle d-inline-flex justify-content-center align-items-center mb-3"
-                                style="width: 64px; height: 64px;">
+                            <div class="rounded-circle d-inline-flex justify-content-center align-items-center mb-3"
+                                style="width: 64px; height: 64px; background-color: #1ac4d7; color: white;">
                                 <i class="bi bi-shield-lock-fill fs-2"></i>
                             </div>
                             <h5 class="fw-bold">Secure Code</h5>
@@ -409,8 +422,9 @@
                 <!-- Step 1 -->
                 <div class="col-md-4 text-center mb-4 mb-md-0 position-relative">
                     <div class="card border-0 bg-white shadow-sm p-4 mx-auto" style="max-width: 300px;">
-                        <div class="bg-primary text-white rounded-circle d-inline-flex justify-content-center align-items-center mx-auto mb-3 border border-4 border-white"
-                            style="width: 48px; height: 48px; position: relative; z-index: 2;">1</div>
+                        <div class="text-white rounded-circle d-inline-flex justify-content-center align-items-center mx-auto mb-3 border border-4 border-white"
+                            style="width: 48px; height: 48px; position: relative; z-index: 2; background-color: #1ac4d7;">1
+                        </div>
                         <h5 class="fw-bold">Domain & Hosting</h5>
                         <p class="text-secondary small">Setup server cepat & aman.</p>
                     </div>
@@ -418,8 +432,9 @@
                 <!-- Step 2 -->
                 <div class="col-md-4 text-center mb-4 mb-md-0">
                     <div class="card border-0 bg-white shadow-sm p-4 mx-auto" style="max-width: 300px;">
-                        <div class="bg-primary text-white rounded-circle d-inline-flex justify-content-center align-items-center mx-auto mb-3 border border-4 border-white"
-                            style="width: 48px; height: 48px; position: relative; z-index: 2;">2</div>
+                        <div class="text-white rounded-circle d-inline-flex justify-content-center align-items-center mx-auto mb-3 border border-4 border-white"
+                            style="width: 48px; height: 48px; position: relative; z-index: 2; background-color: #1ac4d7;">2
+                        </div>
                         <h5 class="fw-bold">Design & Coding</h5>
                         <p class="text-secondary small">Desain UI/UX modern & fungsional.</p>
                     </div>
@@ -427,8 +442,9 @@
                 <!-- Step 3 -->
                 <div class="col-md-4 text-center">
                     <div class="card border-0 bg-white shadow-sm p-4 mx-auto" style="max-width: 300px;">
-                        <div class="bg-primary text-white rounded-circle d-inline-flex justify-content-center align-items-center mx-auto mb-3 border border-4 border-white"
-                            style="width: 48px; height: 48px; position: relative; z-index: 2;">3</div>
+                        <div class="text-white rounded-circle d-inline-flex justify-content-center align-items-center mx-auto mb-3 border border-4 border-white"
+                            style="width: 48px; height: 48px; position: relative; z-index: 2; background-color: #1ac4d7;">3
+                        </div>
                         <h5 class="fw-bold">Maintenance</h5>
                         <p class="text-secondary small">Support teknis & update keamanan.</p>
                     </div>
