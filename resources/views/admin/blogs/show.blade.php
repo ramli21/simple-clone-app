@@ -57,6 +57,10 @@
                             <div class="card-body">
                                 <h5 class="card-title">Details</h5>
 
+                                @if ($blog->image)
+                                    <img src="{{ $blog->image }}" alt="ABCD" class="img-fluid mb-3">
+                                @endif
+
                                 <div class="mb-3">
                                     <label class="form-label text-muted">Category</label>
                                     @if ($blog->category)

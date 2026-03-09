@@ -10,16 +10,7 @@ class Blog extends Model
 {
     use UsesUuid, HasFactory;
 
-    protected $fillable = [
-        'title',
-        'slug',
-        'content',
-        'excerpt',
-        'category_id',
-        'author_id',
-        'published_at',
-        'is_featured',
-    ];
+    protected $fillable = ['title', 'slug', 'content', 'image', 'excerpt', 'category_id', 'author_id', 'published_at', 'is_featured'];
 
     protected $casts = [
         'published_at' => 'datetime',
@@ -46,3 +37,4 @@ class Blog extends Model
         return $query->where('is_featured', true);
     }
 }
+

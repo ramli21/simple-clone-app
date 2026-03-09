@@ -26,6 +26,7 @@ Route::prefix('admin')
     ->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
         Route::resource('blogs', BlogController::class);
+        Route::post('blogs/upload', [BlogController::class, 'upload'])->name('blogs.upload');
         Route::resource('itineraries', ItineraryController::class)->only(['update', 'edit']);
         Route::resource('inquiries', InquiryController::class)->only(['index', 'show', 'destroy', 'update']);
         Route::resource('service-items', ServiceItemController::class);

@@ -24,7 +24,8 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <form method="POST" action="{{ route('admin.blogs.update', $blog) }}">
+                        <form method="POST" action="{{ route('admin.blogs.update', $blog) }}"
+                            enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
 
@@ -77,6 +78,19 @@
                                     @enderror
                                 </div>
                             </div>
+
+                            <div class="mb-3">
+                                <label for="image" class="form-label">Upload Image (optional)</label>
+                                <input type="file" class="form-control @error('image') is-invalid @enderror"
+                                    id="image" name="image">
+                                @error('image')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <a href="{{ asset('storage/' . $blog->image) }}" target="_blank"
+                                class="btn btn-outline-primary btn-sm">
+                                View Current Image
+                            </a>
 
                             <div class="mb-3">
                                 <label for="content" class="form-label">Content <span class="text-danger">*</span></label>

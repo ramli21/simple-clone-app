@@ -1,5 +1,9 @@
 @extends('layouts.dashboard')
 
+@push('styles')
+    <!-- include summernote css/js -->
+    <link href="{{ asset('vendors/summernote/summernote-bs5.min.css') }}" rel="stylesheet">
+@endpush
 @section('content')
     <div class="container">
         <div class="row">
@@ -20,7 +24,7 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <form method="POST" action="{{ route('admin.blogs.store') }}">
+                        <form method="POST" action="{{ route('admin.blogs.store') }}" enctype="multipart/form-data">
                             @csrf
 
                             <div class="mb-3">
@@ -73,8 +77,17 @@
                             </div>
 
                             <div class="mb-3">
+                                <label for="image" class="form-label">Upload Image</label>
+                                <input type="file" class="form-control @error('image') is-invalid @enderror"
+                                    id="image" name="image">
+                                @error('image')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3">
                                 <label for="content" class="form-label">Content <span class="text-danger">*</span></label>
-                                <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content" rows="12"
+                                <textarea class="form-control @error('content') is-invalid @enderror" id="summernote" name="content" rows="12"
                                     required>{{ old('content') }}</textarea>
                                 @error('content')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -104,3 +117,14 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script src="{{ asset('vendors/summernote/summernote-bs5.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#summernote').summernote({
+                height: 300
+            });
+        });
+    </script>
+@endpush

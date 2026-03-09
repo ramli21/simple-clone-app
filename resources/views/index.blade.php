@@ -6,6 +6,10 @@
     <link rel="stylesheet" href="{{ asset('styles/app.css') }}" />
 @endpush
 
+@push('metadata')
+    @include('partials.meta-tags')
+@endpush
+
 @section('content')
     <!-- A. Hero Section -->
     <section id="home" class="position-relative text-white d-flex align-items-center min-vh-100"
@@ -612,7 +616,7 @@
                                     <label for="fullName" class="form-label text-secondary small fw-bold">Nama
                                         Lengkap</label>
                                     <input type="text" class="form-control bg-light border-0 py-2" id="fullName"
-                                        placeholder="Budi Santoso" required>
+                                        placeholder="Nama lengkap" required>
                                     <div class="invalid-feedback">Mohon isi nama lengkap Anda.</div>
                                 </div>
 
@@ -621,7 +625,7 @@
                                     <label for="companyName" class="form-label text-secondary small fw-bold">Nama
                                         Perusahaan</label>
                                     <input type="text" name="name" class="form-control bg-light border-0 py-2"
-                                        id="companyName" placeholder="PT. Sukses Maju">
+                                        id="companyName" placeholder="Nama perusahaan Anda" required>
                                     <div class="invalid-feedback">Mohon isi nama perusahaan.</div>
                                 </div>
 
@@ -630,7 +634,7 @@
                                     <label for="email" class="form-label text-secondary small fw-bold">Alamat
                                         Email</label>
                                     <input type="email" name="email" class="form-control bg-light border-0 py-2"
-                                        id="email" placeholder="nama@perusahaan.com" required>
+                                        id="email" placeholder="Alamat email anda" required>
                                     <div class="invalid-feedback">Mohon masukkan email yang valid.</div>
                                 </div>
 

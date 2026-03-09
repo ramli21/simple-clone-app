@@ -7,6 +7,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class BlogController extends Controller
 {
@@ -43,6 +44,7 @@ class BlogController extends Controller
             'category_id' => 'nullable|uuid|exists:categories,id',
             'is_featured' => 'boolean',
             'published_at' => 'nullable|date',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $validated['slug'] = Str::slug($validated['title']);
@@ -52,11 +54,16 @@ class BlogController extends Controller
             $validated['published_at'] = now();
         }
 
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            Storage::disk('public')->putFileAs('blogs', $image, $image->hashName(), 'public');
+            $imagePath = Storage::disk('public')->url('blogs/' . $image->hashName());
+            $validated['image'] = $imagePath;
+        }
+
         $blog = Blog::create($validated);
 
-        return redirect()
-            ->route('admin.blogs.show', $blog)
-            ->with('success', 'Blog post created successfully.');
+        return redirect()->route('admin.blogs.show', $blog)->with('success', 'Blog post created successfully.');
     }
 
     /**
@@ -89,15 +96,31 @@ class BlogController extends Controller
             'category_id' => 'nullable|uuid|exists:categories,id',
             'is_featured' => 'boolean',
             'published_at' => 'nullable|date',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $validated['slug'] = Str::slug($validated['title']);
 
+        // Remove image before update if a new image is uploaded
+        if ($request->hasFile('image')) {
+            if ($blog->image_path) {
+                $imagePath = public_path($blog->image_path);
+                if (file_exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
+        }
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            Storage::disk('public')->putFileAs('blogs', $image, $image->hashName(), 'public');
+            $imagePath = Storage::disk('public')->url('blogs/' . $image->hashName());
+            $validated['image'] = $imagePath;
+        }
+
         $blog->update($validated);
 
-        return redirect()
-            ->route('admin.blogs.show', $blog)
-            ->with('success', 'Blog post updated successfully.');
+        return redirect()->route('admin.blogs.show', $blog)->with('success', 'Blog post updated successfully.');
     }
 
     /**
@@ -107,8 +130,7 @@ class BlogController extends Controller
     {
         $blog->delete();
 
-        return redirect()
-            ->route('admin.blogs.index')
-            ->with('success', 'Blog post deleted successfully.');
+        return redirect()->route('admin.blogs.index')->with('success', 'Blog post deleted successfully.');
     }
 }
+

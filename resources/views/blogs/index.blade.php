@@ -456,7 +456,7 @@
                     <div class="featured-blog">
                         <div class="featured-blog-content">
                             <div class="featured-blog-image">
-                                <img src="{{ asset($featuredBlog->image ?? 'images/blog-default.png') }}"
+                                <img src="{{ $featuredBlog->image ?? asset('images/blog-default.png') }}"
                                     alt="{{ $featuredBlog->title }}" loading="lazy">
                             </div>
                             <div class="featured-blog-body">
