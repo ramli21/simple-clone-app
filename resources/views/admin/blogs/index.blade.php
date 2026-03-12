@@ -28,6 +28,7 @@
                                     <th>Author</th>
                                     <th>Featured</th>
                                     <th>Published</th>
+                                    <th>Viewers</th>
                                     <th>Created</th>
                                     <th>Actions</th>
                                 </tr>
@@ -59,6 +60,9 @@
                                             @else
                                                 <span class="text-muted">Draft</span>
                                             @endif
+                                        </td>
+                                        <td>
+                                            {{ $blog->views }}
                                         </td>
                                         <td>
                                             <small>{{ $blog->created_at->format('M d, Y') }}</small>
