@@ -450,6 +450,18 @@
             margin-top: 1.5rem;
         }
 
+        .profile-image-container {
+            position: relative;
+        }
+
+        .profile-image {
+            width: 100%;
+            max-width: 450px;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            border: 3px solid rgba(255, 255, 255, 0.1);
+        }
+
         /* Responsive */
         @media (max-width: 991px) {
             .hero-headline {
@@ -464,6 +476,15 @@
 
             .hero-subheadline {
                 margin: 0 auto 2rem;
+            }
+
+            .profile-image-container {
+                margin-top: 3rem;
+                text-align: center;
+            }
+
+            .profile-image {
+                max-width: 300px;
             }
         }
 
@@ -488,7 +509,7 @@
     <section class="hero-section">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-8">
+                <div class="col-lg-6">
                     <div class="hero-content">
                         <h1 class="hero-headline" data-aos="fade-up">
                             Kelola Travel Umroh Lebih Profesional & Tanpa Ribet
@@ -505,6 +526,13 @@
                                 Pelajari Fitur
                             </a>
                         </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="profile-image-container text-lg-end floating" data-aos="fade-left" data-aos-delay="300">
+                        <img src="{{ asset('images/undraw_investment.png') }}" alt="Akhritech - Developer Founder"
+                            class="profile-image">
                     </div>
                 </div>
             </div>
@@ -581,7 +609,8 @@
                         </p>
 
                         <ul class="pricing-features">
-                            <li><i class="bi bi-check-circle-fill"></i> Sistem Dashboard Manajemen Jamaah (Fitur Inti).</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Sistem Dashboard Manajemen Jamaah (Fitur Inti).
+                            </li>
                             <li><i class="bi bi-check-circle-fill"></i> Penyimpanan data hingga 350 jamaah</li>
                             <li><i class="bi bi-check-circle-fill"></i> Update sistem berkala secara otomatis.</li>
                             <li><i class="bi bi-check-circle-fill"></i> Support via WhatsApp (Respon 1x24 jam).</li>
@@ -684,7 +713,7 @@
                 </div>
                 <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
                     <div class="gallery-item">
-                        <img src="{{ asset('images/dashboard-2.jpg') }}" alt="Man Jamaah"
+                        <img src="{{ asset('images/dashboard-jamaah.jpg') }}" alt="Man Jamaah"
                             onerror="this.src='https://placehold.co/800x450/f1f5f9/197c93?text=Manajemen+Jamaah'"
                             loading="lazy">
                         <div class="gallery-caption">
@@ -694,17 +723,17 @@
                 </div>
                 <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
                     <div class="gallery-item">
-                        <img src="{{ asset('images/undraw_building.png') }}" alt="Laporan Keuangan"
-                            onerror="this.src='https://placehold.co/800x450/f1f5f9/197c93?text=Laporan+Keuangan'"
+                        <img src="{{ asset('images/dashboard-booking.jpg') }}" alt="Manajemen Booking"
+                            onerror="this.src='https://placehold.co/800x450/f1f5f9/197c93?text=Manajemen+Booking'"
                             loading="lazy">
                         <div class="gallery-caption">
-                            <h5>Laporan Keuangan</h5>
+                            <h5>Manajemen Booking</h5>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
                     <div class="gallery-item">
-                        <img src="{{ asset('images/undraw_travelers.png') }}" alt="Portal Jamaah"
+                        <img src="{{ asset('images/landingpage-travel.jpg') }}" alt="Portal Jamaah"
                             onerror="this.src='https://placehold.co/800x450/f1f5f9/197c93?text=Portal+Jamaah'"
                             loading="lazy">
                         <div class="gallery-caption">
@@ -732,18 +761,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Cara Menambahkan Media -->
-            <div class="alert alert-info mt-5" data-aos="fade-up">
-                <h5><i class="bi bi-info-circle me-2"></i>Cara Menambahkan Media:</h5>
-                <ol class="mb-0">
-                    <li><strong>Gambar:</strong> Simpan di folder <code>public/images/</code> lalu ubah nama file di kode di
-                        atas</li>
-                    <li><strong>Video:</strong> Simpan di folder <code>public/videos/</code> dengan format MP4</li>
-                    <li><strong>Untuk menghapus placeholder:</strong> Hapus atribut <code>onerror</code> setelah gambar asli
-                        ditambahkan</li>
-                </ol>
             </div>
         </div>
     </section>

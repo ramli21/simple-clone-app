@@ -15,10 +15,13 @@
             <div class="col-6 col-lg-2">
                 <h6 class="text-white fw-bold mb-3">Menu</h6>
                 <ul class="list-unstyled small vstack gap-2">
-                    <li><a href="#home" class="text-decoration-none text-white-50 hover-white">Home</a></li>
-                    <li><a href="#solutions" class="text-decoration-none text-white-50 hover-white">Solutions</a>
+                    <li><a href="/" class="text-decoration-none text-white-50 hover-white">Home</a></li>
+                    <li><a href="/#products" class="text-decoration-none text-white-50 hover-white">Products</a>
                     </li>
-                    <li><a href="#pricing" class="text-decoration-none text-white-50 hover-white">Pricing</a>
+                    <li><a href="{{ route('blogs.index') }}"
+                            class="text-decoration-none text-white-50 hover-white">Blogs</a>
+                    </li>
+                    <li><a href="/#contacts" class="text-decoration-none text-white-50 hover-white">Contacts</a>
                     </li>
                 </ul>
             </div>
