@@ -14,36 +14,12 @@ class HomeController extends Controller
     public function index()
     {
         $company = CompanyProfile::first();
-        return view('index', compact('company'));
+        return view('content.akhritech-landing', compact('company'));
     }
 
-    public function travelHome()
+    public function travel()
     {
-        $company = CompanyProfile::first();
-        $services = ServiceItem::with([
-            'itineraries' => function ($query) {
-                $query->orderBy('created_at', 'asc');
-            },
-        ])
-            ->where('is_active', true)
-            ->orderBy('created_at', 'asc')
-            ->get();
-
-        $dataPackages = [];
-
-        foreach ($services as $item) {
-            $dataPackages[$item->title] = [
-                'description' => $item->description,
-                'details' => [],
-            ];
-
-            foreach ($item->itineraries as $itinerary) {
-                $dataPackages[$item->title]['details'][] = $itinerary->activity_title . ' - ' . $itinerary->activity_description;
-            }
-        }
-
-        // dd($dataPackages);
-        return view('templates.travel.simple-one', compact('company', 'services', 'dataPackages'));
+        return view('products.travel');
     }
 
     public function serviceDetail($slug)
@@ -118,6 +94,7 @@ class HomeController extends Controller
 
     public function themes()
     {
+        $company = CompanyProfile::first();
         $template_filters = [
             ['name' => 'Bisnis', 'data-filter' => '.filter-bisnis'],
             // ['name' => 'Textile', 'data-filter' => '.filter-textile'],
@@ -218,7 +195,7 @@ class HomeController extends Controller
                 'download_url' => 'https://themewagon.com/themes/drivin-free-bootstrap-5-driving-school-website-template/',
             ],
         ];
-        return view('home.themes', compact('template_filters', 'templates'));
+        return view('home.themes', compact('company', 'template_filters', 'templates'));
     }
 }
 
