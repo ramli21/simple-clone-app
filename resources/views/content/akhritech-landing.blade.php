@@ -801,7 +801,11 @@
                 }
             });
         });
-
+    </script>
+    @php
+        $message = session()->get('success') ? session()->get('success') : null;
+    @endphp
+    <script>
         let alertMessage;
         alertMessage = "{{ $message }}"
 
