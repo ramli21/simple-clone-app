@@ -15,7 +15,7 @@
     <link href="{{ asset('vendors/aos/aos.css') }}" rel="stylesheet">
 
     @stack('styles')
-
+    <script src="https://www.google.com/recaptcha/api.js?render={{ env('RECAPTCHA_SITE_KEY') }}" async defer></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DGDJKW7E3Y"></script>
     <script>
