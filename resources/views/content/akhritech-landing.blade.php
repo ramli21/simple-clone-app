@@ -769,6 +769,9 @@
             </div>
         </div>
     </section>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
 @endsection
 
 @push('scripts')
@@ -798,5 +801,12 @@
                 }
             });
         });
+
+        let alertMessage;
+        alertMessage = "{{ $message }}"
+
+        if (alertMessage !== '') {
+            showToast(alertMessage)
+        }
     </script>
 @endpush
