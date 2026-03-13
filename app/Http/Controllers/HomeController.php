@@ -84,7 +84,7 @@ class HomeController extends Controller
 
         $inquiry = Inquiry::create($validated);
 
-        if ($company->email) {
+        if (env('APP_ENV') == 'production' && $company->email) {
             Mail::to($company->email)->send(new InqueryForwarderMailer($inquiry));
         }
 

@@ -717,6 +717,19 @@
                                     <div class="invalid-feedback">Mohon masukkan email yang valid.</div>
                                 </div>
 
+                                <div class="col-12">
+                                    <label for="service" class="form-label text-secondary small fw-bold">Jasa yang
+                                        Dibutuhkan</label>
+                                    <select name="subject" class="form-select bg-light border-0 py-2" id="service"
+                                        required>
+                                        <option value="" selected disabled>Pilih layanan...</option>
+                                        <option value="landing">Request Demo Ar-Rihlah App</option>
+                                        <option value="landing">Berlangganan Ar-Rihlah App</option>
+                                        <option value="custom">Custom Development (Konsultasi)</option>
+                                    </select>
+                                    <div class="invalid-feedback">Silakan pilih salah satu layanan.</div>
+                                </div>
+
                                 <!-- No.WhatsApp -->
                                 <div class="col-12">
                                     <label for="email" class="form-label text-secondary small fw-bold">WhatsApp
