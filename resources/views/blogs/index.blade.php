@@ -484,7 +484,7 @@
                                         </span>
                                     @endif
                                 </div>
-                                <a href="{{ route('blogs.show', $featuredBlog->id) }}" class="featured-blog-button">
+                                <a href="{{ route('blogs.show', $featuredBlog->slug) }}" class="featured-blog-button">
                                     Baca Selengkapnya <i class="bi bi-arrow-right"></i>
                                 </a>
                             </div>

@@ -22,7 +22,7 @@ Route::get('/service/{slug}', [HomeController::class, 'serviceDetail'])->name('s
 
 Route::post('/inquiry', [HomeController::class, 'inquiry'])->name('inquiry.store');
 Route::get('/blogs', [PublicBlogController::class, 'index'])->name('blogs.index');
-Route::get('/blogs/{blog}', [PublicBlogController::class, 'show'])->name('blogs.show');
+Route::get('/blogs/{slug}', [PublicBlogController::class, 'show'])->name('blogs.show');
 
 Auth::routes();
 
