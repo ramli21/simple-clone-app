@@ -410,7 +410,7 @@
             'itemListElement' => $blogs->map(function($blog, $index) {
                 return [
                     '@type' => 'BlogPosting',
-                    '@id' => route('blogs.show', $blog->id),
+                    '@id' => route('blogs.show', $blog->slug),
                     'position' => $index + 1,
                     'headline' => $blog->title,
                     'description' => $blog->excerpt ?? Str::limit($blog->content, 160),
@@ -509,7 +509,7 @@
                         <div class="blog-card">
                             <!-- Blog Image with Badges -->
                             <div class="blog-card-image">
-                                <a href="{{ route('blogs.show', $blog->id) }}" title="{{ $blog->title }}">
+                                <a href="{{ route('blogs.show', $blog->slug) }}" title="{{ $blog->title }}">
                                     <img src="{{ asset($blog->image ?? 'images/blog-default.png') }}"
                                         alt="{{ $blog->title }}" loading="lazy" width="400" height="240">
                                 </a>
@@ -526,7 +526,7 @@
                             <div class="blog-card-body">
                                 <!-- Blog Title -->
                                 <h2 class="blog-card-title">
-                                    <a href="{{ route('blogs.show', $blog->id) }}" title="{{ $blog->title }}">
+                                    <a href="{{ route('blogs.show', $blog->slug) }}" title="{{ $blog->title }}">
                                         {{ $blog->title }}
                                     </a>
                                 </h2>
@@ -556,7 +556,7 @@
 
                                 <!-- Read More Button -->
                                 <div class="blog-card-footer">
-                                    <a href="{{ route('blogs.show', $blog->id) }}"
+                                    <a href="{{ route('blogs.show', $blog->slug) }}"
                                         aria-label="Baca selengkapnya: {{ $blog->title }}">
                                         Baca Selengkapnya <i class="bi bi-arrow-right"></i>
                                     </a>

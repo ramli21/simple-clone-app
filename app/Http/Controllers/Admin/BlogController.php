@@ -118,6 +118,10 @@ class BlogController extends Controller
             $validated['image'] = $imagePath;
         }
 
+        if (!isset($validated['published_at']) || $validated['published_at'] === null) {
+            $validated['published_at'] = now();
+        }
+
         $blog->update($validated);
 
         return redirect()->route('admin.blogs.show', $blog)->with('success', 'Blog post updated successfully.');
