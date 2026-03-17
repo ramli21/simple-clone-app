@@ -41,7 +41,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 // Sitemap
 Route::get('/sitemap.xml', function() {
-    $blogs = Blog::where('is_published', true)->get();
+    $blogs = Blog::published()->get();
     $services = ServiceItem::where('status', 'active')->get();
     
     $sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n';
