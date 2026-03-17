@@ -10,31 +10,43 @@ class CategorySeeder extends Seeder
 {
     public function run()
     {
+        Category::truncate();
+
         $categories = [
             [
-                'name' => 'Manufacturing Products',
-                'slug' => 'manufacturing-products',
-                'description' => 'Products for manufacturing companies',
+                'name' => 'Branding',
+                'slug' => 'branding',
+                'description' => 'Brand identity and marketing solutions',
             ],
             [
-                'name' => 'Travel Packages',
-                'slug' => 'travel-packages',
-                'description' => 'Travel packages for agencies',
+                'name' => 'Ramadhan',
+                'slug' => 'ramadhan',
+                'description' => 'Ramadan campaigns and special events',
             ],
             [
-                'name' => 'Hajj & Umrah',
-                'slug' => 'hajj-umrah',
-                'description' => 'Hajj and Umrah packages',
+                'name' => 'Product',
+                'slug' => 'product',
+                'description' => 'Product development and launches',
             ],
             [
-                'name' => 'Domestic Tours',
-                'slug' => 'domestic-tours',
-                'description' => 'Domestic tour packages',
+                'name' => 'Tips',
+                'slug' => 'tips',
+                'description' => 'Practical tips, guides and best practices',
             ],
             [
-                'name' => 'International Tours',
-                'slug' => 'international-tours',
-                'description' => 'International tour packages',
+                'name' => 'Showcase',
+                'slug' => 'showcase',
+                'description' => 'Project portfolio and case studies',
+            ],
+            [
+                'name' => 'Edukasi',
+                'slug' => 'edukasi',
+                'description' => 'Educational content and training materials',
+            ],
+            [
+                'name' => 'Teknologi',
+                'slug' => 'teknologi',
+                'description' => 'Technology insights and innovations',
             ],
         ];
 
