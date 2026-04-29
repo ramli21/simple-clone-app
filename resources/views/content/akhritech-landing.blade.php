@@ -333,6 +333,335 @@
         .bg-primary {
             background-color: #156a7d !important;
         }
+
+        /* Service Section */
+        .service-section {
+            padding: 100px 0;
+            background: #ffffff;
+        }
+
+        .service-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #197c93 0%, #156a7d 100%);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -12px rgba(25, 124, 147, 0.2);
+            border-color: #197c93;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #197c93 0%, #156a7d 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            width: fit-content;
+        }
+
+        .service-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-price-wrapper {
+            margin-bottom: 1.5rem;
+        }
+
+        .service-price-original {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #cbd5e1;
+            text-decoration: line-through;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .service-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #197c93;
+            margin-bottom: 0.25rem;
+        }
+
+        .service-price-note {
+            font-size: 0.85rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .service-discount-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+
+        .service-timeline {
+            background: rgba(25, 124, 147, 0.05);
+            border-left: 3px solid #197c93;
+            padding: 0.75rem 1rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #0f172a;
+            font-weight: 500;
+        }
+
+        .service-timeline i {
+            margin-right: 0.5rem;
+            color: #197c93;
+        }
+
+        .service-domains {
+            background: #f8fafc;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border: 1px solid #e2e8f0;
+        }
+
+        .service-domains-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .service-domains-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+        }
+
+        .domain-tag {
+            background: white;
+            color: #197c93;
+            padding: 4px 10px;
+            border-radius: 4px;
+            border: 1px solid #e2e8f0;
+            font-weight: 500;
+        }
+
+        .service-description {
+            color: #64748b;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .service-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 2rem;
+        }
+
+        .service-features li {
+            color: #64748b;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .service-features li:before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: #197c93;
+            border-radius: 50%;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+
+        .service-btn {
+            background: linear-gradient(135deg, #197c93 0%, #156a7d 100%);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            display: inline-block;
+            text-align: center;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .service-btn:hover {
+            background: linear-gradient(135deg, #156a7d 0%, #134d61 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(25, 124, 147, 0.4);
+            color: white;
+        }
+
+        .service-btn-secondary {
+            background: transparent;
+            color: #197c93;
+            border: 2px solid #197c93;
+        }
+
+        .service-btn-secondary:hover {
+            background: rgba(25, 124, 147, 0.1);
+            border-color: #156a7d;
+            color: #156a7d;
+        }
+
+        /* Free Consult Section */
+        .consult-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #197c93 0%, #156a7d 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .consult-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .consult-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .consult-heading {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 1rem;
+        }
+
+        .consult-subheading {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .consult-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .consult-feature-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 12px;
+            color: white;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .consult-feature-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .consult-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .consult-feature-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .consult-feature-text {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .consult-btn {
+            background: white;
+            color: #197c93;
+            padding: 14px 40px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            display: inline-block;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .consult-btn:hover {
+            background: #f1f5f9;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+            color: #156a7d;
+        }
+
+        @media (max-width: 768px) {
+            .service-title {
+                font-size: 1.5rem;
+            }
+
+            .consult-heading {
+                font-size: 2rem;
+            }
+
+            .consult-subheading {
+                font-size: 1.1rem;
+            }
+        }
     </style>
 @endpush
 
@@ -383,8 +712,8 @@
                         <div class="product-icon">
                             <i class="bi bi-globe-americas"></i>
                         </div>
-                        <h3 class="product-title mb-0">Ar-Rihlah App</h3>
-                        <p class="text-muted">Aplikasi manajemen travel Hajj & Umroh Terpadu</p>
+                        <h3 class="product-title mb-0">SabilSys</h3>
+                        <p class="text-muted">Aplikasi manajemen travel Haji & Umroh Terpadu</p>
                         <p class="product-description">
                             Platform all-in-one untuk mengelola seluruh aspek bisnis travel haji dan umroh Anda. Dari
                             pendaftaran jamaah hingga pembayaran dan pelaporan—semua terintegrasi dalam satu dashboard.
@@ -521,6 +850,153 @@
         </div>
     </div>
 
+    <!-- Services Section -->
+    <section id="services" class="service-section">
+        <div class="container">
+            <h2 class="section-heading" data-aos="fade-up">Layanan Pembuatan Website</h2>
+            <p style="text-align: center; color: #64748b; font-size: 1.1rem; margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto;"
+                data-aos="fade-up" data-aos-delay="100">
+                Kami menawarkan paket website berkualitas profesional sesuai dengan kebutuhan bisnis Anda
+            </p>
+
+            <div class="row g-4">
+                <!-- Starter Package -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card">
+                        <span class="service-badge">Paket Terjangkau</span>
+                        <h3 class="service-title">Starter</h3>
+                        <div class="service-price-wrapper">
+                            <div class="service-price-original">
+                                Rp 749.000
+                                <span class="service-discount-badge">Hemat 20%</span>
+                            </div>
+                            <div class="service-price">Rp 600.000</div>
+                            <div class="service-price-note">Sekali bayar, selamanya milik Anda</div>
+                        </div>
+                        <div class="service-timeline">
+                            <i class="bi bi-clock-history"></i> Pengerjaan: 1-4 minggu
+                        </div>
+                        <div class="service-domains">
+                            <div class="service-domains-title">
+                                <i class="bi bi-globe"></i> Domain Gratis Tahun Pertama
+                            </div>
+                            <div class="service-domains-list">
+                                <span class="domain-tag">.com</span>
+                                <span class="domain-tag">.web.id</span>
+                                <span class="domain-tag">.my.id</span>
+                                <span class="domain-tag">.biz.id</span>
+                            </div>
+                        </div>
+                        <p class="service-description">
+                            Paket sempurna untuk memulai kehadiran online bisnis Anda dengan landing page atau company
+                            profile sederhana.
+                        </p>
+                        <ul class="service-features">
+                            <li>1 Halaman / Landing Page</li>
+                            <li>Responsive Design</li>
+                            <li>SEO Basic Setup</li>
+                            <li>Contact Form</li>
+                            <li>Free Domain + Hosting 1 Tahun</li>
+                            <li>SSL Certificate Gratis</li>
+                            <li>Email Hosting Gratis</li>
+                        </ul>
+                        <a href="#contact" class="service-btn">Pesan Sekarang</a>
+                    </div>
+                </div>
+
+                <!-- Advance Package -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card"
+                        style="border-color: #197c93; box-shadow: 0 15px 30px -10px rgba(25, 124, 147, 0.15);">
+                        <span class="service-badge"
+                            style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);">Rekomendasi
+                            Populer</span>
+                        <h3 class="service-title">Advance</h3>
+                        <div class="service-price-wrapper">
+                            <div class="service-price-original">
+                                Rp 1.000.000
+                                <span class="service-discount-badge">Hemat 15%</span>
+                            </div>
+                            <div class="service-price">Rp 850.000</div>
+                            <div class="service-price-note">Sekali bayar, selamanya milik Anda</div>
+                        </div>
+                        <div class="service-timeline">
+                            <i class="bi bi-clock-history"></i> Pengerjaan: 2-4 minggu
+                        </div>
+                        <div class="service-domains">
+                            <div class="service-domains-title">
+                                <i class="bi bi-globe"></i> Domain Gratis Tahun Pertama
+                            </div>
+                            <div class="service-domains-list">
+                                <span class="domain-tag">.com</span>
+                                <span class="domain-tag">.id</span>
+                                <span class="domain-tag">.web.id</span>
+                                <span class="domain-tag">.my.id</span>
+                                <span class="domain-tag">.biz.id</span>
+                                <span class="domain-tag">.co.id</span>
+                            </div>
+                        </div>
+                        <p class="service-description">
+                            Solusi lengkap untuk company profile profesional dengan multiple halaman dan fitur yang lebih
+                            comprehensive.
+                        </p>
+                        <ul class="service-features">
+                            <li>5 Halaman (Home, About, Services, Blog, Contact)</li>
+                            <li>Responsive & Modern Design</li>
+                            <li>SEO Optimization</li>
+                            <li>Blog/News Section</li>
+                            <li>Contact Form & Inquiry System</li>
+                            <li>Admin Panel Dasar</li>
+                            <li>Free Domain + Hosting 1 Tahun</li>
+                            <li>SSL Certificate + Email Hosting</li>
+                            <li>3x Revision Gratis</li>
+                        </ul>
+                        <a href="#contact" class="service-btn">Pesan Sekarang</a>
+                    </div>
+                </div>
+
+                <!-- Custom Package -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-card">
+                        <span class="service-badge">Flexible</span>
+                        <h3 class="service-title">Custom</h3>
+                        <div class="service-price-wrapper">
+                            <div class="service-price">Hubungi Kami</div>
+                            <div class="service-price-note">Dapatkan quote sesuai kebutuhan</div>
+                        </div>
+                        <div class="service-timeline">
+                            <i class="bi bi-clock-history"></i> Pengerjaan: Fleksibel sesuai scope
+                        </div>
+                        <div class="service-domains">
+                            <div class="service-domains-title">
+                                <i class="bi bi-globe"></i> Domain Gratis Tahun Pertama
+                            </div>
+                            <div class="service-domains-list">
+                                <span class="domain-tag">Semua Ekstensi</span>
+                            </div>
+                        </div>
+                        <p class="service-description">
+                            Paket yang dapat disesuaikan sepenuhnya dengan kebutuhan unik dan spesifik bisnis Anda.
+                            Diskusikan kebutuhan Anda dengan tim expert kami.
+                        </p>
+                        <ul class="service-features">
+                            <li>Halaman Unlimited</li>
+                            <li>Fitur Custom Sesuai Kebutuhan</li>
+                            <li>E-Commerce / Toko Online</li>
+                            <li>Database Integration</li>
+                            <li>Advanced Security & Performance</li>
+                            <li>Unlimited Revision</li>
+                            <li>Free Domain + Hosting 1 Tahun</li>
+                            <li>SSL Certificate + Email Hosting</li>
+                            <li>Dedicated Support & Maintenance</li>
+                        </ul>
+                        <a href="#contact" class="service-btn service-btn-secondary">Konsultasi Gratis</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Professional Expertise Section -->
     <section class="expertise-section">
         <div class="container">
@@ -601,6 +1077,50 @@
                         maintenance, saya tidak hanya memberikan kode, tetapi juga ketenangan pikiran bagi para klien saya.
                     </p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Free Consultation Section -->
+    <section class="consult-section">
+        <div class="container">
+            <div class="consult-content" data-aos="fade-up">
+                <h2 class="consult-heading">Konsultasi Gratis</h2>
+                <p class="consult-subheading">
+                    Tidak yakin paket mana yang tepat? Mari kita diskusikan kebutuhan Anda secara gratis dengan tim expert
+                    kami.
+                </p>
+
+                <div class="consult-features">
+                    <div class="consult-feature-item" data-aos="fade-up" data-aos-delay="100">
+                        <div class="consult-icon">⏱️</div>
+                        <div class="consult-feature-title">30 Menit</div>
+                        <div class="consult-feature-text">Sesi konsultasi mendalam tentang kebutuhan website Anda</div>
+                    </div>
+
+                    <div class="consult-feature-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="consult-icon">💡</div>
+                        <div class="consult-feature-title">Rekomendasi Solusi</div>
+                        <div class="consult-feature-text">Saran paket terbaik sesuai budget dan kebutuhan bisnis</div>
+                    </div>
+
+                    <div class="consult-feature-item" data-aos="fade-up" data-aos-delay="300">
+                        <div class="consult-icon">🎯</div>
+                        <div class="consult-feature-title">Strategi Implementasi</div>
+                        <div class="consult-feature-text">Rencana timeline dan roadmap pembuatan website Anda</div>
+                    </div>
+
+                    <div class="consult-feature-item" data-aos="fade-up" data-aos-delay="400">
+                        <div class="consult-icon">💰</div>
+                        <div class="consult-feature-title">No Hidden Cost</div>
+                        <div class="consult-feature-text">Estimasi biaya transparan tanpa biaya tersembunyi</div>
+                    </div>
+                </div>
+
+                <a href="#contact" class="consult-btn">Hubungi Kami Sekarang</a>
+                <p style="color: rgba(255,255,255,0.7); margin-top: 1.5rem; font-size: 0.95rem;">
+                    Gratis untuk semua klien baru • Respons dalam 2 jam kerja
+                </p>
             </div>
         </div>
     </section>

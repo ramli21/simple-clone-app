@@ -8,7 +8,7 @@
     content="pengembangan web, pembuatan software, solusi IT, agensi digital, pembuatan aplikasi, konsultasi teknologi, Akhritech">
 
 <meta name="author" content="Akhritech">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="index, follow, max-image-preview:large">
 
 <meta property="og:title" content="Akhritech | Solusi Pengembangan Web & Software Inovatif">
 <meta property="og:description"

@@ -12,6 +12,8 @@
     <meta name="keywords"
         content="Mantis, Dashboard UI Kit, Bootstrap 5, Admin Template, Admin Dashboard, CRM, CMS, Bootstrap Admin Template">
     <meta name="author" content="CodedThemes">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex, nofollow">
 
     <!-- [Favicon] icon -->
     {{-- <link rel="icon" href="{{ asset('vendors/mantis-v.1.0/images/favicon.svg') }} " type="image/x-icon"> --}}
