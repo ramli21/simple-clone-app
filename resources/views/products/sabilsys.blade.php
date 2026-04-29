@@ -767,7 +767,7 @@
             </div>
 
             <p class="trial-note" data-aos="fade-up" data-aos-delay="500">
-                *Setelah 14 hari, Anda dapat memilih untuk berlangganan atau menghentikan penggunaan.
+                *Setelah 60 hari, Anda dapat memilih untuk berlangganan atau menghentikan penggunaan.
             </p>
         </div>
     </section>
