@@ -727,7 +727,7 @@
                         {{-- <button class="btn btn-primary-custom mt-5" data-bs-toggle="modal" data-bs-target="#arRihlahModal">
                             Pelajari Lebih Lanjut
                         </button> --}}
-                        <a href="{{ route('home.products.travel') }}" class="btn btn-primary-custom btn-sm mt-5">Pelajari
+                        <a href="{{ route('home.products.sabilsys') }}" class="btn btn-primary-custom btn-sm mt-5">Pelajari
                             lebih
                             lanjut</a>
                     </div>

@@ -15,7 +15,7 @@ use App\Models\ServiceItem;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/templates', [HomeController::class, 'themes'])->name('home.templates');
 
-Route::get('/products/ar-rihlah', [HomeController::class, 'travel'])->name('home.products.travel');
+Route::get('/products/sabilsys', [HomeController::class, 'productSabilsys'])->name('home.products.sabilsys');
 
 Route::get('/ex/travel', [HomeController::class, 'travelHome']);
 Route::get('/service/{slug}', [HomeController::class, 'serviceDetail'])->name('service.detail');

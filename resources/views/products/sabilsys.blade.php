@@ -244,6 +244,65 @@
             margin-right: 10px;
         }
 
+        .pricing-discount-section {
+            background: linear-gradient(135deg, rgba(25, 124, 147, 0.05) 0%, rgba(25, 124, 147, 0.02) 100%);
+            border: 1px solid rgba(25, 124, 147, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .pricing-discount-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .pricing-discount-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .pricing-calculation {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-bottom: 0.5rem;
+            font-family: 'Courier New', monospace;
+        }
+
+        .pricing-annual-price {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #10b981;
+            margin-top: 0.75rem;
+        }
+
+        .pricing-annual-note {
+            font-size: 0.8rem;
+            color: #64748b;
+            margin-top: 0.5rem;
+        }
+
+        .gallery-link {
+            display: block;
+            text-decoration: none;
+            cursor: zoom-in;
+        }
+
+        .glightbox {
+            text-decoration: none;
+        }
+
         /* Gallery Section */
         .gallery-section {
             padding: 80px 0;
@@ -600,7 +659,7 @@
                     <div class="pricing-card">
                         <h3 class="pricing-title">Smart Launch</h3>
                         <p class="text-muted">Untuk Agen Kecil/Menengah</p>
-                        <div class="pricing-price">Rp 249.000</div>
+                        <div class="pricing-price">Rp 449.000</div>
                         <div class="pricing-period">per bulan</div>
 
                         <hr>
@@ -608,10 +667,31 @@
                             Biaya Setup (Sekali di Awal): <b>Rp1.500.000</b>
                         </p>
 
+                        <!-- Discount Section for Annual Payment -->
+                        <div class="pricing-discount-section">
+                            <div class="pricing-discount-badge">
+                                <i class="bi bi-lightning-fill me-1"></i>HEMAT 15%
+                            </div>
+                            <div class="pricing-discount-title">
+                                <i class="bi bi-calendar-event"></i>Pembayaran Tahunan
+                            </div>
+                            <div class="pricing-calculation">
+                                Rp 449.000 × 12 bulan = Rp 5.388.000<br>
+                                <span style="color: #10b981;">- Diskon 15% = Rp 808.200</span>
+                            </div>
+                            <div class="pricing-annual-price">
+                                Rp 4.579.800
+                            </div>
+                            <div class="pricing-annual-note">
+                                Cicilan bulanan setara: <b>Rp 381.650</b>
+                            </div>
+                        </div>
+
                         <ul class="pricing-features">
+                            <li><i class="bi bi-check-circle-fill"></i> Landing Page Promosi</li>
                             <li><i class="bi bi-check-circle-fill"></i> Sistem Dashboard Manajemen Jamaah (Fitur Inti).
                             </li>
-                            <li><i class="bi bi-check-circle-fill"></i> Penyimpanan data hingga 350 jamaah</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Unlimited Data Jamaah.</li>
                             <li><i class="bi bi-check-circle-fill"></i> Update sistem berkala secara otomatis.</li>
                             <li><i class="bi bi-check-circle-fill"></i> Support via WhatsApp (Respon 1x24 jam).</li>
                         </ul>
@@ -619,7 +699,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+                {{-- <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
                     <div class="pricing-card">
                         <h3 class="pricing-title">Professional Brand</h3>
                         <p class="text-muted">Untuk Agen Besar/Berkembang</p>
@@ -643,7 +723,7 @@
                         </ul>
                         <a href="#kontak" class="btn-primary-custom w-100">Pilih Paket Ini</a>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>
@@ -655,11 +735,11 @@
                 <i class="bi bi-gift me-2"></i>Penawaran Spesial
             </div>
             <h2 class="trial-title" data-aos="fade-up" data-aos-delay="100">
-                Coba Gratis Selama 14 Hari!
+                Coba Gratis Selama 60 Hari!
             </h2>
             <p class="trial-description" data-aos="fade-up" data-aos-delay="200">
                 Tidak perlu kartu kredit. Nikmati akses penuh ke semua fitur sistem manajemen travel
-                kami selama 2 minggu. Tanpa komitmen, tanpa biaya tersembunyi.
+                kami selama 2 bulan. Tanpa komitmen, tanpa biaya tersembunyi.
             </p>
 
             <div class="trial-features" data-aos="fade-up" data-aos-delay="300">
@@ -702,44 +782,48 @@
             <!-- Image Gallery -->
             <div class="row g-4 mb-5">
                 <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    {{-- <a href="{{ asset('images/dashboard.jpg') }}" class="gallery-link" data-glightbox="gallery"
+                        title="Dashboard Admin"> --}}
                     <div class="gallery-item">
-                        <img src="{{ asset('images/dashboard.jpg') }}" alt="Dashboard Admin"
-                            onerror="this.src='https://placehold.co/800x450/f1f5f9/197c93?text=Dashboard+Admin'"
-                            loading="lazy">
+                        <img src="{{ asset('images/dashboard.jpg') }}" alt="Dashboard Admin" loading="lazy">
                         <div class="gallery-caption">
                             <h5>Dashboard Admin</h5>
                         </div>
                     </div>
+                    {{-- </a> --}}
                 </div>
                 <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    {{-- <a href="{{ asset('images/dashboard-jamaah.jpg') }}" class="gallery-link" data-glightbox="gallery"
+                        title="Manajemen Jamaah"> --}}
                     <div class="gallery-item">
-                        <img src="{{ asset('images/dashboard-jamaah.jpg') }}" alt="Man Jamaah"
-                            onerror="this.src='https://placehold.co/800x450/f1f5f9/197c93?text=Manajemen+Jamaah'"
-                            loading="lazy">
+                        <img src="{{ asset('images/dashboard-jamaah.jpg') }}" alt="Manajemen Jamaah" loading="lazy">
                         <div class="gallery-caption">
                             <h5>Manajemen Jamaah</h5>
                         </div>
                     </div>
+                    {{-- </a> --}}
                 </div>
                 <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    {{-- <a href="{{ asset('images/dashboard-booking.jpg') }}" class="gallery-link" data-glightbox="gallery"
+                        title="Manajemen Booking"> --}}
                     <div class="gallery-item">
-                        <img src="{{ asset('images/dashboard-booking.jpg') }}" alt="Manajemen Booking"
-                            onerror="this.src='https://placehold.co/800x450/f1f5f9/197c93?text=Manajemen+Booking'"
-                            loading="lazy">
+                        <img src="{{ asset('images/dashboard-booking.jpg') }}" alt="Manajemen Booking" loading="lazy">
                         <div class="gallery-caption">
                             <h5>Manajemen Booking</h5>
                         </div>
                     </div>
+                    {{-- </a> --}}
                 </div>
                 <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    {{-- <a href="{{ asset('images/landingpage-travel.jpg') }}" class="gallery-link" data-glightbox="gallery"
+                        title="Portal Jamaah"> --}}
                     <div class="gallery-item">
-                        <img src="{{ asset('images/landingpage-travel.jpg') }}" alt="Portal Jamaah"
-                            onerror="this.src='https://placehold.co/800x450/f1f5f9/197c93?text=Portal+Jamaah'"
-                            loading="lazy">
+                        <img src="{{ asset('images/landingpage-travel.jpg') }}" alt="Portal Jamaah" loading="lazy">
                         <div class="gallery-caption">
                             <h5>Portal Jamaah</h5>
                         </div>
                     </div>
+                    {{-- </a> --}}
                 </div>
             </div>
 
@@ -824,6 +908,15 @@
                     once: true,
                     offset: 100,
                     delay: 0
+                });
+            }
+
+            // Initialize GLightbox for gallery
+            if (typeof GLightbox !== 'undefined') {
+                GLightbox({
+                    selector: '[data-glightbox]',
+                    touchNavigation: true,
+                    loop: true,
                 });
             }
         });

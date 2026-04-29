@@ -64,7 +64,7 @@
 
     <!-- Floating WhatsApp -->
     @if (config('app.superadmin_wa'))
-        <a href="https://wa.me/{{ config('app.superadmin_wa') }}?text=Halo%20EnterpriseDev%2C%20saya%20tertarik%20konsultasi%20pembuatan%20website%20bisnis.%20Bisa%20dibantu%20infonya%3F"
+        <a href="https://wa.me/{{ config('app.superadmin_wa') }}?text=Halo%20AkhriTech%2C%20saya%20tertarik%20konsultasi%20pembuatan%20website%20bisnis.%20Bisa%20dibantu%20infonya%3F"
             target="_blank"
             class="btn btn-success rounded-circle p-3 position-fixed bottom-0 end-0 m-4 shadow-lg z-3 d-flex align-items-center justify-content-center animate-bounce"
             style="width: 60px; height: 60px;">

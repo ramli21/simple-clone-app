@@ -17,9 +17,9 @@ class HomeController extends Controller
         return view('content.akhritech-landing', compact('company'));
     }
 
-    public function travel()
+    public function productSabilsys()
     {
-        return view('products.travel');
+        return view('products.sabilsys');
     }
 
     public function serviceDetail($slug)

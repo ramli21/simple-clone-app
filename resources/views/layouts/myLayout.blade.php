@@ -20,7 +20,7 @@
             <a class="navbar-brand fw-bold text-primary d-flex align-items-center gap-2" href="#">
                 <div class="bg-primary text-white rounded d-flex justify-content-center align-items-center"
                     style="width: 32px; height: 32px;">E</div>
-                EnterpriseDev
+                Akhritech
             </a>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -489,7 +489,7 @@
                     <h5 class="text-white fw-bold mb-3 d-flex align-items-center gap-2">
                         <span
                             class="bg-white text-dark rounded-circle d-flex justify-content-center align-items-center"
-                            style="width: 30px; height: 30px;">E</span> EnterpriseDev
+                            style="width: 30px; height: 30px;">E</span> Akhritech
                     </h5>
                     <p class="small">Partner teknologi terpercaya untuk transformasi bisnis manufaktur dan pariwisata
                         Indonesia.</p>
@@ -511,14 +511,14 @@
                     <h6 class="text-white fw-bold mb-3">Kontak</h6>
                     <ul class="list-unstyled small vstack gap-2">
                         <li><i class="bi bi-telephone me-2"></i> +62 812 3456 7890</li>
-                        <li><i class="bi bi-envelope me-2"></i> hello@enterprisedev.com</li>
+                        <li><i class="bi bi-envelope me-2"></i> admin@akhritech.com</li>
                         <li><i class="bi bi-geo-alt me-2"></i> Jakarta Selatan</li>
                     </ul>
                 </div>
             </div>
             <hr class="border-secondary">
             <div class="text-center small">
-                &copy; 2023 EnterpriseDev. All rights reserved.
+                &copy; 2023 Akhritech. All rights reserved.
             </div>
         </div>
     </footer>
