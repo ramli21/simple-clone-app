@@ -403,7 +403,6 @@
             font-size: 0.95rem;
             font-weight: 600;
             color: #cbd5e1;
-            text-decoration: line-through;
             margin-bottom: 0.5rem;
             display: flex;
             align-items: center;
@@ -760,7 +759,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="arRihlahModalLabel">
-                        <i class="bi bi-globe-americas me-2"></i>Ar-Rihlah Tech
+                        <i class="bi bi-globe-americas me-2"></i>SabilSys - Aplikasi Manajemen Travel Haji & Umroh Terpadu
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -867,11 +866,11 @@
                         <h3 class="service-title">Starter</h3>
                         <div class="service-price-wrapper">
                             <div class="service-price-original">
-                                Rp 749.000
-                                <span class="service-discount-badge">Hemat 20%</span>
+                                <span style="text-decoration: line-through;">Rp 750.000</span>
+                                <span class="service-discount-badge" style="text-decoration: none;">Hemat 10%</span>
                             </div>
-                            <div class="service-price">Rp 600.000</div>
-                            <div class="service-price-note">Sekali bayar, selamanya milik Anda</div>
+                            <div class="service-price">Rp 675.000</div>
+                            <div class="service-price-note">/tahun</div>
                         </div>
                         <div class="service-timeline">
                             <i class="bi bi-clock-history"></i> Pengerjaan: 1-4 minggu
@@ -914,11 +913,11 @@
                         <h3 class="service-title">Advance</h3>
                         <div class="service-price-wrapper">
                             <div class="service-price-original">
-                                Rp 1.000.000
-                                <span class="service-discount-badge">Hemat 15%</span>
+                                <span style="text-decoration: line-through;">Rp 1.000.000</span>
+                                <span class="service-discount-badge">Hemat 20%</span>
                             </div>
-                            <div class="service-price">Rp 850.000</div>
-                            <div class="service-price-note">Sekali bayar, selamanya milik Anda</div>
+                            <div class="service-price">Rp 800.000</div>
+                            <div class="service-price-note">/tahun</div>
                         </div>
                         <div class="service-timeline">
                             <i class="bi bi-clock-history"></i> Pengerjaan: 2-4 minggu
@@ -972,7 +971,7 @@
                                 <i class="bi bi-globe"></i> Domain Gratis Tahun Pertama
                             </div>
                             <div class="service-domains-list">
-                                <span class="domain-tag">Semua Ekstensi</span>
+                                <span class="domain-tag">Lebih Banyak Pilihan Ekstensi</span>
                             </div>
                         </div>
                         <p class="service-description">
@@ -986,7 +985,7 @@
                             <li>Database Integration</li>
                             <li>Advanced Security & Performance</li>
                             <li>Unlimited Revision</li>
-                            <li>Free Domain + Hosting 1 Tahun</li>
+                            <li>Free Domain + Hosting / Server 1 Tahun</li>
                             <li>SSL Certificate + Email Hosting</li>
                             <li>Dedicated Support & Maintenance</li>
                         </ul>
