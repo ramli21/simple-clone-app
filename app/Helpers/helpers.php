@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\CompanyProfile;
+
 if (!function_exists('simplePrice')) {
     function simplePrice($price)
     {
@@ -55,4 +57,9 @@ function phoneNumber($phone_number)
     }
 
     return $phoneNumber;
+}
+
+function companyProfile()
+{
+    return CompanyProfile::first();
 }
