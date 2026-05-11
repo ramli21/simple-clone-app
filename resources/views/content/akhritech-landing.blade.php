@@ -707,21 +707,28 @@
             <div class="row g-4">
                 <!-- Product Card 1: Ar-Rihlah Tech -->
                 <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
-                    <div class="product-card">
+                    <div class="product-card"
+                        style="border-color: #197c93; box-shadow: 0 15px 30px -10px rgba(25, 124, 147, 0.15);">
                         <div class="product-icon">
                             <i class="bi bi-globe-americas"></i>
                         </div>
                         <h3 class="product-title mb-0">SabilSys</h3>
-                        <p class="text-muted">Aplikasi manajemen travel Haji & Umroh Terpadu</p>
+                        <p class="text-muted">Solusi Automasi Bisnis Travel Haji & Umroh</p>
                         <p class="product-description">
-                            Platform all-in-one untuk mengelola seluruh aspek bisnis travel haji dan umroh Anda. Dari
-                            pendaftaran jamaah hingga pembayaran dan pelaporan—semua terintegrasi dalam satu dashboard.
+                            Optimalkan operasional biro travel Anda dengan sistem manajemen jamaah yang cerdas. Mulai dari
+                            pendaftaran online, pengelolaan manifest, hingga pelaporan keuangan real-time—semua dirancang
+                            untuk memangkas waktu kerja admin Anda hingga <b>50%</b> dan meminimalisir kesalahan data.
                         </p>
+
+                        <p class="fw-bold">Fitur Unggulan</p>
                         <div class="tech-tags">
-                            <span class="tech-tag">Laravel</span>
-                            <span class="tech-tag">MySql</span>
-                            <span class="tech-tag">Next.js</span>
-                            <span class="tech-tag">Single-Tenant SaaS</span>
+                            <span class="tech-tag">Automasi Manifest</span>
+                            <span class="tech-tag">Cloud-Based System</span>
+                            <span class="tech-tag">Landing Page</span>
+                            {{-- <span class="tech-tag">Manajemen Jamaah</span> --}}
+                        </div>
+                        <div class="tech-tags mt-2">
+                            <span class="tech-tag">Manajemen Jamaah</span>
                         </div>
                         {{-- <button class="btn btn-primary-custom mt-5" data-bs-toggle="modal" data-bs-target="#arRihlahModal">
                             Pelajari Lebih Lanjut

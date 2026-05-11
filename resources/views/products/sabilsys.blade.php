@@ -2,7 +2,7 @@
 
 @push('metadata')
     <!-- SEO Meta Tags -->
-    <title>Sistem Manajemen Travel Umroh & Haji Terbaik - Akhritech</title>
+    <title>Sistem Manajemen Travel Umroh & Haji Terbaik - SabilSys</title>
     <meta name="description"
         content="Kelola jama'ah, manifest, keuangan, dan inventory travel Umroh & Haji Anda secara otomatis dengan sistem Akhritech. Cepat, aman, dan mudah digunakan.">
     <meta name="keywords" content="software umroh, aplikasi haji, manajemen travel umroh, sistem informasi travel, akhritech">
@@ -12,7 +12,7 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:title" content="Sistem Manajemen Travel Umroh & Haji Terbaik - Akhritech">
+    <meta property="og:title" content="Sistem Manajemen Travel Umroh & Haji Terbaik - SabilSys">
     <meta property="og:description"
         content="Kelola jama'ah, manifest, keuangan, dan inventory travel Umroh & Haji Anda secara otomatis dengan sistem Akhritech.">
     <meta property="og:image" content="{{ asset('images/akhritech-banner.png') }}">
@@ -20,7 +20,7 @@
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="{{ url()->current() }}">
-    <meta property="twitter:title" content="Sistem Manajemen Travel Umroh & Haji Terbaik - Akhritech">
+    <meta property="twitter:title" content="Sistem Manajemen Travel Umroh & Haji Terbaik - SabilSys">
     <meta property="twitter:description"
         content="Kelola jama'ah, manifest, keuangan, dan inventory travel Umroh & Haji Anda secara otomatis dengan sistem Akhritech.">
     <meta property="twitter:image" content="{{ asset('images/akhritech-banner.png') }}">
@@ -601,7 +601,7 @@
     <!-- Features Section -->
     <section id="fitur" class="features-section">
         <div class="container">
-            <h2 class="section-heading" data-aos="fade-up">Mengapa Agen Travel Memilih Akhritech?</h2>
+            <h2 class="section-heading" data-aos="fade-up">Mengapa Agen Travel Memilih <br />SabilSys dari Akhritech?</h2>
             <p class="section-subheading" data-aos="fade-up" data-aos-delay="100">Solusi digital yang dirancang khusus untuk
                 kebutuhan travel Umroh & Haji</p>
 
@@ -659,7 +659,8 @@
                     <div class="pricing-card">
                         <h3 class="pricing-title">Smart Launch</h3>
                         <p class="text-muted">Untuk Agen Kecil/Menengah</p>
-                        <div class="pricing-price">Rp 449.000</div>
+                        <div class="text-decoration-line-through h4">Rp. 500.000</div>
+                        <div class="pricing-price">Rp 359.000</div>
                         <div class="pricing-period">per bulan</div>
 
                         <hr>
@@ -670,28 +671,34 @@
                         <!-- Discount Section for Annual Payment -->
                         <div class="pricing-discount-section">
                             <div class="pricing-discount-badge">
-                                <i class="bi bi-lightning-fill me-1"></i>HEMAT 15%
+                                <i class="bi bi-lightning-fill me-1"></i>HEMAT 20%
                             </div>
                             <div class="pricing-discount-title">
                                 <i class="bi bi-calendar-event"></i>Pembayaran Tahunan
                             </div>
                             <div class="pricing-calculation">
-                                Rp 449.000 × 12 bulan = Rp 5.388.000<br>
-                                <span style="color: #10b981;">- Diskon 15% = Rp 808.200</span>
+                                Rp 349.000 × 12 bulan = Rp 4.188.000<br>
+                                <span style="color: #10b981;">- Diskon 20% = Rp 837.600</span>
                             </div>
                             <div class="pricing-annual-price">
-                                Rp 4.579.800
+                                Rp 3.350.000
                             </div>
                             <div class="pricing-annual-note">
-                                Cicilan bulanan setara: <b>Rp 381.650</b>
+                                Cicilan bulanan setara: <b>Rp 279.167</b>
                             </div>
                         </div>
 
                         <ul class="pricing-features">
                             <li><i class="bi bi-check-circle-fill"></i> Landing Page Promosi</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Manajemen Paket Perjalanan.</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Manajemen Itinerary.</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Manajemen Inquiry.</li>
                             <li><i class="bi bi-check-circle-fill"></i> Sistem Dashboard Manajemen Jamaah (Fitur Inti).
                             </li>
+                            <li><i class="bi bi-check-circle-fill"></i> Manifest Jamaah.</li>
                             <li><i class="bi bi-check-circle-fill"></i> Unlimited Data Jamaah.</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Manajemen Booking.</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Manajemen Pembayaran Sederhana.</li>
                             <li><i class="bi bi-check-circle-fill"></i> Update sistem berkala secara otomatis.</li>
                             <li><i class="bi bi-check-circle-fill"></i> Support via WhatsApp (Respon 1x24 jam).</li>
                         </ul>
@@ -888,7 +895,7 @@
                         Hubungi sekarang untuk konsultasi gratis dan demo sistem
                     </p>
                     <div data-aos="fade-up" data-aos-delay="200">
-                        <a href="https://wa.me/{{ config('app.superadmin_wa') }}?text=Halo%20Akhritech,%20saya%20tertarik%20dengan%20sistem%20manajemen%20travel"
+                        <a href="https://wa.me/{{ companyProfile()->phone }}?text=Halo%20Akhritech,%20saya%20tertarik%20dengan%20sistem%20manajemen%20travel"
                             class="btn-primary-custom" target="_blank">
                             <i class="bi bi-whatsapp me-2"></i>Hubungi via WhatsApp
                         </a>
