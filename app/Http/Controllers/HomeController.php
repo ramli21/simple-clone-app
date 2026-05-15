@@ -14,7 +14,57 @@ class HomeController extends Controller
     public function index()
     {
         $company = CompanyProfile::first();
-        return view('content.akhritech-landing', compact('company'));
+
+        $packages = [
+            [
+                'name' => "Landing Page",
+                'highlight' => false,
+                'tagline' => "Paket Terlaris",
+                'timeline' => "1-2 Minggu",
+                'description' => "Sebuah halaman web yang dirancang untuk memperkenalkan produk atau layanan tertentu, dengan fokus pada konversi pengunjung menjadi pelanggan.",
+                'price' => "Rp 950.000",
+                'discounted_price' => "Rp 800.000",
+                'domains' => ['.web.id', '.biz.id', '.my.id'],
+                'features' => [
+                    "Desain responsif yang menarik",
+                    "1 Halaman / Landing Page",
+                    "SEO Basic Setup",
+                    "Contact Form",
+                    "Free Hosting",
+                    "Free Domain (pilihan terbatas) 1 tahun pertama",
+                    "Konten yang disesuaikan dengan kebutuhan bisnis",
+                    "Integrasi dengan media sosial",
+                    "Optimasi SEO dasar",
+                    "Dukungan teknis selama 1 bulan",
+                ],
+            ], 
+            [
+                'name' => "Company Profile",
+                'highlight' => true,
+                'tagline' => "Rekomendasi Terpopuler",
+                'timeline' => "2-4 Minggu",
+                'description' => "Sebuah situs web yang memberikan informasi lengkap tentang perusahaan, termasuk sejarah, visi, misi, produk atau layanan, dan kontak.",
+                'price' => "Rp 2.300.000",
+                'discounted_price' => "Rp 1.500.000",
+                'domains' => ['.com', '.id', '.web.id', '.biz.id', '.my.id'],
+                'features' => [
+                    "Desain profesional yang mencerminkan identitas perusahaan",
+                    "Konten yang disusun secara strategis untuk menarik klien potensial",
+                    "5 Halaman (Home, About, Services, Blog, Contact)",
+                    "Responsive & Modern Design",
+                    "Blog/News Section",
+                    "Contact Form & Inquiry System",
+                    "Admin Panel Dasar",
+                    "Free Hosting Premium",
+                    "Free Domain (pilihan terbatas) 1 tahun pertama",
+                    "SSL Certificate + Email Hosting",
+                    "Optimasi SEO untuk meningkatkan visibilitas online",
+                    "Dukungan teknis selama 3 bulan",
+                ],
+            ]
+        ];
+
+        return view('content.akhritech-landing', compact('company', 'packages'));
     }
 
     public function productSabilsys()

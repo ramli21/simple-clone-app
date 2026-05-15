@@ -36,7 +36,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/service-items/{serviceItem}/itineraries/create', [ItineraryController::class, 'create'])->name('itineraries.create');
     Route::post('/service-items/{serviceItem}/itineraries', [ItineraryController::class, 'store'])->name('itineraries.store');
     Route::resource('company-profiles', CompanyProfileController::class)->only(['index', 'create', 'store', 'edit', 'update']);
+    Route::resource('portfolios', \App\Http\Controllers\Admin\PortfolioController::class);
 });
+
 
 
 // Sitemap
