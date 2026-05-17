@@ -61,15 +61,15 @@
                     <h5 class="modal-title" id="portfolioDetailModalLabel">Portfolio Detail</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body px-3">
+                    <h3 class="portfolio-detail-name" id="portfolioDetailName">Name</h3>
                     <div class="mb-3">
                         <span class="badge bg-primary" id="portfolioDetailCategory">Category</span>
                     </div>
-                    <h3 class="portfolio-detail-name" id="portfolioDetailName">Name</h3>
-                    <p class="text-muted" id="portfolioDetailStory"></p>
+                    <textarea class="text-muted form-control border-0" rows="15" readonly id="portfolioDetailStory"></textarea>
                     <div class="mt-3">
                         <h6 class="fw-bold">Highlights</h6>
-                        <ul id="portfolioDetailHighlights" class="mb-0"></ul>
+                        <div id="portfolioDetailHighlights" class="mb-0"></div>
                     </div>
                 </div>
             </div>
@@ -356,9 +356,9 @@
                     if (listEl) {
                         listEl.innerHTML = '';
                         highlights.forEach(h => {
-                            const li = document.createElement('li');
-                            li.textContent = h;
-                            li.className = 'text-muted mb-1';
+                            const li = document.createElement('span');
+                            li.textContent = h.trim();
+                            li.className = 'badge text-bg-secondary me-1 mb-1';
                             listEl.appendChild(li);
                         });
                     }

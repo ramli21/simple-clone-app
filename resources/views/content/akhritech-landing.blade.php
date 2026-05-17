@@ -2,28 +2,28 @@
 
 @push('metadata')
     <!-- SEO Meta Tags -->
-    <title>Akhritech | Senior Fullstack Developer & SaaS Founder</title>
+    <title>Akhritech | Jasa Pembuatan Aplikasi & Solusi Digital Bisnis</title>
     <meta name="description"
-        content="Senior Fullstack Developer & Founder of Akhritech. Building scalable SaaS solutions with Laravel & Next.js. 10+ years of engineering excellence.">
+        content="Akhritech menyediakan solusi software SaaS & Jasa Web Development profesional untuk digitalisasi bisnis Anda. Berpengalaman 10+ tahun dalam mengembangkan sistem aplikasi berbasis website.">
     <meta name="keywords"
-        content="fullstack developer, Laravel, Next.js, SaaS founder, web developer, software architect, Indonesia, POS system, mesin absensi, attendance machine, Hajj Umrah system, travel tech, digital products, startup Indonesia, software house, web development services, custom software, business solutions, Ar-Rihlah Tech, Akhritech">
+        content="fullstack developer, Laravel, Next.js, SaaS founder, web developer, software architect, Indonesia, POS system, mesin absensi, attendance machine, Hajj Umrah system, travel tech, digital products, startup Indonesia, software house, web development services, custom software, business solutions, SabilSys, Akhritech">
     <meta name="author" content="Akhritech">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:title" content="Akhritech | Senior Fullstack Developer & SaaS Founder">
+    <meta property="og:title" content="Akhritech | Jasa Pembuatan Aplikasi & Solusi Digital Bisnis">
     <meta property="og:description"
-        content="Senior Fullstack Developer & Founder. Building scalable SaaS solutions with Laravel & Next.js. 10+ years of engineering excellence.">
+        content="Akhritech menyediakan solusi software SaaS & Jasa Web Development profesional untuk digitalisasi bisnis Anda. Berpengalaman 10+ tahun dalam mengembangkan sistem aplikasi berbasis website.">
     <meta property="og:image" content="{{ asset('images/akhritech-banner.png') }}">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="{{ url()->current() }}">
-    <meta property="twitter:title" content="Akhritech | Senior Fullstack Developer & SaaS Founder">
+    <meta property="twitter:title" content="Akhritech | Jasa Pembuatan Aplikasi & Solusi Digital Bisnis">
     <meta property="twitter:description"
-        content="Senior Fullstack Developer & Founder. Building scalable SaaS solutions with Laravel & Next.js. 10+ years of engineering excellence.">
+        content="Akhritech menyediakan solusi software SaaS & Jasa Web Development profesional untuk digitalisasi bisnis Anda. Berpengalaman 10+ tahun dalam mengembangkan sistem aplikasi berbasis website.">
     <meta property="twitter:image" content="{{ asset('images/akhritech-banner.png') }}">
 
     <!-- Canonical URL -->

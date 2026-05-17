@@ -23,19 +23,21 @@ class HomeController extends Controller
                 'timeline' => "1-2 Minggu",
                 'description' => "Sebuah halaman web yang dirancang untuk memperkenalkan produk atau layanan tertentu, dengan fokus pada konversi pengunjung menjadi pelanggan.",
                 'price' => "Rp 950.000",
+                'discount' => '15%',
                 'discounted_price' => "Rp 800.000",
                 'domains' => ['.web.id', '.biz.id', '.my.id'],
                 'features' => [
                     "Desain responsif yang menarik",
                     "1 Halaman / Landing Page",
-                    "SEO Basic Setup",
                     "Contact Form",
                     "Free Hosting",
                     "Free Domain (pilihan terbatas) 1 tahun pertama",
+                    "SSL Certificate",
                     "Konten yang disesuaikan dengan kebutuhan bisnis",
                     "Integrasi dengan media sosial",
                     "Optimasi SEO dasar",
                     "Dukungan teknis selama 1 bulan",
+                    "Jaminan lifetime support untuk perbaikan bug dan masalah teknis terkait hosting",
                 ],
             ], 
             [
@@ -44,7 +46,8 @@ class HomeController extends Controller
                 'tagline' => "Rekomendasi Terpopuler",
                 'timeline' => "2-4 Minggu",
                 'description' => "Sebuah situs web yang memberikan informasi lengkap tentang perusahaan, termasuk sejarah, visi, misi, produk atau layanan, dan kontak.",
-                'price' => "Rp 2.300.000",
+                'price' => "Rp 2.150.000",
+                'discount' => '30%',
                 'discounted_price' => "Rp 1.500.000",
                 'domains' => ['.com', '.id', '.web.id', '.biz.id', '.my.id'],
                 'features' => [
@@ -60,6 +63,7 @@ class HomeController extends Controller
                     "SSL Certificate + Email Hosting",
                     "Optimasi SEO untuk meningkatkan visibilitas online",
                     "Dukungan teknis selama 3 bulan",
+                    "Jaminan lifetime support untuk perbaikan bug dan masalah teknis terkait hosting",
                 ],
             ]
         ];

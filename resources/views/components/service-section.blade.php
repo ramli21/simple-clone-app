@@ -18,7 +18,8 @@
                         <div class="service-price-wrapper">
                             <div class="service-price-original">
                                 <span style="text-decoration: line-through;">{{ $package['price'] }}</span>
-                                <span class="service-discount-badge" style="text-decoration: none;">Hemat 10%</span>
+                                <span class="service-discount-badge" style="text-decoration: none;">Hemat
+                                    {{ $package['discount'] }}</span>
                             </div>
                             <div class="service-price">{{ $package['discounted_price'] }}</div>
                             <div class="service-price-note">/tahun</div>
