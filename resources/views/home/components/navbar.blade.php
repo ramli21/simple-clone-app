@@ -16,6 +16,9 @@
                 {{-- <li class="nav-item"><a class="nav-link" href="{{ route('home.templates') }}">Template</a></li> --}}
                 <li class="nav-item"><a class="nav-link" href="{{ route('blogs.index') }}">Blog</a></li>
                 <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                <li>
+                    <a href="https://wa.me/{{ companyProfile()->phone }}" class="btn btn-primary">Whatsapp</a>
+                </li>
             </ul>
         </div>
     </div>

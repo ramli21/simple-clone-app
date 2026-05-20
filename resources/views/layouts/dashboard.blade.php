@@ -80,15 +80,9 @@
                         </a>
                     </li>
                     <li class="pc-item">
-                        <a href="{{ route('admin.service-items.index') }}" class="pc-link">
+                        <a href="{{ route('admin.portfolios.index') }}" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-package"></i></span>
-                            <span class="pc-mtext">Products / Packages</span>
-                        </a>
-                    </li>
-                    <li class="pc-item">
-                        <a href="../elements/bc_color.html" class="pc-link">
-                            <span class="pc-micon"><i class="ti ti-shopping-cart"></i></span>
-                            <span class="pc-mtext">RFQ / Booking</span>
+                            <span class="pc-mtext">Portfolios</span>
                         </a>
                     </li>
                     <li class="pc-item">

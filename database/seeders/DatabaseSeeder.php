@@ -26,7 +26,9 @@ class DatabaseSeeder extends Seeder
             'email_verified_at' => now(),
         ]);
 
-        $this->call([CompanyProfileSeeder::class, CategorySeeder::class, BlogSeeder::class]);
+        $this->call([CompanyProfileSeeder::class, 
+        // CategorySeeder::class, 
+        BlogSeeder::class]);
     }
 }
 

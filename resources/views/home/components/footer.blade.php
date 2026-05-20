@@ -28,9 +28,12 @@
             <div class="col-6 col-lg-3">
                 <h6 class="text-white fw-bold mb-3">Kontak</h6>
                 <ul class="list-unstyled small vstack gap-2">
-                    <li><i class="bi bi-telephone me-2"></i> {{ $company->phone }}</li>
-                    <li><i class="bi bi-envelope me-2"></i> {{ $company->email }}</li>
-                    <li><i class="bi bi-geo-alt me-2"></i> {{ $company->address }}</li>
+                    <li><a href="https://wa.me/{{ companyProfile()->phone }}" class="text-decoration-none text-white"><i
+                                class="bi bi-telephone me-2"></i> {{ phoneNumber(companyProfile()->phone) }}</a></li>
+                    <li><a href="mailto:{{ companyProfile()->email }}" class="text-decoration-none text-white"><i
+                                class="bi bi-envelope me-2"></i>
+                            {{ companyProfile()->email }}</a></li>
+                    <li><i class="bi bi-geo-alt me-2"></i> {{ companyProfile()->address }}</li>
                 </ul>
             </div>
         </div>

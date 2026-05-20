@@ -2,28 +2,28 @@
 
 @push('metadata')
     <!-- SEO Meta Tags -->
-    <title>Akhritech | Senior Fullstack Developer & SaaS Founder</title>
+    <title>Akhritech | Jasa Pembuatan Aplikasi & Solusi Digital Bisnis</title>
     <meta name="description"
-        content="Senior Fullstack Developer & Founder of Akhritech. Building scalable SaaS solutions with Laravel & Next.js. 10+ years of engineering excellence.">
+        content="Akhritech menyediakan solusi software SaaS & Jasa Web Development profesional untuk digitalisasi bisnis Anda. Berpengalaman 10+ tahun dalam mengembangkan sistem aplikasi berbasis website.">
     <meta name="keywords"
-        content="fullstack developer, Laravel, Next.js, SaaS founder, web developer, software architect, Indonesia, POS system, mesin absensi, attendance machine, Hajj Umrah system, travel tech, digital products, startup Indonesia, software house, web development services, custom software, business solutions, Ar-Rihlah Tech, Akhritech">
+        content="fullstack developer, Laravel, Next.js, SaaS founder, web developer, software architect, Indonesia, POS system, mesin absensi, attendance machine, Hajj Umrah system, travel tech, digital products, startup Indonesia, software house, web development services, custom software, business solutions, SabilSys, Akhritech">
     <meta name="author" content="Akhritech">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:title" content="Akhritech | Senior Fullstack Developer & SaaS Founder">
+    <meta property="og:title" content="Akhritech | Jasa Pembuatan Aplikasi & Solusi Digital Bisnis">
     <meta property="og:description"
-        content="Senior Fullstack Developer & Founder. Building scalable SaaS solutions with Laravel & Next.js. 10+ years of engineering excellence.">
+        content="Akhritech menyediakan solusi software SaaS & Jasa Web Development profesional untuk digitalisasi bisnis Anda. Berpengalaman 10+ tahun dalam mengembangkan sistem aplikasi berbasis website.">
     <meta property="og:image" content="{{ asset('images/akhritech-banner.png') }}">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="{{ url()->current() }}">
-    <meta property="twitter:title" content="Akhritech | Senior Fullstack Developer & SaaS Founder">
+    <meta property="twitter:title" content="Akhritech | Jasa Pembuatan Aplikasi & Solusi Digital Bisnis">
     <meta property="twitter:description"
-        content="Senior Fullstack Developer & Founder. Building scalable SaaS solutions with Laravel & Next.js. 10+ years of engineering excellence.">
+        content="Akhritech menyediakan solusi software SaaS & Jasa Web Development profesional untuk digitalisasi bisnis Anda. Berpengalaman 10+ tahun dalam mengembangkan sistem aplikasi berbasis website.">
     <meta property="twitter:image" content="{{ asset('images/akhritech-banner.png') }}">
 
     <!-- Canonical URL -->
@@ -403,7 +403,6 @@
             font-size: 0.95rem;
             font-weight: 600;
             color: #cbd5e1;
-            text-decoration: line-through;
             margin-bottom: 0.5rem;
             display: flex;
             align-items: center;
@@ -708,21 +707,28 @@
             <div class="row g-4">
                 <!-- Product Card 1: Ar-Rihlah Tech -->
                 <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
-                    <div class="product-card">
+                    <div class="product-card"
+                        style="border-color: #197c93; box-shadow: 0 15px 30px -10px rgba(25, 124, 147, 0.15);">
                         <div class="product-icon">
                             <i class="bi bi-globe-americas"></i>
                         </div>
                         <h3 class="product-title mb-0">SabilSys</h3>
-                        <p class="text-muted">Aplikasi manajemen travel Haji & Umroh Terpadu</p>
+                        <p class="text-muted">Solusi Automasi Bisnis Travel Haji & Umroh</p>
                         <p class="product-description">
-                            Platform all-in-one untuk mengelola seluruh aspek bisnis travel haji dan umroh Anda. Dari
-                            pendaftaran jamaah hingga pembayaran dan pelaporan—semua terintegrasi dalam satu dashboard.
+                            Optimalkan operasional biro travel Anda dengan sistem manajemen jamaah yang cerdas. Mulai dari
+                            pendaftaran online, pengelolaan manifest, hingga pelaporan keuangan real-time—semua dirancang
+                            untuk memangkas waktu kerja admin Anda hingga <b>50%</b> dan meminimalisir kesalahan data.
                         </p>
+
+                        <p class="fw-bold">Fitur Unggulan</p>
                         <div class="tech-tags">
-                            <span class="tech-tag">Laravel</span>
-                            <span class="tech-tag">MySql</span>
-                            <span class="tech-tag">Next.js</span>
-                            <span class="tech-tag">Single-Tenant SaaS</span>
+                            <span class="tech-tag">Automasi Manifest</span>
+                            <span class="tech-tag">Cloud-Based System</span>
+                            <span class="tech-tag">Landing Page</span>
+                            {{-- <span class="tech-tag">Manajemen Jamaah</span> --}}
+                        </div>
+                        <div class="tech-tags mt-2">
+                            <span class="tech-tag">Manajemen Jamaah</span>
                         </div>
                         {{-- <button class="btn btn-primary-custom mt-5" data-bs-toggle="modal" data-bs-target="#arRihlahModal">
                             Pelajari Lebih Lanjut
@@ -760,7 +766,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="arRihlahModalLabel">
-                        <i class="bi bi-globe-americas me-2"></i>Ar-Rihlah Tech
+                        <i class="bi bi-globe-americas me-2"></i>SabilSys - Aplikasi Manajemen Travel Haji & Umroh Terpadu
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -851,151 +857,14 @@
     </div>
 
     <!-- Services Section -->
-    <section id="services" class="service-section">
-        <div class="container">
-            <h2 class="section-heading" data-aos="fade-up">Layanan Pembuatan Website</h2>
-            <p style="text-align: center; color: #64748b; font-size: 1.1rem; margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto;"
-                data-aos="fade-up" data-aos-delay="100">
-                Kami menawarkan paket website berkualitas profesional sesuai dengan kebutuhan bisnis Anda
-            </p>
+    @include('../components/service-section')
 
-            <div class="row g-4">
-                <!-- Starter Package -->
-                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="service-card">
-                        <span class="service-badge">Paket Terjangkau</span>
-                        <h3 class="service-title">Starter</h3>
-                        <div class="service-price-wrapper">
-                            <div class="service-price-original">
-                                Rp 749.000
-                                <span class="service-discount-badge">Hemat 20%</span>
-                            </div>
-                            <div class="service-price">Rp 600.000</div>
-                            <div class="service-price-note">Sekali bayar, selamanya milik Anda</div>
-                        </div>
-                        <div class="service-timeline">
-                            <i class="bi bi-clock-history"></i> Pengerjaan: 1-4 minggu
-                        </div>
-                        <div class="service-domains">
-                            <div class="service-domains-title">
-                                <i class="bi bi-globe"></i> Domain Gratis Tahun Pertama
-                            </div>
-                            <div class="service-domains-list">
-                                <span class="domain-tag">.com</span>
-                                <span class="domain-tag">.web.id</span>
-                                <span class="domain-tag">.my.id</span>
-                                <span class="domain-tag">.biz.id</span>
-                            </div>
-                        </div>
-                        <p class="service-description">
-                            Paket sempurna untuk memulai kehadiran online bisnis Anda dengan landing page atau company
-                            profile sederhana.
-                        </p>
-                        <ul class="service-features">
-                            <li>1 Halaman / Landing Page</li>
-                            <li>Responsive Design</li>
-                            <li>SEO Basic Setup</li>
-                            <li>Contact Form</li>
-                            <li>Free Domain + Hosting 1 Tahun</li>
-                            <li>SSL Certificate Gratis</li>
-                            <li>Email Hosting Gratis</li>
-                        </ul>
-                        <a href="#contact" class="service-btn">Pesan Sekarang</a>
-                    </div>
-                </div>
+    {{-- Testimonial --}}
+    @include('../components/testimonial')
 
-                <!-- Advance Package -->
-                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="service-card"
-                        style="border-color: #197c93; box-shadow: 0 15px 30px -10px rgba(25, 124, 147, 0.15);">
-                        <span class="service-badge"
-                            style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);">Rekomendasi
-                            Populer</span>
-                        <h3 class="service-title">Advance</h3>
-                        <div class="service-price-wrapper">
-                            <div class="service-price-original">
-                                Rp 1.000.000
-                                <span class="service-discount-badge">Hemat 15%</span>
-                            </div>
-                            <div class="service-price">Rp 850.000</div>
-                            <div class="service-price-note">Sekali bayar, selamanya milik Anda</div>
-                        </div>
-                        <div class="service-timeline">
-                            <i class="bi bi-clock-history"></i> Pengerjaan: 2-4 minggu
-                        </div>
-                        <div class="service-domains">
-                            <div class="service-domains-title">
-                                <i class="bi bi-globe"></i> Domain Gratis Tahun Pertama
-                            </div>
-                            <div class="service-domains-list">
-                                <span class="domain-tag">.com</span>
-                                <span class="domain-tag">.id</span>
-                                <span class="domain-tag">.web.id</span>
-                                <span class="domain-tag">.my.id</span>
-                                <span class="domain-tag">.biz.id</span>
-                                <span class="domain-tag">.co.id</span>
-                            </div>
-                        </div>
-                        <p class="service-description">
-                            Solusi lengkap untuk company profile profesional dengan multiple halaman dan fitur yang lebih
-                            comprehensive.
-                        </p>
-                        <ul class="service-features">
-                            <li>5 Halaman (Home, About, Services, Blog, Contact)</li>
-                            <li>Responsive & Modern Design</li>
-                            <li>SEO Optimization</li>
-                            <li>Blog/News Section</li>
-                            <li>Contact Form & Inquiry System</li>
-                            <li>Admin Panel Dasar</li>
-                            <li>Free Domain + Hosting 1 Tahun</li>
-                            <li>SSL Certificate + Email Hosting</li>
-                            <li>3x Revision Gratis</li>
-                        </ul>
-                        <a href="#contact" class="service-btn">Pesan Sekarang</a>
-                    </div>
-                </div>
+    {{-- Portfolio --}}
+    @include('../components/portfolio')
 
-                <!-- Custom Package -->
-                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
-                    <div class="service-card">
-                        <span class="service-badge">Flexible</span>
-                        <h3 class="service-title">Custom</h3>
-                        <div class="service-price-wrapper">
-                            <div class="service-price">Hubungi Kami</div>
-                            <div class="service-price-note">Dapatkan quote sesuai kebutuhan</div>
-                        </div>
-                        <div class="service-timeline">
-                            <i class="bi bi-clock-history"></i> Pengerjaan: Fleksibel sesuai scope
-                        </div>
-                        <div class="service-domains">
-                            <div class="service-domains-title">
-                                <i class="bi bi-globe"></i> Domain Gratis Tahun Pertama
-                            </div>
-                            <div class="service-domains-list">
-                                <span class="domain-tag">Semua Ekstensi</span>
-                            </div>
-                        </div>
-                        <p class="service-description">
-                            Paket yang dapat disesuaikan sepenuhnya dengan kebutuhan unik dan spesifik bisnis Anda.
-                            Diskusikan kebutuhan Anda dengan tim expert kami.
-                        </p>
-                        <ul class="service-features">
-                            <li>Halaman Unlimited</li>
-                            <li>Fitur Custom Sesuai Kebutuhan</li>
-                            <li>E-Commerce / Toko Online</li>
-                            <li>Database Integration</li>
-                            <li>Advanced Security & Performance</li>
-                            <li>Unlimited Revision</li>
-                            <li>Free Domain + Hosting 1 Tahun</li>
-                            <li>SSL Certificate + Email Hosting</li>
-                            <li>Dedicated Support & Maintenance</li>
-                        </ul>
-                        <a href="#contact" class="service-btn service-btn-secondary">Konsultasi Gratis</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Professional Expertise Section -->
     <section class="expertise-section">
@@ -1059,7 +928,7 @@
     </section>
 
     <!-- About Section -->
-    <section class="about-section">
+    {{-- <section class="about-section">
         <div class="container">
             <div class="about-content" data-aos="fade-up">
                 <h2 class="about-heading">Bridging Professional Engineering with Entrepreneurial Innovation</h2>
@@ -1079,7 +948,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <!-- Free Consultation Section -->
     <section class="consult-section">
