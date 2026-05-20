@@ -183,7 +183,7 @@
     <meta property="og:title" content="{{ $blog->title }}">
     <meta property="og:description" content="{{ $blog->excerpt ?? Str::limit(strip_tags($blog->content), 160) }}">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="{{ route('blogs.show', $blog->id) }}">
+    <meta property="og:url" content="{{ route('blogs.show', $blog->slug) }}">
     <meta property="og:site_name" content="Akhritech">
     <meta property="og:image" content="{{ asset($blog->image ?? 'images/blog-default.png') }}">
     <meta property="og:image:alt" content="{{ $blog->title }}">
@@ -198,7 +198,7 @@
     <meta name="twitter:image:alt" content="{{ $blog->title }}">
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="{{ route('blogs.show', $blog->id) }}">
+    <link rel="canonical" href="{{ route('blogs.show', $blog->slug) }}">
 
     <!-- Structured Data - BlogPosting -->
     <script type="application/ld+json">
@@ -315,25 +315,25 @@
                         <i class="bi bi-share"></i> Bagikan Artikel Ini
                     </h5>
                     <div class="share-buttons d-flex gap-2 flex-wrap">
-                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ route('blogs.show', $blog->id) }}"
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ route('blogs.show', $blog->slug) }}"
                             target="_blank" rel="noopener noreferrer"
                             class="share-button share-facebook text-white d-inline-flex align-items-center justify-content-center rounded-circle"
                             style="width: 40px; height: 40px;" title="Bagikan ke Facebook">
                             <i class="bi bi-facebook"></i>
                         </a>
-                        <a href="https://twitter.com/intent/tweet?url={{ route('blogs.show', $blog->id) }}&text={{ urlencode($blog->title) }}"
+                        <a href="https://twitter.com/intent/tweet?url={{ route('blogs.show', $blog->slug) }}&text={{ urlencode($blog->title) }}"
                             target="_blank" rel="noopener noreferrer"
                             class="share-button share-twitter text-white d-inline-flex align-items-center justify-content-center rounded-circle"
                             style="width: 40px; height: 40px;" title="Bagikan ke Twitter">
                             <i class="bi bi-twitter"></i>
                         </a>
-                        <a href="https://wa.me/?text={{ urlencode($blog->title . ' ' . route('blogs.show', $blog->id)) }}"
+                        <a href="https://wa.me/?text={{ urlencode($blog->title . ' ' . route('blogs.show', $blog->slug)) }}"
                             target="_blank" rel="noopener noreferrer"
                             class="share-button share-whatsapp text-white d-inline-flex align-items-center justify-content-center rounded-circle"
                             style="width: 40px; height: 40px;" title="Bagikan ke WhatsApp">
                             <i class="bi bi-whatsapp"></i>
                         </a>
-                        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ route('blogs.show', $blog->id) }}"
+                        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ route('blogs.show', $blog->slug) }}"
                             target="_blank" rel="noopener noreferrer"
                             class="share-button share-linkedin text-white d-inline-flex align-items-center justify-content-center rounded-circle"
                             style="width: 40px; height: 40px;" title="Bagikan ke LinkedIn">
@@ -357,11 +357,14 @@
                                 {{ strtoupper(substr($blog->author->name, 0, 1)) }}
                             </div>
                             <div class="author-details">
-                                <h5 class="fw-bold mb-2 text-dark">Tentang {{ $blog->author->name }}</h5>
+                                <h5 class="fw-bold mb-2 text-dark">
+                                    Tentang {{ $blog->author->name }}
+                                    <span class="text-muted d-block fw-normal mt-1"
+                                        style="font-size: 0.8rem;">{{ $blog->author->position ?? 'Penulis' }} di
+                                        Akhritech.</span>
+                                </h5>
                                 <p class="mb-0 text-muted">
-                                    Bagian dari tim ahli Akhritech yang berdedikasi untuk berbagi pengetahuan dan insight
-                                    terbaru
-                                    tentang teknologi, web development, dan software engineering.
+                                    {{ $blog->author->about ?? 'Berpengalaman dalam mengembangkan solusi digital inovatif untuk berbagai industri.' }}
                                 </p>
                             </div>
                         </div>
@@ -396,14 +399,14 @@
                                 </div>
                                 <div class="card-body related-card-body">
                                     <h6 class="card-title fw-bold mb-3">
-                                        <a href="{{ route('blogs.show', $related->id) }}"
+                                        <a href="{{ route('blogs.show', $related->slug) }}"
                                             class="text-decoration-none text-dark">
                                             {{ $related->title }}
                                         </a>
                                     </h6>
                                     <p class="card-text small text-muted">
                                         {{ Str::limit($related->excerpt ?? $related->content, 80) }}</p>
-                                    <a href="{{ route('blogs.show', $related->id) }}"
+                                    <a href="{{ route('blogs.show', $related->slug) }}"
                                         class="related-card-link fw-semibold text-decoration-none">
                                         Baca Selengkapnya <i class="bi bi-arrow-right"></i>
                                     </a>

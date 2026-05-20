@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\BlogController as PublicBlogController;
 use App\Models\Blog;
 use App\Models\ServiceItem;
@@ -33,6 +34,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('itineraries', ItineraryController::class)->only(['update', 'edit']);
     Route::resource('inquiries', InquiryController::class)->only(['index', 'show', 'destroy', 'update']);
     Route::resource('service-items', ServiceItemController::class);
+    Route::resource('users', UserController::class);
+    Route::get('users/{user}/reset-password', [UserController::class, 'resetPasswordForm'])->name('users.reset-password.form');
+    Route::post('users/{user}/reset-password', [UserController::class, 'resetPassword'])->name('users.reset-password');
     Route::get('/service-items/{serviceItem}/itineraries/create', [ItineraryController::class, 'create'])->name('itineraries.create');
     Route::post('/service-items/{serviceItem}/itineraries', [ItineraryController::class, 'store'])->name('itineraries.store');
     Route::resource('company-profiles', CompanyProfileController::class)->only(['index', 'create', 'store', 'edit', 'update']);
