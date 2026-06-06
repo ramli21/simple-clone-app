@@ -91,6 +91,12 @@
                             <span class="pc-mtext">Inquiries</span>
                         </a>
                     </li>
+                    <li class="pc-item">
+                        <a href="{{ route('admin.contracts.index') }}" class="pc-link">
+                            <span class="pc-micon"><i class="ti ti-file-text"></i></span>
+                            <span class="pc-mtext">Contracts</span>
+                        </a>
+                    </li>
                     <li class="pc-item pc-caption">
                         <label>Other</label>
                         <i class="ti ti-dashboard"></i>

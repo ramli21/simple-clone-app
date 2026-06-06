@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\BlogController as PublicBlogController;
 use App\Models\Blog;
 use App\Models\ServiceItem;
+use App\Http\Controllers\ContractController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/templates', [HomeController::class, 'themes'])->name('home.templates');
@@ -37,6 +38,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::post('/service-items/{serviceItem}/itineraries', [ItineraryController::class, 'store'])->name('itineraries.store');
     Route::resource('company-profiles', CompanyProfileController::class)->only(['index', 'create', 'store', 'edit', 'update']);
     Route::resource('portfolios', \App\Http\Controllers\Admin\PortfolioController::class);
+    // Contracts management (admin)
+    Route::resource('contracts', ContractController::class);
+    Route::get('contracts/{contract}/download', [ContractController::class, 'download'])->name('contracts.download');
+    Route::get('contracts/{contract}/preview', [ContractController::class, 'preview'])->name('contracts.preview');
+    Route::get('contracts/{contract}/signatures', [ContractController::class, 'signatures'])->name('contracts.signatures.edit');
+    Route::post('contracts/{contract}/signatures', [ContractController::class, 'signaturesUpdate'])->name('contracts.signatures.update');
 });
 
 
