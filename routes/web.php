@@ -14,7 +14,11 @@ use App\Models\Blog;
 use App\Models\ServiceItem;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/templates', [HomeController::class, 'themes'])->name('home.templates');
+Route::get('/templates', [\App\Http\Controllers\TemplatePublicController::class, 'index'])->name('templates.index');
+
+Route::get('/templates/{slug}', [\App\Http\Controllers\TemplatePublicController::class, 'show'])->name('templates.show');
+
+Route::view('/terms', 'pages.terms')->name('terms');
 
 Route::get('/products/sabilsys', [HomeController::class, 'productSabilsys'])->name('home.products.sabilsys');
 
@@ -29,19 +33,27 @@ Auth::routes();
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
     Route::resource('blogs', BlogController::class);
     Route::post('blogs/upload', [BlogController::class, 'upload'])->name('blogs.upload');
+
     Route::resource('itineraries', ItineraryController::class)->only(['update', 'edit']);
     Route::resource('inquiries', InquiryController::class)->only(['index', 'show', 'destroy', 'update']);
     Route::resource('service-items', ServiceItemController::class);
+
     Route::resource('users', UserController::class);
     Route::get('users/{user}/reset-password', [UserController::class, 'resetPasswordForm'])->name('users.reset-password.form');
     Route::post('users/{user}/reset-password', [UserController::class, 'resetPassword'])->name('users.reset-password');
+
     Route::get('/service-items/{serviceItem}/itineraries/create', [ItineraryController::class, 'create'])->name('itineraries.create');
     Route::post('/service-items/{serviceItem}/itineraries', [ItineraryController::class, 'store'])->name('itineraries.store');
+
     Route::resource('company-profiles', CompanyProfileController::class)->only(['index', 'create', 'store', 'edit', 'update']);
     Route::resource('portfolios', \App\Http\Controllers\Admin\PortfolioController::class);
+
+    Route::resource('templates', \App\Http\Controllers\Admin\TemplateAdminController::class);
 });
+
 
 
 
