@@ -16,15 +16,32 @@ use App\Models\ServiceItem;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/templates', [\App\Http\Controllers\TemplatePublicController::class, 'index'])->name('templates.index');
 Route::get('/templates/{slug}', [\App\Http\Controllers\TemplatePublicController::class, 'show'])->name('templates.show');
+
+// Customer portal download (1-time link by unique code)
+Route::get('/download', [\App\Http\Controllers\TemplateDownloadController::class, 'showForm'])->name('download.form');
+Route::post('/download/resolve', [\App\Http\Controllers\TemplateDownloadController::class, 'resolve'])->name('download.resolve');
+Route::get('/download/{token}', [\App\Http\Controllers\TemplateDownloadController::class, 'download'])->name('download.one-time');
+
 Route::view('/terms', 'pages.terms')->name('terms');
 Route::view('/products/sabilsys', 'products.sabilsys')->name('home.products.sabilsys');
 Route::post('/inquiry', [HomeController::class, 'inquiry'])->name('inquiry.store');
 Route::get('/blogs', [PublicBlogController::class, 'index'])->name('blogs.index');
 Route::get('/blogs/{slug}', [PublicBlogController::class, 'show'])->name('blogs.show');
 
+Route::post('/templates/confirm-payment', [\App\Http\Controllers\TemplatePublicController::class, 'confirmPayment'])
+    ->name('templates.confirm-payment');
+
+
 Auth::routes();
 
 Route::prefix('admin')->name('admin.')->group(function () {
+
+    Route::prefix('payments')->name('payments.')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Admin\PaymentAdminController::class, 'index'])->name('index');
+        Route::post('/{payment}/approve', [\App\Http\Controllers\Admin\PaymentAdminController::class, 'approve'])->name('approve');
+        Route::post('/{payment}/reject', [\App\Http\Controllers\Admin\PaymentAdminController::class, 'reject'])->name('reject');
+    });
+
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::resource('blogs', BlogController::class);

@@ -6,6 +6,8 @@ use App\Models\CompanyProfile;
 use App\Models\ServiceItem;
 use Illuminate\Http\Request;
 use App\Models\Inquiry;
+use App\Models\Portfolio;
+use App\Models\WebTemplate;
 use App\Mail\InqueryForwarderMailer;
 use Illuminate\Support\Facades\Mail;
 
@@ -67,8 +69,11 @@ class HomeController extends Controller
                 ],
             ]
         ];
+        
+        $portfolios = Portfolio::where('published', true)->latest()->get();
+        $templates = WebTemplate::where('is_active', true)->latest()->take(3)->get();
 
-        return view('pages.index_2', compact('company', 'packages'));
+        return view('pages.index_2', compact('company', 'packages', 'portfolios', 'templates'));
     }
 
     public function inquiry(Request $request)

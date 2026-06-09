@@ -140,153 +140,78 @@
             </div>
 
             <!-- Pricing Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+            <div class="grid grid-cols-1 {{ count($packages) == 2 ? 'md:grid-cols-2 max-w-4xl mx-auto' : 'md:grid-cols-3' }} gap-8 items-start">
+                @foreach($packages as $package)
+                    <div class="bg-white rounded-2xl p-8 {{ $package['highlight'] ? 'border-2 border-primary shadow-xl relative transform md:-translate-y-4 z-10' : 'border border-slate-200 shadow-sm hover:shadow-lg' }} transition-all duration-300 flex flex-col h-full">
+                        @if($package['highlight'])
+                            <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                                <span class="bg-primary text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-md uppercase tracking-wide">
+                                    {{ $package['tagline'] }}
+                                </span>
+                            </div>
+                        @endif
 
-                <!-- Paket 1: Starter -->
-                <div
-                    class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full">
-                    <div class="mb-6">
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">Landing Page</h3>
-                        <p class="text-slate-500 text-sm">Cocok untuk promosi produk tunggal atau personal branding.</p>
+                        <div class="mb-6 {{ $package['highlight'] ? 'pt-2' : '' }}">
+                            <h3 class="text-xl font-bold text-slate-900 mb-2">{{ $package['name'] }}</h3>
+                            <p class="text-slate-500 text-sm leading-relaxed">{{ $package['description'] }}</p>
+                            
+                            @if(isset($package['timeline']))
+                                <div class="mt-3 inline-flex items-center gap-1.5 px-2.5 py-1 bg-slate-50 text-slate-600 rounded-md text-xs font-semibold border border-slate-100">
+                                    <i class="fa-solid fa-clock text-slate-400"></i> Durasi: {{ $package['timeline'] }}
+                                </div>
+                            @endif
+                        </div>
+
+                        <div class="mb-8">
+                            @if(isset($package['discounted_price']))
+                                <span class="text-4xl font-extrabold {{ $package['highlight'] ? 'text-primary' : 'text-slate-900' }}">
+                                    {{ $package['discounted_price'] }}
+                                </span>
+                                <div class="mt-2 flex items-center gap-2">
+                                    <span class="text-slate-400 text-sm line-through">{{ $package['price'] }}</span>
+                                    <span class="bg-red-50 text-red-600 text-xs px-2 py-0.5 rounded-full font-bold border border-red-100">
+                                        Hemat {{ $package['discount'] }}
+                                    </span>
+                                </div>
+                            @else
+                                <span class="text-4xl font-extrabold {{ $package['highlight'] ? 'text-primary' : 'text-slate-900' }}">
+                                    {{ $package['price'] }}
+                                </span>
+                            @endif
+                            <span class="text-slate-400 text-xs block mt-2">Sekali Bayar</span>
+                        </div>
+
+                        <ul class="space-y-4 mb-8 flex-grow">
+                            @foreach($package['features'] as $feature)
+                                <li class="flex items-start gap-3">
+                                    <i class="fa-solid fa-check text-green-500 mt-1 flex-shrink-0"></i>
+                                    <span class="text-slate-600 text-sm">{{ $feature }}</span>
+                                </li>
+                            @endforeach
+                            
+                            @if(isset($package['domains']) && count($package['domains']) > 0)
+                                <li class="flex items-start gap-3 pt-4 border-t border-slate-100 mt-4">
+                                    <i class="fa-solid fa-globe text-accent mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <span class="text-slate-500 text-[10px] block font-bold uppercase tracking-wider mb-2">Pilihan Domain Gratis:</span>
+                                        <div class="flex flex-wrap gap-1">
+                                            @foreach($package['domains'] as $domain)
+                                                <span class="px-2 py-0.5 bg-cyan-50 text-accent text-[10px] font-bold rounded border border-cyan-100/50">
+                                                    {{ $domain }}
+                                                </span>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </li>
+                            @endif
+                        </ul>
+
+                        <a href="#contact"
+                            class="block w-full py-3.5 px-6 font-bold text-center rounded-xl transition-all {{ $package['highlight'] ? 'bg-primary text-white hover:bg-indigo-700 shadow-lg shadow-indigo-200' : 'border-2 border-slate-200 text-slate-700 hover:border-primary hover:text-primary' }}">
+                            Pilih Paket
+                        </a>
                     </div>
-                    <div class="mb-8">
-                        <span class="text-4xl font-extrabold text-slate-900">Rp 1.500.000</span>
-                        <span class="text-slate-400 text-sm block mt-1">Sekali Bayar</span>
-                    </div>
-
-                    <ul class="space-y-4 mb-8 flex-grow">
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-check text-green-500 mt-1"></i>
-                            <span class="text-slate-600">1 Halaman (One Page)</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-check text-green-500 mt-1"></i>
-                            <span class="text-slate-600">Desain Responsif Mobile</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-check text-green-500 mt-1"></i>
-                            <span class="text-slate-600">Gratis Domain .com (1 Tahun)</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-check text-green-500 mt-1"></i>
-                            <span class="text-slate-600">Integrasi WhatsApp</span>
-                        </li>
-                        <li class="flex items-start gap-3 opacity-50">
-                            <i class="fa-solid fa-xmark text-slate-300 mt-1"></i>
-                            <span class="text-slate-400">CMS / Panel Admin</span>
-                        </li>
-                        <li class="flex items-start gap-3 opacity-50">
-                            <i class="fa-solid fa-xmark text-slate-300 mt-1"></i>
-                            <span class="text-slate-400">SEO Optimization Basic</span>
-                        </li>
-                    </ul>
-
-                    <a href="#contact"
-                        class="block w-full py-3 px-6 border-2 border-slate-200 text-slate-700 font-bold text-center rounded-xl hover:border-primary hover:text-primary transition-all">
-                        Pilih Paket
-                    </a>
-                </div>
-
-                <!-- Paket 2: Business (Highlight) -->
-                <div
-                    class="bg-white rounded-2xl p-8 border-2 border-primary shadow-xl relative transform md:-translate-y-4 flex flex-col h-full z-10">
-                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                        <span
-                            class="bg-primary text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-md uppercase tracking-wide">Paling
-                            Laris</span>
-                    </div>
-
-                    <div class="mb-6 pt-2">
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">Company Profile</h3>
-                        <p class="text-slate-500 text-sm">Ideal untuk UKM dan perusahaan yang ingin tampil profesional.</p>
-                    </div>
-                    <div class="mb-8">
-                        <span class="text-4xl font-extrabold text-primary">Rp 3.500.000</span>
-                        <span class="text-slate-400 text-sm block mt-1">Sekali Bayar</span>
-                    </div>
-
-                    <ul class="space-y-4 mb-8 flex-grow">
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-check text-green-500 mt-1"></i>
-                            <span class="text-slate-600">Hingga 5 Halaman</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-check text-green-500 mt-1"></i>
-                            <span class="text-slate-600">Desain Premium & Modern</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-check text-green-500 mt-1"></i>
-                            <span class="text-slate-600">Gratis Domain & Hosting (1 Tahun)</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-check text-green-500 mt-1"></i>
-                            <span class="text-slate-600">Email Bisnis (nama@domain.com)</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-check text-green-500 mt-1"></i>
-                            <span class="text-slate-600">CMS Admin Panel (Mudah Edit)</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-check text-green-500 mt-1"></i>
-                            <span class="text-slate-600">SEO Optimization Basic</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-check text-green-500 mt-1"></i>
-                            <span class="text-slate-600">Google Analytics Integration</span>
-                        </li>
-                    </ul>
-
-                    <a href="#contact"
-                        class="block w-full py-3.5 px-6 bg-primary text-white font-bold text-center rounded-xl hover:bg-indigo-700 shadow-lg shadow-indigo-200 transition-all">
-                        Pilih Paket
-                    </a>
-                </div>
-
-                <!-- Paket 3: Custom/Enterprise -->
-                <div
-                    class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col h-full">
-                    <div class="mb-6">
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">E-Commerce / Custom</h3>
-                        <p class="text-slate-500 text-sm">Solusi lengkap untuk toko online atau sistem web kompleks.</p>
-                    </div>
-                    <div class="mb-8">
-                        <span class="text-4xl font-extrabold text-slate-900">Rp 7.000.000</span>
-                        <span class="text-slate-400 text-sm block mt-1">Mulai Dari</span>
-                    </div>
-
-                    <ul class="space-y-4 mb-8 flex-grow">
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-check text-green-500 mt-1"></i>
-                            <span class="text-slate-600">Halaman Tanpa Batas</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-check text-green-500 mt-1"></i>
-                            <span class="text-slate-600">Sistem Toko Online / Payment Gateway</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-check text-green-500 mt-1"></i>
-                            <span class="text-slate-600">Custom Dashboard & Fitur</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-check text-green-500 mt-1"></i>
-                            <span class="text-slate-600">Kecepatan Tinggi & Aman (SSL)</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-check text-green-500 mt-1"></i>
-                            <span class="text-slate-600">Prioritas Support</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-check text-green-500 mt-1"></i>
-                            <span class="text-slate-600">Maintenance Bulanan (Opsional)</span>
-                        </li>
-                    </ul>
-
-                    <a href="#contact"
-                        class="block w-full py-3 px-6 bg-slate-900 text-white font-bold text-center rounded-xl hover:bg-slate-800 transition-all">
-                        Konsultasi Gratis
-                    </a>
-                </div>
-
+                @endforeach
             </div>
 
             <div class="mt-12 text-center text-slate-500 text-sm">
@@ -314,83 +239,154 @@
                     <p class="text-slate-300 text-lg">Luncurkan website Anda lebih cepat dengan koleksi tema
                         berkualitas tinggi kami. Dibuat dengan TailwindCSS, bersih, dan mudah dikustomisasi.</p>
                 </div>
-                <a href="#"
+                <a href="{{ route('templates.index') }}"
                     class="px-6 py-3 border border-slate-600 rounded-lg hover:bg-white hover:text-slate-900 transition-all font-medium">
                     Lihat Semua Tema <i class="fa-solid fa-arrow-right ml-2"></i>
                 </a>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Theme Card 1 -->
-                <article
-                    class="bg-slate-800 rounded-2xl overflow-hidden border border-slate-700 hover:border-primary transition-colors group">
-                    <div class="relative overflow-hidden h-56">
-                        <span
-                            class="absolute top-4 left-4 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10">Best
-                            Seller</span>
-                        <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                            alt="Theme Preview"
-                            class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">AkhriSaaS - Dashboard Admin</h3>
-                        <p class="text-slate-400 text-sm mb-4">Template admin dashboard lengkap dengan fitur analitik
-                            dan dark mode.</p>
-                        <div class="flex justify-between items-center border-t border-slate-700 pt-4">
-                            <span class="text-2xl font-bold text-accent">$49</span>
-                            <button
-                                class="bg-primary hover:bg-indigo-600 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center gap-2">
-                                <i class="fa-solid fa-cart-shopping"></i> Beli
-                            </button>
-                        </div>
-                    </div>
-                </article>
+                @forelse($templates as $template)
+                    @php
+                        $thumbnailUrl = '';
+                        if (!empty($template->thumbnail_image)) {
+                            $thumbnailUrl = str_starts_with($template->thumbnail_image, 'https://')
+                                ? $template->thumbnail_image
+                                : asset('storage/' . $template->thumbnail_image);
+                        }
 
-                <!-- Theme Card 2 -->
-                <article
-                    class="bg-slate-800 rounded-2xl overflow-hidden border border-slate-700 hover:border-primary transition-colors group">
-                    <div class="relative overflow-hidden h-56">
-                        <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                            alt="Theme Preview"
-                            class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Portfolio Creative Pro</h3>
-                        <p class="text-slate-400 text-sm mb-4">Tema portofolio minimalis untuk desainer dan fotografer
-                            profesional.</p>
-                        <div class="flex justify-between items-center border-t border-slate-700 pt-4">
-                            <span class="text-2xl font-bold text-accent">$29</span>
-                            <button
-                                class="bg-primary hover:bg-indigo-600 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center gap-2">
-                                <i class="fa-solid fa-cart-shopping"></i> Beli
-                            </button>
-                        </div>
-                    </div>
-                </article>
+                        $price = (int) ($template->price ?? 0);
+                        $finalPrice = (int) ($template->final_price ?? ($template->price ?? 0));
+                        $hasDiscount = !empty($template->discount_percentage) && (int) $template->discount_percentage > 0;
 
-                <!-- Theme Card 3 -->
-                <article
-                    class="bg-slate-800 rounded-2xl overflow-hidden border border-slate-700 hover:border-primary transition-colors group">
-                    <div class="relative overflow-hidden h-56">
-                        <span
-                            class="absolute top-4 left-4 bg-purple-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10">New</span>
-                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                            alt="Theme Preview"
-                            class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">E-Shopify Ultimate</h3>
-                        <p class="text-slate-400 text-sm mb-4">Tema toko online modern dengan konversi tinggi dan
-                            loading cepat.</p>
-                        <div class="flex justify-between items-center border-t border-slate-700 pt-4">
-                            <span class="text-2xl font-bold text-accent">$59</span>
-                            <button
-                                class="bg-primary hover:bg-indigo-600 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center gap-2">
-                                <i class="fa-solid fa-cart-shopping"></i> Beli
-                            </button>
+                        $formattedPrice = 'Rp ' . number_format($price, 0, ',', '.');
+                        $formattedFinalPrice = 'Rp ' . number_format($finalPrice, 0, ',', '.');
+                    @endphp
+                    <article
+                        class="bg-slate-800 rounded-2xl overflow-hidden border border-slate-700 hover:border-primary transition-colors group flex flex-col justify-between h-full">
+                        <div>
+                            <div class="relative overflow-hidden h-56 bg-slate-950">
+                                @if($hasDiscount)
+                                    <span
+                                        class="absolute top-4 left-4 bg-emerald-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10">
+                                        Diskon {{ (int) $template->discount_percentage }}%
+                                    </span>
+                                @endif
+                                @if(!empty($thumbnailUrl))
+                                    <img src="{{ $thumbnailUrl }}"
+                                        alt="{{ $template->name }}"
+                                        class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500"
+                                        loading="lazy">
+                                @else
+                                    <div class="w-full h-full bg-slate-800 flex items-center justify-center text-slate-500">
+                                        No Image
+                                    </div>
+                                @endif
+                            </div>
+                            <div class="p-6">
+                                <span class="text-xs text-accent font-bold uppercase tracking-wider block mb-1">{{ $template->category }}</span>
+                                <h3 class="text-xl font-bold mb-2 text-white group-hover:text-primary transition-colors">{{ $template->name }}</h3>
+                                <p class="text-slate-400 text-sm mb-4 line-clamp-2 leading-relaxed">{{ $template->short_description }}</p>
+                            </div>
                         </div>
-                    </div>
-                </article>
+                        <div class="p-6 pt-0 mt-auto">
+                            <div class="flex justify-between items-center border-t border-slate-700 pt-4">
+                                <div>
+                                    @if($hasDiscount)
+                                        <div class="text-xs text-slate-500 line-through mb-0.5">{{ $formattedPrice }}</div>
+                                    @endif
+                                    <span class="text-2xl font-extrabold text-accent">{{ $formattedFinalPrice }}</span>
+                                </div>
+                                <a href="{{ route('templates.show', $template->slug) }}"
+                                    class="bg-primary hover:bg-indigo-600 text-white px-5 py-2.5 rounded-lg font-medium transition-colors flex items-center gap-2 text-sm shadow-md hover:shadow-lg">
+                                    <i class="fa-solid fa-cart-shopping"></i> Beli
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                @empty
+                    <!-- Fallback Theme Card 1 -->
+                    <article
+                        class="bg-slate-800 rounded-2xl overflow-hidden border border-slate-700 hover:border-primary transition-colors group flex flex-col justify-between h-full">
+                        <div>
+                            <div class="relative overflow-hidden h-56">
+                                <span
+                                    class="absolute top-4 left-4 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10">Best Seller</span>
+                                <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                    alt="Theme Preview"
+                                    class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
+                            </div>
+                            <div class="p-6">
+                                <span class="text-xs text-accent font-bold uppercase tracking-wider block mb-1">Dashboard</span>
+                                <h3 class="text-xl font-bold mb-2 text-white">AkhriSaaS - Dashboard Admin</h3>
+                                <p class="text-slate-400 text-sm mb-4 line-clamp-2">Template admin dashboard lengkap dengan fitur analitik dan dark mode.</p>
+                            </div>
+                        </div>
+                        <div class="p-6 pt-0 mt-auto">
+                            <div class="flex justify-between items-center border-t border-slate-700 pt-4">
+                                <span class="text-2xl font-bold text-accent">Rp 490.000</span>
+                                <a href="{{ route('templates.index') }}"
+                                    class="bg-primary hover:bg-indigo-600 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center gap-2">
+                                    <i class="fa-solid fa-cart-shopping"></i> Beli
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Fallback Theme Card 2 -->
+                    <article
+                        class="bg-slate-800 rounded-2xl overflow-hidden border border-slate-700 hover:border-primary transition-colors group flex flex-col justify-between h-full">
+                        <div>
+                            <div class="relative overflow-hidden h-56">
+                                <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                    alt="Theme Preview"
+                                    class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
+                            </div>
+                            <div class="p-6">
+                                <span class="text-xs text-accent font-bold uppercase tracking-wider block mb-1">Portfolio</span>
+                                <h3 class="text-xl font-bold mb-2 text-white">Portfolio Creative Pro</h3>
+                                <p class="text-slate-400 text-sm mb-4 line-clamp-2">Tema portofolio minimalis untuk desainer dan fotografer profesional.</p>
+                            </div>
+                        </div>
+                        <div class="p-6 pt-0 mt-auto">
+                            <div class="flex justify-between items-center border-t border-slate-700 pt-4">
+                                <span class="text-2xl font-bold text-accent">Rp 290.000</span>
+                                <a href="{{ route('templates.index') }}"
+                                    class="bg-primary hover:bg-indigo-600 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center gap-2">
+                                    <i class="fa-solid fa-cart-shopping"></i> Beli
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Fallback Theme Card 3 -->
+                    <article
+                        class="bg-slate-800 rounded-2xl overflow-hidden border border-slate-700 hover:border-primary transition-colors group flex flex-col justify-between h-full">
+                        <div>
+                            <div class="relative overflow-hidden h-56">
+                                <span
+                                    class="absolute top-4 left-4 bg-purple-50 text-white text-xs font-bold px-3 py-1 rounded-full z-10">New</span>
+                                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                    alt="Theme Preview"
+                                    class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
+                            </div>
+                            <div class="p-6">
+                                <span class="text-xs text-accent font-bold uppercase tracking-wider block mb-1">E-Commerce</span>
+                                <h3 class="text-xl font-bold mb-2 text-white">E-Shopify Ultimate</h3>
+                                <p class="text-slate-400 text-sm mb-4 line-clamp-2">Tema toko online modern dengan konversi tinggi dan loading cepat.</p>
+                            </div>
+                        </div>
+                        <div class="p-6 pt-0 mt-auto">
+                            <div class="flex justify-between items-center border-t border-slate-700 pt-4">
+                                <span class="text-2xl font-bold text-accent">Rp 590.000</span>
+                                <a href="{{ route('templates.index') }}"
+                                    class="bg-primary hover:bg-indigo-600 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center gap-2">
+                                    <i class="fa-solid fa-cart-shopping"></i> Beli
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                @endforelse
             </div>
         </div>
     </section>
@@ -593,39 +589,87 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Portfolio Item -->
-                <div class="group relative overflow-hidden rounded-2xl shadow-lg cursor-pointer">
-                    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                        alt="Project 1"
-                        class="w-full h-72 object-cover transform group-hover:scale-110 transition duration-700">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                        <span class="text-accent font-medium text-sm mb-1">Fintech App</span>
-                        <h3 class="text-white text-xl font-bold">FinTrack Dashboard</h3>
+                @forelse($portfolios as $portfolio)
+                    <!-- Dynamic Portfolio Item -->
+                    <div class="portfolio-card group relative overflow-hidden rounded-2xl shadow-lg cursor-pointer"
+                        data-project-title="{{ $portfolio->name }}"
+                        data-project-category="{{ $portfolio->category }}"
+                        data-project-image="{{ $portfolio->image_url ?? 'https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' }}"
+                        data-project-description="{{ $portfolio->story }}"
+                        data-project-client="Mitra Akhritech"
+                        data-project-date="{{ $portfolio->created_at->format('F Y') }}"
+                        data-project-tags="{{ is_array($portfolio->highlights) ? implode(',', $portfolio->highlights) : '' }}"
+                        data-project-link="{{ $portfolio->link ?? '#' }}">
+                        <img src="{{ $portfolio->image_url ?? 'https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' }}"
+                            alt="{{ $portfolio->name }}"
+                            class="w-full h-72 object-cover transform group-hover:scale-110 transition duration-700">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                            <span class="text-accent font-medium text-sm mb-1">{{ $portfolio->category }}</span>
+                            <h3 class="text-white text-xl font-bold">{{ $portfolio->name }}</h3>
+                        </div>
                     </div>
-                </div>
+                @empty
+                    <!-- Fallback Static Portfolio Item 1 -->
+                    <div class="portfolio-card group relative overflow-hidden rounded-2xl shadow-lg cursor-pointer"
+                        data-project-title="FinTrack Dashboard"
+                        data-project-category="Fintech App"
+                        data-project-image="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        data-project-description="FinTrack Dashboard adalah platform manajemen keuangan modern yang dirancang untuk membantu startup melacak pengeluaran, pemasukan, dan arus kas secara real-time. Dengan visualisasi grafik yang interaktif dan analitik prediktif berbasis AI, aplikasi ini mempermudah pengambilan keputusan keuangan perusahaan."
+                        data-project-client="FinTrack Inc."
+                        data-project-date="Maret 2023"
+                        data-project-tags="Laravel,TailwindCSS,Chart.js,Livewire,PostgreSQL"
+                        data-project-link="https://fintrack.example.com">
+                        <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Project 1"
+                            class="w-full h-72 object-cover transform group-hover:scale-110 transition duration-700">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                            <span class="text-accent font-medium text-sm mb-1">Fintech App</span>
+                            <h3 class="text-white text-xl font-bold">FinTrack Dashboard</h3>
+                        </div>
+                    </div>
 
-                <div class="group relative overflow-hidden rounded-2xl shadow-lg cursor-pointer">
-                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                        alt="Project 2"
-                        class="w-full h-72 object-cover transform group-hover:scale-110 transition duration-700">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                        <span class="text-accent font-medium text-sm mb-1">Mobile App</span>
-                        <h3 class="text-white text-xl font-bold">Health Go</h3>
+                    <!-- Fallback Static Portfolio Item 2 -->
+                    <div class="portfolio-card group relative overflow-hidden rounded-2xl shadow-lg cursor-pointer"
+                        data-project-title="Health Go"
+                        data-project-category="Mobile App"
+                        data-project-image="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        data-project-description="Health Go adalah aplikasi mobile kesehatan revolusioner yang menghubungkan pasien dengan dokter spesialis secara instan. Fitur utama meliputi konsultasi online via video call, pemesanan obat dengan pengantaran cepat, serta pelacak aktivitas kebugaran harian terintegrasi."
+                        data-project-client="Health Go Global"
+                        data-project-date="November 2022"
+                        data-project-tags="Flutter,Node.js,MongoDB,WebRTC,TailwindCSS"
+                        data-project-link="https://healthgo.example.com">
+                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Project 2"
+                            class="w-full h-72 object-cover transform group-hover:scale-110 transition duration-700">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                            <span class="text-accent font-medium text-sm mb-1">Mobile App</span>
+                            <h3 class="text-white text-xl font-bold">Health Go</h3>
+                        </div>
                     </div>
-                </div>
 
-                <div class="group relative overflow-hidden rounded-2xl shadow-lg cursor-pointer">
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                        alt="Project 3"
-                        class="w-full h-72 object-cover transform group-hover:scale-110 transition duration-700">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                        <span class="text-accent font-medium text-sm mb-1">Corporate Web</span>
-                        <h3 class="text-white text-xl font-bold">Tech Corp Landing</h3>
+                    <!-- Fallback Static Portfolio Item 3 -->
+                    <div class="portfolio-card group relative overflow-hidden rounded-2xl shadow-lg cursor-pointer"
+                        data-project-title="Tech Corp Landing"
+                        data-project-category="Corporate Web"
+                        data-project-image="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        data-project-description="Tech Corp Landing adalah website company profile premium untuk perusahaan konsultan teknologi multinasional. Dirancang dengan fokus pada kecepatan performa, optimasi SEO maksimal, dan animasi transisi yang memukau untuk membangun reputasi profesional di mata klien global."
+                        data-project-client="Tech Corp Global"
+                        data-project-date="Januari 2023"
+                        data-project-tags="Next.js,TailwindCSS,Framer Motion,Vercel"
+                        data-project-link="https://techcorp.example.com">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Project 3"
+                            class="w-full h-72 object-cover transform group-hover:scale-110 transition duration-700">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                            <span class="text-accent font-medium text-sm mb-1">Corporate Web</span>
+                            <h3 class="text-white text-xl font-bold">Tech Corp Landing</h3>
+                        </div>
                     </div>
-                </div>
+                @endforelse
             </div>
         </div>
     </section>
@@ -730,4 +774,153 @@
             </div>
         </div>
     </section>
+
+    <!-- Portfolio Detail Modal -->
+    <div id="portfolio-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 opacity-0 pointer-events-none transition-all duration-300">
+        <!-- Backdrop -->
+        <div id="modal-backdrop" class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity duration-300"></div>
+
+        <!-- Modal Content Window -->
+        <div id="modal-content" class="relative bg-white rounded-3xl overflow-hidden shadow-2xl max-w-4xl w-full max-h-[90vh] flex flex-col transform scale-95 translate-y-4 transition-all duration-300 z-10 border border-slate-100">
+            <!-- Close Button -->
+            <button id="close-modal-btn" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-white/90 hover:bg-white text-slate-700 shadow-md flex items-center justify-center hover:scale-105 transition-all outline-none border border-slate-200">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <!-- Scrollable Content -->
+            <div class="overflow-y-auto flex-grow">
+                <div class="flex flex-col md:flex-row min-h-[500px]">
+                    <!-- Left: Project Image -->
+                    <div class="md:w-1/2 relative bg-slate-950 flex items-center h-64 md:h-auto overflow-hidden">
+                        <img id="modal-img" src="" alt="Showcase" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/20 to-transparent"></div>
+                    </div>
+
+                    <!-- Right: Info Panel -->
+                    <div class="md:w-1/2 p-6 sm:p-8 flex flex-col justify-between">
+                        <div>
+                            <!-- Category Badge -->
+                            <span id="modal-category" class="inline-block text-xs font-bold tracking-wider text-accent uppercase bg-cyan-50 px-2.5 py-1 rounded-md mb-3 border border-cyan-100">Category</span>
+
+                            <!-- Title -->
+                            <h3 id="modal-title" class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-4 leading-snug">Project Title</h3>
+
+                            <!-- Description -->
+                            <p id="modal-description" class="text-slate-600 text-sm leading-relaxed mb-6">Description...</p>
+
+                            <!-- Metadata Info -->
+                            <div class="grid grid-cols-2 gap-4 mb-6 p-4 rounded-2xl bg-slate-50 border border-slate-100">
+                                <div>
+                                    <span class="block text-[10px] text-slate-400 font-bold uppercase tracking-wider">Klien</span>
+                                    <span id="modal-client" class="text-sm font-semibold text-slate-800">Client</span>
+                                </div>
+                                <div>
+                                    <span class="block text-[10px] text-slate-400 font-bold uppercase tracking-wider">Tanggal</span>
+                                    <span id="modal-date" class="text-sm font-semibold text-slate-800">Date</span>
+                                </div>
+                            </div>
+
+                            <!-- Tech Badges -->
+                            <div class="mb-8">
+                                <span class="block text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-2">Teknologi</span>
+                                <div id="modal-tags" class="flex flex-wrap gap-2"></div>
+                            </div>
+                        </div>
+
+                        <!-- Action Button -->
+                        <div class="border-t border-slate-100 pt-6 mt-auto">
+                            <a id="modal-link" href="#" target="_blank" class="w-full px-6 py-3.5 bg-primary hover:bg-indigo-700 text-white font-bold rounded-xl shadow-lg shadow-indigo-200 transition-all flex items-center justify-center gap-2">
+                                Kunjungi Website <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Interactive Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.getElementById('portfolio-modal');
+            const modalBackdrop = document.getElementById('modal-backdrop');
+            const modalContent = document.getElementById('modal-content');
+            const closeBtn = document.getElementById('close-modal-btn');
+            const cards = document.querySelectorAll('.portfolio-card');
+
+            const modalImg = document.getElementById('modal-img');
+            const modalCategory = document.getElementById('modal-category');
+            const modalTitle = document.getElementById('modal-title');
+            const modalDescription = document.getElementById('modal-description');
+            const modalClient = document.getElementById('modal-client');
+            const modalDate = document.getElementById('modal-date');
+            const modalTags = document.getElementById('modal-tags');
+            const modalLink = document.getElementById('modal-link');
+
+            function openModal(card) {
+                const title = card.getAttribute('data-project-title');
+                const category = card.getAttribute('data-project-category');
+                const img = card.getAttribute('data-project-image');
+                const desc = card.getAttribute('data-project-description');
+                const client = card.getAttribute('data-project-client');
+                const date = card.getAttribute('data-project-date');
+                const tags = card.getAttribute('data-project-tags').split(',');
+                const link = card.getAttribute('data-project-link');
+
+                modalImg.src = img;
+                modalImg.alt = title;
+                modalCategory.textContent = category;
+                modalTitle.textContent = title;
+                modalDescription.textContent = desc;
+                modalClient.textContent = client;
+                modalDate.textContent = date;
+                modalLink.href = link;
+
+                // Build tags
+                modalTags.innerHTML = '';
+                tags.forEach(tag => {
+                    const cleanTag = tag.trim();
+                    if (cleanTag) {
+                        const badge = document.createElement('span');
+                        badge.className = 'px-3 py-1 bg-slate-100 text-slate-700 text-xs font-semibold rounded-md border border-slate-200/60';
+                        badge.textContent = cleanTag;
+                        modalTags.appendChild(badge);
+                    }
+                });
+
+                // Display
+                modal.classList.remove('pointer-events-none', 'opacity-0');
+                modal.classList.add('opacity-100');
+
+                modalContent.classList.remove('scale-95', 'translate-y-4');
+                modalContent.classList.add('scale-100', 'translate-y-0');
+
+                document.body.classList.add('overflow-hidden');
+            }
+
+            function closeModal() {
+                modal.classList.add('pointer-events-none');
+                modal.classList.remove('opacity-100');
+                modal.classList.add('opacity-0');
+
+                modalContent.classList.remove('scale-100', 'translate-y-0');
+                modalContent.classList.add('scale-95', 'translate-y-4');
+
+                document.body.classList.remove('overflow-hidden');
+            }
+
+            cards.forEach(card => {
+                card.addEventListener('click', () => openModal(card));
+            });
+
+            closeBtn.addEventListener('click', closeModal);
+            modalBackdrop.addEventListener('click', closeModal);
+
+            window.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && !modal.classList.contains('pointer-events-none')) {
+                    closeModal();
+                }
+            });
+        });
+    </script>
 @endsection

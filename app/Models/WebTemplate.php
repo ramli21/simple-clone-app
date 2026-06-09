@@ -14,6 +14,7 @@ class WebTemplate extends Model
     protected $guarded = [];
 
     protected $casts = [
+
         'images' => 'array',
         'is_active' => 'boolean',
         'discount_percentage' => 'integer',
@@ -23,13 +24,16 @@ class WebTemplate extends Model
 
     protected $appends = [
         'final_price',
+        // Tidak mengubah download_path (hanya memastikan saat diunduh path diperlakukan relatif)
     ];
+
 
     /**
      * Final price after applying discount percentage.
      */
     public function getFinalPriceAttribute(): int
     {
+
         $discount = $this->discount_percentage ?? 0;
 
         $price = (int) $this->price;

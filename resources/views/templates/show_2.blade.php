@@ -183,14 +183,28 @@
 
 
                             <!-- Buttons -->
-                            <button
+                            <button type="button" id="buy-now-btn" data-template-id="{{ $template->id }}"
                                 class="w-full py-3.5 bg-primary text-white rounded-xl font-bold text-lg hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-200 mb-3 flex items-center justify-center gap-2">
                                 <i class="fa-solid fa-cart-shopping"></i> Beli Sekarang
                             </button>
-                            <a href="#"
-                                class="block w-full py-3 border border-slate-200 text-slate-700 rounded-xl font-bold text-center hover:bg-slate-50 transition-colors flex items-center justify-center gap-2">
-                                <i class="fa-solid fa-eye"></i> Live Preview
-                            </a>
+
+                            @php
+                                $previewUrl = trim((string) ($template->preview_url ?? ''));
+                            @endphp
+
+                            @if (!empty($previewUrl))
+                                <a href="{{ $previewUrl }}" target="_blank" rel="noopener noreferrer"
+                                    class="block w-full py-3 border border-slate-200 text-slate-700 rounded-xl font-bold text-center hover:bg-slate-50 transition-colors flex items-center justify-center gap-2">
+                                    <i class="fa-solid fa-eye"></i> Live Preview
+                                </a>
+                            @else
+                                <button type="button"
+                                    class="block w-full py-3 border border-slate-200 text-slate-400 rounded-xl font-bold text-center bg-white cursor-not-allowed flex items-center justify-center gap-2"
+                                    title="Preview link belum tersedia">
+                                    <i class="fa-solid fa-eye"></i> Live Preview
+                                </button>
+                            @endif
+
 
                             <!-- Divider -->
                             <div class="my-6 border-t border-slate-100"></div>
@@ -263,7 +277,318 @@
 
             </div>
 
+            <!-- Payment Modal + AJAX Scripts -->
+
+            <div id="payment-modal" class="fixed inset-0 z-50 hidden">
+                <div class="absolute inset-0 bg-black/50" data-modal-close="true"></div>
+                <div class="relative mx-auto max-w-2xl h-full flex items-center">
+                    <div class="bg-white w-full rounded-2xl shadow-xl overflow-hidden">
+                        <div class="p-6 border-b border-slate-100 flex items-start justify-between gap-4">
+                            <div>
+                                <h3 class="text-xl font-extrabold text-slate-900">Beli Sekarang</h3>
+                                <p class="text-sm text-slate-500 mt-1">Konfirmasi pembayaran melalui transfer bank.</p>
+                            </div>
+                            <button type="button" class="text-slate-500 hover:text-slate-700 text-2xl leading-none"
+                                data-modal-close="true">
+                                &times;
+                            </button>
+                        </div>
+
+                        <div class="p-6">
+                            <div id="payment-step-form">
+                                <div class="mb-5">
+                                    <div class="flex flex-wrap items-end justify-between gap-3">
+                                        <div>
+                                            <div class="text-slate-500 text-sm line-through mb-1" id="original-price">
+                                            </div>
+                                            <div class="flex items-baseline gap-2">
+                                                <span class="text-3xl font-extrabold text-slate-900"
+                                                    id="total-transfer"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="text-right">
+                                            <div class="text-xs font-bold uppercase tracking-wide text-slate-500">Kode Unik
+                                            </div>
+                                            <div class="text-2xl font-extrabold text-primary" id="unique-code"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-slate-600">
+                                        <div class="flex justify-between"><span>Diskon</span><span
+                                                id="discount-line"></span></div>
+                                        <div class="flex justify-between"><span>Kode Unik</span><span
+                                                id="code-line"></span></div>
+                                        <div class="flex justify-between sm:col-span-2 border-t border-slate-100 pt-3">
+                                            <span class="font-bold">Total Transfer</span><span
+                                                class="font-extrabold text-slate-900" id="amount-paid-display"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-slate-50 border border-slate-100 rounded-xl p-4 mb-5">
+                                    <div class="text-sm font-extrabold text-slate-900 mb-2">Instruksi Transfer</div>
+                                    <div class="text-sm text-slate-700 leading-relaxed" id="bank-instructions">
+                                        <div>Bank BCA</div>
+                                        <div>No. Rekening: <span class="font-bold">777-123-4567</span></div>
+                                        <div>a.n. PT Akhritech Mulia Mandiri</div>
+                                    </div>
+
+                                    <div class="mt-4 flex flex-wrap gap-2">
+                                        <button type="button"
+                                            class="px-3 py-2 bg-white border border-slate-200 rounded-lg text-slate-700 font-bold hover:bg-slate-50"
+                                            data-copy="account-number">Copy No. Rekening</button>
+                                        <button type="button"
+                                            class="px-3 py-2 bg-white border border-slate-200 rounded-lg text-slate-700 font-bold hover:bg-slate-50"
+                                            data-copy="amount-paid">Copy Nominal</button>
+                                    </div>
+
+                                    <div class="mt-4 rounded-lg bg-yellow-50 border border-yellow-200 p-3">
+                                        <div class="text-yellow-900 text-sm font-bold">Perhatian</div>
+                                        <div class="text-yellow-900/90 text-sm mt-1">Mohon transfer sesuai dengan digit
+                                            nominal terakhir (kode unik) agar proses verifikasi lebih cepat.</div>
+                                    </div>
+                                </div>
+
+                                <form id="payment-confirm-form" enctype="multipart/form-data" class="space-y-4">
+                                    @csrf
+
+                                    <input type="hidden" name="template_id" id="payment-template-id"
+                                        value="{{ $template->id }}">
+                                    <input type="hidden" name="amount_paid" id="amount-paid-hidden" />
+
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        <div>
+                                            <label class="text-sm font-bold text-slate-700">Nama Lengkap</label>
+                                            <input type="text" name="name" required
+                                                class="mt-1 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-slate-900 focus:outline-none focus:ring-2 focus:ring-primary/20" />
+                                        </div>
+                                        <div>
+                                            <label class="text-sm font-bold text-slate-700">Email Penerima</label>
+                                            <input type="email" name="email" required
+                                                class="mt-1 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-slate-900 focus:outline-none focus:ring-2 focus:ring-primary/20" />
+                                        </div>
+                                    </div>
+
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        <div>
+                                            <label class="text-sm font-bold text-slate-700">Nomor WhatsApp</label>
+                                            <input type="text" name="whatsapp_number" required
+                                                class="mt-1 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-slate-900 focus:outline-none focus:ring-2 focus:ring-primary/20" />
+                                        </div>
+                                        <div>
+                                            <label class="text-sm font-bold text-slate-700">Bank & Nama Pengirim</label>
+                                            <input type="text" name="sender_bank_info" required
+                                                class="mt-1 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-slate-900 focus:outline-none focus:ring-2 focus:ring-primary/20" />
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label class="text-sm font-bold text-slate-700">Bukti Transfer</label>
+                                        <input type="file" name="proof_image" accept="image/*,application/pdf"
+                                            required
+                                            class="mt-1 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-slate-900" />
+                                        <p class="text-xs text-slate-500 mt-1">JPG, PNG, PDF (max 4MB)</p>
+                                    </div>
+
+                                    <div class="flex items-center gap-3">
+                                        <button type="submit" id="payment-submit-btn"
+                                            class="px-5 py-3 bg-primary text-white rounded-xl font-bold hover:bg-indigo-700 transition-colors">
+                                            Konfirmasi Pembayaran
+                                        </button>
+                                        <div id="payment-loading" class="hidden text-sm text-slate-600">Menyimpan...</div>
+                                    </div>
+
+                                    <div id="payment-error" class="hidden text-sm text-red-600 font-bold"></div>
+                                </form>
+                            </div>
+
+                            <div id="payment-step-success" class="hidden text-center">
+                                <div
+                                    class="mx-auto w-14 h-14 bg-green-100 rounded-full flex items-center justify-center text-green-700 mb-4">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <h3 class="text-xl font-extrabold text-slate-900 mb-2">🎉 Konfirmasi Terkirim!</h3>
+                                <p class="text-slate-600 text-sm mb-4">Terima kasih atas pembayaran Anda. Pembayaran sedang
+                                    kami verifikasi secara manual.</p>
+                                <div class="text-slate-700 text-sm font-bold">
+                                    Link download template akan dikirim ke email Anda (dan dikonfirmasi via WhatsApp) dalam
+                                    waktu maksimal 1x24 jam.
+                                </div>
+                                <div class="text-slate-500 text-sm mt-4">
+                                    Jika ada kendala, hubungi Admin di WhatsApp: <span class="font-bold text-slate-700">+62
+                                        812-3456-7890</span>
+                                </div>
+                                <button type="button" data-modal-close="true"
+                                    class="mt-6 px-5 py-3 bg-slate-900 text-white rounded-xl font-bold hover:bg-slate-800 transition-colors">
+                                    Tutup
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                (function() {
+                    const buyBtn = document.getElementById('buy-now-btn');
+                    const modal = document.getElementById('payment-modal');
+                    const closeEls = document.querySelectorAll('[data-modal-close="true"]');
+                    const formStep = document.getElementById('payment-step-form');
+                    const successStep = document.getElementById('payment-step-success');
+
+                    const originalPriceEl = document.getElementById('original-price');
+                    const totalTransferEl = document.getElementById('total-transfer');
+                    const uniqueCodeEl = document.getElementById('unique-code');
+                    const discountLineEl = document.getElementById('discount-line');
+                    const codeLineEl = document.getElementById('code-line');
+                    const amountPaidDisplayEl = document.getElementById('amount-paid-display');
+                    const amountPaidHiddenEl = document.getElementById('amount-paid-hidden');
+
+                    const paymentErrorEl = document.getElementById('payment-error');
+                    const loadingEl = document.getElementById('payment-loading');
+                    const submitBtn = document.getElementById('payment-submit-btn');
+                    const form = document.getElementById('payment-confirm-form');
+
+                    const accountNumber = '777-123-4567';
+
+                    function formatRp(amount) {
+                        try {
+                            return 'Rp' + new Intl.NumberFormat('id-ID').format(amount);
+                        } catch (e) {
+                            return 'Rp' + String(amount);
+                        }
+                    }
+
+                    function closeModal() {
+                        modal.classList.add('hidden');
+                        successStep.classList.add('hidden');
+                        formStep.classList.remove('hidden');
+                        paymentErrorEl.classList.add('hidden');
+                        paymentErrorEl.textContent = '';
+                        if (loadingEl) loadingEl.classList.add('hidden');
+                        if (submitBtn) submitBtn.disabled = false;
+                    }
+
+                    function openModal() {
+                        modal.classList.remove('hidden');
+                        paymentErrorEl.classList.add('hidden');
+                        paymentErrorEl.textContent = '';
+                    }
+
+                    closeEls.forEach(el => {
+                        el.addEventListener('click', closeModal);
+                    });
+
+                    if (buyBtn) {
+                        buyBtn.addEventListener('click', () => {
+                            const templateId = buyBtn.getAttribute('data-template-id');
+                            document.getElementById('payment-template-id').value = templateId;
+
+                            const original = {{ (int) $price }};
+                            const finalBase = {{ (int) $finalPrice }};
+                            const discountPercentage = {{ (int) ($template->discount_percentage ?? 0) }};
+                            const discountAmount = Math.max(0, original - finalBase);
+
+                            const code = Math.floor(100 + Math.random() * 900); // 3 digits
+                            const uniqueCodeStr = String(code); // 3 digits as "Kode Unik" indicator
+                            const extra = Number(uniqueCodeStr);
+                            const totalTransfer = Number(finalBase) + Number(extra);
+
+
+                            originalPriceEl.textContent = formatRp(original);
+                            totalTransferEl.textContent = formatRp(totalTransfer);
+                            uniqueCodeEl.textContent = code;
+                            amountPaidHiddenEl.value = totalTransfer;
+                            amountPaidDisplayEl.textContent = formatRp(totalTransfer);
+
+                            if (discountPercentage > 0) {
+                                discountLineEl.textContent = '-' + discountPercentage + '% (' + formatRp(
+                                    discountAmount) + ')';
+                                codeLineEl.textContent = formatRp(extra);
+                            } else {
+                                discountLineEl.textContent = '-';
+                                codeLineEl.textContent = formatRp(extra);
+                            }
+
+                            formStep.classList.remove('hidden');
+                            successStep.classList.add('hidden');
+
+                            openModal();
+                        });
+                    }
+
+                    document.querySelectorAll('[data-copy="account-number"], [data-copy="amount-paid"]').forEach(btn => {
+                        btn.addEventListener('click', async () => {
+                            const key = btn.getAttribute('data-copy');
+                            const text = key === 'account-number' ? accountNumber : (amountPaidHiddenEl
+                                .value || '');
+                            try {
+                                await navigator.clipboard.writeText(text);
+                                btn.textContent = 'Tersalin!';
+                                setTimeout(() => {
+                                    if (key === 'account-number') btn.textContent =
+                                        'Copy No. Rekening';
+                                    else btn.textContent = 'Copy Nominal';
+                                }, 1200);
+                            } catch (e) {
+                                alert('Gagal menyalin. Silakan salin manual.');
+                            }
+                        });
+                    });
+
+                    if (form) {
+                        form.addEventListener('submit', async (e) => {
+                            e.preventDefault();
+                            paymentErrorEl.classList.add('hidden');
+                            paymentErrorEl.textContent = '';
+
+                            const fd = new FormData(form);
+
+                            const amountPaid = amountPaidHiddenEl.value;
+                            if (!amountPaid || Number(amountPaid) < 1) {
+                                paymentErrorEl.textContent =
+                                    'Nominal pembayaran belum tersedia. Silakan klik “Beli Sekarang” lagi.';
+                                paymentErrorEl.classList.remove('hidden');
+                                return;
+                            }
+
+                            submitBtn.disabled = true;
+                            loadingEl.classList.remove('hidden');
+
+                            try {
+                                const res = await fetch('{{ route('templates.confirm-payment') }}', {
+                                    method: 'POST',
+                                    headers: {
+                                        'X-Requested-With': 'XMLHttpRequest',
+                                        'Accept': 'application/json'
+                                    },
+                                    body: fd
+                                });
+
+                                const data = await res.json().catch(() => null);
+                                if (!res.ok || !data || !data.ok) {
+                                    const msg = (data && data.message) ? data.message :
+                                        'Konfirmasi gagal. Periksa input Anda.';
+                                    throw new Error(msg);
+                                }
+
+                                formStep.classList.add('hidden');
+                                successStep.classList.remove('hidden');
+                            } catch (err) {
+                                paymentErrorEl.textContent = err.message || 'Konfirmasi gagal.';
+                                paymentErrorEl.classList.remove('hidden');
+                            } finally {
+                                loadingEl.classList.add('hidden');
+                                submitBtn.disabled = false;
+                            }
+                        });
+                    }
+                })();
+            </script>
+
             <!-- Related Themes (Simple Footer Teaser) -->
+
             <div class="mt-20">
                 <h3 class="text-2xl font-bold text-slate-900 mb-8">Tema Lain yang Mungkin Anda Suka</h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
