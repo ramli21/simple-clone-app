@@ -18,7 +18,20 @@ class TemplatePublicController extends Controller
             })
             ->get();
 
-        return view('templates.index', compact('templates'));
+        $categories = WebTemplate::query()
+            ->where('is_active', true)
+            ->select('category')
+            ->distinct()
+            ->orderBy('category')
+            ->pluck('category')
+            ->filter()
+            ->values();
+
+        return view('templates.index_2', [
+            'templates' => $templates,
+            'categories' => $categories,
+        ]);
+
     }
 
     public function show(string $slug)
@@ -28,11 +41,24 @@ class TemplatePublicController extends Controller
             ->where('is_active', true)
             ->first();
 
+        // categories untuk mendukung UI detail (optional)
+        $categories = WebTemplate::query()
+            ->where('is_active', true)
+            ->select('category')
+            ->distinct()
+            ->orderBy('category')
+            ->pluck('category')
+            ->filter()
+            ->values();
+
+
         if (!$template) {
             abort(404);
         }
 
-        return view('templates.show', compact('template'));
+        return view('templates.show_2', compact('template', 'categories'));
+
+
     }
 }
 

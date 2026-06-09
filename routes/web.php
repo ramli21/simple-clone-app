@@ -15,16 +15,9 @@ use App\Models\ServiceItem;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/templates', [\App\Http\Controllers\TemplatePublicController::class, 'index'])->name('templates.index');
-
 Route::get('/templates/{slug}', [\App\Http\Controllers\TemplatePublicController::class, 'show'])->name('templates.show');
-
 Route::view('/terms', 'pages.terms')->name('terms');
-
-Route::get('/products/sabilsys', [HomeController::class, 'productSabilsys'])->name('home.products.sabilsys');
-
-Route::get('/ex/travel', [HomeController::class, 'travelHome']);
-Route::get('/service/{slug}', [HomeController::class, 'serviceDetail'])->name('service.detail');
-
+Route::view('/products/sabilsys', 'products.sabilsys')->name('home.products.sabilsys');
 Route::post('/inquiry', [HomeController::class, 'inquiry'])->name('inquiry.store');
 Route::get('/blogs', [PublicBlogController::class, 'index'])->name('blogs.index');
 Route::get('/blogs/{slug}', [PublicBlogController::class, 'show'])->name('blogs.show');
