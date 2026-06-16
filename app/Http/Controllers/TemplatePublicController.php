@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\WebTemplate;
 use App\Models\Payment;
+use App\Models\WebTemplate;
 use Illuminate\Http\Request;
 
 class TemplatePublicController extends Controller
@@ -38,7 +37,7 @@ class TemplatePublicController extends Controller
             ->where('is_active', true)
             ->first();
 
-        if (!$template) {
+        if (! $template) {
             abort(404);
         }
 
@@ -86,11 +85,49 @@ class TemplatePublicController extends Controller
             'unique_code' => $uniqueCode,
         ]);
 
-
         return response()->json([
             'ok' => true,
             'payment_id' => $payment->id,
         ]);
     }
-}
 
+    public function claimFree(Request $request)
+    {
+        $validated = $request->validate([
+            'template_id' => ['required', 'uuid', 'exists:web_templates,id'],
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email', 'max:255'],
+            'whatsapp_number' => ['required', 'string', 'max:50'],
+        ]);
+
+        $template = WebTemplate::findOrFail($validated['template_id']);
+
+        if ($template->final_price > 0) {
+            return response()->json(['ok' => false, 'message' => 'Template ini tidak gratis.'], 403);
+        }
+
+        $uniqueCode = Payment::generateUniqueCode(6);
+
+        $payment = Payment::query()->create([
+            'template_id' => $validated['template_id'],
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'whatsapp_number' => $validated['whatsapp_number'],
+            'sender_bank_info' => 'FREE CLAIM',
+            'amount_paid' => 0,
+            'proof_image' => 'free',
+            'status' => 'approved', // Auto approve for free items
+            'unique_code' => $uniqueCode,
+        ]);
+
+        $token = $payment->setNewOneTimeDownloadToken();
+
+        // Increment sales count (since it's approved)
+        $template->increment('sales_count');
+
+        return response()->json([
+            'ok' => true,
+            'download_url' => route('download.one-time', ['token' => $token]),
+        ]);
+    }
+}

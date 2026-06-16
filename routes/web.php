@@ -30,6 +30,8 @@ Route::get('/blogs/{slug}', [PublicBlogController::class, 'show'])->name('blogs.
 
 Route::post('/templates/confirm-payment', [\App\Http\Controllers\TemplatePublicController::class, 'confirmPayment'])
     ->name('templates.confirm-payment');
+Route::post('/templates/claim-free', [\App\Http\Controllers\TemplatePublicController::class, 'claimFree'])
+    ->name('templates.claim-free');
 
 
 Auth::routes();

@@ -86,6 +86,18 @@
                         </a>
                     </li>
                     <li class="pc-item">
+                        <a href="{{ route('admin.templates.index') }}" class="pc-link">
+                            <span class="pc-micon"><i class="ti ti-files"></i></span>
+                            <span class="pc-mtext">Web Themes</span>
+                        </a>
+                    </li>
+                    <li class="pc-item">
+                        <a href="{{ route('admin.payments.index') }}" class="pc-link">
+                            <span class="pc-micon"><i class="ti ti-files"></i></span>
+                            <span class="pc-mtext">Payments</span>
+                        </a>
+                    </li>
+                    <li class="pc-item">
                         <a href="{{ route('admin.inquiries.index') }}" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-message"></i></span>
                             <span class="pc-mtext">Inquiries</span>

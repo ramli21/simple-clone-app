@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
 
 class TemplateDownloadController extends Controller
 {
@@ -27,7 +25,7 @@ class TemplateDownloadController extends Controller
             ->where('status', 'approved')
             ->first();
 
-        if (!$payment || !$payment->template) {
+        if (! $payment || ! $payment->template) {
             return back()->withErrors(['unique_code' => 'Kode tidak valid atau belum disetujui.'])->withInput();
         }
 
@@ -47,11 +45,11 @@ class TemplateDownloadController extends Controller
             ->where('status', 'approved')
             ->first();
 
-        if (!$payment || !$payment->template) {
+        if (! $payment || ! $payment->template) {
             abort(403);
         }
 
-        if (!empty($payment->download_token_used_at)) {
+        if (! empty($payment->download_token_used_at)) {
             return back()->withErrors(['unique_code' => 'Kode unduhan sudah digunakan. Silakan input kode unik lagi.']);
         }
 
@@ -63,11 +61,12 @@ class TemplateDownloadController extends Controller
         // download_path assumed stored for Storage disk (private), treat as relative path.
         $path = ltrim((string) $template->download_path, '/');
 
-
-        // download_path bersifat private, jadi download via disk "private".
-        // pastikan config/filesystems.php memiliki disk private.
-        return Storage::disk('private')->download($path, $template->name . '.zip');
-
+        if ($template->delivery_type == 'file') {
+            // download_path bersifat private, jadi download via disk "private".
+            // pastikan config/filesystems.php memiliki disk private.
+            return Storage::disk('private')->download($path, $template->name.'.zip');
+        } else {
+            return redirect()->to($template->download_path);
+        }
     }
 }
-

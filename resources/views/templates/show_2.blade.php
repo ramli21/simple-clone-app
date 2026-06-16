@@ -5,6 +5,32 @@
 @endphp
 
 @section('content')
+    <!-- Screenshots Gallery -->
+    @php
+        $images = is_array($template->images) ? $template->images : [];
+        $allImages = [];
+        if (!empty($template->thumbnail_image)) {
+            $allImages[] = $template->thumbnail_image;
+        }
+        foreach ($images as $img) {
+            if (!empty($img)) {
+                $allImages[] = $img;
+            }
+        }
+        $imageUrls = array_map(function ($path) {
+            if (is_string($path) && str_starts_with($path, 'https://')) {
+                return $path;
+            }
+            return asset('storage/' . ltrim($path, '/'));
+        }, $allImages);
+        $imageUrls = array_values(array_filter($imageUrls));
+
+        $hasDiscount = !empty($template->discount_percentage) && (int) $template->discount_percentage > 0;
+        $price = (int) ($template->price ?? 0);
+        $finalPrice = (int) ($template->final_price ?? ($template->price ?? 0));
+        $formattedPrice = 'Rp' . number_format($price, 0, ',', '.');
+        $formattedFinalPrice = 'Rp' . number_format($finalPrice, 0, ',', '.');
+    @endphp
     <div class="pt-24 pb-20 hero-bg min-h-screen">
         <div class="container mx-auto px-4 lg:px-8">
 
@@ -23,73 +49,52 @@
                     <!-- Title Header -->
                     <div class="mb-8">
                         <div class="flex flex-wrap gap-2 mb-3">
-                            <span
-                                class="px-2 py-1 bg-indigo-50 text-indigo-700 text-xs font-bold rounded uppercase tracking-wide">Admin
-                                Template</span>
-                            <span
-                                class="px-2 py-1 bg-green-50 text-green-700 text-xs font-bold rounded uppercase tracking-wide">Bootstrap
-                                5</span>
+                            @php
+                                $headerCategories = array_slice(explode(',', $template->category), 0, 2);
+                                $colors = ['bg-indigo-50 text-indigo-700', 'bg-green-50 text-green-700'];
+                            @endphp
+                            @foreach ($headerCategories as $index => $cat)
+                                <span
+                                    class="px-2 py-1 {{ $colors[$index % count($colors)] }} text-xs font-bold rounded uppercase tracking-wide">
+                                    {{ trim($cat) }}
+                                </span>
+                            @endforeach
                         </div>
                         <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-2">{{ $template->name }}</h1>
 
                         <div class="flex flex-wrap items-center gap-3 text-sm text-slate-500">
                             <span class="inline-flex items-center gap-2 text-yellow-400">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <span class="text-slate-900 font-bold">({{ number_format((float) 5, 1) }})</span>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <span class="text-slate-900 font-bold">({{ number_format((float) 0, 1) }})</span>
                             </span>
 
                             <span class="w-1 h-1 bg-slate-300 rounded-full"></span>
-                            <span>Terjual: {{ (int) ($template->sales_count ?? 0) }}x</span>
+                            @if ($finalPrice == 0)
+                                <span>Download: {{ (int) ($template->sales_count ?? 0) }}x</span>
+                            @else
+                                <span>Terjual: {{ (int) ($template->sales_count ?? 0) }}x</span>
+                            @endif
                             @if (!empty($template->updated_at))
                                 <span class="w-1 h-1 bg-slate-300 rounded-full"></span>
                                 <span>Update: {{ $template->updated_at->diffForHumans() }}</span>
                             @endif
                         </div>
-
                     </div>
 
-                    <!-- Screenshots Gallery -->
-                    @php
-                        $images = is_array($template->images) ? $template->images : [];
-                        $allImages = [];
-                        if (!empty($template->thumbnail_image)) {
-                            $allImages[] = $template->thumbnail_image;
-                        }
-                        foreach ($images as $img) {
-                            if (!empty($img)) {
-                                $allImages[] = $img;
-                            }
-                        }
-                        $imageUrls = array_map(function ($path) {
-                            if (is_string($path) && str_starts_with($path, 'https://')) {
-                                return $path;
-                            }
-                            return asset('storage/' . ltrim($path, '/'));
-                        }, $allImages);
-                        $imageUrls = array_values(array_filter($imageUrls));
-
-                        $hasDiscount =
-                            !empty($template->discount_percentage) && (int) $template->discount_percentage > 0;
-                        $price = (int) ($template->price ?? 0);
-                        $finalPrice = (int) ($template->final_price ?? ($template->price ?? 0));
-                        $formattedPrice = 'Rp' . number_format($price, 0, ',', '.');
-                        $formattedFinalPrice = 'Rp' . number_format($finalPrice, 0, ',', '.');
-                    @endphp
-
                     <div class="bg-white p-2 rounded-xl border border-slate-200 shadow-sm mb-10">
-                        <div class="grid grid-cols-2 gap-2">
+                        <div class="flex flex-col gap-2">
                             <!-- Main Image -->
                             @if (!empty($imageUrls))
-                                <div
-                                    class="col-span-2 rounded-lg overflow-hidden relative group cursor-pointer border border-slate-100">
-                                    <img src="{{ $imageUrls[0] }}" alt="{{ $template->name }}"
+                                <div id="main-image-container"
+                                    class="rounded-lg overflow-hidden relative group cursor-pointer border border-slate-100">
+                                    <img id="main-preview-img" src="{{ $imageUrls[0] }}" alt="{{ $template->name }}"
                                         class="w-full h-auto object-cover" loading="lazy" />
                                     <div
-                                        class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                        class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
                                         <span
                                             class="text-white font-bold px-4 py-2 bg-black/50 rounded-full backdrop-blur-sm">
                                             <i class="fa-solid fa-expand mr-2"></i> Fullscreen Preview
@@ -97,14 +102,18 @@
                                     </div>
                                 </div>
 
-                                <!-- Sub Images -->
-                                @foreach (array_slice($imageUrls, 1, 2) as $url)
-                                    <img src="{{ $url }}" alt="{{ $template->name }}"
-                                        class="rounded-lg w-full h-40 object-cover border border-slate-100 cursor-pointer hover:opacity-90"
-                                        loading="lazy" />
-                                @endforeach
+                                <!-- Sub Images (Thumbnails Slider) -->
+                                @if (count($imageUrls) > 1)
+                                <div class="flex overflow-x-auto gap-2 pb-2 snap-x">
+                                    @foreach (array_slice($imageUrls, 0, 6) as $index => $url)
+                                        <img src="{{ $url }}" alt="{{ $template->name }} thumbnail {{ $index+1 }}"
+                                            class="thumb-img rounded-lg h-24 w-32 md:h-32 md:w-48 object-cover border-2 {{ $index == 0 ? 'border-primary opacity-100' : 'border-slate-100 opacity-70' }} cursor-pointer hover:opacity-100 transition-all flex-shrink-0 snap-start"
+                                            data-src="{{ $url }}" loading="lazy" />
+                                    @endforeach
+                                </div>
+                                @endif
                             @else
-                                <div class="col-span-2 text-slate-500 py-10 text-center">Gambar tidak tersedia.</div>
+                                <div class="py-10 text-center text-slate-500">Gambar tidak tersedia.</div>
                             @endif
                         </div>
                     </div>
@@ -169,10 +178,13 @@
 
                             <div class="flex justify-between items-end mb-4">
                                 <div>
-                                    <span class="text-slate-500 text-sm line-through mb-1 block">$59.00</span>
+                                    @if ($hasDiscount)
+                                        <span
+                                            class="text-slate-500 text-sm line-through mb-1 block">{{ $formattedPrice }}</span>
+                                    @endif
                                     <div class="flex items-baseline gap-1">
                                         <span
-                                            class="text-4xl font-extrabold text-slate-900">{{ $formattedFinalPrice }}</span>
+                                            class="text-4xl font-extrabold text-slate-900">{{ $finalPrice == 0 ? 'Gratis' : $formattedFinalPrice }}</span>
                                     </div>
                                 </div>
                                 @if ($hasDiscount)
@@ -183,10 +195,17 @@
 
 
                             <!-- Buttons -->
-                            <button type="button" id="buy-now-btn" data-template-id="{{ $template->id }}"
-                                class="w-full py-3.5 bg-primary text-white rounded-xl font-bold text-lg hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-200 mb-3 flex items-center justify-center gap-2">
-                                <i class="fa-solid fa-cart-shopping"></i> Beli Sekarang
-                            </button>
+                            @if ($finalPrice == 0)
+                                <button type="button" id="claim-free-btn" data-template-id="{{ $template->id }}"
+                                    class="w-full py-3.5 bg-green-600 text-white rounded-xl font-bold text-lg hover:bg-green-700 transition-all shadow-lg shadow-green-200 mb-3 flex items-center justify-center gap-2">
+                                    <i class="fa-solid fa-download"></i> Dapatkan Sekarang
+                                </button>
+                            @else
+                                <button type="button" id="buy-now-btn" data-template-id="{{ $template->id }}"
+                                    class="w-full py-3.5 bg-primary text-white rounded-xl font-bold text-lg hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-200 mb-3 flex items-center justify-center gap-2">
+                                    <i class="fa-solid fa-cart-shopping"></i> Beli Sekarang
+                                </button>
+                            @endif
 
                             @php
                                 $previewUrl = trim((string) ($template->preview_url ?? ''));
@@ -244,15 +263,10 @@
                             <div>
                                 <h4 class="text-xs font-bold text-slate-400 uppercase mb-3">Tags</h4>
                                 <div class="flex flex-wrap gap-2">
-                                    <a href="#"
-                                        class="px-3 py-1 bg-slate-50 text-slate-600 text-xs rounded-md hover:bg-slate-100 border border-slate-200">admin</a>
-                                    <a href="#"
-                                        class="px-3 py-1 bg-slate-50 text-slate-600 text-xs rounded-md hover:bg-slate-100 border border-slate-200">dashboard</a>
-                                    <a href="#"
-                                        class="px-3 py-1 bg-slate-50 text-slate-600 text-xs rounded-md hover:bg-slate-100 border border-slate-200">bootstrap
-                                        5</a>
-                                    <a href="#"
-                                        class="px-3 py-1 bg-slate-50 text-slate-600 text-xs rounded-md hover:bg-slate-100 border border-slate-200">saas</a>
+                                    @foreach (explode(',', $template->category) as $tag)
+                                        <a href="#"
+                                            class="px-3 py-1 bg-slate-50 text-slate-600 text-xs rounded-md hover:bg-slate-100 border border-slate-200">{{ trim($tag) }}</a>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -275,6 +289,64 @@
                     </div>
                 </div>
 
+            </div>
+
+            <!-- Free Claim Modal -->
+            <div id="free-claim-modal" class="fixed inset-0 z-50 hidden">
+                <div class="absolute inset-0 bg-black/50" data-modal-close="true"></div>
+                <div class="relative mx-auto max-w-xl h-full flex items-center">
+                    <div class="bg-white w-full rounded-2xl shadow-xl overflow-hidden">
+                        <div class="p-6 border-b border-slate-100 flex items-start justify-between gap-4">
+                            <div>
+                                <h3 class="text-xl font-extrabold text-slate-900">Dapatkan Template Gratis</h3>
+                                <p class="text-sm text-slate-500 mt-1">Masukkan data Anda untuk mendapatkan akses unduhan.</p>
+                            </div>
+                            <button type="button" class="text-slate-500 hover:text-slate-700 text-2xl leading-none"
+                                data-modal-close="true">
+                                &times;
+                            </button>
+                        </div>
+                        <div class="p-6">
+                            <form id="free-claim-form" class="space-y-4">
+                                @csrf
+                                <input type="hidden" name="template_id" value="{{ $template->id }}">
+                                <div>
+                                    <label class="text-sm font-bold text-slate-700">Nama Lengkap</label>
+                                    <input type="text" name="name" required
+                                        class="mt-1 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-slate-900 focus:outline-none focus:ring-2 focus:ring-primary/20" />
+                                </div>
+                                <div>
+                                    <label class="text-sm font-bold text-slate-700">Email</label>
+                                    <input type="email" name="email" required
+                                        class="mt-1 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-slate-900 focus:outline-none focus:ring-2 focus:ring-primary/20" />
+                                </div>
+                                <div>
+                                    <label class="text-sm font-bold text-slate-700">Nomor WhatsApp</label>
+                                    <input type="text" name="whatsapp_number" required
+                                        class="mt-1 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-slate-900 focus:outline-none focus:ring-2 focus:ring-primary/20" />
+                                </div>
+                                <div class="flex items-center gap-3 pt-2">
+                                    <button type="submit" id="free-claim-submit-btn"
+                                        class="px-5 py-3 bg-green-600 text-white rounded-xl font-bold hover:bg-green-700 transition-colors w-full">
+                                        Klaim Sekarang
+                                    </button>
+                                </div>
+                                <div id="free-claim-loading" class="hidden text-sm text-slate-600 text-center">Memproses...</div>
+                                <div id="free-claim-error" class="hidden text-sm text-red-600 font-bold text-center"></div>
+                            </form>
+                            <div id="free-claim-success" class="hidden text-center">
+                                <div class="mx-auto w-14 h-14 bg-green-100 rounded-full flex items-center justify-center text-green-700 mb-4">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <h3 class="text-xl font-extrabold text-slate-900 mb-2">Berhasil!</h3>
+                                <p class="text-slate-600 text-sm mb-4">Akses unduhan Anda telah dibuat.</p>
+                                <a href="#" id="free-claim-download-link" class="px-5 py-3 bg-primary text-white rounded-xl font-bold hover:bg-indigo-700 transition-colors inline-block w-full">
+                                    Menuju Halaman Download
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Payment Modal + AJAX Scripts -->
@@ -587,41 +659,162 @@
                 })();
             </script>
 
+            <!-- Free Claim Modal -->
+            <div id="free-claim-modal" class="fixed inset-0 z-50 hidden">
+                <div class="absolute inset-0 bg-black/50" data-modal-close="true"></div>
+                <div class="relative mx-auto max-w-xl h-full flex items-center p-4">
+                    <div class="bg-white w-full rounded-2xl shadow-xl overflow-hidden max-h-[90vh] overflow-y-auto">
+                        <div class="p-6 border-b border-slate-100 flex items-start justify-between gap-4 sticky top-0 bg-white z-10">
+                            <div>
+                                <h3 class="text-xl font-extrabold text-slate-900">Dapatkan Template Gratis</h3>
+                                <p class="text-sm text-slate-500 mt-1">Masukkan data Anda untuk mendapatkan akses unduhan.</p>
+                            </div>
+                            <button type="button" class="text-slate-500 hover:text-slate-700 text-2xl leading-none"
+                                data-modal-close="true">
+                                &times;
+                            </button>
+                        </div>
+                        <div class="p-6">
+                            <form id="free-claim-form" class="space-y-4">
+                                @csrf
+                                <input type="hidden" name="template_id" value="{{ $template->id }}">
+                                <div>
+                                    <label class="text-sm font-bold text-slate-700">Nama Lengkap</label>
+                                    <input type="text" name="name" required
+                                        class="mt-1 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-slate-900 focus:outline-none focus:ring-2 focus:ring-primary/20" />
+                                </div>
+                                <div>
+                                    <label class="text-sm font-bold text-slate-700">Email</label>
+                                    <input type="email" name="email" required
+                                        class="mt-1 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-slate-900 focus:outline-none focus:ring-2 focus:ring-primary/20" />
+                                </div>
+                                <div>
+                                    <label class="text-sm font-bold text-slate-700">Nomor WhatsApp</label>
+                                    <input type="text" name="whatsapp_number" required
+                                        class="mt-1 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-slate-900 focus:outline-none focus:ring-2 focus:ring-primary/20" />
+                                </div>
+                                <div class="flex items-center gap-3 pt-2">
+                                    <button type="submit" id="free-claim-submit-btn"
+                                        class="px-5 py-3 bg-green-600 text-white rounded-xl font-bold hover:bg-green-700 transition-colors w-full">
+                                        Klaim Sekarang
+                                    </button>
+                                </div>
+                                <div id="free-claim-loading" class="hidden text-sm text-slate-600 text-center">Memproses...</div>
+                                <div id="free-claim-error" class="hidden text-sm text-red-600 font-bold text-center"></div>
+                            </form>
+                            <div id="free-claim-success" class="hidden text-center">
+                                <div class="mx-auto w-14 h-14 bg-green-100 rounded-full flex items-center justify-center text-green-700 mb-4">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <h3 class="text-xl font-extrabold text-slate-900 mb-2">Berhasil!</h3>
+                                <p class="text-slate-600 text-sm mb-4">Akses unduhan Anda telah dibuat.</p>
+                                <a href="#" id="free-claim-download-link" class="px-5 py-3 bg-primary text-white rounded-xl font-bold hover:bg-indigo-700 transition-colors inline-block w-full">
+                                    Menuju Halaman Download
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fullscreen Image Modal -->
+            <div id="image-modal" class="fixed inset-0 z-[60] hidden">
+                <div class="absolute inset-0 bg-black/90 backdrop-blur-sm cursor-pointer" data-modal-close="image-modal"></div>
+                <div class="relative w-full h-full flex items-center justify-center p-4 pointer-events-none">
+                    <img id="fullscreen-img" src="" class="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl pointer-events-auto" />
+                    <button type="button" class="absolute top-4 right-4 w-12 h-12 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center text-2xl transition-colors pointer-events-auto" data-modal-close="image-modal">
+                        &times;
+                    </button>
+                </div>
+            </div>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const mainImg = document.getElementById('main-preview-img');
+                    const thumbs = document.querySelectorAll('.thumb-img');
+                    const mainContainer = document.getElementById('main-image-container');
+                    const imageModal = document.getElementById('image-modal');
+                    const fullscreenImg = document.getElementById('fullscreen-img');
+
+                    if (thumbs.length > 0 && mainImg) {
+                        thumbs.forEach(thumb => {
+                            thumb.addEventListener('click', function() {
+                                // Update main image
+                                const newSrc = this.getAttribute('data-src');
+                                mainImg.setAttribute('src', newSrc);
+                                
+                                // Update active state
+                                thumbs.forEach(t => {
+                                    t.classList.remove('border-primary', 'opacity-100');
+                                    t.classList.add('border-slate-100', 'opacity-70');
+                                });
+                                this.classList.remove('border-slate-100', 'opacity-70');
+                                this.classList.add('border-primary', 'opacity-100');
+                            });
+                        });
+                    }
+
+                    if (mainContainer && imageModal && fullscreenImg) {
+                        mainContainer.addEventListener('click', function() {
+                            fullscreenImg.src = mainImg.src;
+                            imageModal.classList.remove('hidden');
+                        });
+
+                        const closeBtns = imageModal.querySelectorAll('[data-modal-close="image-modal"]');
+                        closeBtns.forEach(btn => {
+                            btn.addEventListener('click', () => {
+                                imageModal.classList.add('hidden');
+                            });
+                        });
+                    }
+                });
+            </script>
+
             <!-- Related Themes (Simple Footer Teaser) -->
 
+            @php
+                $relatedTemplates = \App\Models\WebTemplate::where('is_active', true)
+                    ->where('id', '!=', $template->id)
+                    ->inRandomOrder()
+                    ->take(5)
+                    ->get();
+            @endphp
             <div class="mt-20">
                 <h3 class="text-2xl font-bold text-slate-900 mb-8">Tema Lain yang Mungkin Anda Suka</h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- Related Item 1 -->
-                    <div
-                        class="bg-white rounded-xl border border-slate-200 p-4 flex gap-4 items-center hover:shadow-md transition-shadow">
-                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
-                            class="w-20 h-20 rounded-lg object-cover">
-                        <div>
-                            <h4 class="font-bold text-slate-900">CorpX Theme</h4>
-                            <p class="text-primary font-bold text-sm">$39</p>
-                        </div>
-                    </div>
-                    <!-- Related Item 2 -->
-                    <div
-                        class="bg-white rounded-xl border border-slate-200 p-4 flex gap-4 items-center hover:shadow-md transition-shadow">
-                        <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
-                            class="w-20 h-20 rounded-lg object-cover">
-                        <div>
-                            <h4 class="font-bold text-slate-900">StartUp Landing</h4>
-                            <p class="text-primary font-bold text-sm">$29</p>
-                        </div>
-                    </div>
-                    <!-- Related Item 3 -->
-                    <div
-                        class="bg-white rounded-xl border border-slate-200 p-4 flex gap-4 items-center hover:shadow-md transition-shadow">
-                        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
-                            class="w-20 h-20 rounded-lg object-cover">
-                        <div>
-                            <h4 class="font-bold text-slate-900">E-Shopify</h4>
-                            <p class="text-primary font-bold text-sm">$55</p>
-                        </div>
-                    </div>
+                    @foreach ($relatedTemplates as $related)
+                        @php
+                            $relPrice = (int) ($related->price ?? 0);
+                            $relFinalPrice = (int) ($related->final_price ?? ($related->price ?? 0));
+                            $relFormatted = 'Rp' . number_format($relFinalPrice, 0, ',', '.');
+
+                            $relImages = is_string($related->images)
+                                ? json_decode($related->images, true)
+                                : $related->images;
+                            if (is_string($relImages)) {
+                                $relImages = json_decode($relImages, true);
+                            }
+                            $relImgUrl = 'https://via.placeholder.com/200';
+                            if (is_array($relImages) && count($relImages) > 0) {
+                                $firstImg = $relImages[0];
+                                if (is_string($firstImg) && str_starts_with($firstImg, 'https://')) {
+                                    $relImgUrl = $firstImg;
+                                } else {
+                                    $relImgUrl = asset('storage/' . ltrim($firstImg, '/'));
+                                }
+                            }
+                        @endphp
+                        <a href="{{ route('templates.show', $related->slug) }}"
+                            class="bg-white rounded-xl border border-slate-200 p-4 flex gap-4 items-center hover:shadow-md transition-shadow">
+                            <img src="{{ $relImgUrl }}" alt="{{ $related->name }}"
+                                class="w-20 h-20 rounded-lg object-cover">
+                            <div>
+                                <h4 class="font-bold text-slate-900">{{ $related->name }}</h4>
+                                <p class="text-primary font-bold text-sm">
+                                    {{ $relFinalPrice == 0 ? 'Gratis' : $relFormatted }}</p>
+                            </div>
+                        </a>
+                    @endforeach
                 </div>
             </div>
 
