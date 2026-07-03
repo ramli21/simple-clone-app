@@ -104,13 +104,14 @@
 
                                 <!-- Sub Images (Thumbnails Slider) -->
                                 @if (count($imageUrls) > 1)
-                                <div class="flex overflow-x-auto gap-2 pb-2 snap-x">
-                                    @foreach (array_slice($imageUrls, 0, 6) as $index => $url)
-                                        <img src="{{ $url }}" alt="{{ $template->name }} thumbnail {{ $index+1 }}"
-                                            class="thumb-img rounded-lg h-24 w-32 md:h-32 md:w-48 object-cover border-2 {{ $index == 0 ? 'border-primary opacity-100' : 'border-slate-100 opacity-70' }} cursor-pointer hover:opacity-100 transition-all flex-shrink-0 snap-start"
-                                            data-src="{{ $url }}" loading="lazy" />
-                                    @endforeach
-                                </div>
+                                    <div class="flex overflow-x-auto gap-2 pb-2 snap-x">
+                                        @foreach (array_slice($imageUrls, 0, 6) as $index => $url)
+                                            <img src="{{ $url }}"
+                                                alt="{{ $template->name }} thumbnail {{ $index + 1 }}"
+                                                class="thumb-img rounded-lg h-24 w-32 md:h-32 md:w-48 object-cover border-2 {{ $index == 0 ? 'border-primary opacity-100' : 'border-slate-100 opacity-70' }} cursor-pointer hover:opacity-100 transition-all flex-shrink-0 snap-start"
+                                                data-src="{{ $url }}" loading="lazy" />
+                                        @endforeach
+                                    </div>
                                 @endif
                             @else
                                 <div class="py-10 text-center text-slate-500">Gambar tidak tersedia.</div>
@@ -196,15 +197,15 @@
 
                             <!-- Buttons -->
                             @if ($finalPrice == 0)
-                                <button type="button" id="claim-free-btn" data-template-id="{{ $template->id }}"
+                                <a href="{{ route('templates.checkout.form', $template->slug) }}"
                                     class="w-full py-3.5 bg-green-600 text-white rounded-xl font-bold text-lg hover:bg-green-700 transition-all shadow-lg shadow-green-200 mb-3 flex items-center justify-center gap-2">
                                     <i class="fa-solid fa-download"></i> Dapatkan Sekarang
-                                </button>
+                                </a>
                             @else
-                                <button type="button" id="buy-now-btn" data-template-id="{{ $template->id }}"
+                                <a href="{{ route('templates.checkout.form', $template->slug) }}"
                                     class="w-full py-3.5 bg-primary text-white rounded-xl font-bold text-lg hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-200 mb-3 flex items-center justify-center gap-2">
                                     <i class="fa-solid fa-cart-shopping"></i> Beli Sekarang
-                                </button>
+                                </a>
                             @endif
 
                             @php
@@ -299,7 +300,8 @@
                         <div class="p-6 border-b border-slate-100 flex items-start justify-between gap-4">
                             <div>
                                 <h3 class="text-xl font-extrabold text-slate-900">Dapatkan Template Gratis</h3>
-                                <p class="text-sm text-slate-500 mt-1">Masukkan data Anda untuk mendapatkan akses unduhan.</p>
+                                <p class="text-sm text-slate-500 mt-1">Masukkan data Anda untuk mendapatkan akses unduhan.
+                                </p>
                             </div>
                             <button type="button" class="text-slate-500 hover:text-slate-700 text-2xl leading-none"
                                 data-modal-close="true">
@@ -331,16 +333,20 @@
                                         Klaim Sekarang
                                     </button>
                                 </div>
-                                <div id="free-claim-loading" class="hidden text-sm text-slate-600 text-center">Memproses...</div>
-                                <div id="free-claim-error" class="hidden text-sm text-red-600 font-bold text-center"></div>
+                                <div id="free-claim-loading" class="hidden text-sm text-slate-600 text-center">
+                                    Memproses...</div>
+                                <div id="free-claim-error" class="hidden text-sm text-red-600 font-bold text-center">
+                                </div>
                             </form>
                             <div id="free-claim-success" class="hidden text-center">
-                                <div class="mx-auto w-14 h-14 bg-green-100 rounded-full flex items-center justify-center text-green-700 mb-4">
+                                <div
+                                    class="mx-auto w-14 h-14 bg-green-100 rounded-full flex items-center justify-center text-green-700 mb-4">
                                     <i class="fa-solid fa-check"></i>
                                 </div>
                                 <h3 class="text-xl font-extrabold text-slate-900 mb-2">Berhasil!</h3>
                                 <p class="text-slate-600 text-sm mb-4">Akses unduhan Anda telah dibuat.</p>
-                                <a href="#" id="free-claim-download-link" class="px-5 py-3 bg-primary text-white rounded-xl font-bold hover:bg-indigo-700 transition-colors inline-block w-full">
+                                <a href="#" id="free-claim-download-link"
+                                    class="px-5 py-3 bg-primary text-white rounded-xl font-bold hover:bg-indigo-700 transition-colors inline-block w-full">
                                     Menuju Halaman Download
                                 </a>
                             </div>
@@ -664,10 +670,12 @@
                 <div class="absolute inset-0 bg-black/50" data-modal-close="true"></div>
                 <div class="relative mx-auto max-w-xl h-full flex items-center p-4">
                     <div class="bg-white w-full rounded-2xl shadow-xl overflow-hidden max-h-[90vh] overflow-y-auto">
-                        <div class="p-6 border-b border-slate-100 flex items-start justify-between gap-4 sticky top-0 bg-white z-10">
+                        <div
+                            class="p-6 border-b border-slate-100 flex items-start justify-between gap-4 sticky top-0 bg-white z-10">
                             <div>
                                 <h3 class="text-xl font-extrabold text-slate-900">Dapatkan Template Gratis</h3>
-                                <p class="text-sm text-slate-500 mt-1">Masukkan data Anda untuk mendapatkan akses unduhan.</p>
+                                <p class="text-sm text-slate-500 mt-1">Masukkan data Anda untuk mendapatkan akses unduhan.
+                                </p>
                             </div>
                             <button type="button" class="text-slate-500 hover:text-slate-700 text-2xl leading-none"
                                 data-modal-close="true">
@@ -699,16 +707,20 @@
                                         Klaim Sekarang
                                     </button>
                                 </div>
-                                <div id="free-claim-loading" class="hidden text-sm text-slate-600 text-center">Memproses...</div>
-                                <div id="free-claim-error" class="hidden text-sm text-red-600 font-bold text-center"></div>
+                                <div id="free-claim-loading" class="hidden text-sm text-slate-600 text-center">
+                                    Memproses...</div>
+                                <div id="free-claim-error" class="hidden text-sm text-red-600 font-bold text-center">
+                                </div>
                             </form>
                             <div id="free-claim-success" class="hidden text-center">
-                                <div class="mx-auto w-14 h-14 bg-green-100 rounded-full flex items-center justify-center text-green-700 mb-4">
+                                <div
+                                    class="mx-auto w-14 h-14 bg-green-100 rounded-full flex items-center justify-center text-green-700 mb-4">
                                     <i class="fa-solid fa-check"></i>
                                 </div>
                                 <h3 class="text-xl font-extrabold text-slate-900 mb-2">Berhasil!</h3>
                                 <p class="text-slate-600 text-sm mb-4">Akses unduhan Anda telah dibuat.</p>
-                                <a href="#" id="free-claim-download-link" class="px-5 py-3 bg-primary text-white rounded-xl font-bold hover:bg-indigo-700 transition-colors inline-block w-full">
+                                <a href="#" id="free-claim-download-link"
+                                    class="px-5 py-3 bg-primary text-white rounded-xl font-bold hover:bg-indigo-700 transition-colors inline-block w-full">
                                     Menuju Halaman Download
                                 </a>
                             </div>
@@ -719,10 +731,14 @@
 
             <!-- Fullscreen Image Modal -->
             <div id="image-modal" class="fixed inset-0 z-[60] hidden">
-                <div class="absolute inset-0 bg-black/90 backdrop-blur-sm cursor-pointer" data-modal-close="image-modal"></div>
+                <div class="absolute inset-0 bg-black/90 backdrop-blur-sm cursor-pointer" data-modal-close="image-modal">
+                </div>
                 <div class="relative w-full h-full flex items-center justify-center p-4 pointer-events-none">
-                    <img id="fullscreen-img" src="" class="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl pointer-events-auto" />
-                    <button type="button" class="absolute top-4 right-4 w-12 h-12 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center text-2xl transition-colors pointer-events-auto" data-modal-close="image-modal">
+                    <img id="fullscreen-img" src=""
+                        class="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl pointer-events-auto" />
+                    <button type="button"
+                        class="absolute top-4 right-4 w-12 h-12 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center text-2xl transition-colors pointer-events-auto"
+                        data-modal-close="image-modal">
                         &times;
                     </button>
                 </div>
@@ -742,7 +758,7 @@
                                 // Update main image
                                 const newSrc = this.getAttribute('data-src');
                                 mainImg.setAttribute('src', newSrc);
-                                
+
                                 // Update active state
                                 thumbs.forEach(t => {
                                     t.classList.remove('border-primary', 'opacity-100');

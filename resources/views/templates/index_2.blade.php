@@ -95,15 +95,17 @@
 
                         <div class="p-6">
                             <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-lg font-bold text-slate-900 group-hover:text-primary transition-colors">
+                                <a href="{{ route('templates.show', $template->slug) }}"
+                                    class="text-lg font-bold text-slate-900 group-hover:text-primary transition-colors">
                                     {{ $template->name }}
-                                </h3>
+                                </a>
 
                                 <div class="text-right">
                                     @if ($hasDiscount)
                                         <div class="text-xs text-slate-400 line-through">{{ $formattedPrice }}</div>
                                     @endif
-                                    <div class="font-bold text-slate-900">{{ $formattedFinalPrice }}</div>
+                                    <div class="font-bold text-green-600">
+                                        {{ $finalPrice == 0 ? 'Free' : $formattedFinalPrice }}</div>
                                 </div>
                             </div>
 

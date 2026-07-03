@@ -18,7 +18,23 @@
         integrity="sha512-AvbJv+T9t5lX5b0yPqYQm7w7u3V9J4x2mJ2pE3h0w3mJrQx7qWb9qf8q6c8x0m2cYxw3kq1qKx1lQ1qGfQmQ0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link href="{{ asset('vendors/aos/aos.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendors/aos/aos.css') }}?v={{ time() }}" rel="stylesheet">
+
+    @if (config('app.env') === 'production')
+        <script type="text/javascript">
+            (function(c, l, a, r, i, t, y) {
+                c[a] = c[a] || function() {
+                    (c[a].q = c[a].q || []).push(arguments)
+                };
+                t = l.createElement(r);
+                t.async = 1;
+                t.src = "https://www.clarity.ms/tag/" + i;
+                y = l.getElementsByTagName(r)[0];
+                y.parentNode.insertBefore(t, y);
+            })(window, document, "clarity", "script", "xggk5e7dpv");
+        </script>
+    @endif
+
 
     {{-- Reset dasar agar Bootstrap lama tidak merusak Tailwind --}}
     <style>

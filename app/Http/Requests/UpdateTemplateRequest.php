@@ -21,9 +21,8 @@ class UpdateTemplateRequest extends FormRequest
             'category' => ['required', 'string', 'max:255'],
             'price' => ['required', 'integer', 'min:0'],
             'download_path' => ['required', 'string', 'max:2048'],
-
+            'delivery_type' => ['nullable', 'in:file,github_repo,external_link'],
             'discount_percentage' => ['nullable', 'integer', 'min:0', 'max:100'],
-
             'thumbnail_image' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
         ];
     }

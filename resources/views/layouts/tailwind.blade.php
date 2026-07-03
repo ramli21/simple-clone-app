@@ -36,6 +36,21 @@
         }
     </script>
 
+    @if (config('app.env') === 'production')
+        <script type="text/javascript">
+            (function(c, l, a, r, i, t, y) {
+                c[a] = c[a] || function() {
+                    (c[a].q = c[a].q || []).push(arguments)
+                };
+                t = l.createElement(r);
+                t.async = 1;
+                t.src = "https://www.clarity.ms/tag/" + i;
+                y = l.getElementsByTagName(r)[0];
+                y.parentNode.insertBefore(t, y);
+            })(window, document, "clarity", "script", "xggk5e7dpv");
+        </script>
+    @endif
+
     <style>
         /* Custom Scrollbar */
         ::-webkit-scrollbar {
@@ -71,7 +86,7 @@
         <div class="container mx-auto px-4 lg:px-8">
             <div class="flex justify-between items-center">
                 <!-- Logo -->
-                <a href="#" class="text-2xl font-bold text-slate-900 flex items-center gap-2 group">
+                <a href="{{ route('home') }}" class="text-2xl font-bold text-slate-900 flex items-center gap-2 group">
                     <div
                         class="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center text-white text-xl shadow-lg group-hover:scale-105 transition-transform">
                         <i class="fa-solid fa-code"></i>
@@ -81,12 +96,14 @@
 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#home" class="font-medium hover:text-primary transition-colors">Beranda</a>
-                    <a href="#about" class="font-medium hover:text-primary transition-colors">Tentang</a>
-                    <a href="#services" class="font-medium hover:text-primary transition-colors">Layanan</a>
-                    <a href="#themes" class="font-medium hover:text-primary transition-colors text-primary">Tema Web</a>
-                    <a href="#portfolio" class="font-medium hover:text-primary transition-colors">Portofolio</a>
-                    <a href="#contact"
+                    <a href="{{ route('home') }}" class="font-medium hover:text-primary transition-colors">Beranda</a>
+                    <a href="/#about" class="font-medium hover:text-primary transition-colors">Tentang</a>
+                    <a href="/#services" class="font-medium hover:text-primary transition-colors">Layanan</a>
+                    <a href="{{ route('templates.index') }}"
+                        class="font-medium hover:text-primary transition-colors text-primary">Tema &
+                        Starter Kit</a>
+                    <a href="/#portfolio" class="font-medium hover:text-primary transition-colors">Portofolio</a>
+                    <a href="/#contact"
                         class="px-5 py-2.5 bg-slate-900 text-white rounded-full font-medium hover:bg-primary transition-all shadow-md hover:shadow-lg">
                         Hubungi Kami
                     </a>
@@ -101,12 +118,14 @@
             <!-- Mobile Menu Dropdown -->
             <div id="mobile-menu"
                 class="hidden md:hidden absolute top-full left-0 w-full bg-white shadow-xl border-t border-slate-100 flex-col items-center py-4 space-y-4">
-                <a href="#home" class="mobile-link text-lg font-medium hover:text-primary">Beranda</a>
-                <a href="#about" class="mobile-link text-lg font-medium hover:text-primary">Tentang</a>
-                <a href="#services" class="mobile-link text-lg font-medium hover:text-primary">Layanan</a>
-                <a href="#themes" class="mobile-link text-lg font-medium text-primary">Tema Web</a>
-                <a href="#portfolio" class="mobile-link text-lg font-medium hover:text-primary">Portofolio</a>
-                <a href="#contact" class="px-6 py-2.5 bg-slate-900 text-white rounded-full font-medium">Hubungi Kami</a>
+                <a href="{{ route('home') }}" class="mobile-link text-lg font-medium hover:text-primary">Beranda</a>
+                <a href="/#about" class="mobile-link text-lg font-medium hover:text-primary">Tentang</a>
+                <a href="/#services" class="mobile-link text-lg font-medium hover:text-primary">Layanan</a>
+                <a href="{{ route('templates.index') }}" class="mobile-link text-lg font-medium text-primary">Tema &
+                    Starter Kit</a>
+                <a href="/#portfolio" class="mobile-link text-lg font-medium hover:text-primary">Portofolio</a>
+                <a href="/#contact" class="px-6 py-2.5 bg-slate-900 text-white rounded-full font-medium">Hubungi
+                    Kami</a>
             </div>
         </div>
     </nav>

@@ -16,6 +16,10 @@ use App\Models\ServiceItem;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/templates', [\App\Http\Controllers\TemplatePublicController::class, 'index'])->name('templates.index');
 Route::get('/templates/{slug}', [\App\Http\Controllers\TemplatePublicController::class, 'show'])->name('templates.show');
+Route::get('/templates/{slug}/checkout', [\App\Http\Controllers\TemplatePublicController::class, 'checkout'])->name('templates.checkout.form');
+Route::post('/templates/checkout', [\App\Http\Controllers\TemplatePublicController::class, 'processCheckout'])->name('templates.checkout.process');
+Route::get('/templates/{template_slug}/payment', [\App\Http\Controllers\TemplatePublicController::class, 'payment'])->name('templates.payment');
+Route::get('/templates/checkout-success/{payment_id}/{token}', [\App\Http\Controllers\TemplatePublicController::class, 'checkoutSuccess'])->name('templates.checkout-success');
 
 // Customer portal download (1-time link by unique code)
 Route::get('/download', [\App\Http\Controllers\TemplateDownloadController::class, 'showForm'])->name('download.form');

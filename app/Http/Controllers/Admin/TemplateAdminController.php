@@ -33,7 +33,6 @@ class TemplateAdminController extends Controller
         $validated['discount_percentage'] = $request->input('discount_percentage');
         $validated['is_active'] = $request->has('is_active') ? $request->boolean('is_active') : true;
         $validated['preview_url'] = $request->input('preview_url');
-        $validated['download_path'] = $request->input('download_path');
         $validated['delivery_type'] = $request->input('delivery_type', 'file');
         $validated['sales_count'] = $request->input('sales_count', 0);
 
@@ -44,12 +43,26 @@ class TemplateAdminController extends Controller
             'images.*' => ['image', 'mimes:jpg,jpeg,png', 'max:4096'],
             'delivery_type' => ['nullable', 'in:file,github_repo,external_link'],
             'thumbnail_image' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
+            'template_file' => ['nullable', 'file', 'mimes:zip', 'max:102400'], // 100MB max
         ]);
 
 
         $validated['slug'] = Str::slug($validated['name']);
         $validated['delivery_type'] = $validated['delivery_type'] ?? 'file';
         $validated['is_active'] = $request->has('is_active') ? $request->boolean('is_active') : true;
+
+        // Handle file upload for 'file' delivery type
+        if ($validated['delivery_type'] === 'file') {
+            if ($request->hasFile('template_file')) {
+                $path = $request->file('template_file')->store('web-templates/files', 'private');
+                $validated['download_path'] = $path;
+            } else {
+                $validated['download_path'] = null;
+            }
+        } else {
+            // For other delivery types, use the download_path input
+            $validated['download_path'] = $request->input('download_path');
+        }
 
         if ($request->hasFile('thumbnail_image')) {
             $path = $request->file('thumbnail_image')->store('web-templates/thumbnails', 'public');
@@ -91,7 +104,6 @@ class TemplateAdminController extends Controller
         $validated['stack'] = $request->input('stack');
         $validated['discount_percentage'] = $request->input('discount_percentage');
         $validated['sales_count'] = $request->input('sales_count', $template->sales_count ?? 0);
-        $validated['download_path'] = $request->input('download_path');
 
         // Validasi tambahan (field yang belum tercakup di FormRequest)
         $request->validate([
@@ -100,8 +112,26 @@ class TemplateAdminController extends Controller
             'images.*' => ['image', 'mimes:jpg,jpeg,png', 'max:4096'],
             'delivery_type' => ['nullable', 'in:file,github_repo,external_link'],
             'thumbnail_image' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
+            'template_file' => ['nullable', 'file', 'mimes:zip', 'max:102400'], // 100MB max
         ]);
 
+        // Handle file upload for 'file' delivery type
+        if ($validated['delivery_type'] === 'file') {
+            if ($request->hasFile('template_file')) {
+                // Delete old file if exists
+                if (!empty($template->download_path) && Storage::disk('private')->exists($template->download_path)) {
+                    Storage::disk('private')->delete($template->download_path);
+                }
+                $path = $request->file('template_file')->store('web-templates/files', 'private');
+                $validated['download_path'] = $path;
+            } else {
+                // Keep existing path if no new file is uploaded
+                $validated['download_path'] = $template->download_path;
+            }
+        } else {
+            // For other delivery types, use the download_path input
+            $validated['download_path'] = $request->input('download_path');
+        }
 
         if ($request->hasFile('thumbnail_image')) {
             if (!empty($template->thumbnail_image) && Storage::disk('public')->exists($template->thumbnail_image)) {

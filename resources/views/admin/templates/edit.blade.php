@@ -114,19 +114,8 @@
                         </div>
 
                         <div class="col-md-6 mb-3">
-                            <label class="form-label fw-bold">Download Path</label>
-                            <input type="text" name="download_path"
-                                class="form-control @error('download_path') is-invalid @enderror"
-                                value="{{ old('download_path', $template->download_path) }}"
-                                placeholder="path/di-privatkan/produk">
-                            @error('download_path')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="col-md-6 mb-3">
                             <label class="form-label fw-bold">Delivery Type</label>
-                            <select name="delivery_type"
+                            <select name="delivery_type" id="deliveryType"
                                 class="form-select @error('delivery_type') is-invalid @enderror">
                                 @foreach (['file' => 'file', 'github_repo' => 'github_repo', 'external_link' => 'external_link'] as $value => $label)
                                     <option value="{{ $value }}"
@@ -136,6 +125,33 @@
                                 @endforeach
                             </select>
                             @error('delivery_type')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-6 mb-3" id="fileUploadField" style="display: none;">
+                            <label class="form-label fw-bold">File Upload (ZIP)</label>
+                            <input type="file" name="template_file"
+                                class="form-control @error('template_file') is-invalid @enderror" accept=".zip">
+                            @error('template_file')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                            <div class="text-muted small mt-1">Upload file ZIP template (max 100MB)</div>
+                            @if (!empty($template->download_path) && $template->delivery_type === 'file')
+                                <div class="mt-2">
+                                    <p class="text-muted"><small>File saat ini:
+                                            <strong>{{ basename($template->download_path) }}</strong></small></p>
+                                </div>
+                            @endif
+                        </div>
+
+                        <div class="col-md-6 mb-3" id="downloadPathField">
+                            <label class="form-label fw-bold">Download Path</label>
+                            <input type="text" name="download_path"
+                                class="form-control @error('download_path') is-invalid @enderror"
+                                value="{{ old('download_path', $template->download_path) }}"
+                                placeholder="path/di-privatkan/produk">
+                            @error('download_path')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
@@ -209,4 +225,29 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const deliveryTypeSelect = document.getElementById('deliveryType');
+            const fileUploadField = document.getElementById('fileUploadField');
+            const downloadPathField = document.getElementById('downloadPathField');
+
+            function toggleDeliveryFields() {
+                const selectedType = deliveryTypeSelect.value;
+                if (selectedType === 'file') {
+                    fileUploadField.style.display = 'block';
+                    downloadPathField.style.display = 'none';
+                } else {
+                    fileUploadField.style.display = 'none';
+                    downloadPathField.style.display = 'block';
+                }
+            }
+
+            // Trigger on load
+            toggleDeliveryFields();
+
+            // Trigger on change
+            deliveryTypeSelect.addEventListener('change', toggleDeliveryFields);
+        });
+    </script>
 @endsection
