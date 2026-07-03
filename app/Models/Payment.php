@@ -15,14 +15,14 @@ class Payment extends Model
     protected $guarded = [];
 
     protected $casts = [
-        'template_id' => 'string',
+        'product_id' => 'string',
         'amount_paid' => 'integer',
         'download_token_used_at' => 'datetime',
     ];
 
-    public function template(): BelongsTo
+    public function product(): BelongsTo
     {
-        return $this->belongsTo(WebTemplate::class, 'template_id', 'id');
+        return $this->belongsTo(Product::class, 'product_id', 'id');
     }
 
     public static function generateUniqueCode(int $length = 6): string

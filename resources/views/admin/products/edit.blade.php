@@ -2,8 +2,8 @@
 
 @section('title-page')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Add Web Template</h1>
-        <a href="{{ route('admin.templates.index') }}" class="btn btn-secondary">Back</a>
+        <h1 class="h2">Edit Produk</h1>
+        <a href="{{ route('admin.products.index') }}" class="btn btn-secondary">Back</a>
     </div>
 @endsection
 
@@ -11,14 +11,15 @@
     <div class="container-fluid px-0">
         <div class="card">
             <div class="card-body">
-                <form action="{{ route('admin.templates.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('admin.products.update', $product) }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    @method('PUT')
 
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label class="form-label fw-bold">Name</label>
                             <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
-                                value="{{ old('name') }}" required>
+                                value="{{ old('name', $product->name) }}" required>
                             @error('name')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -27,7 +28,7 @@
                         <div class="col-md-6 mb-3">
                             <label class="form-label fw-bold">SKU</label>
                             <input type="text" name="sku" class="form-control @error('sku') is-invalid @enderror"
-                                value="{{ old('sku') }}" placeholder="TMP-001">
+                                value="{{ old('sku', $product->sku) }}" placeholder="TMP-001">
                             @error('sku')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -36,7 +37,7 @@
                         <div class="col-md-12 mb-3">
                             <label class="form-label fw-bold">Short Description</label>
                             <textarea name="short_description" class="form-control @error('short_description') is-invalid @enderror" rows="3"
-                                required>{{ old('short_description') }}</textarea>
+                                required>{{ old('short_description', $product->short_description) }}</textarea>
                             @error('short_description')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -44,7 +45,7 @@
 
                         <div class="col-md-12 mb-3">
                             <label class="form-label fw-bold">Description (HTML/Markdown)</label>
-                            <textarea name="description" class="form-control @error('description') is-invalid @enderror" rows="6" required>{{ old('description') }}</textarea>
+                            <textarea name="description" class="form-control @error('description') is-invalid @enderror" rows="6" required>{{ old('description', $product->description) }}</textarea>
                             @error('description')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -53,8 +54,8 @@
                         <div class="col-md-6 mb-3">
                             <label class="form-label fw-bold">Category</label>
                             <input type="text" name="category"
-                                class="form-control @error('category') is-invalid @enderror" value="{{ old('category') }}"
-                                required>
+                                class="form-control @error('category') is-invalid @enderror"
+                                value="{{ old('category', $product->category) }}" required>
                             @error('category')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -63,7 +64,7 @@
                         <div class="col-md-6 mb-3">
                             <label class="form-label fw-bold">Stack</label>
                             <input type="text" name="stack" class="form-control @error('stack') is-invalid @enderror"
-                                value="{{ old('stack') }}" placeholder="Laravel, Tailwind">
+                                value="{{ old('stack', $product->stack) }}" placeholder="Laravel, Tailwind">
                             @error('stack')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -72,8 +73,8 @@
                         <div class="col-md-3 mb-3">
                             <label class="form-label fw-bold">Price</label>
                             <input type="number" name="price" min="0"
-                                class="form-control @error('price') is-invalid @enderror" value="{{ old('price') }}"
-                                required>
+                                class="form-control @error('price') is-invalid @enderror"
+                                value="{{ old('price', $product->price) }}" required>
                             @error('price')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -83,7 +84,8 @@
                             <label class="form-label fw-bold">Discount %</label>
                             <input type="number" name="discount_percentage" min="0" max="100"
                                 class="form-control @error('discount_percentage') is-invalid @enderror"
-                                value="{{ old('discount_percentage') }}" placeholder="0-100">
+                                value="{{ old('discount_percentage', $product->discount_percentage) }}"
+                                placeholder="0-100">
                             @error('discount_percentage')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -93,7 +95,7 @@
                             <label class="form-label fw-bold">Is Active</label>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="is_active" value="1"
-                                    id="is_active" {{ old('is_active', true) ? 'checked' : '' }}>
+                                    id="is_active" {{ old('is_active', $product->is_active) ? 'checked' : '' }}>
                                 <label class="form-check-label" for="is_active">Active</label>
                             </div>
                             @error('is_active')
@@ -105,7 +107,7 @@
                             <label class="form-label fw-bold">Preview URL</label>
                             <input type="text" name="preview_url"
                                 class="form-control @error('preview_url') is-invalid @enderror"
-                                value="{{ old('preview_url') }}" placeholder="https://...">
+                                value="{{ old('preview_url', $product->preview_url) }}" placeholder="https://...">
                             @error('preview_url')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -117,7 +119,7 @@
                                 class="form-select @error('delivery_type') is-invalid @enderror">
                                 @foreach (['file' => 'file', 'github_repo' => 'github_repo', 'external_link' => 'external_link'] as $value => $label)
                                     <option value="{{ $value }}"
-                                        {{ old('delivery_type', 'file') === $value ? 'selected' : '' }}>
+                                        {{ old('delivery_type', $product->delivery_type) === $value ? 'selected' : '' }}>
                                         {{ $label }}
                                     </option>
                                 @endforeach
@@ -129,19 +131,26 @@
 
                         <div class="col-md-6 mb-3" id="fileUploadField" style="display: none;">
                             <label class="form-label fw-bold">File Upload (ZIP)</label>
-                            <input type="file" name="template_file"
-                                class="form-control @error('template_file') is-invalid @enderror" accept=".zip">
-                            @error('template_file')
+                            <input type="file" name="produk_file"
+                                class="form-control @error('produk_file') is-invalid @enderror" accept=".zip">
+                            @error('produk_file')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
-                            <div class="text-muted small mt-1">Upload file ZIP template (max 100MB)</div>
+                            <div class="text-muted small mt-1">Upload file ZIP Produk (max 100MB)</div>
+                            @if (!empty($product->download_path) && $product->delivery_type === 'file')
+                                <div class="mt-2">
+                                    <p class="text-muted"><small>File saat ini:
+                                            <strong>{{ basename($product->download_path) }}</strong></small></p>
+                                </div>
+                            @endif
                         </div>
 
                         <div class="col-md-6 mb-3" id="downloadPathField">
                             <label class="form-label fw-bold">Download Path</label>
                             <input type="text" name="download_path"
                                 class="form-control @error('download_path') is-invalid @enderror"
-                                value="{{ old('download_path') }}" placeholder="path/di-privatkan/produk">
+                                value="{{ old('download_path', $product->download_path) }}"
+                                placeholder="path/di-privatkan/produk">
                             @error('download_path')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -154,10 +163,16 @@
                             @error('thumbnail_image')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
+                            @if (!empty($product->thumbnail_image))
+                                <div class="mt-2">
+                                    <img src="{{ Storage::disk('public')->url($product->thumbnail_image) }}"
+                                        alt="Thumbnail" style="max-width: 140px;" class="img-thumbnail">
+                                </div>
+                            @endif
                         </div>
 
                         <div class="col-md-12 mb-3">
-                            <label class="form-label fw-bold">Images (3-6 screenshots)</label>
+                            <label class="form-label fw-bold">Images (multiple)</label>
                             <input type="file" name="images[]"
                                 class="form-control @error('images') is-invalid @enderror" accept="image/*" multiple>
                             @error('images')
@@ -166,23 +181,45 @@
                             @error('images.*')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
-                            <div class="text-muted small mt-1">Pilih beberapa file gambar untuk field images[].</div>
+
+                            @php
+                                $existingImages = is_array($product->images) ? $product->images : [];
+                            @endphp
+
+                            @if (count($existingImages) > 0)
+                                <div class="mt-3">
+                                    <div class="row g-2">
+                                        @foreach ($existingImages as $path)
+                                            <div class="col-6 col-md-3">
+                                                <img src="{{ Storage::disk('public')->url($path) }}" alt="screenshot"
+                                                    class="img-thumbnail" style="max-height: 120px; object-fit: cover;">
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @endif
                         </div>
 
                         <div class="col-md-3 mb-3">
                             <label class="form-label fw-bold">Sales Count</label>
                             <input type="number" name="sales_count" min="0"
                                 class="form-control @error('sales_count') is-invalid @enderror"
-                                value="{{ old('sales_count', 0) }}">
+                                value="{{ old('sales_count', $product->sales_count) }}">
                             @error('sales_count')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
+
+                        <div class="col-md-9 mb-3">
+                            <label class="form-label fw-bold">Final Price (computed)</label>
+                            <div class="form-control bg-light" style="height: auto;">
+                                {{ number_format((int) $product->final_price, 0, ',', '.') }}</div>
+                        </div>
                     </div>
 
                     <div class="mt-3 d-flex gap-2">
-                        <button type="submit" class="btn btn-primary">Save</button>
-                        <a href="{{ route('admin.templates.index') }}" class="btn btn-secondary">Cancel</a>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                        <a href="{{ route('admin.products.index') }}" class="btn btn-secondary">Cancel</a>
                     </div>
                 </form>
             </div>

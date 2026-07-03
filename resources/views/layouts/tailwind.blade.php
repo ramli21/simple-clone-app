@@ -88,8 +88,8 @@
                 <!-- Logo -->
                 <a href="{{ route('home') }}" class="text-2xl font-bold text-slate-900 flex items-center gap-2 group">
                     <div
-                        class="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center text-white text-xl shadow-lg group-hover:scale-105 transition-transform">
-                        <i class="fa-solid fa-code"></i>
+                        class="w-10 h-10 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform">
+                        <img src="{{ asset('./images/logo-square.png') }}" alt="Logo Akhritech" />
                     </div>
                     Akhritech
                 </a>
@@ -97,11 +97,10 @@
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="{{ route('home') }}" class="font-medium hover:text-primary transition-colors">Beranda</a>
-                    <a href="/#about" class="font-medium hover:text-primary transition-colors">Tentang</a>
+                    {{-- <a href="/#about" class="font-medium hover:text-primary transition-colors">Tentang</a> --}}
                     <a href="/#services" class="font-medium hover:text-primary transition-colors">Layanan</a>
-                    <a href="{{ route('templates.index') }}"
-                        class="font-medium hover:text-primary transition-colors text-primary">Tema &
-                        Starter Kit</a>
+                    <a href="{{ route('products.index') }}"
+                        class="font-medium hover:text-primary transition-colors text-primary">Produk</a>
                     <a href="/#portfolio" class="font-medium hover:text-primary transition-colors">Portofolio</a>
                     <a href="/#contact"
                         class="px-5 py-2.5 bg-slate-900 text-white rounded-full font-medium hover:bg-primary transition-all shadow-md hover:shadow-lg">
@@ -121,8 +120,7 @@
                 <a href="{{ route('home') }}" class="mobile-link text-lg font-medium hover:text-primary">Beranda</a>
                 <a href="/#about" class="mobile-link text-lg font-medium hover:text-primary">Tentang</a>
                 <a href="/#services" class="mobile-link text-lg font-medium hover:text-primary">Layanan</a>
-                <a href="{{ route('templates.index') }}" class="mobile-link text-lg font-medium text-primary">Tema &
-                    Starter Kit</a>
+                <a href="{{ route('products.index') }}" class="mobile-link text-lg font-medium text-primary">Produk</a>
                 <a href="/#portfolio" class="mobile-link text-lg font-medium hover:text-primary">Portofolio</a>
                 <a href="/#contact" class="px-6 py-2.5 bg-slate-900 text-white rounded-full font-medium">Hubungi
                     Kami</a>
@@ -139,9 +137,8 @@
         <div class="container mx-auto px-4 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-center gap-6">
                 <div class="flex items-center gap-2">
-                    <div
-                        class="w-8 h-8 bg-gradient-to-br from-primary to-accent rounded-md flex items-center justify-center text-white text-sm">
-                        <i class="fa-solid fa-code"></i>
+                    <div class="w-8 h-8 rounded-md flex items-center justify-center text-white text-sm">
+                        <img src="{{ asset('./images/logo-square.png') }}" alt="Logo Akhritech" />
                     </div>
                     <span class="text-xl font-bold text-white">Akhritech</span>
                 </div>
@@ -151,7 +148,7 @@
                     <a href="#" class="hover:text-white transition-colors">Support</a>
                 </div>
                 <div class="text-sm">
-                    &copy; 2023 Akhritech. All rights reserved.
+                    &copy; {{ new \DateTime()->format('Y') }} Akhritech. All rights reserved.
                 </div>
             </div>
         </div>

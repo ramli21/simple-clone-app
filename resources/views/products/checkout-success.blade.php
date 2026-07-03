@@ -26,7 +26,7 @@
                         <div class="space-y-3 text-sm text-slate-700">
                             <div class="flex justify-between">
                                 <span class="text-slate-600">Produk:</span>
-                                <span class="font-semibold">{{ $payment->template->name }}</span>
+                                <span class="font-semibold">{{ $payment->product->name }}</span>
                             </div>
                             <div class="flex justify-between">
                                 <span class="text-slate-600">Nama:</span>
@@ -109,9 +109,9 @@
 
                     <!-- Action Buttons -->
                     <div class="flex flex-col md:flex-row gap-4">
-                        <a href="{{ route('templates.index') }}"
+                        <a href="{{ route('products.index') }}"
                             class="flex-1 px-6 py-3 border border-slate-200 text-slate-700 rounded-xl font-bold text-center hover:bg-slate-50 transition-colors flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-list"></i> Lihat Template Lain
+                            <i class="fa-solid fa-list"></i> Lihat Produk Lain
                         </a>
                         <a href="{{ route('home') }}"
                             class="flex-1 px-6 py-3 bg-slate-900 text-white rounded-xl font-bold text-center hover:bg-slate-800 transition-colors flex items-center justify-center gap-2">

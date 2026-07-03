@@ -35,7 +35,7 @@ class PaymentAdminController extends Controller
             ->count();
 
         $payments = Payment::query()
-            ->with('template')
+            ->with('product')
             ->orderByDesc('created_at')
             ->paginate(15);
 

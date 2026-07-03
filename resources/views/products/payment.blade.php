@@ -1,10 +1,10 @@
 @extends('layouts.tailwind')
 
 @php
-    /** @var \App\Models\WebTemplate $template */
-    $hasDiscount = !empty($template->discount_percentage) && (int) $template->discount_percentage > 0;
-    $price = (int) ($template->price ?? 0);
-    $finalPrice = (int) ($template->final_price ?? ($template->price ?? 0));
+    /** @var \App\Models\Product $product */
+    $hasDiscount = !empty($product->discount_percentage) && (int) $product->discount_percentage > 0;
+    $price = (int) ($product->price ?? 0);
+    $finalPrice = (int) ($product->final_price ?? ($product->price ?? 0));
     $formattedPrice = 'Rp' . number_format($price, 0, ',', '.');
     $formattedFinalPrice = 'Rp' . number_format($finalPrice, 0, ',', '.');
 @endphp
@@ -17,9 +17,9 @@
             <div class="text-sm text-slate-500 mb-6 flex items-center gap-2">
                 <a href="{{ route('home') }}" class="hover:text-primary">Home</a>
                 <i class="fa-solid fa-chevron-right text-xs"></i>
-                <a href="{{ route('templates.index') }}" class="hover:text-primary">Tema Web</a>
+                <a href="{{ route('products.index') }}" class="hover:text-primary">Tema Web</a>
                 <i class="fa-solid fa-chevron-right text-xs"></i>
-                <a href="{{ route('templates.show', $template->slug) }}" class="hover:text-primary">{{ $template->name }}</a>
+                <a href="{{ route('products.show', $product->slug) }}" class="hover:text-primary">{{ $product->name }}</a>
                 <i class="fa-solid fa-chevron-right text-xs"></i>
                 <span class="text-slate-800 font-medium">Pembayaran</span>
             </div>
@@ -82,12 +82,12 @@
                         </div>
 
                         <!-- Payment Confirmation Form -->
-                        <form action="{{ route('templates.confirm-payment') }}" method="POST" enctype="multipart/form-data"
+                        <form action="{{ route('products.confirm-payment') }}" method="POST" enctype="multipart/form-data"
                             id="payment-form" class="space-y-6">
                             @csrf
 
-                            <input type="hidden" name="template_id" value="{{ $template->id }}">
-                            <input type="hidden" name="amount_paid" value="{{ $template->final_price }}">
+                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                            <input type="hidden" name="amount_paid" value="{{ $product->final_price }}">
 
                             <!-- Customer Information -->
                             <div>
@@ -190,7 +190,7 @@
 
                             <!-- Action Buttons -->
                             <div class="flex gap-4 pt-6 border-t border-slate-100">
-                                <a href="{{ route('templates.show', $template->slug) }}"
+                                <a href="{{ route('products.show', $product->slug) }}"
                                     class="flex-1 px-6 py-3 border border-slate-200 text-slate-700 rounded-xl font-bold text-center hover:bg-slate-50 transition-colors">
                                     Kembali
                                 </a>
@@ -212,9 +212,9 @@
 
                         <!-- Product Image -->
                         @php
-                            $images = is_array($template->images) ? $template->images : [];
-                            $thumbnail = !empty($template->thumbnail_image)
-                                ? $template->thumbnail_image
+                            $images = is_array($product->images) ? $product->images : [];
+                            $thumbnail = !empty($product->thumbnail_image)
+                                ? $product->thumbnail_image
                                 : (count($images) > 0
                                     ? $images[0]
                                     : null);
@@ -223,13 +223,13 @@
 
                         @if ($thumbnailUrl)
                             <div class="mb-4 rounded-lg overflow-hidden border border-slate-100">
-                                <img src="{{ $thumbnailUrl }}" alt="{{ $template->name }}"
+                                <img src="{{ $thumbnailUrl }}" alt="{{ $product->name }}"
                                     class="w-full h-32 object-cover">
                             </div>
                         @endif
 
-                        <h4 class="font-bold text-slate-900 mb-1 text-sm">{{ $template->name }}</h4>
-                        <p class="text-xs text-slate-500 mb-4">{{ $template->short_description }}</p>
+                        <h4 class="font-bold text-slate-900 mb-1 text-sm">{{ $product->name }}</h4>
+                        <p class="text-xs text-slate-500 mb-4">{{ $product->short_description }}</p>
 
                         <!-- Divider -->
                         <div class="border-t border-slate-100 my-4"></div>
@@ -248,7 +248,7 @@
                                 <div class="flex justify-between">
                                     <span class="text-slate-600">Diskon:</span>
                                     <span class="text-red-600 font-bold">
-                                        -{{ (int) $template->discount_percentage }}%
+                                        -{{ (int) $product->discount_percentage }}%
                                     </span>
                                 </div>
                             @endif
@@ -357,7 +357,7 @@
                 submitBtn.innerHTML = '<i class="fa-solid fa-spinner animate-spin"></i> Memproses...';
 
                 try {
-                    const response = await fetch('{{ route('templates.confirm-payment') }}', {
+                    const response = await fetch('{{ route('products.confirm-payment') }}', {
                         method: 'POST',
                         headers: {
                             'X-Requested-With': 'XMLHttpRequest',
@@ -376,8 +376,8 @@
                     if (data.redirect_url) {
                         window.location.href = data.redirect_url;
                     } else {
-                        // Fallback to templates index
-                        window.location.href = '{{ route('templates.index') }}';
+                        // Fallback to Produks index
+                        window.location.href = '{{ route('products.index') }}';
                     }
                 } catch (error) {
                     alert('Error: ' + error.message);

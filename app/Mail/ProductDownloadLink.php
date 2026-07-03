@@ -8,7 +8,7 @@ use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 
-class TemplateDownloadLink extends Mailable
+class ProductDownloadLink extends Mailable
 {
 
     public function __construct(
@@ -20,14 +20,14 @@ class TemplateDownloadLink extends Mailable
     {
         return new Envelope(
             from: new Address(config('mail.from.address'), config('mail.from.name')),
-            subject: 'Download Produk Anda - ' . $this->payment->template->name,
+            subject: 'Download Produk Anda - ' . $this->payment->product->name,
         );
     }
 
     public function content(): Content
     {
         return new Content(
-            view: 'emails.template-download-link',
+            view: 'emails.product-download-link',
             with: [
                 'payment' => $this->payment,
                 'downloadUrl' => route('download.one-time', ['token' => $this->downloadToken]),

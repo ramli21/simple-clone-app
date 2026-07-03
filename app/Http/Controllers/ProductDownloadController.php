@@ -6,11 +6,11 @@ use App\Models\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class TemplateDownloadController extends Controller
+class ProductDownloadController extends Controller
 {
     public function showForm()
     {
-        return view('templates.download');
+        return view('products.download');
     }
 
     public function resolve(Request $request)
@@ -20,12 +20,12 @@ class TemplateDownloadController extends Controller
         ]);
 
         $payment = Payment::query()
-            ->with('template')
+            ->with('product')
             ->where('unique_code', $validated['unique_code'])
             ->where('status', 'approved')
             ->first();
 
-        if (! $payment || ! $payment->template) {
+        if (! $payment || ! $payment->product) {
             return back()->withErrors(['unique_code' => 'Kode tidak valid atau belum disetujui.'])->withInput();
         }
 
@@ -40,12 +40,12 @@ class TemplateDownloadController extends Controller
         $hash = hash('sha256', $token);
 
         $payment = Payment::query()
-            ->with('template')
+            ->with('product')
             ->where('download_token_hash', $hash)
             ->where('status', 'approved')
             ->first();
 
-        if (! $payment || ! $payment->template) {
+        if (! $payment || ! $payment->product) {
             abort(403);
         }
 
@@ -56,17 +56,17 @@ class TemplateDownloadController extends Controller
         $payment->download_token_used_at = now();
         $payment->save();
 
-        $template = $payment->template;
+        $product = $payment->product;
 
         // download_path assumed stored for Storage disk (private), treat as relative path.
-        $path = ltrim((string) $template->download_path, '/');
+        $path = ltrim((string) $product->download_path, '/');
 
-        if ($template->delivery_type == 'file') {
+        if ($product->delivery_type == 'file') {
             // download_path bersifat private, jadi download via disk "private".
             // pastikan config/filesystems.php memiliki disk private.
-            return Storage::disk('private')->download($path, $template->name.'.zip');
+            return Storage::disk('private')->download($path, $product->name.'.zip');
         } else {
-            return redirect()->to($template->download_path);
+            return redirect()->to($product->download_path);
         }
     }
 }

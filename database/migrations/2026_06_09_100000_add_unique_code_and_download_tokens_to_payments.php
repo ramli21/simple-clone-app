@@ -9,7 +9,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('payments', function (Blueprint $table) {
-            $table->string('unique_code', 6)->unique()->after('template_id');
+            $table->string('unique_code', 6)->unique()->after('product_id');
 
             // For generating 1-time download links
             $table->string('download_token_hash')->nullable()->after('unique_code');

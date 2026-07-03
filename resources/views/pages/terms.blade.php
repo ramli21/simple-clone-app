@@ -20,7 +20,7 @@
 
             <p>
                 Syarat &amp; ketentuan yang tercantum di halaman ini mengatur penggunaan seluruh layanan yang tersedia
-                di situs web kami, termasuk pembelian template digital, penggunaan produk Software as a Service
+                di situs web kami, termasuk pembelian Produk digital, penggunaan produk Software as a Service
                 (SaaS), serta layanan jasa pembuatan website custom.
             </p>
 
@@ -33,7 +33,7 @@
             <h2>1. INFORMASI UMUM DAN DEFINISI</h2>
             <ul>
                 <li>
-                    <strong>AkhriTech</strong> adalah penyedia solusi digital yang bergerak di bidang penjualan template
+                    <strong>AkhriTech</strong> adalah penyedia solusi digital yang bergerak di bidang penjualan Produk
                     website, penyedia platform SaaS, dan penyedia layanan jasa pembuatan website perorangan/solopreneur.
                 </li>
                 <li>
@@ -42,11 +42,11 @@
                 </li>
             </ul>
 
-            <h2>2. KETENTUAN PRODUK DIGITAL (TEMPLATE &amp; THEMES)</h2>
+            <h2>2. KETENTUAN PRODUK DIGITAL (Produk &amp; THEMES)</h2>
             <ul>
                 <li>
-                    <strong>Lisensi Penggunaan:</strong> Setiap pembelian template memberikan Anda lisensi non-eksklusif
-                    dan tidak dapat dipindahtangankan. Anda diperbolehkan menggunakan template untuk kebutuhan pribadi
+                    <strong>Lisensi Penggunaan:</strong> Setiap pembelian Produk memberikan Anda lisensi non-eksklusif
+                    dan tidak dapat dipindahtangankan. Anda diperbolehkan menggunakan Produk untuk kebutuhan pribadi
                     maupun proyek klien Anda.
                 </li>
                 <li>
@@ -93,7 +93,7 @@
             <h2>5. KEBIJAKAN PENGEMBALIAN DANA (REFUND POLICY)</h2>
             <ul>
                 <li>
-                    <strong>Produk Digital (Template):</strong> Karena sifat produk digital yang dapat langsung disalin dan
+                    <strong>Produk Digital (Produk):</strong> Karena sifat produk digital yang dapat langsung disalin dan
                     diunduh secara instan, kami tidak melayani pengembalian dana (no refund) setelah file atau akses
                     source code berhasil dikirimkan, kecuali jika produk terbukti cacat total/tidak bisa digunakan sekali
                     dan tim teknis kami tidak dapat memperbaikinya dalam waktu 7x24 jam.

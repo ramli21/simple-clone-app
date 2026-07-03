@@ -2,22 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\TemplateDownloadLink;
+use App\Mail\ProductDownloadLink;
 use App\Models\Payment;
-use App\Models\WebTemplate;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
-class TemplatePublicController extends Controller
+class ProductPublicController extends Controller
 {
     public function index()
     {
-        $templates = WebTemplate::query()
+        $products = Product::query()
             ->where('is_active', true)
             ->orderByDesc('sales_count')
             ->get();
 
-        $categories = WebTemplate::query()
+        $categories = Product::query()
             ->where('is_active', true)
             ->select('category')
             ->distinct()
@@ -26,24 +26,24 @@ class TemplatePublicController extends Controller
             ->filter()
             ->values();
 
-        return view('templates.index_2', [
-            'templates' => $templates,
+        return view('products.index_2', [
+            'templates' => $products,
             'categories' => $categories,
         ]);
     }
 
     public function show(string $slug)
     {
-        $template = WebTemplate::query()
+        $product = Product::query()
             ->where('slug', $slug)
             ->where('is_active', true)
             ->first();
 
-        if (! $template) {
+        if (! $product) {
             abort(404);
         }
 
-        $categories = WebTemplate::query()
+        $categories = Product::query()
             ->where('is_active', true)
             ->select('category')
             ->distinct()
@@ -52,13 +52,13 @@ class TemplatePublicController extends Controller
             ->filter()
             ->values();
 
-        return view('templates.show_2', compact('template', 'categories'));
+        return view('products.show_2', compact('product', 'categories'));
     }
 
     public function confirmPayment(Request $request)
     {
         $validated = $request->validate([
-            'template_id' => ['required', 'uuid', 'exists:web_templates,id'],
+            'product_id' => ['required', 'uuid', 'exists:products,id'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255'],
             'whatsapp_number' => ['required', 'string', 'max:50'],
@@ -76,7 +76,7 @@ class TemplatePublicController extends Controller
         $uniqueCode = Payment::generateUniqueCode(6);
 
         $payment = Payment::query()->create([
-            'template_id' => $validated['template_id'],
+            'product_id' => $validated['product_id'],
             'name' => $validated['name'],
             'email' => $validated['email'],
             'phone_number' => $request->input('phone_number'),
@@ -91,34 +91,34 @@ class TemplatePublicController extends Controller
 
         // Generate download token and send email
         $downloadToken = $payment->setNewOneTimeDownloadToken();
-        Mail::to($payment->email)->send(new TemplateDownloadLink($payment, $downloadToken));
+        Mail::to($payment->email)->send(new ProductDownloadLink($payment, $downloadToken));
 
         return response()->json([
             'ok' => true,
             'payment_id' => $payment->id,
-            'redirect_url' => route('templates.checkout-success', ['payment_id' => $payment->id, 'token' => $downloadToken]),
+            'redirect_url' => route('products.checkout-success', ['payment_id' => $payment->id, 'token' => $downloadToken]),
         ]);
     }
 
     public function claimFree(Request $request)
     {
         $validated = $request->validate([
-            'template_id' => ['required', 'uuid', 'exists:web_templates,id'],
+            'product_id' => ['required', 'uuid', 'exists:products,id'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255'],
             'whatsapp_number' => ['required', 'string', 'max:50'],
         ]);
 
-        $template = WebTemplate::findOrFail($validated['template_id']);
+        $product = Product::findOrFail($validated['product_id']);
 
-        if ($template->final_price > 0) {
+        if ($product->final_price > 0) {
             return response()->json(['ok' => false, 'message' => 'Template ini tidak gratis.'], 403);
         }
 
         $uniqueCode = Payment::generateUniqueCode(6);
 
         $payment = Payment::query()->create([
-            'template_id' => $validated['template_id'],
+            'product_id' => $validated['product_id'],
             'name' => $validated['name'],
             'email' => $validated['email'],
             'whatsapp_number' => $validated['whatsapp_number'],
@@ -132,7 +132,7 @@ class TemplatePublicController extends Controller
         $token = $payment->setNewOneTimeDownloadToken();
 
         // Increment sales count (since it's approved)
-        $template->increment('sales_count');
+        $product->increment('sales_count');
 
         return response()->json([
             'ok' => true,
@@ -142,22 +142,22 @@ class TemplatePublicController extends Controller
 
     public function checkout(string $slug)
     {
-        $template = WebTemplate::query()
+        $product = Product::query()
             ->where('slug', $slug)
             ->where('is_active', true)
             ->first();
 
-        if (!$template) {
+        if (!$product) {
             abort(404);
         }
 
-        return view('templates.checkout', compact('template'));
+        return view('products.checkout', compact('product'));
     }
 
     public function processCheckout(Request $request)
     {
         $validated = $request->validate([
-            'template_id' => ['required', 'uuid', 'exists:web_templates,id'],
+            'product_id' => ['required', 'uuid', 'exists:products,id'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255'],
             'phone_number' => ['nullable', 'string', 'max:50'],
@@ -165,14 +165,14 @@ class TemplatePublicController extends Controller
             'agree_terms' => ['required', 'accepted'],
         ]);
 
-        $template = WebTemplate::findOrFail($validated['template_id']);
+        $product = Product::findOrFail($validated['product_id']);
 
         // If template is free, claim it directly
-        if ($template->final_price == 0) {
+        if ($product->final_price == 0) {
             $uniqueCode = Payment::generateUniqueCode(6);
 
             $payment = Payment::query()->create([
-                'template_id' => $validated['template_id'],
+                'product_id' => $validated['product_id'],
                 'name' => $validated['name'],
                 'email' => $validated['email'],
                 'phone_number' => $validated['phone_number'] ?? null,
@@ -187,18 +187,18 @@ class TemplatePublicController extends Controller
 
             // Generate download token
             $downloadToken = $payment->setNewOneTimeDownloadToken();
-            $template->increment('sales_count');
+            $product->increment('sales_count');
 
             // Send email with download link
-            Mail::to($payment->email)->send(new TemplateDownloadLink($payment, $downloadToken));
+            Mail::to($payment->email)->send(new ProductDownloadLink($payment, $downloadToken));
 
             // Redirect to success page
-            return redirect()->route('templates.checkout-success', ['payment_id' => $payment->id, 'token' => $downloadToken]);
+            return redirect()->route('products.checkout-success', ['payment_id' => $payment->id, 'token' => $downloadToken]);
         }
 
         // For paid templates, redirect to payment confirmation page
-        return redirect()->route('templates.payment', [
-            'template_slug' => $template->slug,
+        return redirect()->route('products.payment', [
+            'product_slug' => $product->slug,
             'name' => $validated['name'],
             'email' => $validated['email'],
             'phone_number' => $validated['phone_number'],
@@ -206,14 +206,14 @@ class TemplatePublicController extends Controller
         ]);
     }
 
-    public function payment(string $template_slug, Request $request)
+    public function payment(string $product_slug, Request $request)
     {
-        $template = WebTemplate::query()
-            ->where('slug', $template_slug)
+        $product = Product::query()
+            ->where('slug', $product_slug)
             ->where('is_active', true)
             ->first();
 
-        if (!$template) {
+        if (!$product) {
             abort(404);
         }
 
@@ -224,7 +224,7 @@ class TemplatePublicController extends Controller
             'company_name' => $request->query('company_name'),
         ];
 
-        return view('templates.payment', compact('template', 'data'));
+        return view('products.payment', compact('product', 'data'));
     }
 
     public function checkoutSuccess(string $payment_id, string $token)
@@ -237,7 +237,7 @@ class TemplatePublicController extends Controller
             abort(404);
         }
 
-        return view('templates.checkout-success', [
+        return view('products.checkout-success', [
             'payment' => $payment,
             'downloadToken' => $token,
         ]);

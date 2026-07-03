@@ -117,7 +117,7 @@
         <div class="content">
             <p>Halo {{ $payment->name }},</p>
 
-            <p>Terima kasih telah membeli <strong>{{ $payment->template->name }}</strong> dari Akhritech! Kami sangat
+            <p>Terima kasih telah membeli <strong>{{ $payment->product->name }}</strong> dari Akhritech! Kami sangat
                 menghargai kepercayaan Anda.</p>
 
             <p>Produk Anda siap untuk diunduh. Klik tombol di bawah ini untuk mengakses file Anda:</p>
@@ -135,7 +135,7 @@
             <!-- Product Info -->
             <div class="product-info">
                 <p><strong>Informasi Pesanan:</strong></p>
-                <p><strong>Produk:</strong> {{ $payment->template->name }}</p>
+                <p><strong>Produk:</strong> {{ $payment->product->name }}</p>
                 <p><strong>Email:</strong> {{ $payment->email }}</p>
                 <p><strong>Kode Unik:</strong> <span class="code">{{ $payment->unique_code }}</span></p>
                 @if ($payment->amount_paid > 0)

@@ -1,16 +1,16 @@
 @extends('layouts.tailwind')
 
 @php
-    /** @var \App\Models\WebTemplate $template */
+    /** @var \App\Models\Product $product */
 @endphp
 
 @section('content')
     <!-- Screenshots Gallery -->
     @php
-        $images = is_array($template->images) ? $template->images : [];
+        $images = is_array($product->images) ? $product->images : [];
         $allImages = [];
-        if (!empty($template->thumbnail_image)) {
-            $allImages[] = $template->thumbnail_image;
+        if (!empty($product->thumbnail_image)) {
+            $allImages[] = $product->thumbnail_image;
         }
         foreach ($images as $img) {
             if (!empty($img)) {
@@ -25,9 +25,9 @@
         }, $allImages);
         $imageUrls = array_values(array_filter($imageUrls));
 
-        $hasDiscount = !empty($template->discount_percentage) && (int) $template->discount_percentage > 0;
-        $price = (int) ($template->price ?? 0);
-        $finalPrice = (int) ($template->final_price ?? ($template->price ?? 0));
+        $hasDiscount = !empty($product->discount_percentage) && (int) $product->discount_percentage > 0;
+        $price = (int) ($product->price ?? 0);
+        $finalPrice = (int) ($product->final_price ?? ($product->price ?? 0));
         $formattedPrice = 'Rp' . number_format($price, 0, ',', '.');
         $formattedFinalPrice = 'Rp' . number_format($finalPrice, 0, ',', '.');
     @endphp
@@ -50,7 +50,7 @@
                     <div class="mb-8">
                         <div class="flex flex-wrap gap-2 mb-3">
                             @php
-                                $headerCategories = array_slice(explode(',', $template->category), 0, 2);
+                                $headerCategories = array_slice(explode(',', $product->category), 0, 2);
                                 $colors = ['bg-indigo-50 text-indigo-700', 'bg-green-50 text-green-700'];
                             @endphp
                             @foreach ($headerCategories as $index => $cat)
@@ -60,7 +60,7 @@
                                 </span>
                             @endforeach
                         </div>
-                        <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-2">{{ $template->name }}</h1>
+                        <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-2">{{ $product->name }}</h1>
 
                         <div class="flex flex-wrap items-center gap-3 text-sm text-slate-500">
                             <span class="inline-flex items-center gap-2 text-yellow-400">
@@ -74,13 +74,13 @@
 
                             <span class="w-1 h-1 bg-slate-300 rounded-full"></span>
                             @if ($finalPrice == 0)
-                                <span>Download: {{ (int) ($template->sales_count ?? 0) }}x</span>
+                                <span>Download: {{ (int) ($product->sales_count ?? 0) }}x</span>
                             @else
-                                <span>Terjual: {{ (int) ($template->sales_count ?? 0) }}x</span>
+                                <span>Terjual: {{ (int) ($product->sales_count ?? 0) }}x</span>
                             @endif
-                            @if (!empty($template->updated_at))
+                            @if (!empty($product->updated_at))
                                 <span class="w-1 h-1 bg-slate-300 rounded-full"></span>
-                                <span>Update: {{ $template->updated_at->diffForHumans() }}</span>
+                                <span>Update: {{ $product->updated_at->diffForHumans() }}</span>
                             @endif
                         </div>
                     </div>
@@ -91,7 +91,7 @@
                             @if (!empty($imageUrls))
                                 <div id="main-image-container"
                                     class="rounded-lg overflow-hidden relative group cursor-pointer border border-slate-100">
-                                    <img id="main-preview-img" src="{{ $imageUrls[0] }}" alt="{{ $template->name }}"
+                                    <img id="main-preview-img" src="{{ $imageUrls[0] }}" alt="{{ $product->name }}"
                                         class="w-full h-auto object-cover" loading="lazy" />
                                     <div
                                         class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
@@ -107,7 +107,7 @@
                                     <div class="flex overflow-x-auto gap-2 pb-2 snap-x">
                                         @foreach (array_slice($imageUrls, 0, 6) as $index => $url)
                                             <img src="{{ $url }}"
-                                                alt="{{ $template->name }} thumbnail {{ $index + 1 }}"
+                                                alt="{{ $product->name }} thumbnail {{ $index + 1 }}"
                                                 class="thumb-img rounded-lg h-24 w-32 md:h-32 md:w-48 object-cover border-2 {{ $index == 0 ? 'border-primary opacity-100' : 'border-slate-100 opacity-70' }} cursor-pointer hover:opacity-100 transition-all flex-shrink-0 snap-start"
                                                 data-src="{{ $url }}" loading="lazy" />
                                         @endforeach
@@ -122,29 +122,29 @@
                     <!-- Description Section -->
                     <div class="mb-10">
                         <h2 class="text-2xl font-bold text-slate-900 mb-4">Deskripsi Produk</h2>
-                        <p class="text-slate-600 leading-relaxed mb-4">{{ $template->short_description }}</p>
+                        <p class="text-slate-600 leading-relaxed mb-4">{{ $product->short_description }}</p>
 
                         <div class="text-slate-600 leading-relaxed mb-4">
-                            {!! nl2br(e($template->description)) !!}
+                            {!! nl2br(e($product->description)) !!}
                         </div>
 
                         <h3 class="text-xl font-bold text-slate-900 mt-6 mb-3">Ringkasan Produk</h3>
                         <ul class="grid grid-cols-1 md:grid-cols-2 gap-3">
                             <li class="flex items-start gap-3">
                                 <i class="fa-solid fa-tag text-indigo-500 mt-1"></i>
-                                <span>Kategori: {{ $template->category }}</span>
+                                <span>Kategori: {{ $product->category }}</span>
                             </li>
                             <li class="flex items-start gap-3">
                                 <i class="fa-solid fa-layer-group text-indigo-500 mt-1"></i>
-                                <span>Stack: {{ $template->stack ?: '-' }}</span>
+                                <span>Stack: {{ $product->stack ?: '-' }}</span>
                             </li>
                             <li class="flex items-start gap-3">
                                 <i class="fa-solid fa-receipt text-indigo-500 mt-1"></i>
-                                <span>SKU: {{ $template->sku }}</span>
+                                <span>SKU: {{ $product->sku }}</span>
                             </li>
                             <li class="flex items-start gap-3">
                                 <i class="fa-solid fa-circle-check text-indigo-500 mt-1"></i>
-                                <span>Status: {{ $template->is_active ? 'Aktif' : 'Nonaktif' }}</span>
+                                <span>Status: {{ $product->is_active ? 'Aktif' : 'Nonaktif' }}</span>
                             </li>
                         </ul>
                     </div>
@@ -190,26 +190,26 @@
                                 </div>
                                 @if ($hasDiscount)
                                     <span class="bg-red-100 text-red-600 text-xs font-bold px-2 py-1 rounded">Diskon
-                                        {{ (int) $template->discount_percentage }}%</span>
+                                        {{ (int) $product->discount_percentage }}%</span>
                                 @endif
                             </div>
 
 
                             <!-- Buttons -->
                             @if ($finalPrice == 0)
-                                <a href="{{ route('templates.checkout.form', $template->slug) }}"
+                                <a href="{{ route('products.checkout.form', $product->slug) }}"
                                     class="w-full py-3.5 bg-green-600 text-white rounded-xl font-bold text-lg hover:bg-green-700 transition-all shadow-lg shadow-green-200 mb-3 flex items-center justify-center gap-2">
                                     <i class="fa-solid fa-download"></i> Dapatkan Sekarang
                                 </a>
                             @else
-                                <a href="{{ route('templates.checkout.form', $template->slug) }}"
+                                <a href="{{ route('products.checkout.form', $product->slug) }}"
                                     class="w-full py-3.5 bg-primary text-white rounded-xl font-bold text-lg hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-200 mb-3 flex items-center justify-center gap-2">
                                     <i class="fa-solid fa-cart-shopping"></i> Beli Sekarang
                                 </a>
                             @endif
 
                             @php
-                                $previewUrl = trim((string) ($template->preview_url ?? ''));
+                                $previewUrl = trim((string) ($product->preview_url ?? ''));
                             @endphp
 
                             @if (!empty($previewUrl))
@@ -264,7 +264,7 @@
                             <div>
                                 <h4 class="text-xs font-bold text-slate-400 uppercase mb-3">Tags</h4>
                                 <div class="flex flex-wrap gap-2">
-                                    @foreach (explode(',', $template->category) as $tag)
+                                    @foreach (explode(',', $product->category) as $tag)
                                         <a href="#"
                                             class="px-3 py-1 bg-slate-50 text-slate-600 text-xs rounded-md hover:bg-slate-100 border border-slate-200">{{ trim($tag) }}</a>
                                     @endforeach
@@ -299,7 +299,7 @@
                     <div class="bg-white w-full rounded-2xl shadow-xl overflow-hidden">
                         <div class="p-6 border-b border-slate-100 flex items-start justify-between gap-4">
                             <div>
-                                <h3 class="text-xl font-extrabold text-slate-900">Dapatkan Template Gratis</h3>
+                                <h3 class="text-xl font-extrabold text-slate-900">Dapatkan Produk Gratis</h3>
                                 <p class="text-sm text-slate-500 mt-1">Masukkan data Anda untuk mendapatkan akses unduhan.
                                 </p>
                             </div>
@@ -311,7 +311,7 @@
                         <div class="p-6">
                             <form id="free-claim-form" class="space-y-4">
                                 @csrf
-                                <input type="hidden" name="template_id" value="{{ $template->id }}">
+                                <input type="hidden" name="product_id" value="{{ $product->id }}">
                                 <div>
                                     <label class="text-sm font-bold text-slate-700">Nama Lengkap</label>
                                     <input type="text" name="name" required
@@ -431,8 +431,8 @@
                                 <form id="payment-confirm-form" enctype="multipart/form-data" class="space-y-4">
                                     @csrf
 
-                                    <input type="hidden" name="template_id" id="payment-template-id"
-                                        value="{{ $template->id }}">
+                                    <input type="hidden" name="product_id" id="payment-Produk-id"
+                                        value="{{ $product->id }}">
                                     <input type="hidden" name="amount_paid" id="amount-paid-hidden" />
 
                                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -490,7 +490,7 @@
                                 <p class="text-slate-600 text-sm mb-4">Terima kasih atas pembayaran Anda. Pembayaran sedang
                                     kami verifikasi secara manual.</p>
                                 <div class="text-slate-700 text-sm font-bold">
-                                    Link download template akan dikirim ke email Anda (dan dikonfirmasi via WhatsApp) dalam
+                                    Link download Produk akan dikirim ke email Anda (dan dikonfirmasi via WhatsApp) dalam
                                     waktu maksimal 1x24 jam.
                                 </div>
                                 <div class="text-slate-500 text-sm mt-4">
@@ -560,12 +560,12 @@
 
                     if (buyBtn) {
                         buyBtn.addEventListener('click', () => {
-                            const templateId = buyBtn.getAttribute('data-template-id');
-                            document.getElementById('payment-template-id').value = templateId;
+                            const ProdukId = buyBtn.getAttribute('data-Produk-id');
+                            document.getElementById('payment-Produk-id').value = ProdukId;
 
                             const original = {{ (int) $price }};
                             const finalBase = {{ (int) $finalPrice }};
-                            const discountPercentage = {{ (int) ($template->discount_percentage ?? 0) }};
+                            const discountPercentage = {{ (int) ($product->discount_percentage ?? 0) }};
                             const discountAmount = Math.max(0, original - finalBase);
 
                             const code = Math.floor(100 + Math.random() * 900); // 3 digits
@@ -635,7 +635,7 @@
                             loadingEl.classList.remove('hidden');
 
                             try {
-                                const res = await fetch('{{ route('templates.confirm-payment') }}', {
+                                const res = await fetch('{{ route('products.confirm-payment') }}', {
                                     method: 'POST',
                                     headers: {
                                         'X-Requested-With': 'XMLHttpRequest',
@@ -673,7 +673,7 @@
                         <div
                             class="p-6 border-b border-slate-100 flex items-start justify-between gap-4 sticky top-0 bg-white z-10">
                             <div>
-                                <h3 class="text-xl font-extrabold text-slate-900">Dapatkan Template Gratis</h3>
+                                <h3 class="text-xl font-extrabold text-slate-900">Dapatkan Produk Gratis</h3>
                                 <p class="text-sm text-slate-500 mt-1">Masukkan data Anda untuk mendapatkan akses unduhan.
                                 </p>
                             </div>
@@ -685,7 +685,7 @@
                         <div class="p-6">
                             <form id="free-claim-form" class="space-y-4">
                                 @csrf
-                                <input type="hidden" name="template_id" value="{{ $template->id }}">
+                                <input type="hidden" name="product_id" value="{{ $product->id }}">
                                 <div>
                                     <label class="text-sm font-bold text-slate-700">Nama Lengkap</label>
                                     <input type="text" name="name" required
@@ -789,8 +789,8 @@
             <!-- Related Themes (Simple Footer Teaser) -->
 
             @php
-                $relatedTemplates = \App\Models\WebTemplate::where('is_active', true)
-                    ->where('id', '!=', $template->id)
+                $relatedProduks = \App\Models\Product::where('is_active', true)
+                    ->where('id', '!=', $product->id)
                     ->inRandomOrder()
                     ->take(5)
                     ->get();
@@ -798,7 +798,7 @@
             <div class="mt-20">
                 <h3 class="text-2xl font-bold text-slate-900 mb-8">Tema Lain yang Mungkin Anda Suka</h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    @foreach ($relatedTemplates as $related)
+                    @foreach ($relatedProduks as $related)
                         @php
                             $relPrice = (int) ($related->price ?? 0);
                             $relFinalPrice = (int) ($related->final_price ?? ($related->price ?? 0));
@@ -820,7 +820,7 @@
                                 }
                             }
                         @endphp
-                        <a href="{{ route('templates.show', $related->slug) }}"
+                        <a href="{{ route('products.show', $related->slug) }}"
                             class="bg-white rounded-xl border border-slate-200 p-4 flex gap-4 items-center hover:shadow-md transition-shadow">
                             <img src="{{ $relImgUrl }}" alt="{{ $related->name }}"
                                 class="w-20 h-20 rounded-lg object-cover">

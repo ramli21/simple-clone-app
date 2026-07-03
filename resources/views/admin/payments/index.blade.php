@@ -54,7 +54,7 @@
                 <table class="table table-hover align-middle mb-0">
                     <thead class="table-light text-muted">
                         <tr>
-                            <th class="py-3 px-4 fw-bold">Template</th>
+                            <th class="py-3 px-4 fw-bold">Produk</th>
                             <th class="py-3 px-4 fw-bold">Pembeli</th>
                             <th class="py-3 px-4 fw-bold">Nominal</th>
                             <th class="py-3 px-4 fw-bold">Status</th>
@@ -66,8 +66,8 @@
                         @forelse ($payments as $payment)
                             <tr>
                                 <td class="py-3 px-4">
-                                    <div class="fw-bold text-dark">{{ $payment->template?->name ?? '-' }}</div>
-                                    <div class="small text-muted">{{ $payment->template?->slug ?? '' }}</div>
+                                    <div class="fw-bold text-dark">{{ $payment->Produk?->name ?? '-' }}</div>
+                                    <div class="small text-muted">{{ $payment->Produk?->slug ?? '' }}</div>
                                 </td>
                                 <td class="py-3 px-4">
                                     <div class="fw-bold text-dark">{{ $payment->name }}</div>

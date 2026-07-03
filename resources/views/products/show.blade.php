@@ -1,18 +1,18 @@
 @php
-    /** @var \App\Models\WebTemplate $template */
+    /** @var \App\Models\Product $product */
 @endphp
 
 @extends('layouts.app')
 
 @section('content')
     @php
-        $breadcrumb = route('templates.index');
+        $breadcrumb = route('products.index');
 
-        $images = is_array($template->images) ? $template->images : [];
+        $images = is_array($product->images) ? $product->images : [];
         $allImages = [];
 
-        if (!empty($template->thumbnail_image)) {
-            $allImages[] = $template->thumbnail_image;
+        if (!empty($product->thumbnail_image)) {
+            $allImages[] = $product->thumbnail_image;
         }
 
         foreach ($images as $img) {
@@ -30,15 +30,15 @@
 
         $imageUrls = array_values(array_filter($imageUrls));
 
-        $hasDiscount = !empty($template->discount_percentage) && (int) $template->discount_percentage > 0;
+        $hasDiscount = !empty($product->discount_percentage) && (int) $product->discount_percentage > 0;
 
-        $price = (int) ($template->price ?? 0);
-        $finalPrice = (int) ($template->final_price ?? ($template->price ?? 0));
+        $price = (int) ($product->price ?? 0);
+        $finalPrice = (int) ($product->final_price ?? ($product->price ?? 0));
 
         $formattedPrice = 'Rp' . number_format($price, 0, ',', '.');
         $formattedFinalPrice = 'Rp' . number_format($finalPrice, 0, ',', '.');
 
-        $preview = $template->preview_url;
+        $preview = $product->preview_url;
         $hasPreview = !empty($preview);
     @endphp
 
@@ -47,10 +47,10 @@
             <nav aria-label="breadcrumb" class="text-sm text-slate-600">
                 <ol class="flex flex-wrap items-center gap-2">
                     <li>
-                        <a href="{{ $breadcrumb }}" class="hover:text-indigo-700 transition-colors">Templates</a>
+                        <a href="{{ $breadcrumb }}" class="hover:text-indigo-700 transition-colors">Produks</a>
                     </li>
                     <li class="text-slate-400">/</li>
-                    <li class="text-slate-900 font-medium" aria-current="page">{{ $template->name }}</li>
+                    <li class="text-slate-900 font-medium" aria-current="page">{{ $product->name }}</li>
                 </ol>
             </nav>
         </div>
@@ -61,30 +61,30 @@
                 <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
                     <div class="flex flex-wrap items-start justify-between gap-4 mb-6">
                         <div>
-                            <h1 class="text-xl sm:text-2xl font-bold text-slate-900 leading-tight">{{ $template->name }}
+                            <h1 class="text-xl sm:text-2xl font-bold text-slate-900 leading-tight">{{ $product->name }}
                             </h1>
-                            <div class="text-slate-500 text-sm mt-1">Kategori: {{ $template->category }}</div>
+                            <div class="text-slate-500 text-sm mt-1">Kategori: {{ $product->category }}</div>
                         </div>
 
                         <div class="flex flex-wrap gap-2">
-                            @if (!empty($template->category))
+                            @if (!empty($product->category))
                                 <span
                                     class="inline-flex items-center rounded-full bg-slate-50 border border-slate-200 px-3 py-1 text-xs font-semibold text-slate-700">
-                                    {{ $template->category }}
+                                    {{ $product->category }}
                                 </span>
                             @endif
 
-                            @if (!empty($template->stack))
+                            @if (!empty($product->stack))
                                 <span
                                     class="inline-flex items-center rounded-full bg-indigo-50 border border-indigo-100 px-3 py-1 text-xs font-semibold text-indigo-700">
-                                    {{ $template->stack }}
+                                    {{ $product->stack }}
                                 </span>
                             @endif
 
                             @if ($hasDiscount)
                                 <span
                                     class="inline-flex items-center rounded-full bg-emerald-50 border border-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700">
-                                    Diskon {{ (int) $template->discount_percentage }}%
+                                    Diskon {{ (int) $product->discount_percentage }}%
                                 </span>
                             @endif
                         </div>
@@ -95,7 +95,7 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             @foreach ($imageUrls as $url)
                                 <div class="rounded-xl overflow-hidden border border-slate-100 bg-slate-50 h-[220px] group">
-                                    <img src="{{ $url }}" alt="{{ $template->name }}" loading="lazy"
+                                    <img src="{{ $url }}" alt="{{ $product->name }}" loading="lazy"
                                         class="w-full h-full object-cover transition duration-300 ease-in-out group-hover:scale-[1.05]" />
                                 </div>
                             @endforeach
@@ -109,7 +109,7 @@
                 <div class="mt-4 bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
                     <h2 class="text-base sm:text-lg font-semibold text-slate-900">Deskripsi</h2>
                     <div class="mt-3 text-slate-600 leading-relaxed text-sm sm:text-base">
-                        {!! nl2br(e($template->description)) !!}
+                        {!! nl2br(e($product->description)) !!}
                     </div>
                 </div>
             </div>
@@ -134,11 +134,11 @@
                         <div class="mt-5 pt-5 border-t border-slate-100 space-y-3">
                             <div class="flex items-center justify-between">
                                 <div class="text-slate-500 text-sm">SKU</div>
-                                <div class="font-semibold text-slate-900">{{ $template->sku }}</div>
+                                <div class="font-semibold text-slate-900">{{ $product->sku }}</div>
                             </div>
                             <div class="flex items-center justify-between">
                                 <div class="text-slate-500 text-sm">Kategori</div>
-                                <div class="font-semibold text-slate-900">{{ $template->category }}</div>
+                                <div class="font-semibold text-slate-900">{{ $product->category }}</div>
                             </div>
                         </div>
 
@@ -162,10 +162,10 @@
                         </div>
 
                         <div class="mt-4 text-slate-500 text-xs leading-relaxed">
-                            Pembelian akan membuka akses download template sesuai delivery_type.
+                            Pembelian akan membuka akses download Produk sesuai delivery_type.
                         </div>
 
-                        <div class="mt-2 text-slate-500 text-xs">Terjual {{ (int) ($template->sales_count ?? 0) }}x</div>
+                        <div class="mt-2 text-slate-500 text-xs">Terjual {{ (int) ($product->sales_count ?? 0) }}x</div>
                     </div>
                 </div>
             </div>
@@ -177,14 +177,14 @@
 @push('head_meta')
     @php
         $businessName = config('app.name', 'NamaBisnis Anda');
-        $metaTitle = "Jual Template {$template->name} - {$template->category} | {$businessName}";
-        $metaDescription = $template->short_description;
+        $metaTitle = "Jual Produk {$product->name} - {$product->category} | {$businessName}";
+        $metaDescription = $product->short_description;
 
         $ogImage = '';
-        if (!empty($template->thumbnail_image)) {
-            $ogImage = str_starts_with($template->thumbnail_image, ['http://', 'https://'])
-                ? $template->thumbnail_image
-                : asset('storage/' . $template->thumbnail_image);
+        if (!empty($product->thumbnail_image)) {
+            $ogImage = str_starts_with($product->thumbnail_image, ['http://', 'https://'])
+                ? $product->thumbnail_image
+                : asset('storage/' . $product->thumbnail_image);
         }
         $ogImage = $ogImage ?: asset('images/undraw_building.png');
 

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->uuid('template_id'); // Foreign key to web_templates
+            $table->uuid('product_id'); // Foreign key to products
             $table->string('name');
             $table->string('email');
             $table->string('whatsapp_number');
@@ -24,7 +24,7 @@ return new class extends Migration
             $table->timestamps();
 
             // Foreign key relation
-            $table->foreign('template_id')->references('id')->on('web_templates')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
 

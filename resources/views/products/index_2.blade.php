@@ -30,22 +30,22 @@
 
             <!-- Theme Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="theme-grid">
-                @foreach ($templates as $template)
+                @foreach ($products as $product)
                     @php
-                        $category = $template->category ?? '';
-                        $stack = $template->stack ?? '';
+                        $category = $product->category ?? '';
+                        $stack = $product->stack ?? '';
 
                         $thumbnailUrl = '';
-                        if (!empty($template->thumbnail_image)) {
-                            $thumbnailUrl = str_starts_with($template->thumbnail_image, 'https://')
-                                ? $template->thumbnail_image
-                                : asset('storage/' . $template->thumbnail_image);
+                        if (!empty($product->thumbnail_image)) {
+                            $thumbnailUrl = str_starts_with($product->thumbnail_image, 'https://')
+                                ? $product->thumbnail_image
+                                : asset('storage/' . $product->thumbnail_image);
                         }
 
-                        $price = (int) ($template->price ?? 0);
-                        $finalPrice = (int) ($template->final_price ?? ($template->price ?? 0));
+                        $price = (int) ($product->price ?? 0);
+                        $finalPrice = (int) ($product->final_price ?? ($product->price ?? 0));
                         $hasDiscount =
-                            !empty($template->discount_percentage) && (int) $template->discount_percentage > 0;
+                            !empty($product->discount_percentage) && (int) $product->discount_percentage > 0;
 
                         $formattedPrice = 'Rp' . number_format($price, 0, ',', '.');
                         $formattedFinalPrice = 'Rp' . number_format($finalPrice, 0, ',', '.');
@@ -56,7 +56,7 @@
                         <!-- Image Area -->
                         <div class="relative h-64 overflow-hidden bg-slate-100">
                             @if (!empty($thumbnailUrl))
-                                <img src="{{ $thumbnailUrl }}" alt="{{ $template->name }}"
+                                <img src="{{ $thumbnailUrl }}" alt="{{ $product->name }}"
                                     class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500"
                                     loading="lazy" />
                             @else
@@ -67,8 +67,8 @@
 
                             <div
                                 class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
-                                @if (!empty($template->preview_url))
-                                    <a href="{{ $template->preview_url }}" target="_blank" rel="noopener noreferrer"
+                                @if (!empty($product->preview_url))
+                                    <a href="{{ $product->preview_url }}" target="_blank" rel="noopener noreferrer"
                                         class="px-4 py-2 bg-white text-slate-900 rounded-lg font-bold text-sm hover:bg-slate-100">
                                         Preview
                                     </a>
@@ -79,7 +79,7 @@
                                     </button>
                                 @endif
 
-                                <a href="{{ route('templates.show', $template->slug) }}"
+                                <a href="{{ route('products.show', $product->slug) }}"
                                     class="px-4 py-2 bg-primary text-white rounded-lg font-bold text-sm hover:bg-indigo-700">
                                     Details
                                 </a>
@@ -88,16 +88,16 @@
                             @if ($hasDiscount)
                                 <span
                                     class="absolute top-4 left-4 bg-emerald-500/90 text-white text-xs font-bold px-2 py-1 rounded">
-                                    Diskon {{ (int) $template->discount_percentage }}%
+                                    Diskon {{ (int) $product->discount_percentage }}%
                                 </span>
                             @endif
                         </div>
 
                         <div class="p-6">
                             <div class="flex justify-between items-start mb-2">
-                                <a href="{{ route('templates.show', $template->slug) }}"
+                                <a href="{{ route('products.show', $product->slug) }}"
                                     class="text-lg font-bold text-slate-900 group-hover:text-primary transition-colors">
-                                    {{ $template->name }}
+                                    {{ $product->name }}
                                 </a>
 
                                 <div class="text-right">
@@ -109,7 +109,7 @@
                                 </div>
                             </div>
 
-                            <p class="text-slate-500 text-sm mb-4 line-clamp-2">{{ $template->short_description }}</p>
+                            <p class="text-slate-500 text-sm mb-4 line-clamp-2">{{ $product->short_description }}</p>
 
                             <div class="flex flex-wrap gap-2 mb-6">
                                 @if (!empty($category))
@@ -127,10 +127,10 @@
                             <div class="flex items-center justify-between border-t border-slate-100 pt-4">
                                 <div class="flex items-center gap-2 text-slate-500 text-xs">
                                     <i class="fa-solid fa-cart-shopping text-slate-400"></i>
-                                    <span>Terjual {{ (int) ($template->sales_count ?? 0) }}x</span>
+                                    <span>Terjual {{ (int) ($product->sales_count ?? 0) }}x</span>
                                 </div>
 
-                                <a href="{{ route('templates.show', $template->slug) }}"
+                                <a href="{{ route('products.show', $product->slug) }}"
                                     class="text-sm font-bold text-slate-900 hover:text-primary">
                                     Beli <i class="fa-solid fa-arrow-right ml-1"></i>
                                 </a>

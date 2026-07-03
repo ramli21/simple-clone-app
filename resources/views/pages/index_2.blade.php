@@ -18,12 +18,12 @@
                     </h1>
                     <p class="text-lg text-slate-600 mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
                         Kami membantu transformasi ide Anda menjadi produk digital yang menakjubkan, fungsional, dan
-                        berorientasi pada hasil. Temukan juga tema web premium kami.
+                        berorientasi pada hasil. Temukan juga produk premium kami.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                         <a href="#themes"
                             class="px-8 py-4 bg-primary text-white rounded-xl font-bold text-lg hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-200 flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-store"></i> Beli Tema Web
+                            <i class="fa-solid fa-store"></i> Beli Produk
                         </a>
                         <a href="#portfolio"
                             class="px-8 py-4 bg-white text-slate-700 border border-slate-200 rounded-xl font-bold text-lg hover:bg-slate-50 transition-all flex items-center justify-center gap-2">
@@ -85,7 +85,7 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 bg-white">
+    {{-- <section id="about" class="py-20 bg-white">
         <div class="container mx-auto px-4 lg:px-8">
             <div class="flex flex-col lg:flex-row items-center gap-16">
                 <div class="lg:w-1/2 relative">
@@ -125,7 +125,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <!-- Pricing Section (Layanan Pembuatan Website) -->
     <section id="services" class="py-20 bg-slate-50">
@@ -232,7 +232,7 @@
     </section>
 
     <!-- Themes Store Section (Highlight) -->
-    <section id="themes" class="py-20 bg-slate-900 text-white relative overflow-hidden">
+    <section id="products" class="py-20 bg-slate-900 text-white relative overflow-hidden">
         <!-- Background Decoration -->
         <div
             class="absolute top-0 right-0 w-96 h-96 bg-primary opacity-20 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2">
@@ -244,31 +244,30 @@
         <div class="container mx-auto px-4 lg:px-8 relative z-10">
             <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
                 <div class="max-w-2xl">
-                    <span class="text-accent font-bold tracking-wider uppercase text-sm">Marketplace Tema</span>
-                    <h2 class="text-3xl lg:text-5xl font-bold mt-2 mb-4">Tema Web Premium</h2>
-                    <p class="text-slate-300 text-lg">Luncurkan website Anda lebih cepat dengan koleksi tema
-                        berkualitas tinggi kami. Dibuat dengan TailwindCSS, bersih, dan mudah dikustomisasi.</p>
+                    <span class="text-accent font-bold tracking-wider uppercase text-sm">Marketplace</span>
+                    <h2 class="text-3xl lg:text-5xl font-bold mt-2 mb-4">Produk</h2>
+                    <p class="text-slate-300 text-lg">Luncurkan website Anda lebih cepat dengan koleksi produk
+                        berkualitas tinggi kami. Dibuat dengan profesional, bersih, dan mudah dikustomisasi.</p>
                 </div>
-                <a href="{{ route('templates.index') }}"
+                <a href="{{ route('products.index') }}"
                     class="px-6 py-3 border border-slate-600 rounded-lg hover:bg-white hover:text-slate-900 transition-all font-medium">
-                    Lihat Semua Tema <i class="fa-solid fa-arrow-right ml-2"></i>
+                    Lihat Semua Produk <i class="fa-solid fa-arrow-right ml-2"></i>
                 </a>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                @forelse($templates as $template)
+                @forelse($products as $product)
                     @php
                         $thumbnailUrl = '';
-                        if (!empty($template->thumbnail_image)) {
-                            $thumbnailUrl = str_starts_with($template->thumbnail_image, 'https://')
-                                ? $template->thumbnail_image
-                                : asset('storage/' . $template->thumbnail_image);
+                        if (!empty($product->thumbnail_image)) {
+                            $thumbnailUrl = str_starts_with($product->thumbnail_image, 'https://')
+                                ? $product->thumbnail_image
+                                : asset('storage/' . $product->thumbnail_image);
                         }
 
-                        $price = (int) ($template->price ?? 0);
-                        $finalPrice = (int) ($template->final_price ?? ($template->price ?? 0));
-                        $hasDiscount =
-                            !empty($template->discount_percentage) && (int) $template->discount_percentage > 0;
+                        $price = (int) ($product->price ?? 0);
+                        $finalPrice = (int) ($product->final_price ?? ($product->price ?? 0));
+                        $hasDiscount = !empty($product->discount_percentage) && (int) $product->discount_percentage > 0;
 
                         $formattedPrice = 'Rp ' . number_format($price, 0, ',', '.');
                         if ($finalPrice > 0) {
@@ -285,27 +284,26 @@
                                 @if ($hasDiscount)
                                     <span
                                         class="absolute top-4 left-4 bg-emerald-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10">
-                                        Diskon {{ (int) $template->discount_percentage }}%
+                                        Diskon {{ (int) $product->discount_percentage }}%
                                     </span>
                                 @endif
                                 @if (!empty($thumbnailUrl))
-                                    <img src="{{ $thumbnailUrl }}" alt="{{ $template->name }}"
+                                    <img src="{{ $thumbnailUrl }}" alt="{{ $product->name }}"
                                         class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500"
                                         loading="lazy">
                                 @else
-                                    <div
-                                        class="w-full h-full bg-slate-800 flex items-center justify-center text-slate-500">
+                                    <div class="w-full h-full bg-slate-800 flex items-center justify-center text-slate-500">
                                         No Image
                                     </div>
                                 @endif
                             </div>
                             <div class="p-6">
                                 <span
-                                    class="text-xs text-accent font-bold uppercase tracking-wider block mb-1">{{ $template->category }}</span>
+                                    class="text-xs text-accent font-bold uppercase tracking-wider block mb-1">{{ $product->category }}</span>
                                 <h3 class="text-xl font-bold mb-2 text-white group-hover:text-primary transition-colors">
-                                    {{ $template->name }}</h3>
+                                    {{ $product->name }}</h3>
                                 <p class="text-slate-400 text-sm mb-4 line-clamp-2 leading-relaxed">
-                                    {{ $template->short_description }}</p>
+                                    {{ $product->short_description }}</p>
                             </div>
                         </div>
                         <div class="p-6 pt-0 mt-auto">
@@ -315,11 +313,12 @@
                                         <div class="text-xs text-slate-500 line-through mb-0.5">{{ $formattedPrice }}
                                         </div>
                                     @endif
-                                    <span class="text-2xl font-extrabold text-accent">{{ $formattedFinalPrice }}</span>
+                                    <span class="text-2xl font-extrabold text-white">{{ $formattedFinalPrice }}</span>
                                 </div>
-                                <a href="{{ route('templates.show', $template->slug) }}"
+                                <a href="{{ route('products.show', $product->slug) }}"
                                     class="bg-primary hover:bg-indigo-600 text-white px-5 py-2.5 rounded-lg font-medium transition-colors flex items-center gap-2 text-sm shadow-md hover:shadow-lg">
-                                    <i class="fa-solid fa-cart-shopping"></i> {{ $formattedFinalPrice !== 'Gratis' ? 'Beli' : 'Dapatkan' }}
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                    {{ $formattedFinalPrice !== 'Gratis' ? 'Beli' : 'Dapatkan' }}
                                 </a>
                             </div>
                         </div>
@@ -341,14 +340,14 @@
                                 <span
                                     class="text-xs text-accent font-bold uppercase tracking-wider block mb-1">Dashboard</span>
                                 <h3 class="text-xl font-bold mb-2 text-white">AkhriSaaS - Dashboard Admin</h3>
-                                <p class="text-slate-400 text-sm mb-4 line-clamp-2">Template admin dashboard lengkap dengan
+                                <p class="text-slate-400 text-sm mb-4 line-clamp-2">Produk admin dashboard lengkap dengan
                                     fitur analitik dan dark mode.</p>
                             </div>
                         </div>
                         <div class="p-6 pt-0 mt-auto">
                             <div class="flex justify-between items-center border-t border-slate-700 pt-4">
                                 <span class="text-2xl font-bold text-accent">Rp 490.000</span>
-                                <a href="{{ route('templates.index') }}"
+                                <a href="{{ route('products.index') }}"
                                     class="bg-primary hover:bg-indigo-600 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center gap-2">
                                     <i class="fa-solid fa-cart-shopping"></i> Beli
                                 </a>
@@ -376,7 +375,7 @@
                         <div class="p-6 pt-0 mt-auto">
                             <div class="flex justify-between items-center border-t border-slate-700 pt-4">
                                 <span class="text-2xl font-bold text-accent">Rp 290.000</span>
-                                <a href="{{ route('templates.index') }}"
+                                <a href="{{ route('products.index') }}"
                                     class="bg-primary hover:bg-indigo-600 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center gap-2">
                                     <i class="fa-solid fa-cart-shopping"></i> Beli
                                 </a>
@@ -406,7 +405,7 @@
                         <div class="p-6 pt-0 mt-auto">
                             <div class="flex justify-between items-center border-t border-slate-700 pt-4">
                                 <span class="text-2xl font-bold text-accent">Rp 590.000</span>
-                                <a href="{{ route('templates.index') }}"
+                                <a href="{{ route('products.index') }}"
                                     class="bg-primary hover:bg-indigo-600 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center gap-2">
                                     <i class="fa-solid fa-cart-shopping"></i> Beli
                                 </a>
@@ -470,7 +469,7 @@
 
                         <div class="space-y-3 mb-6">
                             <div class="flex items-center gap-2 text-slate-500 text-sm">
-                                <i class="fa-solid fa-check text-green-500"></i> Template Siap Pakai
+                                <i class="fa-solid fa-check text-green-500"></i> Produk Siap Pakai
                             </div>
                             <div class="flex items-center gap-2 text-slate-500 text-sm">
                                 <i class="fa-solid fa-check text-green-500"></i> Integrasi Payment Gateway
@@ -658,7 +657,7 @@
                                 </div>
                                 <div>
                                     <h4 class="font-bold">Email</h4>
-                                    <p class="text-slate-400">hello@akhritech.com</p>
+                                    <p class="text-slate-400">{{ $company->email }}</p>
                                 </div>
                             </div>
                             <div class="flex items-start gap-4">
@@ -668,7 +667,7 @@
                                 </div>
                                 <div>
                                     <h4 class="font-bold">Telepon/WA</h4>
-                                    <p class="text-slate-400">+62 812 3456 7890</p>
+                                    <p class="text-slate-400">{{ phoneNumber($company->phone) }}</p>
                                 </div>
                             </div>
                             <div class="flex items-start gap-4">
@@ -678,7 +677,7 @@
                                 </div>
                                 <div>
                                     <h4 class="font-bold">Lokasi</h4>
-                                    <p class="text-slate-400">Jakarta Selatan, Indonesia</p>
+                                    <p class="text-slate-400">{{ $company->address }}</p>
                                 </div>
                             </div>
                         </div>
@@ -690,12 +689,6 @@
                             <a href="#"
                                 class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary transition-colors"><i
                                     class="fa-brands fa-instagram"></i></a>
-                            <a href="#"
-                                class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary transition-colors"><i
-                                    class="fa-brands fa-linkedin-in"></i></a>
-                            <a href="#"
-                                class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary transition-colors"><i
-                                    class="fa-brands fa-twitter"></i></a>
                         </div>
                     </div>
                 </div>

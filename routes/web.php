@@ -14,17 +14,17 @@ use App\Models\Blog;
 use App\Models\ServiceItem;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/templates', [\App\Http\Controllers\TemplatePublicController::class, 'index'])->name('templates.index');
-Route::get('/templates/{slug}', [\App\Http\Controllers\TemplatePublicController::class, 'show'])->name('templates.show');
-Route::get('/templates/{slug}/checkout', [\App\Http\Controllers\TemplatePublicController::class, 'checkout'])->name('templates.checkout.form');
-Route::post('/templates/checkout', [\App\Http\Controllers\TemplatePublicController::class, 'processCheckout'])->name('templates.checkout.process');
-Route::get('/templates/{template_slug}/payment', [\App\Http\Controllers\TemplatePublicController::class, 'payment'])->name('templates.payment');
-Route::get('/templates/checkout-success/{payment_id}/{token}', [\App\Http\Controllers\TemplatePublicController::class, 'checkoutSuccess'])->name('templates.checkout-success');
+Route::get('/products', [\App\Http\Controllers\ProductPublicController::class, 'index'])->name('products.index');
+Route::get('/products/{slug}', [\App\Http\Controllers\ProductPublicController::class, 'show'])->name('products.show');
+Route::get('/products/{slug}/checkout', [\App\Http\Controllers\ProductPublicController::class, 'checkout'])->name('products.checkout.form');
+Route::post('/products/checkout', [\App\Http\Controllers\ProductPublicController::class, 'processCheckout'])->name('products.checkout.process');
+Route::get('/products/{product_slug}/payment', [\App\Http\Controllers\ProductPublicController::class, 'payment'])->name('products.payment');
+Route::get('/products/checkout-success/{payment_id}/{token}', [\App\Http\Controllers\ProductPublicController::class, 'checkoutSuccess'])->name('products.checkout-success');
 
 // Customer portal download (1-time link by unique code)
-Route::get('/download', [\App\Http\Controllers\TemplateDownloadController::class, 'showForm'])->name('download.form');
-Route::post('/download/resolve', [\App\Http\Controllers\TemplateDownloadController::class, 'resolve'])->name('download.resolve');
-Route::get('/download/{token}', [\App\Http\Controllers\TemplateDownloadController::class, 'download'])->name('download.one-time');
+Route::get('/download', [\App\Http\Controllers\ProductDownloadController::class, 'showForm'])->name('download.form');
+Route::post('/download/resolve', [\App\Http\Controllers\ProductDownloadController::class, 'resolve'])->name('download.resolve');
+Route::get('/download/{token}', [\App\Http\Controllers\ProductDownloadController::class, 'download'])->name('download.one-time');
 
 Route::view('/terms', 'pages.terms')->name('terms');
 Route::view('/products/sabilsys', 'products.sabilsys')->name('home.products.sabilsys');
@@ -32,10 +32,10 @@ Route::post('/inquiry', [HomeController::class, 'inquiry'])->name('inquiry.store
 Route::get('/blogs', [PublicBlogController::class, 'index'])->name('blogs.index');
 Route::get('/blogs/{slug}', [PublicBlogController::class, 'show'])->name('blogs.show');
 
-Route::post('/templates/confirm-payment', [\App\Http\Controllers\TemplatePublicController::class, 'confirmPayment'])
-    ->name('templates.confirm-payment');
-Route::post('/templates/claim-free', [\App\Http\Controllers\TemplatePublicController::class, 'claimFree'])
-    ->name('templates.claim-free');
+Route::post('/products/confirm-payment', [\App\Http\Controllers\ProductPublicController::class, 'confirmPayment'])
+    ->name('products.confirm-payment');
+Route::post('/products/claim-free', [\App\Http\Controllers\ProductPublicController::class, 'claimFree'])
+    ->name('products.claim-free');
 
 
 Auth::routes();
@@ -67,7 +67,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('company-profiles', CompanyProfileController::class)->only(['index', 'create', 'store', 'edit', 'update']);
     Route::resource('portfolios', \App\Http\Controllers\Admin\PortfolioController::class);
 
-    Route::resource('templates', \App\Http\Controllers\Admin\TemplateAdminController::class);
+    Route::resource('products', \App\Http\Controllers\Admin\ProductAdminController::class);
 });
 
 

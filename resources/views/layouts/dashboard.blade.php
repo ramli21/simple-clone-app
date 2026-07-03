@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description"
-        content="Mantis is made using Bootstrap 5 design framework. Download the free admin template & use it for your project.">
+        content="Mantis is made using Bootstrap 5 design framework. Download the free admin Produk & use it for your project.">
     <meta name="keywords"
-        content="Mantis, Dashboard UI Kit, Bootstrap 5, Admin Template, Admin Dashboard, CRM, CMS, Bootstrap Admin Template">
+        content="Mantis, Dashboard UI Kit, Bootstrap 5, Admin Produk, Admin Dashboard, CRM, CMS, Bootstrap Admin Produk">
     <meta name="author" content="CodedThemes">
     <meta name="robots" content="noindex, nofollow">
     <meta name="googlebot" content="noindex, nofollow">
@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="{{ asset('vendors/mantis-v.1.0/fonts/fontawesome.css') }}">
     <!-- [Material Icons] https://fonts.google.com/icons -->
     <link rel="stylesheet" href="{{ asset('vendors/mantis-v.1.0/fonts/material.css') }}">
-    <!-- [Template CSS Files] -->
+    <!-- [Produk CSS Files] -->
     <link rel="stylesheet" href="{{ asset('vendors/mantis-v.1.0/css/style.css') }}" id="main-style-link">
     <link rel="stylesheet" href="{{ asset('vendors/mantis-v.1.0/css/style-preset.css') }}">
 
@@ -81,19 +81,19 @@
                     </li>
                     <li class="pc-item">
                         <a href="{{ route('admin.portfolios.index') }}" class="pc-link">
-                            <span class="pc-micon"><i class="ti ti-package"></i></span>
+                            <span class="pc-micon"><i class="ti ti-file"></i></span>
                             <span class="pc-mtext">Portfolios</span>
                         </a>
                     </li>
                     <li class="pc-item">
-                        <a href="{{ route('admin.templates.index') }}" class="pc-link">
-                            <span class="pc-micon"><i class="ti ti-files"></i></span>
-                            <span class="pc-mtext">Web Themes</span>
+                        <a href="{{ route('admin.products.index') }}" class="pc-link">
+                            <span class="pc-micon"><i class="ti ti-package"></i></span>
+                            <span class="pc-mtext">Products</span>
                         </a>
                     </li>
                     <li class="pc-item">
                         <a href="{{ route('admin.payments.index') }}" class="pc-link">
-                            <span class="pc-micon"><i class="ti ti-files"></i></span>
+                            <span class="pc-micon"><i class="ti ti-cash"></i></span>
                             <span class="pc-mtext">Payments</span>
                         </a>
                     </li>
