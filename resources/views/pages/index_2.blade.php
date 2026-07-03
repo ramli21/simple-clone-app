@@ -140,12 +140,15 @@
             </div>
 
             <!-- Pricing Grid -->
-            <div class="grid grid-cols-1 {{ count($packages) == 2 ? 'md:grid-cols-2 max-w-4xl mx-auto' : 'md:grid-cols-3' }} gap-8 items-start">
-                @foreach($packages as $package)
-                    <div class="bg-white rounded-2xl p-8 {{ $package['highlight'] ? 'border-2 border-primary shadow-xl relative transform md:-translate-y-4 z-10' : 'border border-slate-200 shadow-sm hover:shadow-lg' }} transition-all duration-300 flex flex-col h-full">
-                        @if($package['highlight'])
+            <div
+                class="grid grid-cols-1 {{ count($packages) == 2 ? 'md:grid-cols-2 max-w-4xl mx-auto' : 'md:grid-cols-3' }} gap-8 items-start">
+                @foreach ($packages as $package)
+                    <div
+                        class="bg-white rounded-2xl p-8 {{ $package['highlight'] ? 'border-2 border-primary shadow-xl relative transform md:-translate-y-4 z-10' : 'border border-slate-200 shadow-sm hover:shadow-lg' }} transition-all duration-300 flex flex-col h-full">
+                        @if ($package['highlight'])
                             <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                                <span class="bg-primary text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-md uppercase tracking-wide">
+                                <span
+                                    class="bg-primary text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-md uppercase tracking-wide">
                                     {{ $package['tagline'] }}
                                 </span>
                             </div>
@@ -154,27 +157,31 @@
                         <div class="mb-6 {{ $package['highlight'] ? 'pt-2' : '' }}">
                             <h3 class="text-xl font-bold text-slate-900 mb-2">{{ $package['name'] }}</h3>
                             <p class="text-slate-500 text-sm leading-relaxed">{{ $package['description'] }}</p>
-                            
-                            @if(isset($package['timeline']))
-                                <div class="mt-3 inline-flex items-center gap-1.5 px-2.5 py-1 bg-slate-50 text-slate-600 rounded-md text-xs font-semibold border border-slate-100">
+
+                            @if (isset($package['timeline']))
+                                <div
+                                    class="mt-3 inline-flex items-center gap-1.5 px-2.5 py-1 bg-slate-50 text-slate-600 rounded-md text-xs font-semibold border border-slate-100">
                                     <i class="fa-solid fa-clock text-slate-400"></i> Durasi: {{ $package['timeline'] }}
                                 </div>
                             @endif
                         </div>
 
                         <div class="mb-8">
-                            @if(isset($package['discounted_price']))
-                                <span class="text-4xl font-extrabold {{ $package['highlight'] ? 'text-primary' : 'text-slate-900' }}">
+                            @if (isset($package['discounted_price']))
+                                <span
+                                    class="text-4xl font-extrabold {{ $package['highlight'] ? 'text-primary' : 'text-slate-900' }}">
                                     {{ $package['discounted_price'] }}
                                 </span>
                                 <div class="mt-2 flex items-center gap-2">
                                     <span class="text-slate-400 text-sm line-through">{{ $package['price'] }}</span>
-                                    <span class="bg-red-50 text-red-600 text-xs px-2 py-0.5 rounded-full font-bold border border-red-100">
+                                    <span
+                                        class="bg-red-50 text-red-600 text-xs px-2 py-0.5 rounded-full font-bold border border-red-100">
                                         Hemat {{ $package['discount'] }}
                                     </span>
                                 </div>
                             @else
-                                <span class="text-4xl font-extrabold {{ $package['highlight'] ? 'text-primary' : 'text-slate-900' }}">
+                                <span
+                                    class="text-4xl font-extrabold {{ $package['highlight'] ? 'text-primary' : 'text-slate-900' }}">
                                     {{ $package['price'] }}
                                 </span>
                             @endif
@@ -182,21 +189,24 @@
                         </div>
 
                         <ul class="space-y-4 mb-8 flex-grow">
-                            @foreach($package['features'] as $feature)
+                            @foreach ($package['features'] as $feature)
                                 <li class="flex items-start gap-3">
                                     <i class="fa-solid fa-check text-green-500 mt-1 flex-shrink-0"></i>
                                     <span class="text-slate-600 text-sm">{{ $feature }}</span>
                                 </li>
                             @endforeach
-                            
-                            @if(isset($package['domains']) && count($package['domains']) > 0)
+
+                            @if (isset($package['domains']) && count($package['domains']) > 0)
                                 <li class="flex items-start gap-3 pt-4 border-t border-slate-100 mt-4">
                                     <i class="fa-solid fa-globe text-accent mt-1 flex-shrink-0"></i>
                                     <div>
-                                        <span class="text-slate-500 text-[10px] block font-bold uppercase tracking-wider mb-2">Pilihan Domain Gratis:</span>
+                                        <span
+                                            class="text-slate-500 text-[10px] block font-bold uppercase tracking-wider mb-2">Pilihan
+                                            Domain Gratis:</span>
                                         <div class="flex flex-wrap gap-1">
-                                            @foreach($package['domains'] as $domain)
-                                                <span class="px-2 py-0.5 bg-cyan-50 text-accent text-[10px] font-bold rounded border border-cyan-100/50">
+                                            @foreach ($package['domains'] as $domain)
+                                                <span
+                                                    class="px-2 py-0.5 bg-cyan-50 text-accent text-[10px] font-bold rounded border border-cyan-100/50">
                                                     {{ $domain }}
                                                 </span>
                                             @endforeach
@@ -257,49 +267,59 @@
 
                         $price = (int) ($template->price ?? 0);
                         $finalPrice = (int) ($template->final_price ?? ($template->price ?? 0));
-                        $hasDiscount = !empty($template->discount_percentage) && (int) $template->discount_percentage > 0;
+                        $hasDiscount =
+                            !empty($template->discount_percentage) && (int) $template->discount_percentage > 0;
 
                         $formattedPrice = 'Rp ' . number_format($price, 0, ',', '.');
-                        $formattedFinalPrice = 'Rp ' . number_format($finalPrice, 0, ',', '.');
+                        if ($finalPrice > 0) {
+                            $formattedFinalPrice = 'Rp ' . number_format($finalPrice, 0, ',', '.');
+                        } else {
+                            $formattedFinalPrice = 'Gratis';
+                        }
+                        // $formattedFinalPrice = 'Rp ' . number_format($finalPrice, 0, ',', '.');
                     @endphp
                     <article
                         class="bg-slate-800 rounded-2xl overflow-hidden border border-slate-700 hover:border-primary transition-colors group flex flex-col justify-between h-full">
                         <div>
                             <div class="relative overflow-hidden h-56 bg-slate-950">
-                                @if($hasDiscount)
+                                @if ($hasDiscount)
                                     <span
                                         class="absolute top-4 left-4 bg-emerald-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10">
                                         Diskon {{ (int) $template->discount_percentage }}%
                                     </span>
                                 @endif
-                                @if(!empty($thumbnailUrl))
-                                    <img src="{{ $thumbnailUrl }}"
-                                        alt="{{ $template->name }}"
+                                @if (!empty($thumbnailUrl))
+                                    <img src="{{ $thumbnailUrl }}" alt="{{ $template->name }}"
                                         class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500"
                                         loading="lazy">
                                 @else
-                                    <div class="w-full h-full bg-slate-800 flex items-center justify-center text-slate-500">
+                                    <div
+                                        class="w-full h-full bg-slate-800 flex items-center justify-center text-slate-500">
                                         No Image
                                     </div>
                                 @endif
                             </div>
                             <div class="p-6">
-                                <span class="text-xs text-accent font-bold uppercase tracking-wider block mb-1">{{ $template->category }}</span>
-                                <h3 class="text-xl font-bold mb-2 text-white group-hover:text-primary transition-colors">{{ $template->name }}</h3>
-                                <p class="text-slate-400 text-sm mb-4 line-clamp-2 leading-relaxed">{{ $template->short_description }}</p>
+                                <span
+                                    class="text-xs text-accent font-bold uppercase tracking-wider block mb-1">{{ $template->category }}</span>
+                                <h3 class="text-xl font-bold mb-2 text-white group-hover:text-primary transition-colors">
+                                    {{ $template->name }}</h3>
+                                <p class="text-slate-400 text-sm mb-4 line-clamp-2 leading-relaxed">
+                                    {{ $template->short_description }}</p>
                             </div>
                         </div>
                         <div class="p-6 pt-0 mt-auto">
                             <div class="flex justify-between items-center border-t border-slate-700 pt-4">
                                 <div>
-                                    @if($hasDiscount)
-                                        <div class="text-xs text-slate-500 line-through mb-0.5">{{ $formattedPrice }}</div>
+                                    @if ($hasDiscount)
+                                        <div class="text-xs text-slate-500 line-through mb-0.5">{{ $formattedPrice }}
+                                        </div>
                                     @endif
                                     <span class="text-2xl font-extrabold text-accent">{{ $formattedFinalPrice }}</span>
                                 </div>
                                 <a href="{{ route('templates.show', $template->slug) }}"
                                     class="bg-primary hover:bg-indigo-600 text-white px-5 py-2.5 rounded-lg font-medium transition-colors flex items-center gap-2 text-sm shadow-md hover:shadow-lg">
-                                    <i class="fa-solid fa-cart-shopping"></i> Beli
+                                    <i class="fa-solid fa-cart-shopping"></i> {{ $formattedFinalPrice !== 'Gratis' ? 'Beli' : 'Dapatkan' }}
                                 </a>
                             </div>
                         </div>
@@ -311,15 +331,18 @@
                         <div>
                             <div class="relative overflow-hidden h-56">
                                 <span
-                                    class="absolute top-4 left-4 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10">Best Seller</span>
+                                    class="absolute top-4 left-4 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10">Best
+                                    Seller</span>
                                 <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                                     alt="Theme Preview"
                                     class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
                             </div>
                             <div class="p-6">
-                                <span class="text-xs text-accent font-bold uppercase tracking-wider block mb-1">Dashboard</span>
+                                <span
+                                    class="text-xs text-accent font-bold uppercase tracking-wider block mb-1">Dashboard</span>
                                 <h3 class="text-xl font-bold mb-2 text-white">AkhriSaaS - Dashboard Admin</h3>
-                                <p class="text-slate-400 text-sm mb-4 line-clamp-2">Template admin dashboard lengkap dengan fitur analitik dan dark mode.</p>
+                                <p class="text-slate-400 text-sm mb-4 line-clamp-2">Template admin dashboard lengkap dengan
+                                    fitur analitik dan dark mode.</p>
                             </div>
                         </div>
                         <div class="p-6 pt-0 mt-auto">
@@ -343,9 +366,11 @@
                                     class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
                             </div>
                             <div class="p-6">
-                                <span class="text-xs text-accent font-bold uppercase tracking-wider block mb-1">Portfolio</span>
+                                <span
+                                    class="text-xs text-accent font-bold uppercase tracking-wider block mb-1">Portfolio</span>
                                 <h3 class="text-xl font-bold mb-2 text-white">Portfolio Creative Pro</h3>
-                                <p class="text-slate-400 text-sm mb-4 line-clamp-2">Tema portofolio minimalis untuk desainer dan fotografer profesional.</p>
+                                <p class="text-slate-400 text-sm mb-4 line-clamp-2">Tema portofolio minimalis untuk
+                                    desainer dan fotografer profesional.</p>
                             </div>
                         </div>
                         <div class="p-6 pt-0 mt-auto">
@@ -371,9 +396,11 @@
                                     class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
                             </div>
                             <div class="p-6">
-                                <span class="text-xs text-accent font-bold uppercase tracking-wider block mb-1">E-Commerce</span>
+                                <span
+                                    class="text-xs text-accent font-bold uppercase tracking-wider block mb-1">E-Commerce</span>
                                 <h3 class="text-xl font-bold mb-2 text-white">E-Shopify Ultimate</h3>
-                                <p class="text-slate-400 text-sm mb-4 line-clamp-2">Tema toko online modern dengan konversi tinggi dan loading cepat.</p>
+                                <p class="text-slate-400 text-sm mb-4 line-clamp-2">Tema toko online modern dengan konversi
+                                    tinggi dan loading cepat.</p>
                             </div>
                         </div>
                         <div class="p-6 pt-0 mt-auto">
@@ -589,14 +616,12 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                @forelse($portfolios as $portfolio)
+                @foreach ($portfolios as $portfolio)
                     <!-- Dynamic Portfolio Item -->
                     <div class="portfolio-card group relative overflow-hidden rounded-2xl shadow-lg cursor-pointer"
-                        data-project-title="{{ $portfolio->name }}"
-                        data-project-category="{{ $portfolio->category }}"
+                        data-project-title="{{ $portfolio->name }}" data-project-category="{{ $portfolio->category }}"
                         data-project-image="{{ $portfolio->image_url ?? 'https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' }}"
-                        data-project-description="{{ $portfolio->story }}"
-                        data-project-client="Mitra Akhritech"
+                        data-project-description="{{ $portfolio->story }}" data-project-client="Mitra Akhritech"
                         data-project-date="{{ $portfolio->created_at->format('F Y') }}"
                         data-project-tags="{{ is_array($portfolio->highlights) ? implode(',', $portfolio->highlights) : '' }}"
                         data-project-link="{{ $portfolio->link ?? '#' }}">
@@ -609,67 +634,7 @@
                             <h3 class="text-white text-xl font-bold">{{ $portfolio->name }}</h3>
                         </div>
                     </div>
-                @empty
-                    <!-- Fallback Static Portfolio Item 1 -->
-                    <div class="portfolio-card group relative overflow-hidden rounded-2xl shadow-lg cursor-pointer"
-                        data-project-title="FinTrack Dashboard"
-                        data-project-category="Fintech App"
-                        data-project-image="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                        data-project-description="FinTrack Dashboard adalah platform manajemen keuangan modern yang dirancang untuk membantu startup melacak pengeluaran, pemasukan, dan arus kas secara real-time. Dengan visualisasi grafik yang interaktif dan analitik prediktif berbasis AI, aplikasi ini mempermudah pengambilan keputusan keuangan perusahaan."
-                        data-project-client="FinTrack Inc."
-                        data-project-date="Maret 2023"
-                        data-project-tags="Laravel,TailwindCSS,Chart.js,Livewire,PostgreSQL"
-                        data-project-link="https://fintrack.example.com">
-                        <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                            alt="Project 1"
-                            class="w-full h-72 object-cover transform group-hover:scale-110 transition duration-700">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                            <span class="text-accent font-medium text-sm mb-1">Fintech App</span>
-                            <h3 class="text-white text-xl font-bold">FinTrack Dashboard</h3>
-                        </div>
-                    </div>
-
-                    <!-- Fallback Static Portfolio Item 2 -->
-                    <div class="portfolio-card group relative overflow-hidden rounded-2xl shadow-lg cursor-pointer"
-                        data-project-title="Health Go"
-                        data-project-category="Mobile App"
-                        data-project-image="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                        data-project-description="Health Go adalah aplikasi mobile kesehatan revolusioner yang menghubungkan pasien dengan dokter spesialis secara instan. Fitur utama meliputi konsultasi online via video call, pemesanan obat dengan pengantaran cepat, serta pelacak aktivitas kebugaran harian terintegrasi."
-                        data-project-client="Health Go Global"
-                        data-project-date="November 2022"
-                        data-project-tags="Flutter,Node.js,MongoDB,WebRTC,TailwindCSS"
-                        data-project-link="https://healthgo.example.com">
-                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                            alt="Project 2"
-                            class="w-full h-72 object-cover transform group-hover:scale-110 transition duration-700">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                            <span class="text-accent font-medium text-sm mb-1">Mobile App</span>
-                            <h3 class="text-white text-xl font-bold">Health Go</h3>
-                        </div>
-                    </div>
-
-                    <!-- Fallback Static Portfolio Item 3 -->
-                    <div class="portfolio-card group relative overflow-hidden rounded-2xl shadow-lg cursor-pointer"
-                        data-project-title="Tech Corp Landing"
-                        data-project-category="Corporate Web"
-                        data-project-image="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                        data-project-description="Tech Corp Landing adalah website company profile premium untuk perusahaan konsultan teknologi multinasional. Dirancang dengan fokus pada kecepatan performa, optimasi SEO maksimal, dan animasi transisi yang memukau untuk membangun reputasi profesional di mata klien global."
-                        data-project-client="Tech Corp Global"
-                        data-project-date="Januari 2023"
-                        data-project-tags="Next.js,TailwindCSS,Framer Motion,Vercel"
-                        data-project-link="https://techcorp.example.com">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                            alt="Project 3"
-                            class="w-full h-72 object-cover transform group-hover:scale-110 transition duration-700">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                            <span class="text-accent font-medium text-sm mb-1">Corporate Web</span>
-                            <h3 class="text-white text-xl font-bold">Tech Corp Landing</h3>
-                        </div>
-                    </div>
-                @endforelse
+                @endforeach
             </div>
         </div>
     </section>
@@ -776,14 +741,18 @@
     </section>
 
     <!-- Portfolio Detail Modal -->
-    <div id="portfolio-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 opacity-0 pointer-events-none transition-all duration-300">
+    <div id="portfolio-modal"
+        class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 opacity-0 pointer-events-none transition-all duration-300">
         <!-- Backdrop -->
-        <div id="modal-backdrop" class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity duration-300"></div>
+        <div id="modal-backdrop"
+            class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity duration-300"></div>
 
         <!-- Modal Content Window -->
-        <div id="modal-content" class="relative bg-white rounded-3xl overflow-hidden shadow-2xl max-w-4xl w-full max-h-[90vh] flex flex-col transform scale-95 translate-y-4 transition-all duration-300 z-10 border border-slate-100">
+        <div id="modal-content"
+            class="relative bg-white rounded-3xl overflow-hidden shadow-2xl max-w-4xl w-full max-h-[90vh] flex flex-col transform scale-95 translate-y-4 transition-all duration-300 z-10 border border-slate-100">
             <!-- Close Button -->
-            <button id="close-modal-btn" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-white/90 hover:bg-white text-slate-700 shadow-md flex items-center justify-center hover:scale-105 transition-all outline-none border border-slate-200">
+            <button id="close-modal-btn"
+                class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-white/90 hover:bg-white text-slate-700 shadow-md flex items-center justify-center hover:scale-105 transition-all outline-none border border-slate-200">
                 <i class="fa-solid fa-xmark text-lg"></i>
             </button>
 
@@ -792,7 +761,8 @@
                 <div class="flex flex-col md:flex-row min-h-[500px]">
                     <!-- Left: Project Image -->
                     <div class="md:w-1/2 relative bg-slate-950 flex items-center h-64 md:h-auto overflow-hidden">
-                        <img id="modal-img" src="" alt="Showcase" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                        <img id="modal-img" src="" alt="Showcase"
+                            class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-950/20 to-transparent"></div>
                     </div>
 
@@ -800,36 +770,44 @@
                     <div class="md:w-1/2 p-6 sm:p-8 flex flex-col justify-between">
                         <div>
                             <!-- Category Badge -->
-                            <span id="modal-category" class="inline-block text-xs font-bold tracking-wider text-accent uppercase bg-cyan-50 px-2.5 py-1 rounded-md mb-3 border border-cyan-100">Category</span>
+                            <span id="modal-category"
+                                class="inline-block text-xs font-bold tracking-wider text-accent uppercase bg-cyan-50 px-2.5 py-1 rounded-md mb-3 border border-cyan-100">Category</span>
 
                             <!-- Title -->
-                            <h3 id="modal-title" class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-4 leading-snug">Project Title</h3>
+                            <h3 id="modal-title"
+                                class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-4 leading-snug">Project Title
+                            </h3>
 
                             <!-- Description -->
-                            <p id="modal-description" class="text-slate-600 text-sm leading-relaxed mb-6">Description...</p>
+                            <p id="modal-description" class="text-slate-600 text-sm leading-relaxed mb-6">Description...
+                            </p>
 
                             <!-- Metadata Info -->
                             <div class="grid grid-cols-2 gap-4 mb-6 p-4 rounded-2xl bg-slate-50 border border-slate-100">
                                 <div>
-                                    <span class="block text-[10px] text-slate-400 font-bold uppercase tracking-wider">Klien</span>
+                                    <span
+                                        class="block text-[10px] text-slate-400 font-bold uppercase tracking-wider">Klien</span>
                                     <span id="modal-client" class="text-sm font-semibold text-slate-800">Client</span>
                                 </div>
                                 <div>
-                                    <span class="block text-[10px] text-slate-400 font-bold uppercase tracking-wider">Tanggal</span>
+                                    <span
+                                        class="block text-[10px] text-slate-400 font-bold uppercase tracking-wider">Tanggal</span>
                                     <span id="modal-date" class="text-sm font-semibold text-slate-800">Date</span>
                                 </div>
                             </div>
 
                             <!-- Tech Badges -->
                             <div class="mb-8">
-                                <span class="block text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-2">Teknologi</span>
+                                <span
+                                    class="block text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-2">Teknologi</span>
                                 <div id="modal-tags" class="flex flex-wrap gap-2"></div>
                             </div>
                         </div>
 
                         <!-- Action Button -->
                         <div class="border-t border-slate-100 pt-6 mt-auto">
-                            <a id="modal-link" href="#" target="_blank" class="w-full px-6 py-3.5 bg-primary hover:bg-indigo-700 text-white font-bold rounded-xl shadow-lg shadow-indigo-200 transition-all flex items-center justify-center gap-2">
+                            <a id="modal-link" href="#" target="_blank"
+                                class="w-full px-6 py-3.5 bg-primary hover:bg-indigo-700 text-white font-bold rounded-xl shadow-lg shadow-indigo-200 transition-all flex items-center justify-center gap-2">
                                 Kunjungi Website <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
                             </a>
                         </div>
@@ -882,7 +860,8 @@
                     const cleanTag = tag.trim();
                     if (cleanTag) {
                         const badge = document.createElement('span');
-                        badge.className = 'px-3 py-1 bg-slate-100 text-slate-700 text-xs font-semibold rounded-md border border-slate-200/60';
+                        badge.className =
+                            'px-3 py-1 bg-slate-100 text-slate-700 text-xs font-semibold rounded-md border border-slate-200/60';
                         badge.textContent = cleanTag;
                         modalTags.appendChild(badge);
                     }
