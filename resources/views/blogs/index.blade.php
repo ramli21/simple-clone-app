@@ -211,7 +211,7 @@
 
         .featured-blog-content {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-Produk-columns: 1fr 1fr;
             gap: 0;
             align-items: center;
         }
@@ -275,7 +275,7 @@
 
         @media (max-width: 768px) {
             .featured-blog-content {
-                grid-template-columns: 1fr;
+                grid-Produk-columns: 1fr;
             }
 
             .featured-blog-image {

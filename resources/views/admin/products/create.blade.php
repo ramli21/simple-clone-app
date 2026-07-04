@@ -2,8 +2,8 @@
 
 @section('title-page')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Add Web Template</h1>
-        <a href="{{ route('admin.templates.index') }}" class="btn btn-secondary">Back</a>
+        <h1 class="h2">Add Produk</h1>
+        <a href="{{ route('admin.products.index') }}" class="btn btn-secondary">Back</a>
     </div>
 @endsection
 
@@ -11,8 +11,18 @@
     <div class="container-fluid px-0">
         <div class="card">
             <div class="card-body">
-                <form action="{{ route('admin.templates.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
+
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
                     <div class="row">
                         <div class="col-md-6 mb-3">
@@ -112,18 +122,8 @@
                         </div>
 
                         <div class="col-md-6 mb-3">
-                            <label class="form-label fw-bold">Download Path</label>
-                            <input type="text" name="download_path"
-                                class="form-control @error('download_path') is-invalid @enderror"
-                                value="{{ old('download_path') }}" placeholder="path/di-privatkan/produk">
-                            @error('download_path')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="col-md-6 mb-3">
                             <label class="form-label fw-bold">Delivery Type</label>
-                            <select name="delivery_type"
+                            <select name="delivery_type" id="deliveryType"
                                 class="form-select @error('delivery_type') is-invalid @enderror">
                                 @foreach (['file' => 'file', 'github_repo' => 'github_repo', 'external_link' => 'external_link'] as $value => $label)
                                     <option value="{{ $value }}"
@@ -133,6 +133,26 @@
                                 @endforeach
                             </select>
                             @error('delivery_type')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-6 mb-3" id="fileUploadField" style="display: none;">
+                            <label class="form-label fw-bold">File Upload (ZIP)</label>
+                            <input type="file" name="produk_file"
+                                class="form-control @error('produk_file') is-invalid @enderror" accept=".zip">
+                            @error('produk_file')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                            <div class="text-muted small mt-1">Upload file ZIP Produk (max 100MB)</div>
+                        </div>
+
+                        <div class="col-md-6 mb-3" id="downloadPathField">
+                            <label class="form-label fw-bold">Download Path</label>
+                            <input type="text" name="download_path"
+                                class="form-control @error('download_path') is-invalid @enderror"
+                                value="{{ old('download_path') }}" placeholder="path/di-privatkan/produk">
+                            @error('download_path')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
@@ -172,10 +192,35 @@
 
                     <div class="mt-3 d-flex gap-2">
                         <button type="submit" class="btn btn-primary">Save</button>
-                        <a href="{{ route('admin.templates.index') }}" class="btn btn-secondary">Cancel</a>
+                        <a href="{{ route('admin.products.index') }}" class="btn btn-secondary">Cancel</a>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const deliveryTypeSelect = document.getElementById('deliveryType');
+            const fileUploadField = document.getElementById('fileUploadField');
+            const downloadPathField = document.getElementById('downloadPathField');
+
+            function toggleDeliveryFields() {
+                const selectedType = deliveryTypeSelect.value;
+                if (selectedType === 'file') {
+                    fileUploadField.style.display = 'block';
+                    downloadPathField.style.display = 'none';
+                } else {
+                    fileUploadField.style.display = 'none';
+                    downloadPathField.style.display = 'block';
+                }
+            }
+
+            // Trigger on load
+            toggleDeliveryFields();
+
+            // Trigger on change
+            deliveryTypeSelect.addEventListener('change', toggleDeliveryFields);
+        });
+    </script>
 @endsection

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreTemplateRequest extends FormRequest
+class UpdateProductRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -13,16 +13,15 @@ class StoreTemplateRequest extends FormRequest
 
     public function rules(): array
     {
+        // Untuk update, kolom yang wajib mengikuti requirement user.
         return [
             'name' => ['required', 'string', 'max:255'],
             'short_description' => ['required', 'string'],
             'description' => ['required', 'string'],
             'category' => ['required', 'string', 'max:255'],
             'price' => ['required', 'integer', 'min:0'],
-            'download_path' => ['required', 'string', 'max:2048'],
-
+            'delivery_type' => ['nullable', 'in:file,github_repo,external_link'],
             'discount_percentage' => ['nullable', 'integer', 'min:0', 'max:100'],
-
             'thumbnail_image' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
         ];
     }
@@ -35,4 +34,3 @@ class StoreTemplateRequest extends FormRequest
         ];
     }
 }
-

@@ -28,7 +28,7 @@ return [
     |
     */
 
-    'disks' => [
+'disks' => [
 
         'local' => [
             'driver' => 'local',
@@ -38,7 +38,17 @@ return [
             'report' => false,
         ],
 
+        // Disk untuk file private (tidak bisa diakses langsung via URL publik)
+        'private' => [
+            'driver' => 'local',
+            'root' => storage_path('app/private'),
+            'visibility' => 'private',
+            'throw' => false,
+            'report' => false,
+        ],
+
         'public' => [
+
             'driver' => 'local',
             'root' => storage_path('app/public'),
             'url' => env('APP_URL').'/storage',

@@ -2,9 +2,9 @@
 
 @section('title-page')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Web Templates</h1>
-        <a href="{{ route('admin.templates.create') }}" class="btn btn-primary">
-            <i class="ti ti-plus"></i> Add Template
+        <h1 class="h2">Produks</h1>
+        <a href="{{ route('admin.products.create') }}" class="btn btn-primary">
+            <i class="ti ti-plus"></i> Add Produk
         </a>
     </div>
 @endsection
@@ -34,41 +34,41 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($templates as $template)
+                            @forelse ($products as $product)
                                 <tr>
                                     <td>
-                                        <strong>{{ $template->name }}</strong>
-                                        <div class="text-muted small">{{ $template->slug }}</div>
+                                        <strong>{{ $product->name }}</strong>
+                                        <div class="text-muted small">{{ $product->slug }}</div>
                                     </td>
                                     <td>
-                                        {{ $template->sku ?? '-' }}
+                                        {{ $product->sku ?? '-' }}
                                     </td>
-                                    <td>{{ $template->category }}</td>
+                                    <td>{{ $product->category }}</td>
                                     <td>
                                         <span
-                                            class="fw-semibold">{{ number_format((int) $template->price, 0, ',', '.') }}</span>
-                                        @if (!is_null($template->discount_percentage) && (int) $template->discount_percentage > 0)
+                                            class="fw-semibold">{{ number_format((int) $product->price, 0, ',', '.') }}</span>
+                                        @if (!is_null($product->discount_percentage) && (int) $product->discount_percentage > 0)
                                             <div class="text-muted small">
-                                                Final: {{ number_format((int) $template->final_price, 0, ',', '.') }}
+                                                Final: {{ number_format((int) $product->final_price, 0, ',', '.') }}
                                             </div>
                                         @endif
                                     </td>
                                     <td>
-                                        @if ($template->is_active)
+                                        @if ($product->is_active)
                                             <span class="badge bg-success">Active</span>
                                         @else
                                             <span class="badge bg-secondary">Inactive</span>
                                         @endif
                                     </td>
-                                    <td>{{ (int) $template->sales_count }}</td>
+                                    <td>{{ (int) $product->sales_count }}</td>
                                     <td>
                                         <div class="btn-group btn-group-sm" role="group">
-                                            <a href="{{ route('admin.templates.edit', $template) }}" class="btn btn-warning"
+                                            <a href="{{ route('admin.products.edit', $product) }}" class="btn btn-warning"
                                                 title="Edit">
                                                 <i class="ti ti-edit"></i>
                                             </a>
-                                            <form action="{{ route('admin.templates.destroy', $template) }}" method="POST"
-                                                onsubmit="return confirm('Delete this template?')">
+                                            <form action="{{ route('admin.products.destroy', $product) }}" method="POST"
+                                                onsubmit="return confirm('Delete this Produk?')">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn btn-danger" type="submit" title="Delete">
@@ -81,7 +81,7 @@
                             @empty
                                 <tr>
                                     <td colspan="7" class="text-center py-5">
-                                        <div class="text-muted">No templates found.</div>
+                                        <div class="text-muted">No Produks found.</div>
                                     </td>
                                 </tr>
                             @endforelse
@@ -92,7 +92,7 @@
         </div>
 
         <div class="mt-3">
-            {{ $templates->links() }}
+            {{ $products->links() }}
         </div>
     </div>
 @endsection

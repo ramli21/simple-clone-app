@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CompanyProfile;
-use App\Models\ServiceItem;
-use Illuminate\Http\Request;
-use App\Models\Inquiry;
 use App\Mail\InqueryForwarderMailer;
+use App\Models\CompanyProfile;
+use App\Models\Inquiry;
+use App\Models\Portfolio;
+use App\Models\Product;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
@@ -17,71 +18,61 @@ class HomeController extends Controller
 
         $packages = [
             [
-                'name' => "Landing Page",
+                'name' => 'Landing Page',
                 'highlight' => false,
-                'tagline' => "Paket Terlaris",
-                'timeline' => "1-2 Minggu",
-                'description' => "Sebuah halaman web yang dirancang untuk memperkenalkan produk atau layanan tertentu, dengan fokus pada konversi pengunjung menjadi pelanggan.",
-                'price' => "Rp 950.000",
+                'tagline' => 'Paket Terlaris',
+                'timeline' => '1-2 Minggu',
+                'description' => 'Sebuah halaman web yang dirancang untuk memperkenalkan produk atau layanan tertentu, dengan fokus pada konversi pengunjung menjadi pelanggan.',
+                'price' => 'Rp 950.000',
                 'discount' => '15%',
-                'discounted_price' => "Rp 800.000",
+                'discounted_price' => 'Rp 800.000',
                 'domains' => ['.web.id', '.biz.id', '.my.id'],
                 'features' => [
-                    "Desain responsif yang menarik",
-                    "1 Halaman / Landing Page",
-                    "Contact Form",
-                    "Free Hosting",
-                    "Free Domain (pilihan terbatas) 1 tahun pertama",
-                    "SSL Certificate",
-                    "Konten yang disesuaikan dengan kebutuhan bisnis",
-                    "Integrasi dengan media sosial",
-                    "Optimasi SEO dasar",
-                    "Dukungan teknis selama 1 bulan",
-                    "Jaminan lifetime support untuk perbaikan bug dan masalah teknis terkait hosting",
+                    'Desain responsif yang menarik',
+                    '1 Halaman / Landing Page',
+                    'Contact Form',
+                    'Free Hosting',
+                    'Free Domain (pilihan terbatas) 1 tahun pertama',
+                    'SSL Certificate',
+                    'Konten yang disesuaikan dengan kebutuhan bisnis',
+                    'Integrasi dengan media sosial',
+                    'Optimasi SEO dasar',
+                    'Dukungan teknis selama 1 bulan',
+                    'Jaminan lifetime support untuk perbaikan bug dan masalah teknis terkait hosting',
                 ],
-            ], 
+            ],
             [
-                'name' => "Company Profile",
+                'name' => 'Company Profile',
                 'highlight' => true,
-                'tagline' => "Rekomendasi Terpopuler",
-                'timeline' => "2-4 Minggu",
-                'description' => "Sebuah situs web yang memberikan informasi lengkap tentang perusahaan, termasuk sejarah, visi, misi, produk atau layanan, dan kontak.",
-                'price' => "Rp 2.150.000",
+                'tagline' => 'Terpopuler',
+                'timeline' => '2-4 Minggu',
+                'description' => 'Sebuah situs web yang memberikan informasi lengkap tentang perusahaan, termasuk sejarah, visi, misi, produk atau layanan, dan kontak.',
+                'price' => 'Rp 2.150.000',
                 'discount' => '30%',
-                'discounted_price' => "Rp 1.500.000",
+                'discounted_price' => 'Rp 1.500.000',
                 'domains' => ['.com', '.id', '.web.id', '.biz.id', '.my.id'],
                 'features' => [
-                    "Desain profesional yang mencerminkan identitas perusahaan",
-                    "Konten yang disusun secara strategis untuk menarik klien potensial",
-                    "5 Halaman (Home, About, Services, Blog, Contact)",
-                    "Responsive & Modern Design",
-                    "Blog/News Section",
-                    "Contact Form & Inquiry System",
-                    "Admin Panel Dasar",
-                    "Free Hosting Premium",
-                    "Free Domain (pilihan terbatas) 1 tahun pertama",
-                    "SSL Certificate + Email Hosting",
-                    "Optimasi SEO untuk meningkatkan visibilitas online",
-                    "Dukungan teknis selama 3 bulan",
-                    "Jaminan lifetime support untuk perbaikan bug dan masalah teknis terkait hosting",
+                    'Desain profesional yang mencerminkan identitas perusahaan',
+                    'Konten yang disusun secara strategis untuk menarik klien potensial',
+                    '5 Halaman (Home, About, Services, Blog, Contact)',
+                    'Responsive & Modern Design',
+                    'Blog/News Section',
+                    'Contact Form & Inquiry System',
+                    'Admin Panel Dasar',
+                    'Free Hosting Premium',
+                    'Free Domain (pilihan terbatas) 1 tahun pertama',
+                    'SSL Certificate + Email Hosting',
+                    'Optimasi SEO untuk meningkatkan visibilitas online',
+                    'Dukungan teknis selama 3 bulan',
+                    'Jaminan lifetime support untuk perbaikan bug dan masalah teknis terkait hosting',
                 ],
-            ]
+            ],
         ];
 
-        return view('content.akhritech-landing', compact('company', 'packages'));
-    }
+        $portfolios = Portfolio::where('published', true)->latest()->get();
+        $products = Product::where('is_active', true)->latest()->take(3)->get();
 
-    public function productSabilsys()
-    {
-        return view('products.sabilsys');
-    }
-
-    public function serviceDetail($slug)
-    {
-        $company = CompanyProfile::first();
-        $service = ServiceItem::where('slug', $slug)->firstOrFail();
-
-        return view('service-detail', compact('company', 'service'));
+        return view('pages.landingpage', compact('company', 'packages', 'portfolios', 'products'));
     }
 
     public function inquiry(Request $request)
@@ -145,111 +136,4 @@ class HomeController extends Controller
         // Redirect kembali ke halaman sebelumnya dengan pesan sukses
         return redirect()->back()->with('success', 'Pesan Anda telah terkirim! Kami akan segera menghubungi Anda.');
     }
-
-    public function themes()
-    {
-        $company = CompanyProfile::first();
-        $template_filters = [
-            ['name' => 'Bisnis', 'data-filter' => '.filter-bisnis'],
-            // ['name' => 'Textile', 'data-filter' => '.filter-textile'],
-            // ['name' => 'Photograph', 'data-filter' => '.filter-photograph'],
-            // ['name' => 'Coffee Shop', 'data-filter' => '.filter-coffee-shop'],
-            ['name' => 'Travel', 'data-filter' => '.filter-education'],
-            // ['name' => 'Travel', 'data-filter' => '.filter-education'],
-        ];
-        $templates = [
-            [
-                'type' => 'Bisnis',
-                'code' => 'BS004',
-                'name' => 'Arsha',
-                'filter-class' => 'filter-bisnis',
-                'snippet' => 'Template ini cocok untuk memperkenalkan bisnis anda kepada calon client dan memnjadikan bisnis anda terlihat profesional.',
-                'img' => 'https://themewagon.com/wp-content/uploads/2021/06/arsha-1-1200x736.png',
-                'preview_url' => 'https://themewagon.github.io/arsha/',
-                'download_url' => 'https://themewagon.com/themes/free-bootstrap-5-html-5-business-website-template-arsha/',
-            ],
-            [
-                'type' => 'Coffee Shop',
-                'code' => 'CS001',
-                'name' => 'Lounge',
-                'filter-class' => 'filter-bisnis',
-                'snippet' => 'This Website is for personal and professional resumes of web developers, graphic designers, creative personals, photographers, and other similar professions or organizations. .',
-                'img' => 'https://themewagon.com/wp-content/uploads/2025/06/Lounge-1200x736.webp',
-                'preview_url' => 'https://themewagon.github.io/Lounge/',
-                'download_url' => 'https://themewagon.com/themes/lounge/',
-            ],
-            [
-                'type' => 'Bisnis',
-                'code' => 'BS007',
-                'name' => 'Salone ',
-                'filter-class' => 'filter-bisnis',
-                'snippet' => 'Salone is a template with a meticulous design for exclusive salon businesses. The theme has a meticulous design that is suitable for other businesses and corporations.',
-                'img' => 'https://themewagon.com/wp-content/uploads/2025/08/Salone-1200x736.webp',
-                'preview_url' => 'https://themewagon.github.io/Salone/',
-                'download_url' => 'https://themewagon.com/themes/salone/',
-            ],
-            [
-                'type' => 'Bisnis',
-                'code' => 'BS008',
-                'name' => 'Furnics',
-                'filter-class' => 'filter-bisnis',
-                'snippet' => 'Furnics website template is built using Bootstrap 5, HTML5 & CSS3. Its single-page design is ornamented with user-friendly UI components.',
-                'img' => 'https://themewagon.com/wp-content/uploads/2023/07/furncis.png',
-                'preview_url' => 'https://themewagon.github.io/furnics/',
-                'download_url' => 'https://themewagon.com/themes/furnics/',
-            ],
-            [
-                'type' => 'Coffee Shop',
-                'code' => 'CS002',
-                'name' => 'Koppee',
-                'filter-class' => 'filter-bisnis',
-                'snippet' => 'Koppee is a template for coffee shop websites. The business & corporate template is ideal for restaurants or other food-related businesses, too.',
-                'img' => 'https://themewagon.com/wp-content/uploads/2025/04/Koppee.webp',
-                'preview_url' => 'https://themewagon.github.io/Koppee/',
-                'download_url' => 'https://themewagon.com/themes/koppee/',
-            ],
-            [
-                'type' => 'Coffee Shop',
-                'code' => 'CS003',
-                'name' => 'Coffee - Simple Yet Compelling',
-                'filter-class' => 'filter-bisnis',
-                'snippet' => 'Here is another versatile, simple, and polished one page coffee shop Bootstrap template.',
-                'img' => 'https://themewagon.com/wp-content/uploads/2018/07/Coffee-free-coffee-shop-bootstrap-template-1.jpg',
-                'preview_url' => 'https://themewagon.github.io/coffee/',
-                'download_url' => 'https://themewagon.com/themes/free-coffee-shop-bootstrap-template-coffee/',
-            ],
-            [
-                'type' => 'Education',
-                'code' => 'ED001',
-                'name' => 'BabyCare',
-                'filter-class' => 'filter-education',
-                'snippet' => 'BabyCare is a template for daycare center websites. The theme has a simple and gorgeous design reflecting the services and activities of a daycare center.',
-                'img' => 'https://themewagon.com/wp-content/uploads/2024/09/BabyCare.webp',
-                'preview_url' => 'https://themewagon.github.io/BabyCare/',
-                'download_url' => 'https://themewagon.com/themes/babycare/',
-            ],
-            [
-                'type' => 'Education',
-                'code' => 'ED002',
-                'name' => 'eLearning',
-                'filter-class' => 'filter-education',
-                'snippet' => 'eLearning is a one-page educational website template with a minimal design. It is a theme with an intuitive layout that ensures user engagement on the site.',
-                'img' => 'https://themewagon.com/wp-content/uploads/2025/05/E-learning-1200x736.webp',
-                'preview_url' => 'https://themewagon.github.io/E-learning/',
-                'download_url' => 'https://themewagon.com/themes/e-learning/',
-            ],
-            [
-                'type' => 'Education',
-                'code' => 'ED003',
-                'name' => 'Drivin',
-                'filter-class' => 'filter-education',
-                'snippet' => 'Drivin is a template for driving school websites that incorporates all of the necessary features in a clean and modern design.',
-                'img' => 'https://themewagon.com/wp-content/uploads/2022/05/screencapture-technext-github-io-drivin-2022-05-17-09_33_46-1.png',
-                'preview_url' => 'https://themewagon.github.io/drivin/',
-                'download_url' => 'https://themewagon.com/themes/drivin-free-bootstrap-5-driving-school-website-template/',
-            ],
-        ];
-        return view('home.themes', compact('company', 'template_filters', 'templates'));
-    }
 }
-

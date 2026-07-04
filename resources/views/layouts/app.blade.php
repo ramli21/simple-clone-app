@@ -10,12 +10,84 @@
 
     @stack('metadata')
 
-    <link rel="stylesheet" href="{{ asset('vendors/bootstrap-dist/css/bootstrap.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('vendors/bootstrap-dist/icons/bootstrap-icons.min.css') }}" />
-    <link href="{{ asset('vendors/aos/aos.css') }}" rel="stylesheet">
+    {{-- Tailwind CSS v4 (CDN) --}}
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+
+    {{-- FontAwesome v6 (CDN) --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        integrity="sha512-AvbJv+T9t5lX5b0yPqYQm7w7u3V9J4x2mJ2pE3h0w3mJrQx7qWb9qf8q6c8x0m2cYxw3kq1qKx1lQ1qGfQmQ0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link href="{{ asset('vendors/aos/aos.css') }}?v={{ time() }}" rel="stylesheet">
+
+    @if (config('app.env') === 'production')
+        <script type="text/javascript">
+            (function(c, l, a, r, i, t, y) {
+                c[a] = c[a] || function() {
+                    (c[a].q = c[a].q || []).push(arguments)
+                };
+                t = l.createElement(r);
+                t.async = 1;
+                t.src = "https://www.clarity.ms/tag/" + i;
+                y = l.getElementsByTagName(r)[0];
+                y.parentNode.insertBefore(t, y);
+            })(window, document, "clarity", "script", "xggk5e7dpv");
+        </script>
+    @endif
+
+
+    {{-- Reset dasar agar Bootstrap lama tidak merusak Tailwind --}}
+    <style>
+        /* Basic reset */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji",
+                "Segoe UI Emoji";
+            line-height: 1.5;
+        }
+
+        img,
+        svg {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        textarea,
+        select {
+            font: inherit;
+        }
+
+        /* Prevent Bootstrap container/padding from affecting layout if any CSS remains */
+        .container {
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
 
     @stack('styles')
+
     <script src="https://www.google.com/recaptcha/api.js?render={{ env('RECAPTCHA_SITE_KEY') }}" async defer></script>
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DGDJKW7E3Y"></script>
     <script>
@@ -41,8 +113,7 @@
                 j = d.createElement(s),
                 dl = l != 'dataLayer' ? '&l=' + l : '';
             j.async = true;
-            j.src =
-                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
             f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-W6KW4DSK');
     </script>
@@ -51,11 +122,15 @@
 
 <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W6KW4DSK" height="0" width="0"
-            style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W6KW4DSK" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe>
+    </noscript>
     <!-- End Google Tag Manager (noscript) -->
+
     <div id="app">
         @include('home.components.navbar')
+
         {{-- Main Content --}}
         @yield('content')
 
@@ -72,6 +147,7 @@
         </a>
     @endif
 
+    {{-- Keep existing vendor scripts (AOS, etc.) --}}
     <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
         integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
     <script src="{{ asset('vendors/bootstrap-dist/js/bootstrap.bundle.min.js') }}"></script>
