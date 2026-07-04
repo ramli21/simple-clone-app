@@ -1,17 +1,16 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ServiceItemController;
-use App\Http\Controllers\ItineraryController;
-use App\Http\Controllers\CompanyProfileController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\BlogController as PublicBlogController;
+use App\Http\Controllers\CompanyProfileController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InquiryController;
+use App\Http\Controllers\ItineraryController;
+use App\Http\Controllers\ServiceItemController;
 use App\Models\Blog;
-use App\Models\ServiceItem;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/products', [\App\Http\Controllers\ProductPublicController::class, 'index'])->name('products.index');
@@ -26,8 +25,9 @@ Route::get('/download', [\App\Http\Controllers\ProductDownloadController::class,
 Route::post('/download/resolve', [\App\Http\Controllers\ProductDownloadController::class, 'resolve'])->name('download.resolve');
 Route::get('/download/{token}', [\App\Http\Controllers\ProductDownloadController::class, 'download'])->name('download.one-time');
 
-Route::view('/terms', 'pages.terms')->name('terms');
-Route::view('/products/sabilsys', 'products.sabilsys')->name('home.products.sabilsys');
+Route::view('/terms-of-service', 'pages.terms')->name('terms-of-service');
+Route::view('/privacy-policy', 'privacy-policy')->name('privacy-policy');
+Route::view('/saas/sabilsys', 'products.sabilsys')->name('saas.sabilsys');
 Route::post('/inquiry', [HomeController::class, 'inquiry'])->name('inquiry.store');
 Route::get('/blogs', [PublicBlogController::class, 'index'])->name('blogs.index');
 Route::get('/blogs/{slug}', [PublicBlogController::class, 'show'])->name('blogs.show');
@@ -36,7 +36,6 @@ Route::post('/products/confirm-payment', [\App\Http\Controllers\ProductPublicCon
     ->name('products.confirm-payment');
 Route::post('/products/claim-free', [\App\Http\Controllers\ProductPublicController::class, 'claimFree'])
     ->name('products.claim-free');
-
 
 Auth::routes();
 
@@ -70,16 +69,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('products', \App\Http\Controllers\Admin\ProductAdminController::class);
 });
 
-
-
-
 // Sitemap
 Route::get('/sitemap.xml', function () {
     // Fokus: halaman depan, products (SabilSys), dan blogs
     $blogs = Blog::published()->latest()->get();
 
     $sitemap = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
-    $sitemap .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
+    $sitemap .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'."\n";
 
     $pages = [
         ['loc' => url('/'), 'priority' => '1.0', 'changefreq' => 'weekly'],
@@ -91,22 +87,22 @@ Route::get('/sitemap.xml', function () {
     ];
 
     foreach ($pages as $page) {
-        $sitemap .= ' <url>' . "\n";
-        $sitemap .= '  <loc>' . $page['loc'] . '</loc>' . "\n";
-        $sitemap .= '  <lastmod>' . now()->toIso8601String() . '</lastmod>' . "\n";
-        $sitemap .= '  <changefreq>' . $page['changefreq'] . '</changefreq>' . "\n";
-        $sitemap .= '  <priority>' . $page['priority'] . '</priority>' . "\n";
-        $sitemap .= ' </url>' . "\n";
+        $sitemap .= ' <url>'."\n";
+        $sitemap .= '  <loc>'.$page['loc'].'</loc>'."\n";
+        $sitemap .= '  <lastmod>'.now()->toIso8601String().'</lastmod>'."\n";
+        $sitemap .= '  <changefreq>'.$page['changefreq'].'</changefreq>'."\n";
+        $sitemap .= '  <priority>'.$page['priority'].'</priority>'."\n";
+        $sitemap .= ' </url>'."\n";
     }
 
     // Blog detail: selalu sinkron dengan data yang published
     foreach ($blogs as $blog) {
-        $sitemap .= ' <url>' . "\n";
-        $sitemap .= '  <loc>' . url('/blogs/' . $blog->slug) . '</loc>' . "\n";
-        $sitemap .= '  <lastmod>' . ($blog->updated_at?->toIso8601String() ?? now()->toIso8601String()) . '</lastmod>' . "\n";
-        $sitemap .= '  <changefreq>monthly</changefreq>' . "\n";
-        $sitemap .= '  <priority>0.7</priority>' . "\n";
-        $sitemap .= ' </url>' . "\n";
+        $sitemap .= ' <url>'."\n";
+        $sitemap .= '  <loc>'.url('/blogs/'.$blog->slug).'</loc>'."\n";
+        $sitemap .= '  <lastmod>'.($blog->updated_at?->toIso8601String() ?? now()->toIso8601String()).'</lastmod>'."\n";
+        $sitemap .= '  <changefreq>monthly</changefreq>'."\n";
+        $sitemap .= '  <priority>0.7</priority>'."\n";
+        $sitemap .= ' </url>'."\n";
     }
 
     $sitemap .= '</urlset>';
@@ -121,4 +117,3 @@ Route::get('/sitemap.xml', function () {
 
     return response($sitemap, 200, ['Content-Type' => 'application/xml; charset=UTF-8']);
 });
-

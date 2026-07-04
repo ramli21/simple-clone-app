@@ -77,9 +77,49 @@
             background-size: 32px 32px;
         }
     </style>
+
+    <script src="https://www.google.com/recaptcha/api.js?render={{ env('RECAPTCHA_SITE_KEY') }}" async defer></script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DGDJKW7E3Y"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-DGDJKW7E3Y');
+    </script>
+
+    <!-- Google Tag Manager -->
+    <script>
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-W6KW4DSK');
+    </script>
+    <!-- End Google Tag Manager -->
 </head>
 
 <body class="text-slate-600 bg-slate-50 antialiased">
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W6KW4DSK" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
     <!-- Navbar -->
     <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4 bg-white/0">
@@ -143,9 +183,11 @@
                     <span class="text-xl font-bold text-white">Akhritech</span>
                 </div>
                 <div class="flex gap-8 text-sm">
-                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
-                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
-                    <a href="#" class="hover:text-white transition-colors">Support</a>
+                    <a href="{{ route('privacy-policy') }}" class="hover:text-white transition-colors">Privacy
+                        Policy</a>
+                    <a href="{{ route('terms-of-service') }}" class="hover:text-white transition-colors">Terms of
+                        Service</a>
+                    {{-- <a href="#" class="hover:text-white transition-colors">Support</a> --}}
                 </div>
                 <div class="text-sm">
                     &copy; {{ new \DateTime()->format('Y') }} Akhritech. All rights reserved.
@@ -153,6 +195,26 @@
             </div>
         </div>
     </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/{{ companyProfile()->phone }}?text=Halo%20Akhritech,%20saya%20ingin%20bertanya%20lebih%20lanjut"
+        target="_blank" rel="noopener noreferrer" id="wa-float-btn"
+        class="fixed bottom-20 right-6 z-50 flex items-center gap-3 group" aria-label="Chat via WhatsApp">
+
+        {{-- Tooltip --}}
+        <span
+            class="hidden sm:block opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0 transition-all duration-300 bg-white text-slate-800 text-sm font-semibold px-4 py-2 rounded-xl shadow-lg whitespace-nowrap pointer-events-none border border-slate-100">
+            Chat via WhatsApp
+        </span>
+
+        {{-- Button --}}
+        <div
+            class="relative flex items-center justify-center w-14 h-14 rounded-full bg-[#25d366] shadow-[0_8px_24px_rgba(37,211,102,0.45)] hover:shadow-[0_12px_32px_rgba(37,211,102,0.6)] hover:scale-110 transition-all duration-300">
+            {{-- Pulse ring --}}
+            <span class="absolute inset-0 rounded-full bg-[#25d366] animate-ping opacity-30"></span>
+            <i class="fa-brands fa-whatsapp text-white text-2xl relative z-10"></i>
+        </div>
+    </a>
 
     <!-- JavaScript for Interactions -->
     <script>

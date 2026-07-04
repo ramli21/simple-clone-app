@@ -27,7 +27,7 @@ class ProductPublicController extends Controller
             ->values();
 
         return view('products.index_2', [
-            'templates' => $products,
+            'products' => $products,
             'categories' => $categories,
         ]);
     }
@@ -147,7 +147,7 @@ class ProductPublicController extends Controller
             ->where('is_active', true)
             ->first();
 
-        if (!$product) {
+        if (! $product) {
             abort(404);
         }
 
@@ -213,7 +213,7 @@ class ProductPublicController extends Controller
             ->where('is_active', true)
             ->first();
 
-        if (!$product) {
+        if (! $product) {
             abort(404);
         }
 
@@ -233,7 +233,7 @@ class ProductPublicController extends Controller
             ->where('id', $payment_id)
             ->first();
 
-        if (!$payment) {
+        if (! $payment) {
             abort(404);
         }
 

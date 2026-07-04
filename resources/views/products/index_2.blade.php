@@ -5,9 +5,10 @@
         <div class="container mx-auto px-4 lg:px-8">
             <!-- Header -->
             <div class="text-center max-w-3xl mx-auto mb-12">
-                <span class="text-primary font-bold tracking-wider uppercase text-sm">Marketplace Tema</span>
-                <h2 class="text-3xl lg:text-4xl font-bold text-slate-900 mt-2 mb-4">Jelajahi Koleksi Tema Premium</h2>
-                <p class="text-slate-600 text-lg">Temukan desain website yang sempurna untuk proyek Anda. Semua tema dibangun
+                <span class="text-primary font-bold tracking-wider uppercase text-sm">Akhritech Marketplace</span>
+                <h2 class="text-3xl lg:text-4xl font-bold text-slate-900 mt-2 mb-4">Jelajahi Koleksi Produk Premium</h2>
+                <p class="text-slate-600 text-lg">Temukan desain website yang sempurna untuk proyek Anda. Semua produk
+                    dibangun
                     dengan kode bersih, responsif, dan mudah dikustomisasi.</p>
             </div>
 
@@ -44,8 +45,7 @@
 
                         $price = (int) ($product->price ?? 0);
                         $finalPrice = (int) ($product->final_price ?? ($product->price ?? 0));
-                        $hasDiscount =
-                            !empty($product->discount_percentage) && (int) $product->discount_percentage > 0;
+                        $hasDiscount = !empty($product->discount_percentage) && (int) $product->discount_percentage > 0;
 
                         $formattedPrice = 'Rp' . number_format($price, 0, ',', '.');
                         $formattedFinalPrice = 'Rp' . number_format($finalPrice, 0, ',', '.');
@@ -145,7 +145,7 @@
                 <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-100 mb-4">
                     <i class="fa-solid fa-magnifying-glass text-slate-400 text-2xl"></i>
                 </div>
-                <h3 class="text-xl font-bold text-slate-900 mb-2">Tidak ada tema ditemukan</h3>
+                <h3 class="text-xl font-bold text-slate-900 mb-2">Tidak ada produk ditemukan</h3>
                 <p class="text-slate-500">Coba ubah filter kategori untuk melihat hasil lain.</p>
             </div>
         </div>

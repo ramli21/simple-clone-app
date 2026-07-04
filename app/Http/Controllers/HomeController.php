@@ -44,7 +44,7 @@ class HomeController extends Controller
             [
                 'name' => 'Company Profile',
                 'highlight' => true,
-                'tagline' => 'Rekomendasi Terpopuler',
+                'tagline' => 'Terpopuler',
                 'timeline' => '2-4 Minggu',
                 'description' => 'Sebuah situs web yang memberikan informasi lengkap tentang perusahaan, termasuk sejarah, visi, misi, produk atau layanan, dan kontak.',
                 'price' => 'Rp 2.150.000',
@@ -72,7 +72,7 @@ class HomeController extends Controller
         $portfolios = Portfolio::where('published', true)->latest()->get();
         $products = Product::where('is_active', true)->latest()->take(3)->get();
 
-        return view('pages.index_2', compact('company', 'packages', 'portfolios', 'products'));
+        return view('pages.landingpage', compact('company', 'packages', 'portfolios', 'products'));
     }
 
     public function inquiry(Request $request)

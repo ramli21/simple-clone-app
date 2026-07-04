@@ -32,7 +32,7 @@
                     </div>
 
                     <div class="mt-10 flex items-center justify-center lg:justify-start gap-6 text-slate-400 text-sm">
-                        <div class="flex -space-x-3">
+                        {{-- <div class="flex -space-x-3">
                             <img class="w-10 h-10 rounded-full border-2 border-white"
                                 src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
                                 alt="Client">
@@ -42,8 +42,9 @@
                             <img class="w-10 h-10 rounded-full border-2 border-white"
                                 src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
                                 alt="Client">
-                        </div>
-                        <p>Dipercaya oleh <span class="font-bold text-slate-700">100+</span> Klien Puas</p>
+                        </div> --}}
+                        {{-- <p>Dipercaya oleh <span class="font-bold text-slate-700">100+</span> Klien Puas</p> --}}
+                        <p><span class="font-bold text-slate-700">Kualitas Premium</span> untuk Klien Berstandar Tinggi.</p>
                     </div>
                 </div>
 
@@ -418,7 +419,7 @@
     </section>
 
     <!-- SaaS Products Section -->
-    <section id="products" class="py-20 bg-slate-50">
+    <section id="SaaS" class="py-20 bg-slate-50">
         <div class="container mx-auto px-4 lg:px-8">
             <!-- Header Section -->
             <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
@@ -437,7 +438,7 @@
             </div>
 
             <!-- Grid Layout -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
 
                 <!-- Product Card 1 -->
                 <div
@@ -445,15 +446,14 @@
                     <div class="relative h-56 overflow-hidden">
                         <span
                             class="absolute top-4 left-4 bg-blue-50 text-blue-600 text-xs font-bold px-3 py-1 rounded-full z-10 border border-blue-100">
-                            Finance Tool
+                            Travel Agency
                         </span>
-                        <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                            alt="InvoiceGen"
+                        <img src="{{ asset('./images/akhritech_travel.jpeg') }}" alt="Dashboard Jamaah"
                             class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
                     </div>
                     <div class="p-6 flex flex-col flex-grow">
                         <div class="flex justify-between items-start mb-3">
-                            <h3 class="text-xl font-bold text-slate-900">InvoiceGen</h3>
+                            <h3 class="text-xl font-bold text-slate-900">SabilSys | Travel Haji & Umroh</h3>
                             <div class="flex gap-1 text-yellow-400 text-xs">
                                 <i class="fa-solid fa-star"></i>
                                 <i class="fa-solid fa-star"></i>
@@ -463,26 +463,32 @@
                             </div>
                         </div>
                         <p class="text-slate-600 text-sm mb-6 flex-grow">
-                            Buat kirim invoice profesional dalam hitungan detik. Kelola pelanggan dan pantau pembayaran
-                            dengan mudah.
+                            Sistem manajemen terintegrasi untuk menangani jama'ah, manifest, hingga laporan keuangan dalam
+                            satu dasbor digital. Cepat, aman, dan mudah digunakan.
                         </p>
 
                         <div class="space-y-3 mb-6">
                             <div class="flex items-center gap-2 text-slate-500 text-sm">
                                 <i class="fa-solid fa-check text-green-500"></i> Produk Siap Pakai
                             </div>
-                            <div class="flex items-center gap-2 text-slate-500 text-sm">
+                            {{-- <div class="flex items-center gap-2 text-slate-500 text-sm">
                                 <i class="fa-solid fa-check text-green-500"></i> Integrasi Payment Gateway
+                            </div> --}}
+                            <div class="flex items-center gap-2 text-slate-500 text-sm">
+                                <i class="fa-solid fa-check text-green-500"></i> Manifest Keberangkatan
+                            </div>
+                            <div class="flex items-center gap-2 text-slate-500 text-sm">
+                                <i class="fa-solid fa-check text-green-500"></i> Dashboard Jamaah
                             </div>
                         </div>
 
                         <div class="pt-4 border-t border-slate-100 flex items-center justify-between mt-auto">
                             <div>
                                 <span class="block text-xs text-slate-400">Mulai dari</span>
-                                <span class="block text-lg font-bold text-slate-900">Rp 50.000<span
+                                <span class="block text-lg font-bold text-slate-900">Rp 359.000<span
                                         class="text-sm font-normal text-slate-500">/bln</span></span>
                             </div>
-                            <a href="#"
+                            <a href="{{ route('saas.sabilsys') }}"
                                 class="px-5 py-2.5 bg-slate-900 text-white rounded-lg font-medium hover:bg-primary transition-colors text-sm">
                                 Coba Gratis
                             </a>
@@ -496,7 +502,7 @@
                     <div class="relative h-56 overflow-hidden">
                         <span
                             class="absolute top-4 left-4 bg-pink-50 text-pink-600 text-xs font-bold px-3 py-1 rounded-full z-10 border border-pink-100">
-                            Marketing
+                            coming soon
                         </span>
                         <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                             alt="SocialBoost"
@@ -504,7 +510,7 @@
                     </div>
                     <div class="p-6 flex flex-col flex-grow">
                         <div class="flex justify-between items-start mb-3">
-                            <h3 class="text-xl font-bold text-slate-900">SocialBoost</h3>
+                            <h3 class="text-xl font-bold text-slate-900">Upcoming Innovation</h3>
                             <div class="flex gap-1 text-yellow-400 text-xs">
                                 <i class="fa-solid fa-star"></i>
                                 <i class="fa-solid fa-star"></i>
@@ -514,94 +520,44 @@
                             </div>
                         </div>
                         <p class="text-slate-600 text-sm mb-6 flex-grow">
-                            Platform manajemen media sosial all-in-one. Jadwalkan posting, analisis performa, dan balas
-                            komentar dari satu dasbor.
+                            Solving [Masalah X] for [Market Y]. Stay tuned for the next breakthrough solution from
+                            Akhritech.
                         </p>
 
                         <div class="space-y-3 mb-6">
                             <div class="flex items-center gap-2 text-slate-500 text-sm">
-                                <i class="fa-solid fa-check text-green-500"></i> Multi-Account Support
+                                <i class="fa-solid fa-check text-green-500"></i> Coming Soon
                             </div>
                             <div class="flex items-center gap-2 text-slate-500 text-sm">
-                                <i class="fa-solid fa-check text-green-500"></i> Analitik Mendalam
+                                <i class="fa-solid fa-check text-green-500"></i> Innovation
                             </div>
                         </div>
 
                         <div class="pt-4 border-t border-slate-100 flex items-center justify-between mt-auto">
                             <div>
                                 <span class="block text-xs text-slate-400">Mulai dari</span>
-                                <span class="block text-lg font-bold text-slate-900">Rp 75.000<span
-                                        class="text-sm font-normal text-slate-500">/bln</span></span>
+                                <span class="block text-lg font-bold text-slate-900">-</span>
+                                {{-- <span
+                                        class="text-sm font-normal text-slate-500">/bln</span></span> --}}
                             </div>
-                            <a href="#"
+                            {{-- <a href="#"
                                 class="px-5 py-2.5 bg-slate-900 text-white rounded-lg font-medium hover:bg-primary transition-colors text-sm">
                                 Coba Gratis
-                            </a>
+                            </a> --}}
                         </div>
                     </div>
                 </div>
 
-                <!-- Product Card 3 -->
-                <div
-                    class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all border border-slate-100 overflow-hidden group flex flex-col h-full">
-                    <div class="relative h-56 overflow-hidden">
-                        <span
-                            class="absolute top-4 left-4 bg-purple-50 text-purple-600 text-xs font-bold px-3 py-1 rounded-full z-10 border border-purple-100">
-                            Productivity
-                        </span>
-                        <img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                            alt="TaskFlow"
-                            class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
-                    </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <div class="flex justify-between items-start mb-3">
-                            <h3 class="text-xl font-bold text-slate-900">TaskFlow</h3>
-                            <div class="flex gap-1 text-yellow-400 text-xs">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                            </div>
-                        </div>
-                        <p class="text-slate-600 text-sm mb-6 flex-grow">
-                            Aplikasi manajemen proyek agile yang sederhana namun powerful. Atur tim, tugas, dan deadline
-                            tanpa kerumitan.
-                        </p>
 
-                        <div class="space-y-3 mb-6">
-                            <div class="flex items-center gap-2 text-slate-500 text-sm">
-                                <i class="fa-solid fa-check text-green-500"></i> Kanban & Gantt View
-                            </div>
-                            <div class="flex items-center gap-2 text-slate-500 text-sm">
-                                <i class="fa-solid fa-check text-green-500"></i> Real-time Collaboration
-                            </div>
-                        </div>
 
-                        <div class="pt-4 border-t border-slate-100 flex items-center justify-between mt-auto">
-                            <div>
-                                <span class="block text-xs text-slate-400">Mulai dari</span>
-                                <span class="block text-lg font-bold text-slate-900">Rp 120.000<span
-                                        class="text-sm font-normal text-slate-500">/bln</span></span>
-                            </div>
-                            <a href="#"
-                                class="px-5 py-2.5 bg-slate-900 text-white rounded-lg font-medium hover:bg-primary transition-colors text-sm">
-                                Coba Gratis
-                            </a>
-                        </div>
-                    </div>
+                <!-- Mobile View All Button (Hidden on Desktop) -->
+                <div class="mt-10 text-center md:hidden">
+                    <a href="#"
+                        class="px-6 py-3 bg-white border border-slate-300 rounded-lg hover:border-primary hover:text-primary transition-all font-medium shadow-sm w-full inline-block">
+                        Lihat Semua Produk
+                    </a>
                 </div>
-
             </div>
-
-            <!-- Mobile View All Button (Hidden on Desktop) -->
-            <div class="mt-10 text-center md:hidden">
-                <a href="#"
-                    class="px-6 py-3 bg-white border border-slate-300 rounded-lg hover:border-primary hover:text-primary transition-all font-medium shadow-sm w-full inline-block">
-                    Lihat Semua Produk
-                </a>
-            </div>
-        </div>
     </section>
 
     <!-- Portfolio Section -->
