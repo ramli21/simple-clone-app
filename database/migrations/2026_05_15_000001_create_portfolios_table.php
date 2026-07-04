@@ -9,7 +9,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('portfolios', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('name');
             $table->string('category');
             $table->string('image')->nullable(); // stored path (e.g. portfolios/xxx.jpg)
@@ -26,4 +26,3 @@ return new class extends Migration
         Schema::dropIfExists('portfolios');
     }
 };
-

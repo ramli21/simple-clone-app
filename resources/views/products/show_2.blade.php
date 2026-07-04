@@ -121,11 +121,11 @@
 
                     <!-- Description Section -->
                     <div class="mb-10">
-                        <h2 class="text-2xl font-bold text-slate-900 mb-4">Deskripsi Produk</h2>
+                        <h2 class="text-2xl font-bold text-slate-900 mb-4">Deskripsi Produks</h2>
                         <p class="text-slate-600 leading-relaxed mb-4">{{ $product->short_description }}</p>
 
                         <div class="text-slate-600 leading-relaxed mb-4">
-                            {!! nl2br(e($product->description)) !!}
+                            {!! $product->description !!}
                         </div>
 
                         <h3 class="text-xl font-bold text-slate-900 mt-6 mb-3">Ringkasan Produk</h3>

@@ -1,167 +1,4 @@
-@extends('layouts.app')
-
-@push('styles')
-    <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('styles/app.css') }}" />
-    <style>
-        :root {
-            --primary-gradient: linear-gradient(135deg, #0d7377 0%, #4DB8C4 100%);
-            --primary-color: #0d7377;
-            --secondary-color: #4DB8C4;
-        }
-
-        .article-header {
-            background: var(--primary-gradient);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .article-header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 400px;
-            height: 400px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-        }
-
-        .article-header-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .article-category {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(4px);
-        }
-
-        .article-featured-image {
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-        }
-
-        .article-content h2 {
-            border-bottom: 3px solid var(--primary-color);
-        }
-
-        .article-content blockquote {
-            border-left: 4px solid var(--primary-color);
-        }
-
-        .article-share {
-            border-left: 4px solid var(--primary-color);
-        }
-
-        .author-box {
-            background: linear-gradient(135deg, rgba(13, 115, 119, 0.1) 0%, rgba(77, 184, 196, 0.1) 100%);
-            border: 1px solid var(--primary-color);
-        }
-
-        .author-avatar {
-            background: var(--primary-gradient);
-            width: 80px;
-            height: 80px;
-        }
-
-        .related-card {
-            transition: all 0.3s ease;
-        }
-
-        .related-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12) !important;
-        }
-
-        .related-card-image {
-            height: 200px;
-            overflow: hidden;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-        }
-
-        .related-card-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-
-        .related-card:hover .related-card-image img {
-            transform: scale(1.05);
-        }
-
-        .related-card-link {
-            color: var(--primary-color);
-            transition: all 0.3s ease;
-        }
-
-        .related-card-link:hover {
-            color: var(--secondary-color);
-            transform: translateX(4px);
-        }
-
-        .blog-cta {
-            background: var(--primary-gradient);
-        }
-
-        .cta-button {
-            background: white;
-            color: var(--primary-color);
-            transition: all 0.3s ease;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-
-        .share-facebook {
-            background: #1877F2;
-        }
-
-        .share-facebook:hover {
-            background: #0a66c2;
-            transform: translateY(-2px);
-        }
-
-        .share-twitter {
-            background: #1DA1F2;
-        }
-
-        .share-twitter:hover {
-            background: #1a8cd8;
-            transform: translateY(-2px);
-        }
-
-        .share-whatsapp {
-            background: #25D366;
-        }
-
-        .share-whatsapp:hover {
-            background: #1fa854;
-            transform: translateY(-2px);
-        }
-
-        .share-linkedin {
-            background: #0A66C2;
-        }
-
-        .share-linkedin:hover {
-            background: #084b9f;
-            transform: translateY(-2px);
-        }
-
-        .share-copy {
-            background: #888;
-        }
-
-        .share-copy:hover {
-            background: #666;
-            transform: translateY(-2px);
-        }
-    </style>
-@endpush
+@extends('layouts.tailwind')
 
 @push('metadata')
     <!-- SEO Meta Tags untuk Blog Detail -->
@@ -230,119 +67,124 @@
         ]
     ]) !!}
     </script>
-
-
 @endpush
 
 @section('content')
     <!-- Article Header -->
-    <header class="article-header text-white py-5 mt-5 mb-5">
-        <div class="container">
-            <div class="article-header-content mx-auto" style="max-width: 900px;">
-                <!-- Breadcrumb -->
-                <nav class="article-breadcrumb mb-3" aria-label="Breadcrumb">
-                    <a href="{{ route('home') ?? url('/') }}"
-                        class="text-white text-decoration-none opacity-75">Beranda</a>
-                    <span class="separator mx-2">→</span>
-                    <a href="{{ route('blogs.index') }}" class="text-white text-decoration-none opacity-75">Blog</a>
-                    <span class="separator mx-2">→</span>
-                    <span class="text-white-50">{{ $blog->title }}</span>
-                </nav>
+    <header class="relative bg-gradient-to-br from-[#0d7377] to-[#4DB8C4] text-white pt-28 pb-12 overflow-hidden">
+        {{-- Decorative circle --}}
+        <div class="absolute -top-1/2 -right-[10%] w-[400px] h-[400px] bg-white/10 rounded-full pointer-events-none"></div>
 
-                <!-- Category Badge -->
-                @if ($blog->category)
-                    <div class="badge article-category text-white mb-3">
-                        <i class="bi bi-tag-fill"></i>
-                        {{ $blog->category->name }}
+        <div class="container mx-auto px-4 relative z-10 max-w-4xl">
+            <!-- Breadcrumb -->
+            <nav class="flex items-center gap-2 text-sm text-white/75 mb-5" aria-label="Breadcrumb">
+                <a href="{{ route('home') ?? url('/') }}" class="hover:text-white transition-colors no-underline text-white/75">Beranda</a>
+                <span>→</span>
+                <a href="{{ route('blogs.index') }}" class="hover:text-white transition-colors no-underline text-white/75">Blog</a>
+                <span>→</span>
+                <span class="text-white/50 truncate max-w-xs">{{ $blog->title }}</span>
+            </nav>
+
+            <!-- Category Badge -->
+            @if ($blog->category)
+                <div class="inline-block bg-white/20 backdrop-blur-sm text-white text-sm font-semibold px-4 py-1.5 rounded-full mb-4">
+                    <i class="bi bi-tag-fill mr-1"></i>{{ $blog->category->name }}
+                </div>
+            @endif
+
+            <!-- Title -->
+            <h1 class="text-3xl md:text-5xl font-extrabold mb-6 leading-tight">{{ $blog->title }}</h1>
+
+            <!-- Meta -->
+            <div class="flex flex-wrap items-center gap-5 pt-4 border-t border-white/25 text-sm">
+                @if ($blog->author)
+                    <div class="flex items-center gap-2">
+                        <i class="bi bi-person-circle"></i>
+                        <span>{{ $blog->author->name }}</span>
                     </div>
                 @endif
-
-                <!-- Article Title -->
-                <h1 class="display-4 fw-bold mb-4 lh-1">{{ $blog->title }}</h1>
-
-                <!-- Article Meta -->
-                <div
-                    class="article-meta d-flex flex-wrap align-items-center gap-3 pt-3 border-top border-white border-opacity-25">
-                    @if ($blog->author)
-                        <div class="meta-item d-flex align-items-center gap-2">
-                            <i class="bi bi-person-circle"></i>
-                            <span>{{ $blog->author->name }}</span>
-                        </div>
-                    @endif
-
-                    @if ($blog->published_at)
-                        <div class="meta-item d-flex align-items-center gap-2">
-                            <i class="bi bi-calendar3"></i>
-                            <time datetime="{{ $blog->published_at->toIso8601String() }}">
-                                {{ $blog->published_at->translatedFormat('d F Y') }}
-                            </time>
-                        </div>
-                    @endif
-
-                    @php
-                        $wordCount = str_word_count(strip_tags($blog->content));
-                        $readingTime = ceil($wordCount / 200);
-                    @endphp
-                    <div class="meta-item d-flex align-items-center gap-2">
-                        <i class="bi bi-clock"></i>
-                        <span>{{ $readingTime }} menit baca</span>
+                @if ($blog->published_at)
+                    <div class="flex items-center gap-2">
+                        <i class="bi bi-calendar3"></i>
+                        <time datetime="{{ $blog->published_at->toIso8601String() }}">
+                            {{ $blog->published_at->translatedFormat('d F Y') }}
+                        </time>
                     </div>
+                @endif
+                @php
+                    $wordCount = str_word_count(strip_tags($blog->content));
+                    $readingTime = ceil($wordCount / 200);
+                @endphp
+                <div class="flex items-center gap-2">
+                    <i class="bi bi-clock"></i>
+                    <span>{{ $readingTime }} menit baca</span>
                 </div>
             </div>
         </div>
     </header>
 
     <!-- Article Content -->
-    <article class="blog-article">
-        <div class="container">
-            <div class="article-content mx-auto" style="max-width: 850px;">
+    <article>
+        <div class="container mx-auto px-4">
+            <div class="mx-auto max-w-3xl">
                 <!-- Featured Image -->
                 @if ($blog->image)
-                    <figure class="mb-5">
+                    <figure class="my-10">
                         <img src="{{ asset($blog->image) }}" alt="{{ $blog->title }}"
-                            class="article-featured-image img-fluid rounded" loading="lazy">
+                            class="w-full rounded-2xl shadow-[0_8px_24px_rgba(0,0,0,0.12)]" loading="lazy">
                     </figure>
                 @endif
 
-                <!-- Main Content -->
-                <div class="lh-lg" style="font-size: 1.1rem; line-height: 1.8; color: #333;">
+                <!-- Main Content — prose styles for rich content -->
+                <div class="prose prose-slate prose-lg max-w-none py-6
+                    prose-headings:font-bold prose-headings:text-slate-900
+                    prose-h2:border-b-4 prose-h2:border-[#0d7377] prose-h2:pb-2
+                    prose-a:text-[#0d7377] prose-a:no-underline hover:prose-a:underline
+                    prose-blockquote:border-l-4 prose-blockquote:border-[#0d7377] prose-blockquote:bg-slate-50 prose-blockquote:py-1 prose-blockquote:rounded-r-lg
+                    prose-code:bg-slate-100 prose-code:rounded prose-code:px-1.5 prose-code:py-0.5 prose-code:text-[#0d7377]
+                    prose-pre:bg-slate-900 prose-pre:text-slate-100 prose-pre:rounded-xl prose-pre:shadow-lg"
+                    style="font-size: 1.1rem; line-height: 1.8; color: #333;">
                     {!! $blog->content !!}
                 </div>
 
                 <!-- Social Share Section -->
-                <div class="article-share bg-light rounded p-4 my-5">
-                    <h5 class="fw-bold mb-3 text-dark">
-                        <i class="bi bi-share"></i> Bagikan Artikel Ini
+                <div class="border-l-4 border-[#0d7377] bg-slate-50 rounded-r-xl p-6 my-10">
+                    <h5 class="font-bold text-slate-800 mb-4 text-base">
+                        <i class="bi bi-share mr-2 text-[#0d7377]"></i>Bagikan Artikel Ini
                     </h5>
-                    <div class="share-buttons d-flex gap-2 flex-wrap">
+                    <div class="flex flex-wrap gap-3">
+                        <!-- Facebook -->
                         <a href="https://www.facebook.com/sharer/sharer.php?u={{ route('blogs.show', $blog->slug) }}"
                             target="_blank" rel="noopener noreferrer"
-                            class="share-button share-facebook text-white d-inline-flex align-items-center justify-content-center rounded-circle"
-                            style="width: 40px; height: 40px;" title="Bagikan ke Facebook">
+                            class="w-10 h-10 rounded-full bg-[#1877F2] hover:bg-[#0a66c2] text-white flex items-center justify-center transition-all duration-300 hover:-translate-y-0.5"
+                            title="Bagikan ke Facebook">
                             <i class="bi bi-facebook"></i>
                         </a>
+                        <!-- Twitter/X -->
                         <a href="https://twitter.com/intent/tweet?url={{ route('blogs.show', $blog->slug) }}&text={{ urlencode($blog->title) }}"
                             target="_blank" rel="noopener noreferrer"
-                            class="share-button share-twitter text-white d-inline-flex align-items-center justify-content-center rounded-circle"
-                            style="width: 40px; height: 40px;" title="Bagikan ke Twitter">
+                            class="w-10 h-10 rounded-full bg-[#1DA1F2] hover:bg-[#1a8cd8] text-white flex items-center justify-center transition-all duration-300 hover:-translate-y-0.5"
+                            title="Bagikan ke Twitter">
                             <i class="bi bi-twitter"></i>
                         </a>
+                        <!-- WhatsApp -->
                         <a href="https://wa.me/?text={{ urlencode($blog->title . ' ' . route('blogs.show', $blog->slug)) }}"
                             target="_blank" rel="noopener noreferrer"
-                            class="share-button share-whatsapp text-white d-inline-flex align-items-center justify-content-center rounded-circle"
-                            style="width: 40px; height: 40px;" title="Bagikan ke WhatsApp">
+                            class="w-10 h-10 rounded-full bg-[#25D366] hover:bg-[#1fa854] text-white flex items-center justify-center transition-all duration-300 hover:-translate-y-0.5"
+                            title="Bagikan ke WhatsApp">
                             <i class="bi bi-whatsapp"></i>
                         </a>
+                        <!-- LinkedIn -->
                         <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ route('blogs.show', $blog->slug) }}"
                             target="_blank" rel="noopener noreferrer"
-                            class="share-button share-linkedin text-white d-inline-flex align-items-center justify-content-center rounded-circle"
-                            style="width: 40px; height: 40px;" title="Bagikan ke LinkedIn">
+                            class="w-10 h-10 rounded-full bg-[#0A66C2] hover:bg-[#084b9f] text-white flex items-center justify-center transition-all duration-300 hover:-translate-y-0.5"
+                            title="Bagikan ke LinkedIn">
                             <i class="bi bi-linkedin"></i>
                         </a>
-                        <button
-                            class="share-button share-copy text-white d-inline-flex align-items-center justify-content-center rounded-circle border-0"
-                            style="width: 40px; height: 40px; cursor: pointer;" onclick="copyToClipboard()"
-                            title="Salin Link">
+                        <!-- Copy Link -->
+                        <button onclick="copyToClipboard()"
+                            class="w-10 h-10 rounded-full bg-slate-500 hover:bg-slate-600 text-white flex items-center justify-center transition-all duration-300 hover:-translate-y-0.5 border-0 cursor-pointer"
+                            title="Salin Link" id="copy-btn">
                             <i class="bi bi-link-45deg"></i>
                         </button>
                     </div>
@@ -350,20 +192,19 @@
 
                 <!-- Author Box -->
                 @if ($blog->author)
-                    <div class="author-box rounded p-4 my-5">
-                        <div class="author-info d-flex gap-3 align-items-start">
-                            <div
-                                class="author-avatar rounded-circle d-flex align-items-center justify-content-center text-white fs-3 flex-shrink-0">
+                    <div class="bg-gradient-to-br from-[#0d7377]/10 to-[#4DB8C4]/10 border border-[#0d7377]/30 rounded-2xl p-6 my-10">
+                        <div class="flex gap-4 items-start">
+                            <div class="w-20 h-20 rounded-full bg-gradient-to-br from-[#0d7377] to-[#4DB8C4] flex items-center justify-center text-white text-3xl font-bold flex-shrink-0">
                                 {{ strtoupper(substr($blog->author->name, 0, 1)) }}
                             </div>
-                            <div class="author-details">
-                                <h5 class="fw-bold mb-2 text-dark">
+                            <div>
+                                <h5 class="font-bold text-slate-900 mb-1">
                                     Tentang {{ $blog->author->name }}
-                                    <span class="text-muted d-block fw-normal mt-1"
-                                        style="font-size: 0.8rem;">{{ $blog->author->position ?? 'Penulis' }} di
-                                        Akhritech.</span>
                                 </h5>
-                                <p class="mb-0 text-muted">
+                                <span class="text-xs text-slate-400 block mb-2">
+                                    {{ $blog->author->position ?? 'Penulis' }} di Akhritech.
+                                </span>
+                                <p class="text-slate-500 text-sm mb-0">
                                     {{ $blog->author->about ?? 'Berpengalaman dalam mengembangkan solusi digital inovatif untuk berbagai industri.' }}
                                 </p>
                             </div>
@@ -384,33 +225,36 @@
     @endphp
 
     @if ($relatedArticles->isNotEmpty())
-        <section class="container my-5">
-            <div class="related-articles mx-auto" style="max-width: 850px;">
-                <h3 class="display-6 fw-bold mb-5 text-dark border-bottom pb-3">Artikel Terkait</h3>
-                <div class="row g-4">
+        <section class="py-16">
+            <div class="container mx-auto px-4 max-w-4xl">
+                <h3 class="text-3xl font-extrabold text-slate-900 border-b border-slate-200 pb-4 mb-10">Artikel Terkait</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     @foreach ($relatedArticles as $related)
-                        <div class="col-md-6 col-lg-4">
-                            <div class="card related-card h-100 border-0">
-                                <div class="related-card-image position-relative overflow-hidden">
-                                    <a href="{{ route('blogs.show', $related->id) }}" class="text-decoration-none">
-                                        <img src="{{ asset($related->image ?? 'images/blog-default.png') }}"
-                                            alt="{{ $related->title }}" class="img-fluid" loading="lazy">
-                                    </a>
-                                </div>
-                                <div class="card-body related-card-body">
-                                    <h6 class="card-title fw-bold mb-3">
-                                        <a href="{{ route('blogs.show', $related->slug) }}"
-                                            class="text-decoration-none text-dark">
-                                            {{ $related->title }}
-                                        </a>
-                                    </h6>
-                                    <p class="card-text small text-muted">
-                                        {{ Str::limit($related->excerpt ?? $related->content, 80) }}</p>
+                        <div class="group bg-white rounded-xl shadow-sm hover:shadow-[0_8px_20px_rgba(0,0,0,0.12)] border border-slate-100 overflow-hidden transition-all duration-300 hover:-translate-y-1 flex flex-col h-full">
+                            <!-- Related Image -->
+                            <div class="h-48 overflow-hidden bg-gradient-to-br from-slate-100 to-slate-200">
+                                <a href="{{ route('blogs.show', $related->id) }}" class="no-underline block h-full">
+                                    <img src="{{ asset($related->image ?? 'images/blog-default.png') }}"
+                                        alt="{{ $related->title }}"
+                                        class="w-full h-full object-cover transition-transform duration-400 group-hover:scale-[1.05]"
+                                        loading="lazy">
+                                </a>
+                            </div>
+                            <!-- Related Body -->
+                            <div class="p-5 flex flex-col flex-1">
+                                <h6 class="font-bold text-slate-900 mb-2 leading-snug">
                                     <a href="{{ route('blogs.show', $related->slug) }}"
-                                        class="related-card-link fw-semibold text-decoration-none">
-                                        Baca Selengkapnya <i class="bi bi-arrow-right"></i>
+                                        class="no-underline text-slate-900 hover:text-[#0d7377] transition-colors">
+                                        {{ $related->title }}
                                     </a>
-                                </div>
+                                </h6>
+                                <p class="text-sm text-slate-400 mb-4 flex-1">
+                                    {{ Str::limit($related->excerpt ?? $related->content, 80) }}
+                                </p>
+                                <a href="{{ route('blogs.show', $related->slug) }}"
+                                    class="inline-flex items-center gap-1.5 text-[#0d7377] hover:text-[#4DB8C4] font-semibold text-sm no-underline transition-all duration-300 hover:translate-x-1">
+                                    Baca Selengkapnya <i class="bi bi-arrow-right"></i>
+                                </a>
                             </div>
                         </div>
                     @endforeach
@@ -419,37 +263,27 @@
         </section>
     @endif
 
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <!-- CTA Section -->
-                <div class="blog-cta text-white text-center rounded py-5 my-5 mx-auto">
-                    <div class="container">
-                        <h4 class="h2 fw-bold mb-3">Tertarik Mengembangkan Solusi Digital Anda?</h4>
-                        <p class="lead mb-4 opacity-75">
-                            Tim ahli kami siap membantu mewujudkan visi teknologi bisnis Anda dengan solusi yang inovatif
-                            dan
-                            terpercaya.
-                        </p>
-                        <a href="{{ config('app.superadmin_wa') ? 'https://wa.me/' . config('app.superadmin_wa') . '?text=Halo%20Akhritech%2C%20saya%20tertarik%20konsultasi%20pembuatan%20website%20bisnis.' : '#' }}"
-                            target="_blank" class="cta-button btn px-4 py-2 fw-semibold text-decoration-none">
-                            Konsultasi Gratis <i class="bi bi-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-            </div>
+    <!-- CTA Section -->
+    <div class="container mx-auto px-4 pb-16 max-w-4xl">
+        <div class="bg-gradient-to-br from-[#0d7377] to-[#4DB8C4] text-white text-center rounded-2xl py-14 px-8">
+            <h4 class="text-3xl font-extrabold mb-3">Tertarik Mengembangkan Solusi Digital Anda?</h4>
+            <p class="text-lg opacity-75 mb-8 max-w-xl mx-auto">
+                Tim ahli kami siap membantu mewujudkan visi teknologi bisnis Anda dengan solusi yang inovatif dan terpercaya.
+            </p>
+            <a href="{{ config('app.superadmin_wa') ? 'https://wa.me/' . config('app.superadmin_wa') . '?text=Halo%20Akhritech%2C%20saya%20tertarik%20konsultasi%20pembuatan%20website%20bisnis.' : '#' }}"
+                target="_blank"
+                class="inline-block bg-white text-[#0d7377] font-semibold px-7 py-3 rounded-xl no-underline transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_16px_rgba(0,0,0,0.2)]">
+                Konsultasi Gratis <i class="bi bi-arrow-right"></i>
+            </a>
         </div>
     </div>
-
 @endsection
-
 
 <script>
     function copyToClipboard() {
         const url = window.location.href;
         navigator.clipboard.writeText(url).then(() => {
-            const btn = event.target.closest('button');
+            const btn = document.getElementById('copy-btn');
             const originalHTML = btn.innerHTML;
             btn.innerHTML = '<i class="bi bi-check-circle"></i>';
             setTimeout(() => {

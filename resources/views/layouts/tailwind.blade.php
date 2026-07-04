@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akhritech - Solusi Digital & Web Themes Premium</title>
+    {{-- <title>Akhritech - Solusi Digital & Web Themes Premium</title> --}}
+
+    @stack('metadata')
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -142,6 +144,8 @@
                     <a href="{{ route('products.index') }}"
                         class="font-medium hover:text-primary transition-colors text-primary">Produk</a>
                     <a href="/#portfolio" class="font-medium hover:text-primary transition-colors">Portofolio</a>
+                    <a href="{{ route('blogs.index') }}"
+                        class="font-medium hover:text-primary transition-colors">Blog</a>
                     <a href="/#contact"
                         class="px-5 py-2.5 bg-slate-900 text-white rounded-full font-medium hover:bg-primary transition-all shadow-md hover:shadow-lg">
                         Hubungi Kami

@@ -7,6 +7,11 @@
     </div>
 @endsection
 
+@push('styles')
+    <!-- include summernote css/js -->
+    <link href="{{ asset('vendors/summernote/summernote-bs5.min.css') }}" rel="stylesheet">
+@endpush
+
 @section('content')
     <div class="container-fluid px-0">
         <div class="card">
@@ -45,7 +50,8 @@
 
                         <div class="col-md-12 mb-3">
                             <label class="form-label fw-bold">Description (HTML/Markdown)</label>
-                            <textarea name="description" class="form-control @error('description') is-invalid @enderror" rows="6" required>{{ old('description', $product->description) }}</textarea>
+                            <textarea id="summernote" name="description" class="form-control @error('description') is-invalid @enderror"
+                                rows="6" required>{{ old('description', $product->description) }}</textarea>
                             @error('description')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -225,6 +231,17 @@
             </div>
         </div>
     </div>
+@endsection
+
+@push('scripts')
+    <script src="{{ asset('vendors/summernote/summernote-bs5.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#summernote').summernote({
+                height: 300
+            });
+        });
+    </script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -250,4 +267,4 @@
             deliveryTypeSelect.addEventListener('change', toggleDeliveryFields);
         });
     </script>
-@endsection
+@endpush

@@ -133,7 +133,9 @@ class HomeController extends Controller
             Mail::to($company->email)->send(new InqueryForwarderMailer($inquiry));
         }
 
-        // Redirect kembali ke halaman sebelumnya dengan pesan sukses
-        return redirect()->back()->with('success', 'Pesan Anda telah terkirim! Kami akan segera menghubungi Anda.');
+        return response()->json([
+            'success' => true,
+            'message' => 'Pesan Anda telah terkirim! Kami akan segera menghubungi Anda.',
+        ], 200);
     }
 }
