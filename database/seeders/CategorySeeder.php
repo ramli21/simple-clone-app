@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use App\Models\Category;
 use Ramsey\Uuid\Uuid;
 
@@ -10,7 +11,9 @@ class CategorySeeder extends Seeder
 {
     public function run()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Category::truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         $categories = [
             [

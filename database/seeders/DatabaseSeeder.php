@@ -20,15 +20,18 @@ class DatabaseSeeder extends Seeder
 
         User::create([
             'id' => (string) Uuid::uuid4(),
-            'name' => 'Admin User',
+            'name' => 'Ahmad Ramli',
             'email' => 'admin@akhritech.com',
             'password' => bcrypt('5t4r3e2w!Q'),
             'email_verified_at' => now(),
         ]);
 
-        $this->call([CompanyProfileSeeder::class, 
-        // CategorySeeder::class, 
-        BlogSeeder::class]);
+        $this->call([
+            CompanyProfileSeeder::class,
+            CategorySeeder::class,
+            BlogSeeder::class,
+            PortfolioSeeder::class,
+            ProductSeeder::class,
+        ]);
     }
 }
-

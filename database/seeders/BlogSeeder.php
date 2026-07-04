@@ -22,7 +22,7 @@ class BlogSeeder extends Seeder
         $categories = Category::all();
         $author = User::first();
 
-        if (!$author || $categories->isEmpty()) {
+        if (! $author || $categories->isEmpty()) {
             return;
         }
 
@@ -73,11 +73,9 @@ class BlogSeeder extends Seeder
                 'excerpt' => $blog['excerpt'],
                 'category_id' => $categories->random()->id,
                 'author_id' => $author->id,
-                'author' => $author->name,
                 'is_featured' => $blog['is_featured'],
                 'published_at' => $blog['published_at'],
             ]);
         }
     }
 }
-

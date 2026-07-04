@@ -1,5 +1,34 @@
 @extends('layouts.tailwind')
 
+@push('metadata')
+    <!-- SEO Meta Tags -->
+    <title>Akhritech | Jasa Pembuatan Aplikasi & Solusi Digital Bisnis</title>
+    <meta name="description"
+        content="Akhritech menyediakan solusi software SaaS & Jasa Web Development profesional untuk digitalisasi bisnis Anda. Berpengalaman 10+ tahun dalam mengembangkan sistem aplikasi berbasis website.">
+    <meta name="keywords"
+        content="web developer, software architect, Indonesia, Hajj Umrah system, travel tech, digital products, Web Themes, software house, web development services, custom software, business solutions, SabilSys, Akhritech, Starter Kit, Boilerplate">
+    <meta name="author" content="Akhritech">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="Akhritech | Jasa Pembuatan Aplikasi & Solusi Digital Bisnis">
+    <meta property="og:description"
+        content="Akhritech menyediakan solusi software SaaS & Jasa Web Development profesional untuk digitalisasi bisnis Anda. Berpengalaman 10+ tahun dalam mengembangkan sistem aplikasi berbasis website.">
+    <meta property="og:image" content="{{ asset('images/akhritech-banner.png') }}">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ url()->current() }}">
+    <meta property="twitter:title" content="Akhritech | Jasa Pembuatan Aplikasi & Solusi Digital Bisnis">
+    <meta property="twitter:description"
+        content="Akhritech menyediakan solusi software SaaS & Jasa Web Development profesional untuk digitalisasi bisnis Anda. Berpengalaman 10+ tahun dalam mengembangkan sistem aplikasi berbasis website.">
+    <meta property="twitter:image" content="{{ asset('images/akhritech-banner.png') }}">
+
+    <link rel="canonical" href="{{ url()->current() }}">
+@endpush
+
 @section('content')
     <!-- Hero Section -->
     <section id="home" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 hero-bg overflow-hidden">
@@ -293,7 +322,8 @@
                                         class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500"
                                         loading="lazy">
                                 @else
-                                    <div class="w-full h-full bg-slate-800 flex items-center justify-center text-slate-500">
+                                    <div
+                                        class="w-full h-full bg-slate-800 flex items-center justify-center text-slate-500">
                                         No Image
                                     </div>
                                 @endif
@@ -651,40 +681,56 @@
 
                 <!-- Contact Form -->
                 <div class="lg:w-3/5 p-10 lg:p-16">
-                    <form action="#"
-                        onsubmit="event.preventDefault(); alert('Terima kasih! Pesan Anda telah kami terima (Mode Demo).');">
+                    <form id="contact-form" novalidate>
+                        @csrf
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                             <div>
-                                <label class="block text-sm font-medium text-slate-700 mb-2">Nama Lengkap</label>
-                                <input type="text"
+                                <label for="contact-name" class="block text-sm font-medium text-slate-700 mb-2">Nama Lengkap</label>
+                                <input type="text" id="contact-name" name="name"
                                     class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
-                                    placeholder="John Doe">
+                                    placeholder="John Doe" maxlength="20">
+                                <p id="err-name" class="hidden mt-1.5 text-xs text-red-500"></p>
                             </div>
                             <div>
-                                <label class="block text-sm font-medium text-slate-700 mb-2">Email</label>
-                                <input type="email"
+                                <label for="contact-email" class="block text-sm font-medium text-slate-700 mb-2">Email</label>
+                                <input type="email" id="contact-email" name="email"
                                     class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
-                                    placeholder="john@example.com">
+                                    placeholder="john@example.com" maxlength="30">
+                                <p id="err-email" class="hidden mt-1.5 text-xs text-red-500"></p>
                             </div>
                         </div>
                         <div class="mb-6">
-                            <label class="block text-sm font-medium text-slate-700 mb-2">Subjek</label>
-                            <input type="text"
+                            <label for="contact-whatsapp" class="block text-sm font-medium text-slate-700 mb-2">Nomor WhatsApp</label>
+                            <input type="tel" id="contact-whatsapp" name="whatsapp_number"
                                 class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
-                                placeholder="Saya ingin konsultasi web">
+                                placeholder="08123456789" maxlength="16">
+                            <p id="err-whatsapp_number" class="hidden mt-1.5 text-xs text-red-500"></p>
+                        </div>
+                        <div class="mb-6">
+                            <label for="contact-subject" class="block text-sm font-medium text-slate-700 mb-2">Subjek</label>
+                            <input type="text" id="contact-subject" name="subject"
+                                class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                                placeholder="Saya ingin konsultasi web" maxlength="100">
+                            <p id="err-subject" class="hidden mt-1.5 text-xs text-red-500"></p>
                         </div>
                         <div class="mb-8">
-                            <label class="block text-sm font-medium text-slate-700 mb-2">Pesan</label>
-                            <textarea rows="4"
+                            <label for="contact-message" class="block text-sm font-medium text-slate-700 mb-2">Pesan</label>
+                            <textarea rows="4" id="contact-message" name="message"
                                 class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
-                                placeholder="Ceritakan detail proyek Anda..."></textarea>
+                                placeholder="Ceritakan detail proyek Anda..." maxlength="1000"></textarea>
+                            <p id="err-message" class="hidden mt-1.5 text-xs text-red-500"></p>
                         </div>
-                        <button type="submit"
-                            class="w-full bg-primary text-white font-bold py-4 rounded-xl hover:bg-indigo-700 transition-all shadow-lg hover:shadow-xl">
-                            Kirim Pesan
+                        <button type="submit" id="contact-submit"
+                            class="w-full bg-primary text-white font-bold py-4 rounded-xl hover:bg-indigo-700 transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed">
+                            <span id="submit-label">Kirim Pesan</span>
+                            <svg id="submit-spinner" class="hidden w-5 h-5 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+                            </svg>
                         </button>
                     </form>
                 </div>
+
             </div>
         </div>
     </section>
@@ -851,4 +897,131 @@
             });
         });
     </script>
+
+    {{-- ===== Success Popup ===== --}}
+    <div id="success-popup"
+        class="fixed inset-0 z-[100] flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300">
+        {{-- Backdrop --}}
+        <div id="success-backdrop" class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"></div>
+
+        {{-- Card --}}
+        <div id="success-card"
+            class="relative bg-white rounded-2xl shadow-2xl p-10 max-w-sm w-full text-center scale-90 transition-all duration-300">
+            {{-- Icon --}}
+            <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-5">
+                <svg class="w-10 h-10 text-green-500" fill="none" stroke="currentColor" stroke-width="2.5"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-slate-900 mb-2">Terima Kasih! 🎉</h3>
+            <p class="text-slate-500 mb-7">Pesan Anda telah kami terima.<br>Kami akan segera menghubungi Anda.</p>
+            <button id="success-close"
+                class="w-full bg-primary hover:bg-indigo-700 text-white font-semibold py-3 rounded-xl transition-all">
+                Tutup
+            </button>
+        </div>
+    </div>
+
+    {{-- ===== Contact Form AJAX Script ===== --}}
+    <script>
+        (function() {
+            const form       = document.getElementById('contact-form');
+            const submitBtn  = document.getElementById('contact-submit');
+            const submitLabel = document.getElementById('submit-label');
+            const spinner    = document.getElementById('submit-spinner');
+
+            // Popup elements
+            const popup      = document.getElementById('success-popup');
+            const card       = document.getElementById('success-card');
+            const backdrop   = document.getElementById('success-backdrop');
+            const closeBtn   = document.getElementById('success-close');
+
+            const errorFields = ['name', 'email', 'whatsapp_number', 'subject', 'message'];
+
+            function showError(field, message) {
+                const el = document.getElementById('err-' + field);
+                const input = form.querySelector('[name="' + field + '"]');
+                if (!el) return;
+                el.textContent = message;
+                el.classList.remove('hidden');
+                if (input) input.classList.add('border-red-400', 'focus:border-red-400');
+            }
+
+            function clearErrors() {
+                errorFields.forEach(f => {
+                    const el = document.getElementById('err-' + f);
+                    const input = form.querySelector('[name="' + f + '"]');
+                    if (el) { el.textContent = ''; el.classList.add('hidden'); }
+                    if (input) input.classList.remove('border-red-400', 'focus:border-red-400');
+                });
+            }
+
+            function setLoading(state) {
+                submitBtn.disabled = state;
+                submitLabel.textContent = state ? 'Mengirim...' : 'Kirim Pesan';
+                spinner.classList.toggle('hidden', !state);
+            }
+
+            function openSuccessPopup() {
+                popup.classList.remove('opacity-0', 'pointer-events-none');
+                popup.classList.add('opacity-100');
+                card.classList.remove('scale-90');
+                card.classList.add('scale-100');
+                document.body.classList.add('overflow-hidden');
+            }
+
+            function closeSuccessPopup() {
+                popup.classList.add('opacity-0', 'pointer-events-none');
+                popup.classList.remove('opacity-100');
+                card.classList.add('scale-90');
+                card.classList.remove('scale-100');
+                document.body.classList.remove('overflow-hidden');
+            }
+
+            closeBtn.addEventListener('click', closeSuccessPopup);
+            backdrop.addEventListener('click', closeSuccessPopup);
+            window.addEventListener('keydown', e => {
+                if (e.key === 'Escape' && !popup.classList.contains('pointer-events-none')) closeSuccessPopup();
+            });
+
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                clearErrors();
+                setLoading(true);
+
+                const formData = new FormData(form);
+
+                try {
+                    const response = await fetch('{{ route('inquiry.store') }}', {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value,
+                            'Accept': 'application/json',
+                        },
+                        body: formData,
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok && data.success) {
+                        form.reset();
+                        openSuccessPopup();
+                    } else if (response.status === 422 && data.errors) {
+                        // Display per-field validation errors
+                        Object.entries(data.errors).forEach(([field, messages]) => {
+                            showError(field, messages[0]);
+                        });
+                    } else {
+                        alert(data.message ?? 'Terjadi kesalahan. Silakan coba lagi.');
+                    }
+                } catch (err) {
+                    alert('Gagal mengirim pesan. Periksa koneksi internet Anda.');
+                } finally {
+                    setLoading(false);
+                }
+            });
+        })();
+    </script>
 @endsection
+
