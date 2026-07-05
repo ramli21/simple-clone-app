@@ -1,5 +1,13 @@
 @extends('layouts.tailwind')
 
+@push('metadata')
+    <title>Checkout Success | Akhritech</title>
+    <meta name="description"
+        content="Checkout Success halaman Akhritech untuk pembelian produk {{ $payment->product->name }}. Pembelian berhasil dan Anda dapatkan akses seumur hidup.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ url()->current() }}">
+@endpush
+
 @section('content')
     <div class="pt-24 pb-20 hero-bg min-h-screen">
         <div class="container mx-auto px-4 lg:px-8">

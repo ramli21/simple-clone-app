@@ -1,5 +1,13 @@
 @extends('layouts.tailwind')
 
+@push('metadata')
+    <title>Download | Akhritech</title>
+    <meta name="description"
+        content="Portal download Akhritech. Masukkan kode unik 6 karakter untuk mendapatkan link download 1x.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ url()->current() }}">
+@endpush
+
 @section('content')
     <div class="pt-24 pb-20 hero-bg min-h-screen">
         <div class="container mx-auto px-4 lg:px-8">

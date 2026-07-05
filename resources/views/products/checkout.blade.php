@@ -9,6 +9,14 @@
     $formattedFinalPrice = 'Rp' . number_format($finalPrice, 0, ',', '.');
 @endphp
 
+@push('metadata')
+    <title>Checkout | Akhritech</title>
+    <meta name="description"
+        content="Checkout halaman Akhritech untuk pembelian produk {{ $product->name }}. Lanjutkan pembayaran dan dapatkan akses seumur hidup.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ url()->current() }}">
+@endpush
+
 @section('content')
     <div class="pt-24 pb-20 hero-bg min-h-screen">
         <div class="container mx-auto px-4 lg:px-8">
@@ -135,7 +143,8 @@
                                 </a>
                                 <button type="submit"
                                     class="flex-1 px-6 py-3 bg-primary text-white rounded-xl font-bold hover:bg-indigo-700 transition-colors flex items-center justify-center gap-2">
-                                    <i class="fa-solid fa-check"></i> Lanjutkan Pembayaran
+                                    <i class="fa-solid fa-check"></i>
+                                    {{ $finalPrice == 0 ? 'Dapatkan Sekarang' : 'Lanjutkan Pembayaran' }}
                                 </button>
                             </div>
                         </form>

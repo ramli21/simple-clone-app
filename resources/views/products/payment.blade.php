@@ -9,6 +9,14 @@
     $formattedFinalPrice = 'Rp' . number_format($finalPrice, 0, ',', '.');
 @endphp
 
+@push('metadata')
+    <title>Payment | Akhritech</title>
+    <meta name="description"
+        content="Halaman pembayaran Akhritech untuk pembelian produk {{ $product->name }}. Ikuti instruksi transfer dan unggah bukti pembayaran Anda.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ url()->current() }}">
+@endpush
+
 @section('content')
     <div class="pt-24 pb-20 hero-bg min-h-screen">
         <div class="container mx-auto px-4 lg:px-8">
