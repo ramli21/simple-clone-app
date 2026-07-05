@@ -177,6 +177,35 @@
                             @endif
                         </div>
 
+                        <div class="col-md-3 mb-3">
+                            <label class="form-label fw-bold">File Size (kb)</label>
+                            <input type="number" name="file_size" min="0"
+                                class="form-control @error('file_size') is-invalid @enderror"
+                                value="{{ old('file_size', $product->file_size) }}" required>
+                            @error('file_size')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+                            <label class="form-label fw-bold">Version</label>
+                            <input type="text" name="version"
+                                class="form-control @error('version') is-invalid @enderror"
+                                value="{{ old('version', $product->version) }}" required>
+                            @error('version')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">License</label>
+                            <input type="text" name="license"
+                                class="form-control @error('license') is-invalid @enderror"
+                                value="{{ old('license', $product->license) }}">
+                            @error('license')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
                         <div class="col-md-12 mb-3">
                             <label class="form-label fw-bold">Images (multiple)</label>
                             <input type="file" name="images[]"

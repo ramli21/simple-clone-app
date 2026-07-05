@@ -257,26 +257,22 @@
                                 <li class="flex justify-between">
                                     <span class="text-slate-400"><i class="fa-solid fa-calendar-check w-5"></i> Update
                                         Terakhir:</span>
-                                    <span class="font-medium text-slate-900">12 Okt 2023</span>
+                                    <span
+                                        class="font-medium text-slate-900">{{ date('Y-m-d', strtotime($product->updated_at)) }}</span>
                                 </li>
                                 <li class="flex justify-between">
                                     <span class="text-slate-400"><i class="fa-solid fa-code-branch w-5"></i> Versi:</span>
-                                    <span class="font-medium text-slate-900">v2.4.0</span>
+                                    <span class="font-medium text-slate-900">{{ $product->version }}</span>
                                 </li>
                                 <li class="flex justify-between">
                                     <span class="text-slate-400"><i class="fa-solid fa-file-archive w-5"></i> Ukuran
                                         File:</span>
-                                    <span class="font-medium text-slate-900">15.2 MB</span>
-                                </li>
-                                <li class="flex justify-between">
-                                    <span class="text-slate-400"><i class="fa-solid fa-layer-group w-5"></i>
-                                        Compatibility:</span>
-                                    <span class="font-medium text-slate-900">Bootstrap 5</span>
+                                    <span class="font-medium text-slate-900">{{ $product->file_size . 'KB' }}</span>
                                 </li>
                                 <li class="flex justify-between">
                                     <span class="text-slate-400"><i class="fa-solid fa-shield-halved w-5"></i>
                                         Lisensi:</span>
-                                    <span class="font-medium text-slate-900">Personal & Commercial</span>
+                                    <span class="font-medium text-slate-900">{{ $product->license ?? '-' }}</span>
                                 </li>
                             </ul>
 
@@ -287,7 +283,7 @@
                             <div>
                                 <h4 class="text-xs font-bold text-slate-400 uppercase mb-3">Tags</h4>
                                 <div class="flex flex-wrap gap-2">
-                                    @foreach (explode(',', $product->category) as $tag)
+                                    @foreach (explode(',', $product->stack) as $tag)
                                         <a href="#"
                                             class="px-3 py-1 bg-slate-50 text-slate-600 text-xs rounded-md hover:bg-slate-100 border border-slate-200">{{ trim($tag) }}</a>
                                     @endforeach

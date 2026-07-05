@@ -74,6 +74,7 @@ class ProductAdminController extends Controller
             $validated['sales_count'] = 0;
         }
 
+        unset($validated['produk_file']); // Remove produk_file from validated data
         $product = Product::create($validated);
 
         return redirect()->route('admin.products.edit', $product)->with('success', 'Template created successfully.');
@@ -95,15 +96,14 @@ class ProductAdminController extends Controller
         $validated['stack'] = $request->input('stack');
         $validated['discount_percentage'] = $request->input('discount_percentage');
         $validated['sales_count'] = $request->input('sales_count', $product->sales_count ?? 0);
+        $validated['license'] = $request->input('license');
+        $validated['version'] = $request->input('version');
+        $validated['file_size'] = $request->input('file_size');
+
 
         // Validasi tambahan (field yang belum tercakup di FormRequest)
         $request->validate([
             'sku' => ['nullable', 'string', 'max:255', 'unique:products,sku,'.$product->id.',id'],
-            'images' => ['nullable', 'array', 'min:1'],
-            'images.*' => ['image', 'mimes:jpg,jpeg,png', 'max:4096'],
-            'delivery_type' => ['nullable', 'in:file,github_repo,external_link'],
-            'thumbnail_image' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
-            'template_file' => ['nullable', 'file', 'mimes:zip', 'max:102400'], // 100MB max
         ]);
 
         // Handle file upload for 'file' delivery type

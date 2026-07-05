@@ -172,6 +172,36 @@
                             @enderror
                         </div>
 
+                        <div class="col-md-3 mb-3">
+                            <label class="form-label fw-bold">File Size</label>
+                            <input type="number" name="file_size" min="0"
+                                class="form-control @error('file_size') is-invalid @enderror"
+                                value="{{ old('file_size') }}" required>
+                            @error('file_size')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+                            <label class="form-label fw-bold">Version</label>
+                            <input type="text" name="version"
+                                class="form-control @error('version') is-invalid @enderror" value="{{ old('version') }}"
+                                required>
+                            @error('version')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">License</label>
+                            <input type="text" name="license"
+                                class="form-control @error('license') is-invalid @enderror" value="{{ old('license') }}"
+                                required>
+                            @error('license')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
                         <div class="col-md-12 mb-3">
                             <label class="form-label fw-bold">Images (3-6 screenshots)</label>
                             <input type="file" name="images[]"
