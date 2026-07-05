@@ -43,7 +43,8 @@
         </div>
 
         <div class="card border-0 shadow-sm">
-            <div class="card-header bg-white border-bottom py-3 d-flex align-items-center justify-content-between flex-wrap gap-2">
+            <div
+                class="card-header bg-white border-bottom py-3 d-flex align-items-center justify-content-between flex-wrap gap-2">
                 <div>
                     <h5 class="mb-0 fw-bold text-dark">Daftar Transaksi</h5>
                     <small class="text-muted">Total per halaman: 15</small>
@@ -66,8 +67,8 @@
                         @forelse ($payments as $payment)
                             <tr>
                                 <td class="py-3 px-4">
-                                    <div class="fw-bold text-dark">{{ $payment->Produk?->name ?? '-' }}</div>
-                                    <div class="small text-muted">{{ $payment->Produk?->slug ?? '' }}</div>
+                                    <div class="fw-bold text-dark">{{ $payment->product?->name ?? '-' }}</div>
+                                    <div class="small text-muted">{{ $payment->product?->slug ?? '' }}</div>
                                 </td>
                                 <td class="py-3 px-4">
                                     <div class="fw-bold text-dark">{{ $payment->name }}</div>
@@ -87,7 +88,8 @@
                                             default => 'bg-warning text-dark',
                                         };
                                     @endphp
-                                    <span class="badge {{ $badge }} rounded-pill px-3 py-2 fw-bold text-uppercase" style="font-size: 0.7rem;">
+                                    <span class="badge {{ $badge }} rounded-pill px-3 py-2 fw-bold text-uppercase"
+                                        style="font-size: 0.7rem;">
                                         {{ $status }}
                                     </span>
                                 </td>
@@ -99,7 +101,8 @@
                                         @if ($payment->status !== 'approved')
                                             <form method="POST" action="{{ route('admin.payments.approve', $payment) }}">
                                                 @csrf
-                                                <button type="submit" class="btn btn-success btn-sm fw-bold">Approve</button>
+                                                <button type="submit"
+                                                    class="btn btn-success btn-sm fw-bold">Approve</button>
                                             </form>
                                         @endif
 
