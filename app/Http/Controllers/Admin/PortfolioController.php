@@ -11,7 +11,8 @@ class PortfolioController extends Controller
 {
     public function index()
     {
-        $portfolios = Portfolio::query()->latest()->paginate(10);
+        $portfolios = Portfolio::query()->latest()->paginate(5);
+        
         return view('admin.portfolios.index', compact('portfolios'));
     }
 

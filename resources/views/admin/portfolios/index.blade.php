@@ -14,6 +14,7 @@
                 <table class="table table-bordered table-hover">
                     <thead class="table-light">
                         <tr>
+                            <th>#</th>
                             <th>Image</th>
                             <th>Name</th>
                             <th>Category</th>
@@ -22,30 +23,30 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse($portfolios as $portfolio)
+                        @forelse($portfolios as $item)
                             <tr>
                                 <td>
-                                    @if ($portfolio->image_url)
-                                        <img src="{{ $portfolio->image_url }}" alt="{{ $portfolio->name }}" width="50">
+                                    @if ($item->image_url)
+                                        <img src="{{ $item->image_url }}" alt="{{ $item->name }}" width="50">
                                     @else
                                         <span class="text-muted">No Image</span>
                                     @endif
                                 </td>
-                                <td>{{ $portfolio->name }}</td>
-                                <td>{{ $portfolio->category }}</td>
+                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->category }}</td>
                                 <td>
-                                    <span class="badge bg-{{ $portfolio->published ? 'success' : 'secondary' }}">
-                                        {{ $portfolio->published ? 'Published' : 'Unpublished' }}
+                                    <span class="badge bg-{{ $item->published ? 'success' : 'secondary' }}">
+                                        {{ $item->published ? 'Published' : 'Unpublished' }}
                                     </span>
                                 </td>
                                 <td>
-                                    <form action="{{ route('admin.portfolios.destroy', $portfolio->id) }}" method="POST"
+                                    <form action="{{ route('admin.portfolios.destroy', $item->id) }}" method="POST"
                                         class="d-inline">
                                         @csrf
                                         @method('DELETE')
-                                        <a href="{{ route('admin.portfolios.show', $portfolio->id) }}"
+                                        <a href="{{ route('admin.portfolios.show', $item->id) }}"
                                             class="btn btn-sm btn-info">View</a>
-                                        <a href="{{ route('admin.portfolios.edit', $portfolio->id) }}"
+                                        <a href="{{ route('admin.portfolios.edit', $item->id) }}"
                                             class="btn btn-sm btn-warning">Edit</a>
                                         <button type="submit" class="btn btn-sm btn-danger"
                                             onclick="return confirm('Are you sure?')">Delete</button>

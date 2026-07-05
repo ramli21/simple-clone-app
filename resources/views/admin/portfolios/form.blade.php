@@ -2,6 +2,11 @@
     $isEdit = isset($portfolio) && $portfolio;
 @endphp
 
+@push('styles')
+    <!-- include summernote css/js -->
+    <link href="{{ asset('vendors/summernote/summernote-bs5.min.css') }}" rel="stylesheet">
+@endpush
+
 <div class="row">
     <div class="col-md-6 mb-3">
         <label class="form-label fw-bold">Name</label>
@@ -32,7 +37,7 @@
 
     <div class="col-md-12 mb-3">
         <label class="form-label fw-bold">Story</label>
-        <textarea name="story" class="form-control" rows="4" required>{{ old('story', $isEdit ? $portfolio->story : '') }}</textarea>
+        <textarea id="summernote" name="story" class="form-control" rows="4" required>{{ old('story', $isEdit ? $portfolio->story : '') }}</textarea>
         @error('story')
             <div class="text-danger small mt-1">{{ $message }}</div>
         @enderror
@@ -70,3 +75,13 @@
         </div>
     </div>
 </div>
+@push('scripts')
+    <script src="{{ asset('vendors/summernote/summernote-bs5.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#summernote').summernote({
+                height: 300
+            });
+        });
+    </script>
+@endpush

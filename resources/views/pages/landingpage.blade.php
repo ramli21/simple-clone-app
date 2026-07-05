@@ -685,14 +685,16 @@
                         @csrf
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                             <div>
-                                <label for="contact-name" class="block text-sm font-medium text-slate-700 mb-2">Nama Lengkap</label>
+                                <label for="contact-name" class="block text-sm font-medium text-slate-700 mb-2">Nama
+                                    Lengkap</label>
                                 <input type="text" id="contact-name" name="name"
                                     class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                                     placeholder="John Doe" maxlength="20">
                                 <p id="err-name" class="hidden mt-1.5 text-xs text-red-500"></p>
                             </div>
                             <div>
-                                <label for="contact-email" class="block text-sm font-medium text-slate-700 mb-2">Email</label>
+                                <label for="contact-email"
+                                    class="block text-sm font-medium text-slate-700 mb-2">Email</label>
                                 <input type="email" id="contact-email" name="email"
                                     class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                                     placeholder="john@example.com" maxlength="30">
@@ -700,21 +702,24 @@
                             </div>
                         </div>
                         <div class="mb-6">
-                            <label for="contact-whatsapp" class="block text-sm font-medium text-slate-700 mb-2">Nomor WhatsApp</label>
+                            <label for="contact-whatsapp" class="block text-sm font-medium text-slate-700 mb-2">Nomor
+                                WhatsApp</label>
                             <input type="tel" id="contact-whatsapp" name="whatsapp_number"
                                 class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                                 placeholder="08123456789" maxlength="16">
                             <p id="err-whatsapp_number" class="hidden mt-1.5 text-xs text-red-500"></p>
                         </div>
                         <div class="mb-6">
-                            <label for="contact-subject" class="block text-sm font-medium text-slate-700 mb-2">Subjek</label>
+                            <label for="contact-subject"
+                                class="block text-sm font-medium text-slate-700 mb-2">Subjek</label>
                             <input type="text" id="contact-subject" name="subject"
                                 class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                                 placeholder="Saya ingin konsultasi web" maxlength="100">
                             <p id="err-subject" class="hidden mt-1.5 text-xs text-red-500"></p>
                         </div>
                         <div class="mb-8">
-                            <label for="contact-message" class="block text-sm font-medium text-slate-700 mb-2">Pesan</label>
+                            <label for="contact-message"
+                                class="block text-sm font-medium text-slate-700 mb-2">Pesan</label>
                             <textarea rows="4" id="contact-message" name="message"
                                 class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                                 placeholder="Ceritakan detail proyek Anda..." maxlength="1000"></textarea>
@@ -723,8 +728,10 @@
                         <button type="submit" id="contact-submit"
                             class="w-full bg-primary text-white font-bold py-4 rounded-xl hover:bg-indigo-700 transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed">
                             <span id="submit-label">Kirim Pesan</span>
-                            <svg id="submit-spinner" class="hidden w-5 h-5 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <svg id="submit-spinner" class="hidden w-5 h-5 animate-spin"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                    stroke-width="4"></circle>
                                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
                             </svg>
                         </button>
@@ -744,7 +751,7 @@
 
         <!-- Modal Content Window -->
         <div id="modal-content"
-            class="relative bg-white rounded-3xl overflow-hidden shadow-2xl max-w-4xl w-full max-h-[90vh] flex flex-col transform scale-95 translate-y-4 transition-all duration-300 z-10 border border-slate-100">
+            class="relative bg-white rounded-3xl overflow-hidden shadow-2xl max-w-xl w-full max-h-[90vh] flex flex-col transform scale-95 translate-y-4 transition-all duration-300 z-10 border border-slate-100">
             <!-- Close Button -->
             <button id="close-modal-btn"
                 class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-white/90 hover:bg-white text-slate-700 shadow-md flex items-center justify-center hover:scale-105 transition-all outline-none border border-slate-200">
@@ -753,16 +760,16 @@
 
             <!-- Scrollable Content -->
             <div class="overflow-y-auto flex-grow">
-                <div class="flex flex-col md:flex-row min-h-[500px]">
+                <div class="flex flex-col min-h-[500px]">
                     <!-- Left: Project Image -->
-                    <div class="md:w-1/2 relative bg-slate-950 flex items-center h-64 md:h-auto overflow-hidden">
+                    <div class="w-full relative bg-slate-950 flex items-center h-64 md:h-[420px] overflow-hidden">
                         <img id="modal-img" src="" alt="Showcase"
                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-950/20 to-transparent"></div>
                     </div>
 
                     <!-- Right: Info Panel -->
-                    <div class="md:w-1/2 p-6 sm:p-8 flex flex-col justify-between">
+                    <div class="w-full p-6 sm:p-8 flex flex-col justify-between">
                         <div>
                             <!-- Category Badge -->
                             <span id="modal-category"
@@ -844,7 +851,7 @@
                 modalImg.alt = title;
                 modalCategory.textContent = category;
                 modalTitle.textContent = title;
-                modalDescription.textContent = desc;
+                modalDescription.innerHTML = desc;
                 modalClient.textContent = client;
                 modalDate.textContent = date;
                 modalLink.href = link;
@@ -926,16 +933,16 @@
     {{-- ===== Contact Form AJAX Script ===== --}}
     <script>
         (function() {
-            const form       = document.getElementById('contact-form');
-            const submitBtn  = document.getElementById('contact-submit');
+            const form = document.getElementById('contact-form');
+            const submitBtn = document.getElementById('contact-submit');
             const submitLabel = document.getElementById('submit-label');
-            const spinner    = document.getElementById('submit-spinner');
+            const spinner = document.getElementById('submit-spinner');
 
             // Popup elements
-            const popup      = document.getElementById('success-popup');
-            const card       = document.getElementById('success-card');
-            const backdrop   = document.getElementById('success-backdrop');
-            const closeBtn   = document.getElementById('success-close');
+            const popup = document.getElementById('success-popup');
+            const card = document.getElementById('success-card');
+            const backdrop = document.getElementById('success-backdrop');
+            const closeBtn = document.getElementById('success-close');
 
             const errorFields = ['name', 'email', 'whatsapp_number', 'subject', 'message'];
 
@@ -952,7 +959,10 @@
                 errorFields.forEach(f => {
                     const el = document.getElementById('err-' + f);
                     const input = form.querySelector('[name="' + f + '"]');
-                    if (el) { el.textContent = ''; el.classList.add('hidden'); }
+                    if (el) {
+                        el.textContent = '';
+                        el.classList.add('hidden');
+                    }
                     if (input) input.classList.remove('border-red-400', 'focus:border-red-400');
                 });
             }
@@ -1024,4 +1034,3 @@
         })();
     </script>
 @endsection
-
