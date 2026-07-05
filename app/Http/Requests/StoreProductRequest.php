@@ -19,9 +19,16 @@ class StoreProductRequest extends FormRequest
             'description' => ['required', 'string'],
             'category' => ['required', 'string', 'max:255'],
             'price' => ['required', 'integer', 'min:0'],
-            'delivery_type' => ['nullable', 'in:file,github_repo,external_link'],
             'discount_percentage' => ['nullable', 'integer', 'min:0', 'max:100'],
+            'version' => ['nullable', 'string', 'max:255'],
+            'file_size' => ['nullable', 'integer'],
+            'license' => ['nullable', 'string', 'max:255'],
+            'sku' => ['nullable', 'string', 'max:255', 'unique:products,sku'],
+            'images' => ['nullable', 'array', 'min:1'],
+            'images.*' => ['image', 'mimes:jpg,jpeg,png', 'max:4096'],
+            'delivery_type' => ['nullable', 'in:file,github_repo,external_link'],
             'thumbnail_image' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
+            'produk_file' => ['nullable', 'file', 'mimes:zip', 'max:102400'], // 100MB max
         ];
     }
 

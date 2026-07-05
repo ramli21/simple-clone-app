@@ -70,15 +70,15 @@
                                         @enderror
                                     </div>
 
-                                    <!-- Phone Number (Optional) -->
+                                    <!-- Phone Number -->
                                     <div>
                                         <label for="phone_number" class="block text-sm font-bold text-slate-700 mb-2">
-                                            Nomor Telepon <span class="text-slate-400">(Opsional)</span>
+                                            Nomor Telepon <span class="text-red-500">*</span>
                                         </label>
                                         <input type="tel" id="phone_number" name="phone_number"
                                             value="{{ old('phone_number') }}"
                                             class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-primary/20 @error('phone_number') border-red-500 @enderror"
-                                            placeholder="Contoh: 08123456789">
+                                            placeholder="Contoh: 08123456789" required>
                                         @error('phone_number')
                                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                                         @enderror
@@ -109,7 +109,7 @@
                                     <div class="flex-1">
                                         <label for="agree_terms" class="text-sm text-slate-700">
                                             <span class="font-bold">Saya setuju dengan syarat dan ketentuan</span>
-                                            <a href="{{ route('terms') }}" target="_blank"
+                                            <a href="{{ route('terms-of-service') }}" target="_blank"
                                                 class="text-primary hover:underline">akhritech</a>
                                             dan memahami bahwa
                                         </label>

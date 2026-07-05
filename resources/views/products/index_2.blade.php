@@ -1,5 +1,31 @@
 @extends('layouts.tailwind')
 
+@push('metadata')
+    <title>Produk Digital & SaaS Boilerplate Profesional | Akhritech</title>
+    <meta name="description"
+        content="Percepat pengembangan aplikasi Anda dengan koleksi Web Theme, Laravel Starter Kit, Boilerplate, dan Micro-SaaS siap pakai dari Akhritech. Kode berkualitas, bersih, dan mudah dikustomisasi untuk proyek web Anda.">
+    <meta name="keywords"
+        content="Laravel starter kit, web boilerplate, SaaS template, landing page theme, Laravel 13 boilerplate, kode sumber aplikasi, produk digital web, Akhritech, web development tools, ready-to-use software">
+    <meta name="author" content="Akhritech">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="Produk Digital & SaaS Boilerplate Profesional | Akhritech">
+    <meta property="og:description"
+        content="Temukan solusi pengembangan web yang lebih cepat dengan Starter Kit, Boilerplate, dan Web Theme premium dari Akhritech. Hemat waktu koding hingga 80%!">
+    <meta property="og:image" content="{{ asset('images/akhritech-banner.png') }}">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ url()->current() }}">
+    <meta property="twitter:title" content="Produk Digital & SaaS Boilerplate Profesional | Akhritech">
+    <meta property="twitter:description"
+        content="Temukan solusi pengembangan web yang lebih cepat dengan Starter Kit, Boilerplate, dan Web Theme premium dari Akhritech. Hemat waktu koding hingga 80%!">
+    <meta property="twitter:image" content="{{ asset('images/akhritech-banner.png') }}">
+
+    <link rel="canonical" href="{{ url()->current() }}">
+@endpush
+
 @section('content')
     <section id="theme-directory" class="py-20 bg-white">
         <div class="container mx-auto px-4 lg:px-8">

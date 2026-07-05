@@ -35,17 +35,9 @@ class ProductAdminController extends Controller
         $validated['preview_url'] = $request->input('preview_url');
         $validated['delivery_type'] = $request->input('delivery_type', 'file');
         $validated['sales_count'] = $request->input('sales_count', 0);
-
-        // Validasi tambahan (field yang belum tercakup di FormRequest)
-        $request->validate([
-            'sku' => ['nullable', 'string', 'max:255', 'unique:products,sku'],
-            'images' => ['nullable', 'array', 'min:1'],
-            'images.*' => ['image', 'mimes:jpg,jpeg,png', 'max:4096'],
-            'delivery_type' => ['nullable', 'in:file,github_repo,external_link'],
-            'thumbnail_image' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
-            'produk_file' => ['nullable', 'file', 'mimes:zip', 'max:102400'], // 100MB max
-        ]);
-
+        $validated['version'] = $request->input('version');
+        $validated['file_size'] = $request->input('file_size');
+        $validated['license'] = $request->input('license');
         $validated['slug'] = Str::slug($validated['name']);
         $validated['delivery_type'] = $validated['delivery_type'] ?? 'file';
         $validated['is_active'] = $request->has('is_active') ? $request->boolean('is_active') : true;

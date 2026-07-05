@@ -1,13 +1,28 @@
 @extends('layouts.tailwind')
 
+@push('metadata')
+    <title>Kebijakan Layanan | Akhritech</title>
+    <meta name="description"
+        content="Ketentuan Layanan Akhritech terkait penggunaan produk digital, layanan jasa, dan kebijakan pengembalian dana.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ url()->current() }}">
+@endpush
+
 @section('content')
-    <!-- Header Section -->
-    <div class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-12">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h1 class="text-4xl font-bold mb-2">Ketentuan Layanan Akhritech</h1>
-            <p class="text-blue-100">Harap baca dan pahami ketentuan ini sebelum menggunakan layanan kami</p>
+    <!-- Hero Section -->
+    <section class="relative bg-gradient-to-br from-[#0d7377] to-[#4DB8C4] text-white pt-28 pb-20 overflow-hidden">
+        {{-- Decorative circle --}}
+        <div class="absolute -top-1/2 -right-[10%] w-[500px] h-[500px] bg-white/10 rounded-full pointer-events-none"></div>
+
+        <div class="container mx-auto px-4 relative z-10 text-center max-w-3xl">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-5 tracking-tight">Ketentuan Layanan Akhritech</h1>
+            <p class="text-lg md:text-xl opacity-95 leading-relaxed">
+                Selamat datang di halaman Ketentuan Layanan Akhritech. Di sini, kami menjelaskan hak dan
+                tanggung jawab Anda sebagai pengguna layanan kami, serta ketentuan yang mengatur penggunaan
+                produk dan jasa kami.
+            </p>
         </div>
-    </div>
+    </section>
 
     <!-- Main Content -->
     <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -271,7 +286,8 @@
                         <li><a href="#" class="hover:text-white transition">Blog</a></li>
                         <li><a href="{{ route('privacy-policy') }}" class="hover:text-white transition">Privasi</a>
                         </li>
-                        <li><a href="{{ route('terms') }}" class="hover:text-white transition">Ketentuan Layanan</a>
+                        <li><a href="{{ route('terms-of-service') }}" class="hover:text-white transition">Ketentuan
+                                Layanan</a>
                         </li>
                     </ul>
                 </div>

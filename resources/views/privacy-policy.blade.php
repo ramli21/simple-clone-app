@@ -1,14 +1,28 @@
 @extends('layouts.tailwind')
 
-@section('content')
-    <!-- Header Section -->
-    {{-- <div class="bg-gradient-to-b from-blue-100 to-violet-600 text-white py-20 h-64">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h1 class="text-4xl font-bold mb-2">Kebijakan Privasi Akhritech</h1>
-            <p class="text-blue-100">Kami berkomitmen melindungi privasi dan data pribadi Anda</p>
-        </div>
-    </div> --}}
+@push('metadata')
+    <title>Kebijakan Privasi | Akhritech</title>
+    <meta name="description"
+        content="Kebijakan Privasi Akhritech terkait pengelolaan data pengguna dan layanan digital kami.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ url()->current() }}">
+@endpush
 
+
+@section('content')
+    <!-- Hero Section -->
+    <section class="relative bg-gradient-to-br from-[#0d7377] to-[#4DB8C4] text-white pt-28 pb-20 overflow-hidden">
+        {{-- Decorative circle --}}
+        <div class="absolute -top-1/2 -right-[10%] w-[500px] h-[500px] bg-white/10 rounded-full pointer-events-none"></div>
+
+        <div class="container mx-auto px-4 relative z-10 text-center max-w-3xl">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-5 tracking-tight">Kebijakan Privasi Akhritech</h1>
+            <p class="text-lg md:text-xl opacity-95 leading-relaxed">
+                Selamat datang di halaman Kebijakan Privasi Akhritech. Di sini, kami menjelaskan bagaimana kami
+                mengumpulkan, menggunakan, dan melindungi data Anda.
+            </p>
+        </div>
+    </section>
     <!-- Main Content -->
     <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 pt-24">
         <div class="py-6">

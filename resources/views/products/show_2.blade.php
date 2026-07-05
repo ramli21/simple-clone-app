@@ -4,6 +4,29 @@
     /** @var \App\Models\Product $product */
 @endphp
 
+@push('metadata')
+    <title>{{ $product->name }} | Produk Digital Akhritech</title>
+    <meta name="description" content="{{ $product->short_description }}">
+    <meta name="keywords"
+        content="Laravel starter kit, web boilerplate, SaaS template, landing page theme, Laravel 13 boilerplate, kode sumber aplikasi, produk digital web, Akhritech, web development tools, ready-to-use software">
+    <meta name="author" content="Akhritech">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="{{ $product->name }} | Produk Digital Akhritech">
+    <meta property="og:description" content="{{ $product->short_description }}">
+    <meta property="og:image" content="{{ asset($product->thumbnail_image) }}">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ url()->current() }}">
+    <meta property="twitter:title" content="{{ $product->name }} | Produk Digital Akhritech">
+    <meta property="twitter:description" content="{{ $product->short_description }}">
+    <meta property="twitter:image" content="{{ asset($product->thumbnail_image) }}">
+
+    <link rel="canonical" href="{{ url()->current() }}">
+@endpush
+
 @section('content')
     <!-- Screenshots Gallery -->
     @php

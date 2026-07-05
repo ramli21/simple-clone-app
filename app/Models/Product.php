@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Traits\UsesUuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 
 class Product extends Model
 {
@@ -14,19 +13,18 @@ class Product extends Model
     protected $guarded = [];
 
     protected $casts = [
-
         'images' => 'array',
         'is_active' => 'boolean',
         'discount_percentage' => 'integer',
         'price' => 'integer',
         'sales_count' => 'integer',
+        'file_size' => 'double',
     ];
 
     protected $appends = [
         'final_price',
         // Tidak mengubah download_path (hanya memastikan saat diunduh path diperlakukan relatif)
     ];
-
 
     /**
      * Final price after applying discount percentage.
@@ -39,10 +37,8 @@ class Product extends Model
         $price = (int) $this->price;
         $discount = max(0, min(100, (int) $discount));
 
-
         $final = $price - (int) round(($price * $discount) / 100);
 
         return max(0, $final);
     }
 }
-
