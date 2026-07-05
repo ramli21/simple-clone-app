@@ -194,7 +194,7 @@
                     {{-- <a href="#" class="hover:text-white transition-colors">Support</a> --}}
                 </div>
                 <div class="text-sm">
-                    &copy; {{ new \DateTime()->format('Y') }} Akhritech. All rights reserved.
+                    &copy; 2026 Akhritech. All rights reserved.
                 </div>
             </div>
         </div>
