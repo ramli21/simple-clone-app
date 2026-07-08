@@ -57,7 +57,7 @@
         .download-btn {
             display: inline-block;
             background-color: #4f46e5;
-            color: white;
+            color: white !important;
             padding: 14px 32px;
             text-decoration: none;
             border-radius: 6px;
