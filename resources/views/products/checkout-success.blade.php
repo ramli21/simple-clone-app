@@ -70,7 +70,7 @@
                     <div class="mb-8">
                         <h3 class="text-lg font-bold text-slate-900 mb-4">Dapatkan Produk Anda</h3>
                         <a href="{{ route('download.one-time', ['token' => $downloadToken]) }}"
-                            class="inline-block w-full md:w-auto px-8 py-4 bg-primary text-white rounded-xl font-bold text-lg hover:bg-indigo-700 transition-colors flex items-center justify-center gap-2 mb-3">
+                            class="inline-block px-8 py-4 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition-colors text-xl transition-colors flex items-center justify-center gap-2 mb-3">
                             <i class="fa-solid fa-download"></i> Download Sekarang
                         </a>
                         <p class="text-sm text-slate-500">
