@@ -35,10 +35,6 @@
                     }
                 }
             },
-            plugins: [
-                // Otomatis mengunduh dan mengaktifkan class 'prose' via CDN
-                window.tailwind.plugins.typography,
-            ],
         }
     </script>
 
