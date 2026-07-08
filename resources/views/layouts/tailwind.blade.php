@@ -34,7 +34,11 @@
                         accent: '#06b6d4', // Cyan 500
                     }
                 }
-            }
+            },
+            plugins: [
+                // Otomatis mengunduh dan mengaktifkan class 'prose' via CDN
+                window.tailwind.plugins.typography,
+            ],
         }
     </script>
 

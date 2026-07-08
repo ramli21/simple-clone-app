@@ -78,16 +78,19 @@
         <div class="container mx-auto px-4 relative z-10 max-w-4xl">
             <!-- Breadcrumb -->
             <nav class="flex items-center gap-2 text-sm text-white/75 mb-5" aria-label="Breadcrumb">
-                <a href="{{ route('home') ?? url('/') }}" class="hover:text-white transition-colors no-underline text-white/75">Beranda</a>
+                <a href="{{ route('home') ?? url('/') }}"
+                    class="hover:text-white transition-colors no-underline text-white/75">Beranda</a>
                 <span>→</span>
-                <a href="{{ route('blogs.index') }}" class="hover:text-white transition-colors no-underline text-white/75">Blog</a>
+                <a href="{{ route('blogs.index') }}"
+                    class="hover:text-white transition-colors no-underline text-white/75">Blog</a>
                 <span>→</span>
                 <span class="text-white/50 truncate max-w-xs">{{ $blog->title }}</span>
             </nav>
 
             <!-- Category Badge -->
             @if ($blog->category)
-                <div class="inline-block bg-white/20 backdrop-blur-sm text-white text-sm font-semibold px-4 py-1.5 rounded-full mb-4">
+                <div
+                    class="inline-block bg-white/20 backdrop-blur-sm text-white text-sm font-semibold px-4 py-1.5 rounded-full mb-4">
                     <i class="bi bi-tag-fill mr-1"></i>{{ $blog->category->name }}
                 </div>
             @endif
@@ -192,9 +195,11 @@
 
                 <!-- Author Box -->
                 @if ($blog->author)
-                    <div class="bg-gradient-to-br from-[#0d7377]/10 to-[#4DB8C4]/10 border border-[#0d7377]/30 rounded-2xl p-6 my-10">
+                    <div
+                        class="bg-gradient-to-br from-[#0d7377]/10 to-[#4DB8C4]/10 border border-[#0d7377]/30 rounded-2xl p-6 my-10">
                         <div class="flex gap-4 items-start">
-                            <div class="w-20 h-20 rounded-full bg-gradient-to-br from-[#0d7377] to-[#4DB8C4] flex items-center justify-center text-white text-3xl font-bold flex-shrink-0">
+                            <div
+                                class="w-20 h-20 rounded-full bg-gradient-to-br from-[#0d7377] to-[#4DB8C4] flex items-center justify-center text-white text-3xl font-bold flex-shrink-0">
                                 {{ strtoupper(substr($blog->author->name, 0, 1)) }}
                             </div>
                             <div>
@@ -227,10 +232,12 @@
     @if ($relatedArticles->isNotEmpty())
         <section class="py-16">
             <div class="container mx-auto px-4 max-w-4xl">
-                <h3 class="text-3xl font-extrabold text-slate-900 border-b border-slate-200 pb-4 mb-10">Artikel Terkait</h3>
+                <h3 class="text-3xl font-extrabold text-slate-900 border-b border-slate-200 pb-4 mb-10">Artikel Terkait
+                </h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     @foreach ($relatedArticles as $related)
-                        <div class="group bg-white rounded-xl shadow-sm hover:shadow-[0_8px_20px_rgba(0,0,0,0.12)] border border-slate-100 overflow-hidden transition-all duration-300 hover:-translate-y-1 flex flex-col h-full">
+                        <div
+                            class="group bg-white rounded-xl shadow-sm hover:shadow-[0_8px_20px_rgba(0,0,0,0.12)] border border-slate-100 overflow-hidden transition-all duration-300 hover:-translate-y-1 flex flex-col h-full">
                             <!-- Related Image -->
                             <div class="h-48 overflow-hidden bg-gradient-to-br from-slate-100 to-slate-200">
                                 <a href="{{ route('blogs.show', $related->id) }}" class="no-underline block h-full">
@@ -268,9 +275,10 @@
         <div class="bg-gradient-to-br from-[#0d7377] to-[#4DB8C4] text-white text-center rounded-2xl py-14 px-8">
             <h4 class="text-3xl font-extrabold mb-3">Tertarik Mengembangkan Solusi Digital Anda?</h4>
             <p class="text-lg opacity-75 mb-8 max-w-xl mx-auto">
-                Tim ahli kami siap membantu mewujudkan visi teknologi bisnis Anda dengan solusi yang inovatif dan terpercaya.
+                Tim ahli kami siap membantu mewujudkan visi teknologi bisnis Anda dengan solusi yang inovatif dan
+                terpercaya.
             </p>
-            <a href="{{ config('app.superadmin_wa') ? 'https://wa.me/' . config('app.superadmin_wa') . '?text=Halo%20Akhritech%2C%20saya%20tertarik%20konsultasi%20pembuatan%20website%20bisnis.' : '#' }}"
+            <a href="https://wa.me/{{ companyProfile()->phone }}?text=Halo%20Akhritech,%20saya%20ingin%20bertanya%20lebih%20lanjut"
                 target="_blank"
                 class="inline-block bg-white text-[#0d7377] font-semibold px-7 py-3 rounded-xl no-underline transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_16px_rgba(0,0,0,0.2)]">
                 Konsultasi Gratis <i class="bi bi-arrow-right"></i>
