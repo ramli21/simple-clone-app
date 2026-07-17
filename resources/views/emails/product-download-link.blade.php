@@ -149,6 +149,7 @@
             <h3 style="color: #1f2937; margin-top: 30px;">Langkah Selanjutnya:</h3>
             <ol style="padding-left: 20px;">
                 <li>Klik tombol "Download Sekarang" atau gunakan link di atas</li>
+                <li>Input Kode Unik: <span class="code">{{ $payment->unique_code }}</span> di halaman Download</li>
                 <li>Ekstrak file ZIP yang telah diunduh</li>
                 <li>Baca dokumentasi yang disertakan dalam paket</li>
                 <li>Jika ada pertanyaan, jangan ragu untuk menghubungi support kami</li>

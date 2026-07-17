@@ -60,12 +60,16 @@ class ProductPublicController extends Controller
 
         if (!empty($validated['payment_id'])) {
             $payment = Payment::findOrFail($validated['payment_id']);
-            $payment->update([
+            $updateData = [
                 'sender_bank_info' => $validated['sender_bank_info'],
                 'proof_image' => $storedPath,
                 'status' => 'pending',
                 'payment_method' => 'manual',
-            ]);
+            ];
+            if (!$payment->manual_unique_code) {
+                $updateData['manual_unique_code'] = random_int(1, 99);
+            }
+            $payment->update($updateData);
         } else {
             // Generate 6-char unique code (letters + numbers) for customer portal.
             $uniqueCode = Payment::generateUniqueCode(6);
@@ -83,12 +87,12 @@ class ProductPublicController extends Controller
                 'status' => 'pending',
                 'unique_code' => $uniqueCode,
                 'payment_method' => 'manual',
+                'manual_unique_code' => random_int(1, 99),
             ]);
         }
 
-        // Generate download token and send email
+        // Generate download token (do not email yet, as status is pending and needs admin approval)
         $downloadToken = $payment->setNewOneTimeDownloadToken();
-        Mail::to($payment->email)->send(new ProductDownloadLink($payment, $downloadToken));
 
         return response()->json([
             'ok' => true,
@@ -195,6 +199,7 @@ class ProductPublicController extends Controller
         // For paid templates, create payment record first based on selected payment method
         $method = $request->input('payment_method', 'qris');
         $uniqueCode = Payment::generateUniqueCode(6);
+        $manualUniqueCode = $method === 'manual' ? random_int(1, 99) : null;
         $payment = Payment::query()->create([
             'product_id' => $product->id,
             'name' => $validated['name'],
@@ -208,6 +213,7 @@ class ProductPublicController extends Controller
             'status' => 'pending',
             'unique_code' => $uniqueCode,
             'payment_method' => $method,
+            'manual_unique_code' => $manualUniqueCode,
         ]);
 
         if ($method === 'qris') {
@@ -232,6 +238,7 @@ class ProductPublicController extends Controller
                     'payment_method' => 'manual',
                     'sender_bank_info' => null,
                     'proof_image' => null,
+                    'manual_unique_code' => random_int(1, 99),
                 ]);
             }
         }

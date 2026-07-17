@@ -2,7 +2,7 @@
 
 use App\Models\CompanyProfile;
 
-if (!function_exists('simplePrice')) {
+if (! function_exists('simplePrice')) {
     function simplePrice($price)
     {
         if ($price == 0) {
@@ -18,10 +18,10 @@ if (!function_exists('simplePrice')) {
         $rupiah = $sisa % 1000;
 
         if ($juta > 0) {
-            $result .= number_format($juta, 0, ',', '.') . ' Jt ';
+            $result .= number_format($juta, 0, ',', '.').' Jt ';
         }
         if ($ribu > 0) {
-            $result .= number_format($ribu, 0, ',', '.') . ' Ribu ';
+            $result .= number_format($ribu, 0, ',', '.').' Ribu ';
         }
         // if ($rupiah > 0) {
         //     // Tambahkan "Ratus" jika diperlukan, atau langsung sisa rupiah
@@ -42,18 +42,18 @@ function phoneNumber($phone_number)
         $nextThree = substr($phoneNumber, -7, 4);
         $lastFour = substr($phoneNumber, -4, 4);
 
-        $phoneNumber = '+' . $countryCode . ' ' . $areaCode . '-' . $nextThree . '-' . $lastFour;
+        $phoneNumber = '+'.$countryCode.' '.$areaCode.'-'.$nextThree.'-'.$lastFour;
     } elseif (strlen($phoneNumber) == 10) {
         $areaCode = substr($phoneNumber, 0, 3);
         $nextThree = substr($phoneNumber, 3, 3);
         $lastFour = substr($phoneNumber, 6, 4);
 
-        $phoneNumber = '(' . $areaCode . ') ' . $nextThree . '-' . $lastFour;
+        $phoneNumber = '('.$areaCode.') '.$nextThree.'-'.$lastFour;
     } elseif (strlen($phoneNumber) == 7) {
         $nextThree = substr($phoneNumber, 0, 3);
         $lastFour = substr($phoneNumber, 3, 4);
 
-        $phoneNumber = $nextThree . '-' . $lastFour;
+        $phoneNumber = $nextThree.'-'.$lastFour;
     }
 
     return $phoneNumber;

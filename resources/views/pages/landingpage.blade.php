@@ -653,7 +653,7 @@
                                 </div>
                                 <div>
                                     <h4 class="font-bold">Telepon/WA</h4>
-                                    <p class="text-slate-400">{{ phoneNumber($company->phone) }}</p>
+                                    <p class="text-slate-400">{{ $company->phone }}</p>
                                 </div>
                             </div>
                             <div class="flex items-start gap-4">

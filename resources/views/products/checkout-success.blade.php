@@ -52,31 +52,60 @@
                     </div>
 
                     <!-- Email Notice -->
-                    <div class="bg-blue-50 border border-blue-200 rounded-xl p-6 mb-8">
-                        <div class="flex gap-3">
-                            <i class="fa-solid fa-envelope text-blue-600 flex-shrink-0 mt-1 text-xl"></i>
-                            <div class="text-left">
-                                <h4 class="font-bold text-blue-900 mb-1">Email Konfirmasi Dikirim</h4>
-                                <p class="text-sm text-blue-900/90">
-                                    Kami telah mengirimkan link download ke <span
-                                        class="font-semibold">{{ $payment->email }}</span>.
-                                    Periksa inbox atau folder spam Anda untuk email dari Akhritech.
-                                </p>
+                    @if ($payment->status === 'approved')
+                        <div class="bg-blue-50 border border-blue-200 rounded-xl p-6 mb-8">
+                            <div class="flex gap-3">
+                                <i class="fa-solid fa-envelope text-blue-600 flex-shrink-0 mt-1 text-xl"></i>
+                                <div class="text-left">
+                                    <h4 class="font-bold text-blue-900 mb-1">Email Konfirmasi Dikirim</h4>
+                                    <p class="text-sm text-blue-900/90">
+                                        Kami telah mengirimkan link download ke <span
+                                            class="font-semibold">{{ $payment->email }}</span>.
+                                        Periksa inbox atau folder spam Anda untuk email dari Akhritech.
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @else
+                        <div class="bg-blue-50 border border-blue-200 rounded-xl p-6 mb-8">
+                            <div class="flex gap-3">
+                                <i class="fa-solid fa-envelope text-blue-600 flex-shrink-0 mt-1 text-xl"></i>
+                                <div class="text-left">
+                                    <h4 class="font-bold text-blue-900 mb-1">Notifikasi Email</h4>
+                                    <p class="text-sm text-blue-900/90">
+                                        Setelah diverifikasi oleh admin, link download akan otomatis dikirim ke <span
+                                            class="font-semibold">{{ $payment->email }}</span>.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
 
-                    <!-- Download Section -->
-                    <div class="mb-8">
-                        <h3 class="text-lg font-bold text-slate-900 mb-4">Dapatkan Produk Anda</h3>
-                        <a href="{{ route('download.one-time', ['token' => $downloadToken]) }}"
-                            class="inline-block px-8 py-4 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition-colors text-xl transition-colors flex items-center justify-center gap-2 mb-3">
-                            <i class="fa-solid fa-download"></i> Download Sekarang
-                        </a>
-                        <p class="text-sm text-slate-500">
-                            Link download berlaku selamanya untuk akun Anda.
-                        </p>
-                    </div>
+                    <!-- Download / Pending Section -->
+                    @if ($payment->status === 'pending')
+                        <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-6 mb-8 text-left">
+                            <div class="flex gap-3">
+                                <i class="fa-solid fa-clock text-yellow-600 flex-shrink-0 mt-1 text-xl"></i>
+                                <div>
+                                    <h4 class="font-bold text-yellow-900 mb-1">Menunggu Verifikasi Admin</h4>
+                                    <p class="text-sm text-yellow-800">
+                                        Bukti transfer Anda sedang diverifikasi oleh Admin. Kami akan segera mengirimkan email berisi akses download setelah pembayaran disetujui (biasanya kurang dari 10 menit).
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    @else
+                        <div class="mb-8">
+                            <h3 class="text-lg font-bold text-slate-900 mb-4">Dapatkan Produk Anda</h3>
+                            <a href="{{ route('download.one-time', ['token' => $downloadToken]) }}"
+                                class="inline-block px-8 py-4 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition-colors text-xl transition-colors flex items-center justify-center gap-2 mb-3">
+                                <i class="fa-solid fa-download"></i> Download Sekarang
+                            </a>
+                            <p class="text-sm text-slate-500">
+                                Link download berlaku selamanya untuk akun Anda.
+                            </p>
+                        </div>
+                    @endif
 
                     <!-- Divider -->
                     <div class="border-t border-slate-100 my-8"></div>
@@ -109,7 +138,7 @@
                         <p class="text-sm text-indigo-900/90 mb-3">
                             Tim support kami siap membantu Anda untuk instalasi, troubleshooting, dan pertanyaan lainnya.
                         </p>
-                        <a href="https://wa.me/628123456789" target="_blank"
+                        <a href="https://wa.me/{{ companyProfile()->phone }}" target="_blank"
                             class="inline-block px-6 py-2 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition-colors text-sm">
                             <i class="fa-brands fa-whatsapp mr-2"></i> Chat Support via WhatsApp
                         </a>

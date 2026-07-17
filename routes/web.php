@@ -68,6 +68,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('portfolios', \App\Http\Controllers\Admin\PortfolioController::class);
 
     Route::resource('products', \App\Http\Controllers\Admin\ProductAdminController::class);
+
+    Route::resource('bank-accounts', \App\Http\Controllers\Admin\BankAccountController::class);
 });
 
 // Sitemap

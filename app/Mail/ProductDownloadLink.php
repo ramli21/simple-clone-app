@@ -10,7 +10,6 @@ use Illuminate\Mail\Mailables\Envelope;
 
 class ProductDownloadLink extends Mailable
 {
-
     public function __construct(
         public Payment $payment,
         public string $downloadToken
@@ -20,7 +19,7 @@ class ProductDownloadLink extends Mailable
     {
         return new Envelope(
             from: new Address(config('mail.from.address'), config('mail.from.name')),
-            subject: 'Download Produk Anda - ' . $this->payment->product->name,
+            subject: 'Download Produk Anda - '.$this->payment->product->name,
         );
     }
 
@@ -30,7 +29,7 @@ class ProductDownloadLink extends Mailable
             view: 'emails.product-download-link',
             with: [
                 'payment' => $this->payment,
-                'downloadUrl' => route('download.one-time', ['token' => $this->downloadToken]),
+                'downloadUrl' => route('download.form'),
             ],
         );
     }

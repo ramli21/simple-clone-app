@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use App\Models\CompanyProfile;
 use Opcodes\LogViewer\Facades\LogViewer;
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,6 +23,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Paginator::useBootstrapFive();
+
         // View Composer untuk menyediakan data company ke semua view
         View::composer(['layouts.app', 'home', 'service-detail'], function ($view) {
             // Gunakan cache agar tidak query database di setiap request
