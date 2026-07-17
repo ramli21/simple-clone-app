@@ -8,24 +8,15 @@ use App\Models\Product;
 use App\Services\GoQrisService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
 
 class ProductPublicController extends Controller
 {
     public function index()
     {
-        $products = Product::query()
-            ->where('is_active', true)
-            ->orderByDesc('sales_count')
-            ->get();
+        $products = Product::query()->where('is_active', true)->orderByDesc('sales_count')->get();
 
-        $categories = Product::query()
-            ->where('is_active', true)
-            ->select('category')
-            ->distinct()
-            ->orderBy('category')
-            ->pluck('category')
-            ->filter()
-            ->values();
+        $categories = Product::query()->where('is_active', true)->select('category')->distinct()->orderBy('category')->pluck('category')->filter()->values();
 
         return view('products.index_2', [
             'products' => $products,
@@ -35,41 +26,34 @@ class ProductPublicController extends Controller
 
     public function show(string $slug)
     {
-        $product = Product::query()
-            ->where('slug', $slug)
-            ->where('is_active', true)
-            ->first();
+        $product = Product::query()->where('slug', $slug)->where('is_active', true)->first();
 
-        if (! $product) {
+        if (!$product) {
             abort(404);
         }
 
-        $categories = Product::query()
-            ->where('is_active', true)
-            ->select('category')
-            ->distinct()
-            ->orderBy('category')
-            ->pluck('category')
-            ->filter()
-            ->values();
+        $categories = Product::query()->where('is_active', true)->select('category')->distinct()->orderBy('category')->pluck('category')->filter()->values();
 
         return view('products.show_2', compact('product', 'categories'));
     }
 
     public function confirmPayment(Request $request)
     {
-        $validated = $request->validate([
-            'payment_id' => ['nullable', 'uuid', 'exists:payments,id'],
-            'product_id' => ['required', 'uuid', 'exists:products,id'],
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'max:255'],
-            'whatsapp_number' => ['required', 'string', 'max:50'],
-            'sender_bank_info' => ['required', 'string', 'max:255'],
-            'amount_paid' => ['required', 'integer', 'min:1'],
-            'proof_image' => ['required', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:4096'],
-        ], [
-            'proof_image.max' => 'Ukuran bukti transfer maksimal 4MB.',
-        ]);
+        $validated = $request->validate(
+            [
+                'payment_id' => ['nullable', 'uuid', 'exists:payments,id'],
+                'product_id' => ['required', 'uuid', 'exists:products,id'],
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'email', 'max:255'],
+                'whatsapp_number' => ['required', 'string', 'max:50'],
+                'sender_bank_info' => ['required', 'string', 'max:255'],
+                'amount_paid' => ['required', 'integer', 'min:1'],
+                'proof_image' => ['required', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:4096'],
+            ],
+            [
+                'proof_image.max' => 'Ukuran bukti transfer maksimal 4MB.',
+            ],
+        );
 
         $file = $request->file('proof_image');
         $storedPath = $file->store('proofs', 'public');
@@ -155,12 +139,9 @@ class ProductPublicController extends Controller
 
     public function checkout(string $slug)
     {
-        $product = Product::query()
-            ->where('slug', $slug)
-            ->where('is_active', true)
-            ->first();
+        $product = Product::query()->where('slug', $slug)->where('is_active', true)->first();
 
-        if (! $product) {
+        if (!$product) {
             abort(404);
         }
 
@@ -232,6 +213,9 @@ class ProductPublicController extends Controller
         if ($method === 'qris') {
             try {
                 $qrisData = $goQrisService->createQrTransaction($payment);
+
+                Log::info('QRIS Data: ' . json_encode($qrisData));
+                // return $qrisData;
                 $payment->update([
                     'qris_trx_id' => $qrisData['trx_id'],
                     'qris_amount' => $qrisData['amount'],
@@ -242,7 +226,7 @@ class ProductPublicController extends Controller
                     'qris_expires_at' => now()->addMinutes(15),
                 ]);
             } catch (\Exception $e) {
-                \Illuminate\Support\Facades\Log::error('QRIS Generation failed: ' . $e->getMessage());
+                Log::error('QRIS Generation failed: ' . $e->getMessage());
                 // Fallback to manual bank transfer
                 $payment->update([
                     'payment_method' => 'manual',
@@ -273,8 +257,8 @@ class ProductPublicController extends Controller
                 'status' => 'success',
                 'redirect_url' => route('products.checkout-success', [
                     'payment_id' => $payment->id,
-                    'token' => $token
-                ])
+                    'token' => $token,
+                ]),
             ]);
         }
 
@@ -282,7 +266,7 @@ class ProductPublicController extends Controller
             if ($payment->qris_expires_at && now()->gt($payment->qris_expires_at)) {
                 return response()->json([
                     'status' => 'expired',
-                    'message' => 'Masa berlaku QRIS telah habis.'
+                    'message' => 'Masa berlaku QRIS telah habis.',
                 ]);
             }
 
@@ -297,8 +281,8 @@ class ProductPublicController extends Controller
                         'status' => 'success',
                         'redirect_url' => route('products.checkout-success', [
                             'payment_id' => $payment->id,
-                            'token' => $token
-                        ])
+                            'token' => $token,
+                        ]),
                     ]);
                 }
             } catch (\Exception $e) {
@@ -307,17 +291,15 @@ class ProductPublicController extends Controller
         }
 
         return response()->json([
-            'status' => 'pending'
+            'status' => 'pending',
         ]);
     }
 
     public function checkoutSuccess(string $payment_id, string $token)
     {
-        $payment = Payment::query()
-            ->where('id', $payment_id)
-            ->first();
+        $payment = Payment::query()->where('id', $payment_id)->first();
 
-        if (! $payment) {
+        if (!$payment) {
             abort(404);
         }
 
@@ -327,3 +309,4 @@ class ProductPublicController extends Controller
         ]);
     }
 }
+
