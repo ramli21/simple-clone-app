@@ -42,6 +42,8 @@ class GoQrisService
             'expired' => $expiredMinutes,
         ]);
 
+        Log::info('GoQRIS API Response: ' . json_encode($response->json()));
+
         if ($response->failed()) {
             Log::error('GoQRIS API Connection Failed: ' . $response->body());
             throw new \Exception('Failed to connect to GoQRIS server.');
@@ -72,6 +74,8 @@ class GoQrisService
             'apikey' => $this->apiKey,
             'ref_id' => $refId,
         ]);
+
+        Log::info('GoQRIS Status API Response: ' . json_encode($response->json()));
 
         if ($response->failed()) {
             Log::error('GoQRIS Status API Connection Failed: ' . $response->body());
@@ -117,3 +121,4 @@ class GoQrisService
         Log::info("Successful payment processed and email sent for Payment ID: {$payment->id}");
     }
 }
+
