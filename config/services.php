@@ -35,4 +35,10 @@ return [
         ],
     ],
 
+    'goqris' => [
+        'base_url' => env('GOQRIS_BASE_SITE', 'https://api.goqris.web.id'),
+        'api_key' => env('GOQRIS_SECRET_KEY'),
+        'project_name' => env('GOQRIS_PROJECT_NAME', env('APP_NAME', 'Akhritech')),
+    ],
+
 ];

@@ -18,6 +18,7 @@ class Payment extends Model
         'product_id' => 'string',
         'amount_paid' => 'integer',
         'download_token_used_at' => 'datetime',
+        'qris_expires_at' => 'datetime',
     ];
 
     public function product(): BelongsTo

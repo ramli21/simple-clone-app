@@ -17,7 +17,8 @@ Route::get('/products', [\App\Http\Controllers\ProductPublicController::class, '
 Route::get('/products/{slug}', [\App\Http\Controllers\ProductPublicController::class, 'show'])->name('products.show');
 Route::get('/products/{slug}/checkout', [\App\Http\Controllers\ProductPublicController::class, 'checkout'])->name('products.checkout.form');
 Route::post('/products/checkout', [\App\Http\Controllers\ProductPublicController::class, 'processCheckout'])->name('products.checkout.process');
-Route::get('/products/{product_slug}/payment', [\App\Http\Controllers\ProductPublicController::class, 'payment'])->name('products.payment');
+Route::get('/payment/{payment_id}', [\App\Http\Controllers\ProductPublicController::class, 'paymentPage'])->name('products.payment');
+Route::get('/payment/{payment_id}/status', [\App\Http\Controllers\ProductPublicController::class, 'checkPaymentStatus'])->name('products.payment.status');
 Route::get('/products/checkout-success/{payment_id}/{token}', [\App\Http\Controllers\ProductPublicController::class, 'checkoutSuccess'])->name('products.checkout-success');
 
 // Customer portal download (1-time link by unique code)

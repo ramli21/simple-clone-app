@@ -108,6 +108,59 @@
                                 </div>
                             </div>
 
+                            @if ($finalPrice > 0)
+                            <!-- Metode Pembayaran Section -->
+                            <div>
+                                <h2 class="text-xl font-bold text-slate-900 mb-4 pb-4 border-b border-slate-100">
+                                    <i class="fa-solid fa-credit-card mr-2 text-primary"></i> Metode Pembayaran
+                                </h2>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <!-- QRIS Option -->
+                                    <label class="relative flex flex-col p-5 bg-white border-2 border-slate-200 rounded-2xl cursor-pointer hover:border-primary/50 transition-all focus-within:ring-2 focus-within:ring-primary/20 has-[:checked]:border-primary has-[:checked]:bg-primary/5 group" id="qris-option-card">
+                                        <div class="flex items-center justify-between mb-3">
+                                            <div class="flex items-center gap-3">
+                                                <div class="p-2 bg-slate-100 rounded-xl group-has-[:checked]:bg-primary/10 transition-colors">
+                                                    <i class="fa-solid fa-qrcode text-xl text-slate-600 group-has-[:checked]:text-primary"></i>
+                                                </div>
+                                                <div>
+                                                    <span class="block font-bold text-slate-900">QRIS (Otomatis)</span>
+                                                    <span class="block text-xs text-slate-500 mt-0.5">Proses instan & verifikasi otomatis</span>
+                                                </div>
+                                            </div>
+                                            <input type="radio" name="payment_method" value="qris" class="w-5 h-5 text-primary border-slate-300 focus:ring-primary/20" checked>
+                                        </div>
+                                        <div class="flex items-center gap-1.5 mt-auto text-xs text-slate-500">
+                                            <span class="px-1.5 py-0.5 bg-slate-100 rounded text-slate-600">Gopay</span>
+                                            <span class="px-1.5 py-0.5 bg-slate-100 rounded text-slate-600">OVO</span>
+                                            <span class="px-1.5 py-0.5 bg-slate-100 rounded text-slate-600">Dana</span>
+                                            <span class="px-1.5 py-0.5 bg-slate-100 rounded text-slate-600">M-Banking</span>
+                                        </div>
+                                    </label>
+
+                                    <!-- Manual Bank Option -->
+                                    <label class="relative flex flex-col p-5 bg-white border-2 border-slate-200 rounded-2xl cursor-pointer hover:border-primary/50 transition-all focus-within:ring-2 focus-within:ring-primary/20 has-[:checked]:border-primary has-[:checked]:bg-primary/5 group" id="manual-option-card">
+                                        <div class="flex items-center justify-between mb-3">
+                                            <div class="flex items-center gap-3">
+                                                <div class="p-2 bg-slate-100 rounded-xl group-has-[:checked]:bg-primary/10 transition-colors">
+                                                    <i class="fa-solid fa-building-columns text-xl text-slate-600 group-has-[:checked]:text-primary"></i>
+                                                </div>
+                                                <div>
+                                                    <span class="block font-bold text-slate-900">Transfer Bank Manual</span>
+                                                    <span class="block text-xs text-slate-500 mt-0.5">Konfirmasi manual via unggah bukti transfer</span>
+                                                </div>
+                                            </div>
+                                            <input type="radio" name="payment_method" value="manual" class="w-5 h-5 text-primary border-slate-300 focus:ring-primary/20">
+                                        </div>
+                                        <div class="flex items-center gap-1.5 mt-auto text-xs text-slate-500">
+                                            <span class="px-1.5 py-0.5 bg-slate-100 rounded text-slate-600">Bank BCA</span>
+                                            <span class="text-slate-400">Verifikasi 5-15 menit</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            @endif
+
                             <!-- Terms & Conditions -->
                             <div class="bg-slate-50 border border-slate-100 rounded-xl p-6">
                                 <div class="flex items-start gap-4">

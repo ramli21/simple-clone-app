@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\ProductDownloadLink;
 use App\Models\Payment;
 use App\Models\Product;
+use App\Services\GoQrisService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -58,6 +59,7 @@ class ProductPublicController extends Controller
     public function confirmPayment(Request $request)
     {
         $validated = $request->validate([
+            'payment_id' => ['nullable', 'uuid', 'exists:payments,id'],
             'product_id' => ['required', 'uuid', 'exists:products,id'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255'],
@@ -72,22 +74,33 @@ class ProductPublicController extends Controller
         $file = $request->file('proof_image');
         $storedPath = $file->store('proofs', 'public');
 
-        // Generate 6-char unique code (letters + numbers) for customer portal.
-        $uniqueCode = Payment::generateUniqueCode(6);
+        if (!empty($validated['payment_id'])) {
+            $payment = Payment::findOrFail($validated['payment_id']);
+            $payment->update([
+                'sender_bank_info' => $validated['sender_bank_info'],
+                'proof_image' => $storedPath,
+                'status' => 'pending',
+                'payment_method' => 'manual',
+            ]);
+        } else {
+            // Generate 6-char unique code (letters + numbers) for customer portal.
+            $uniqueCode = Payment::generateUniqueCode(6);
 
-        $payment = Payment::query()->create([
-            'product_id' => $validated['product_id'],
-            'name' => $validated['name'],
-            'email' => $validated['email'],
-            'phone_number' => $request->input('phone_number'),
-            'whatsapp_number' => $validated['whatsapp_number'],
-            'company_name' => $request->input('company_name'),
-            'sender_bank_info' => $validated['sender_bank_info'],
-            'amount_paid' => (int) $validated['amount_paid'],
-            'proof_image' => $storedPath,
-            'status' => 'pending',
-            'unique_code' => $uniqueCode,
-        ]);
+            $payment = Payment::query()->create([
+                'product_id' => $validated['product_id'],
+                'name' => $validated['name'],
+                'email' => $validated['email'],
+                'phone_number' => $request->input('phone_number'),
+                'whatsapp_number' => $validated['whatsapp_number'],
+                'company_name' => $request->input('company_name'),
+                'sender_bank_info' => $validated['sender_bank_info'],
+                'amount_paid' => (int) $validated['amount_paid'],
+                'proof_image' => $storedPath,
+                'status' => 'pending',
+                'unique_code' => $uniqueCode,
+                'payment_method' => 'manual',
+            ]);
+        }
 
         // Generate download token and send email
         $downloadToken = $payment->setNewOneTimeDownloadToken();
@@ -154,7 +167,7 @@ class ProductPublicController extends Controller
         return view('products.checkout', compact('product'));
     }
 
-    public function processCheckout(Request $request)
+    public function processCheckout(Request $request, GoQrisService $goQrisService)
     {
         $validated = $request->validate([
             'product_id' => ['required', 'uuid', 'exists:products,id'],
@@ -163,6 +176,7 @@ class ProductPublicController extends Controller
             'phone_number' => ['nullable', 'string', 'max:50'],
             'company_name' => ['nullable', 'string', 'max:255'],
             'agree_terms' => ['required', 'accepted'],
+            'payment_method' => ['nullable', 'string', 'in:qris,manual'],
         ]);
 
         $product = Product::findOrFail($validated['product_id']);
@@ -183,6 +197,7 @@ class ProductPublicController extends Controller
                 'proof_image' => 'free',
                 'status' => 'approved',
                 'unique_code' => $uniqueCode,
+                'payment_method' => 'manual',
             ]);
 
             // Generate download token
@@ -196,35 +211,104 @@ class ProductPublicController extends Controller
             return redirect()->route('products.checkout-success', ['payment_id' => $payment->id, 'token' => $downloadToken]);
         }
 
-        // For paid templates, redirect to payment confirmation page
-        return redirect()->route('products.payment', [
-            'product_slug' => $product->slug,
+        // For paid templates, create payment record first based on selected payment method
+        $method = $request->input('payment_method', 'qris');
+        $uniqueCode = Payment::generateUniqueCode(6);
+        $payment = Payment::query()->create([
+            'product_id' => $product->id,
             'name' => $validated['name'],
             'email' => $validated['email'],
-            'phone_number' => $validated['phone_number'],
-            'company_name' => $validated['company_name'],
+            'phone_number' => $validated['phone_number'] ?? null,
+            'whatsapp_number' => $validated['phone_number'] ?? '',
+            'company_name' => $validated['company_name'] ?? null,
+            'sender_bank_info' => $method === 'qris' ? 'QRIS' : null,
+            'amount_paid' => $product->final_price,
+            'proof_image' => $method === 'qris' ? 'pending_qris' : null,
+            'status' => 'pending',
+            'unique_code' => $uniqueCode,
+            'payment_method' => $method,
         ]);
-    }
 
-    public function payment(string $product_slug, Request $request)
-    {
-        $product = Product::query()
-            ->where('slug', $product_slug)
-            ->where('is_active', true)
-            ->first();
-
-        if (! $product) {
-            abort(404);
+        if ($method === 'qris') {
+            try {
+                $qrisData = $goQrisService->createQrTransaction($payment);
+                $payment->update([
+                    'qris_trx_id' => $qrisData['trx_id'],
+                    'qris_amount' => $qrisData['amount'],
+                    'qris_unique_code' => $qrisData['unique_code'],
+                    'qris_total_amount' => $qrisData['total_amount'],
+                    'qris_qr_string' => $qrisData['payment_detail']['qr_string'],
+                    'qris_qr_image' => $qrisData['payment_detail']['qr_image'],
+                    'qris_expires_at' => now()->addMinutes(15),
+                ]);
+            } catch (\Exception $e) {
+                \Illuminate\Support\Facades\Log::error('QRIS Generation failed: ' . $e->getMessage());
+                // Fallback to manual bank transfer
+                $payment->update([
+                    'payment_method' => 'manual',
+                    'sender_bank_info' => null,
+                    'proof_image' => null,
+                ]);
+            }
         }
 
-        $data = [
-            'name' => $request->query('name'),
-            'email' => $request->query('email'),
-            'phone_number' => $request->query('phone_number'),
-            'company_name' => $request->query('company_name'),
-        ];
+        return redirect()->route('products.payment', ['payment_id' => $payment->id]);
+    }
 
-        return view('products.payment', compact('product', 'data'));
+    public function paymentPage(string $payment_id)
+    {
+        $payment = Payment::with('product')->findOrFail($payment_id);
+        $product = $payment->product;
+
+        return view('products.payment', compact('payment', 'product'));
+    }
+
+    public function checkPaymentStatus(string $payment_id, GoQrisService $goQrisService)
+    {
+        $payment = Payment::findOrFail($payment_id);
+
+        if ($payment->status === 'approved') {
+            $token = $payment->setNewOneTimeDownloadToken();
+            return response()->json([
+                'status' => 'success',
+                'redirect_url' => route('products.checkout-success', [
+                    'payment_id' => $payment->id,
+                    'token' => $token
+                ])
+            ]);
+        }
+
+        if ($payment->payment_method === 'qris') {
+            if ($payment->qris_expires_at && now()->gt($payment->qris_expires_at)) {
+                return response()->json([
+                    'status' => 'expired',
+                    'message' => 'Masa berlaku QRIS telah habis.'
+                ]);
+            }
+
+            try {
+                $statusData = $goQrisService->checkQrStatus($payment->id);
+                $paymentStatus = $statusData['payment_status'] ?? 'pending';
+
+                if ($paymentStatus === 'paid') {
+                    $goQrisService->handlePaymentSuccess($payment);
+                    $token = $payment->setNewOneTimeDownloadToken();
+                    return response()->json([
+                        'status' => 'success',
+                        'redirect_url' => route('products.checkout-success', [
+                            'payment_id' => $payment->id,
+                            'token' => $token
+                        ])
+                    ]);
+                }
+            } catch (\Exception $e) {
+                \Illuminate\Support\Facades\Log::error('GoQRIS polling error for payment ' . $payment->id . ': ' . $e->getMessage());
+            }
+        }
+
+        return response()->json([
+            'status' => 'pending'
+        ]);
     }
 
     public function checkoutSuccess(string $payment_id, string $token)
