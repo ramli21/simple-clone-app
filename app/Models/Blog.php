@@ -10,7 +10,7 @@ class Blog extends Model
 {
     use UsesUuid, HasFactory;
 
-    protected $fillable = ['title', 'slug', 'content', 'image', 'excerpt', 'category_id', 'author_id', 'published_at', 'is_featured', 'views'];
+    protected $fillable = ['title', 'slug', 'content', 'image', 'excerpt', 'tags', 'category_id', 'author_id', 'published_at', 'is_featured', 'views'];
 
     protected $casts = [
         'published_at' => 'datetime',

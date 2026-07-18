@@ -107,7 +107,7 @@
                             <div class="p-8 md:p-10">
                                 @if ($featuredBlog->category)
                                     <span class="inline-block bg-white/20 backdrop-blur-sm text-white text-sm font-semibold px-4 py-2 rounded-full mb-5">
-                                        <i class="bi bi-lightning-fill"></i>
+                                        <i class="fa-solid fa-bolt"></i>
                                         {{ $featuredBlog->category->name }}
                                     </span>
                                 @endif
@@ -118,22 +118,33 @@
                                 <div class="flex flex-wrap gap-4 text-sm opacity-90 mb-6">
                                     @if ($featuredBlog->author)
                                         <span class="flex items-center gap-1.5">
-                                            <i class="bi bi-person-circle"></i>
+                                            <i class="fa-solid fa-user-circle"></i>
                                             {{ $featuredBlog->author->name }}
                                         </span>
                                     @endif
                                     @if ($featuredBlog->published_at)
                                         <span class="flex items-center gap-1.5">
-                                            <i class="bi bi-calendar3"></i>
+                                            <i class="fa-regular fa-calendar"></i>
                                             <time datetime="{{ $featuredBlog->published_at->toIso8601String() }}">
                                                 {{ $featuredBlog->published_at->translatedFormat('d M Y') }}
                                             </time>
                                         </span>
                                     @endif
                                 </div>
+                                @if ($featuredBlog->tags)
+                                    <div class="flex flex-wrap gap-2 mb-6">
+                                        @foreach(array_slice(explode(',', $featuredBlog->tags), 0, 3) as $tag)
+                                            @if(trim($tag) !== '')
+                                                <span class="bg-white/20 text-white text-xs px-2.5 py-1 rounded-md border border-white/30">
+                                                    #{{ trim($tag) }}
+                                                </span>
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                @endif
                                 <a href="{{ route('blogs.show', $featuredBlog->slug) }}"
                                     class="inline-block bg-white text-[#0d7377] font-semibold px-7 py-3 rounded-lg transition-all duration-300 hover:translate-x-1 hover:shadow-[0_8px_16px_rgba(0,0,0,0.2)] no-underline">
-                                    Baca Selengkapnya <i class="bi bi-arrow-right"></i>
+                                    Baca Selengkapnya <i class="fa-solid fa-arrow-right"></i>
                                 </a>
                             </div>
                         </div>
@@ -198,26 +209,37 @@
                             <div class="flex flex-wrap items-center gap-4 py-4 border-y border-slate-100 mb-4 text-sm text-slate-400">
                                 @if ($blog->author)
                                     <div class="flex items-center gap-1.5">
-                                        <i class="bi bi-person-circle text-[#0d7377]"></i>
+                                        <i class="fa-solid fa-user-circle text-[#0d7377]"></i>
                                         <span>{{ $blog->author->name }}</span>
                                     </div>
                                 @endif
                                 @if ($blog->published_at)
                                     <div class="flex items-center gap-1.5">
-                                        <i class="bi bi-calendar3 text-[#0d7377]"></i>
+                                        <i class="fa-regular fa-calendar text-[#0d7377]"></i>
                                         <time datetime="{{ $blog->published_at->toIso8601String() }}">
                                             {{ $blog->published_at->translatedFormat('d M') }}
                                         </time>
                                     </div>
                                 @endif
                             </div>
+                            @if ($blog->tags)
+                                <div class="flex flex-wrap gap-1.5 mb-4">
+                                    @foreach(array_slice(explode(',', $blog->tags), 0, 3) as $tag)
+                                        @if(trim($tag) !== '')
+                                            <span class="bg-slate-100 text-slate-600 text-[0.7rem] px-2 py-0.5 rounded border border-slate-200">
+                                                #{{ trim($tag) }}
+                                            </span>
+                                        @endif
+                                    @endforeach
+                                </div>
+                            @endif
 
                             <!-- Read More -->
                             <div>
                                 <a href="{{ route('blogs.show', $blog->slug) }}"
                                     aria-label="Baca selengkapnya: {{ $blog->title }}"
                                     class="inline-flex items-center gap-1.5 text-[#0d7377] hover:text-[#4DB8C4] font-semibold text-sm no-underline transition-all duration-300 hover:translate-x-1">
-                                    Baca Selengkapnya <i class="bi bi-arrow-right"></i>
+                                    Baca Selengkapnya <i class="fa-solid fa-arrow-right"></i>
                                 </a>
                             </div>
                         </div>
@@ -229,7 +251,7 @@
             @if ($blogs->isEmpty())
                 <div class="py-20 text-center">
                     <div class="text-6xl text-slate-200 mb-5">
-                        <i class="bi bi-file-earmark-text"></i>
+                        <i class="fa-regular fa-file-lines"></i>
                     </div>
                     <h2 class="text-2xl font-bold text-slate-700 mb-3">Belum ada artikel</h2>
                     <p class="text-slate-400">Kami sedang menyiapkan artikel menarik dan bermanfaat untuk Anda.<br>Segera kembali lagi!</p>

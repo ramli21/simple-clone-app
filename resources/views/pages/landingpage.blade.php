@@ -534,8 +534,7 @@
                             class="absolute top-4 left-4 bg-pink-50 text-pink-600 text-xs font-bold px-3 py-1 rounded-full z-10 border border-pink-100">
                             coming soon
                         </span>
-                        <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                            alt="SocialBoost"
+                        <img src="{{ asset('images/undraw_taking-notes_oyqz.png') }}" alt="SocialBoost"
                             class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
                     </div>
                     <div class="p-6 flex flex-col flex-grow">
@@ -614,7 +613,7 @@
                             alt="{{ $portfolio->name }}"
                             class="w-full h-72 object-cover transform group-hover:scale-110 transition duration-700">
                         <div
-                            class="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                            class="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-transparent opacity-1 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
                             <span class="text-accent font-medium text-sm mb-1">{{ $portfolio->category }}</span>
                             <h3 class="text-white text-xl font-bold">{{ $portfolio->name }}</h3>
                         </div>

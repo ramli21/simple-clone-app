@@ -5,7 +5,7 @@
     <title>{{ $blog->title }} | Blog Akhritech</title>
     <meta name="description" content="{{ $blog->excerpt ?? Str::limit(strip_tags($blog->content), 160) }}">
     <meta name="keywords"
-        content="{{ $blog->category->name ?? 'Teknologi' }}, {{ implode(', ', explode(' ', $blog->title)) }}, blog, artikel">
+        content="{{ $blog->tags ? $blog->tags . ', ' : '' }}{{ $blog->category->name ?? 'Teknologi' }}, {{ implode(', ', explode(' ', $blog->title)) }}, blog, artikel">
     <meta name="author" content="{{ $blog->author->name ?? 'Akhritech' }}">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <meta name="language" content="id">
@@ -91,7 +91,7 @@
             @if ($blog->category)
                 <div
                     class="inline-block bg-white/20 backdrop-blur-sm text-white text-sm font-semibold px-4 py-1.5 rounded-full mb-4">
-                    <i class="bi bi-tag-fill mr-1"></i>{{ $blog->category->name }}
+                    <i class="fa-solid fa-tag mr-1"></i>{{ $blog->category->name }}
                 </div>
             @endif
 
@@ -102,13 +102,13 @@
             <div class="flex flex-wrap items-center gap-5 pt-4 border-t border-white/25 text-sm">
                 @if ($blog->author)
                     <div class="flex items-center gap-2">
-                        <i class="bi bi-person-circle"></i>
+                        <i class="fa-solid fa-user-circle"></i>
                         <span>{{ $blog->author->name }}</span>
                     </div>
                 @endif
                 @if ($blog->published_at)
                     <div class="flex items-center gap-2">
-                        <i class="bi bi-calendar3"></i>
+                        <i class="fa-regular fa-calendar"></i>
                         <time datetime="{{ $blog->published_at->toIso8601String() }}">
                             {{ $blog->published_at->translatedFormat('d F Y') }}
                         </time>
@@ -119,7 +119,7 @@
                     $readingTime = ceil($wordCount / 200);
                 @endphp
                 <div class="flex items-center gap-2">
-                    <i class="bi bi-clock"></i>
+                    <i class="fa-regular fa-clock"></i>
                     <span>{{ $readingTime }} menit baca</span>
                 </div>
             </div>
@@ -150,10 +150,25 @@
                     {!! $blog->content !!}
                 </div>
 
+                <!-- Tags Section -->
+                @if ($blog->tags)
+                    <div class="mt-8 mb-4">
+                        <div class="flex flex-wrap gap-2">
+                            @foreach(explode(',', $blog->tags) as $tag)
+                                @if(trim($tag) !== '')
+                                    <span class="bg-slate-100 text-[#0d7377] text-sm font-semibold px-3 py-1 rounded-full border border-slate-200">
+                                        <i class="fa-solid fa-hashtag mr-1"></i>{{ trim($tag) }}
+                                    </span>
+                                @endif
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
+
                 <!-- Social Share Section -->
                 <div class="border-l-4 border-[#0d7377] bg-slate-50 rounded-r-xl p-6 my-10">
                     <h5 class="font-bold text-slate-800 mb-4 text-base">
-                        <i class="bi bi-share mr-2 text-[#0d7377]"></i>Bagikan Artikel Ini
+                        <i class="fa-solid fa-share-nodes mr-2 text-[#0d7377]"></i>Bagikan Artikel Ini
                     </h5>
                     <div class="flex flex-wrap gap-3">
                         <!-- Facebook -->
@@ -161,34 +176,34 @@
                             target="_blank" rel="noopener noreferrer"
                             class="w-10 h-10 rounded-full bg-[#1877F2] hover:bg-[#0a66c2] text-white flex items-center justify-center transition-all duration-300 hover:-translate-y-0.5"
                             title="Bagikan ke Facebook">
-                            <i class="bi bi-facebook"></i>
+                            <i class="fa-brands fa-facebook-f"></i>
                         </a>
                         <!-- Twitter/X -->
                         <a href="https://twitter.com/intent/tweet?url={{ route('blogs.show', $blog->slug) }}&text={{ urlencode($blog->title) }}"
                             target="_blank" rel="noopener noreferrer"
                             class="w-10 h-10 rounded-full bg-[#1DA1F2] hover:bg-[#1a8cd8] text-white flex items-center justify-center transition-all duration-300 hover:-translate-y-0.5"
                             title="Bagikan ke Twitter">
-                            <i class="bi bi-twitter"></i>
+                            <i class="fa-brands fa-twitter"></i>
                         </a>
                         <!-- WhatsApp -->
                         <a href="https://wa.me/?text={{ urlencode($blog->title . ' ' . route('blogs.show', $blog->slug)) }}"
                             target="_blank" rel="noopener noreferrer"
                             class="w-10 h-10 rounded-full bg-[#25D366] hover:bg-[#1fa854] text-white flex items-center justify-center transition-all duration-300 hover:-translate-y-0.5"
                             title="Bagikan ke WhatsApp">
-                            <i class="bi bi-whatsapp"></i>
+                            <i class="fa-brands fa-whatsapp"></i>
                         </a>
                         <!-- LinkedIn -->
                         <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ route('blogs.show', $blog->slug) }}"
                             target="_blank" rel="noopener noreferrer"
                             class="w-10 h-10 rounded-full bg-[#0A66C2] hover:bg-[#084b9f] text-white flex items-center justify-center transition-all duration-300 hover:-translate-y-0.5"
                             title="Bagikan ke LinkedIn">
-                            <i class="bi bi-linkedin"></i>
+                            <i class="fa-brands fa-linkedin-in"></i>
                         </a>
                         <!-- Copy Link -->
                         <button onclick="copyToClipboard()"
                             class="w-10 h-10 rounded-full bg-slate-500 hover:bg-slate-600 text-white flex items-center justify-center transition-all duration-300 hover:-translate-y-0.5 border-0 cursor-pointer"
                             title="Salin Link" id="copy-btn">
-                            <i class="bi bi-link-45deg"></i>
+                            <i class="fa-solid fa-link"></i>
                         </button>
                     </div>
                 </div>
@@ -260,7 +275,7 @@
                                 </p>
                                 <a href="{{ route('blogs.show', $related->slug) }}"
                                     class="inline-flex items-center gap-1.5 text-[#0d7377] hover:text-[#4DB8C4] font-semibold text-sm no-underline transition-all duration-300 hover:translate-x-1">
-                                    Baca Selengkapnya <i class="bi bi-arrow-right"></i>
+                                    Baca Selengkapnya <i class="fa-solid fa-arrow-right"></i>
                                 </a>
                             </div>
                         </div>
@@ -281,7 +296,7 @@
             <a href="https://wa.me/{{ companyProfile()->phone }}?text=Halo%20Akhritech,%20saya%20ingin%20bertanya%20lebih%20lanjut"
                 target="_blank"
                 class="inline-block bg-white text-[#0d7377] font-semibold px-7 py-3 rounded-xl no-underline transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_16px_rgba(0,0,0,0.2)]">
-                Konsultasi Gratis <i class="bi bi-arrow-right"></i>
+                Konsultasi Gratis <i class="fa-solid fa-arrow-right"></i>
             </a>
         </div>
     </div>
@@ -293,7 +308,7 @@
         navigator.clipboard.writeText(url).then(() => {
             const btn = document.getElementById('copy-btn');
             const originalHTML = btn.innerHTML;
-            btn.innerHTML = '<i class="bi bi-check-circle"></i>';
+            btn.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
             setTimeout(() => {
                 btn.innerHTML = originalHTML;
             }, 2000);

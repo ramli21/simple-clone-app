@@ -47,6 +47,15 @@
                                 @enderror
                             </div>
 
+                            <div class="mb-3">
+                                <label for="tags" class="form-label">Tags</label>
+                                <input type="text" class="form-control @error('tags') is-invalid @enderror" id="tags" name="tags" value="{{ old('tags') }}">
+                                <small class="form-text text-muted">Comma-separated tags (e.g. Digitalisasi Travel, Sistem Booking Online)</small>
+                                @error('tags')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label for="category_id" class="form-label">Category</label>

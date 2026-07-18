@@ -41,12 +41,14 @@ class BlogController extends Controller
             'title' => 'required|string|max:255',
             'content' => 'required|string',
             'excerpt' => 'nullable|string|max:500',
+            'tags' => 'nullable|string',
             'category_id' => 'nullable|uuid|exists:categories,id',
             'is_featured' => 'boolean',
             'published_at' => 'nullable|date',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
+        $validated['is_featured'] = $request->has('is_featured');
         $validated['slug'] = Str::slug($validated['title']);
         $validated['author_id'] = auth()->id();
 
@@ -93,12 +95,14 @@ class BlogController extends Controller
             'title' => 'required|string|max:255',
             'content' => 'required|string',
             'excerpt' => 'nullable|string|max:500',
+            'tags' => 'nullable|string',
             'category_id' => 'nullable|uuid|exists:categories,id',
             'is_featured' => 'boolean',
             'published_at' => 'nullable|date',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
+        $validated['is_featured'] = $request->has('is_featured');
         $validated['slug'] = Str::slug($validated['title']);
 
         // Remove image before update if a new image is uploaded
