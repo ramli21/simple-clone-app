@@ -81,8 +81,9 @@
         <div class="container mx-auto px-4 relative z-10 text-center max-w-3xl">
             <h1 class="text-4xl md:text-5xl font-extrabold mb-5 tracking-tight">Blog Akhritech</h1>
             <p class="text-lg md:text-xl opacity-95 leading-relaxed">
-                Pelajari insight mendalam tentang web development, software engineering, dan teknologi terkini dari tim ahli
-                kami. Tingkatkan skill dan pengetahuan Anda bersama kami.
+                Jelajahi artikel teknologi, tutorial, tips, insight industri, serta informasi produk dan solusi Akhritech.
+                Dapatkan wawasan terbaru untuk meningkatkan pengetahuan dan menemukan solusi digital yang tepat untuk
+                kebutuhan Anda.
             </p>
         </div>
     </section>
@@ -100,18 +101,19 @@
                             <!-- Featured Image -->
                             <div class="h-64 md:h-full overflow-hidden">
                                 <img src="{{ $featuredBlog->image ?? asset('images/blog-default.png') }}"
-                                    alt="{{ $featuredBlog->title }}" loading="lazy"
-                                    class="w-full h-full object-cover">
+                                    alt="{{ $featuredBlog->title }}" loading="lazy" class="w-full h-full object-cover">
                             </div>
                             <!-- Featured Body -->
                             <div class="p-8 md:p-10">
                                 @if ($featuredBlog->category)
-                                    <span class="inline-block bg-white/20 backdrop-blur-sm text-white text-sm font-semibold px-4 py-2 rounded-full mb-5">
+                                    <span
+                                        class="inline-block bg-white/20 backdrop-blur-sm text-white text-sm font-semibold px-4 py-2 rounded-full mb-5">
                                         <i class="fa-solid fa-bolt"></i>
                                         {{ $featuredBlog->category->name }}
                                     </span>
                                 @endif
-                                <h2 class="text-2xl md:text-3xl font-extrabold mb-4 leading-snug">{{ $featuredBlog->title }}</h2>
+                                <h2 class="text-2xl md:text-3xl font-extrabold mb-4 leading-snug">{{ $featuredBlog->title }}
+                                </h2>
                                 <p class="text-base mb-6 opacity-95 leading-relaxed">
                                     {{ $featuredBlog->excerpt ?? Str::limit($featuredBlog->content, 200) }}
                                 </p>
@@ -133,9 +135,10 @@
                                 </div>
                                 @if ($featuredBlog->tags)
                                     <div class="flex flex-wrap gap-2 mb-6">
-                                        @foreach(array_slice(explode(',', $featuredBlog->tags), 0, 3) as $tag)
-                                            @if(trim($tag) !== '')
-                                                <span class="bg-white/20 text-white text-xs px-2.5 py-1 rounded-md border border-white/30">
+                                        @foreach (array_slice(explode(',', $featuredBlog->tags), 0, 3) as $tag)
+                                            @if (trim($tag) !== '')
+                                                <span
+                                                    class="bg-white/20 text-white text-xs px-2.5 py-1 rounded-md border border-white/30">
                                                     #{{ trim($tag) }}
                                                 </span>
                                             @endif
@@ -154,7 +157,8 @@
 
             <!-- Section Title -->
             <div class="mb-10">
-                <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-3 relative inline-block
+                <h2
+                    class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-3 relative inline-block
                     after:absolute after:bottom-[-8px] after:left-0 after:w-16 after:h-1 after:bg-gradient-to-r after:from-[#0d7377] after:to-[#4DB8C4] after:rounded-full">
                     Semua Artikel
                 </h2>
@@ -167,7 +171,8 @@
                     @if ($index === 0)
                         @continue
                     @endif
-                    <article class="group bg-white rounded-2xl overflow-hidden shadow-[0_2px_12px_rgba(0,0,0,0.08)] hover:shadow-[0_12px_24px_rgba(0,0,0,0.15)] transition-all duration-300 hover:-translate-y-2 flex flex-col h-full">
+                    <article
+                        class="group bg-white rounded-2xl overflow-hidden shadow-[0_2px_12px_rgba(0,0,0,0.08)] hover:shadow-[0_12px_24px_rgba(0,0,0,0.15)] transition-all duration-300 hover:-translate-y-2 flex flex-col h-full">
 
                         <!-- Blog Image -->
                         <div class="relative overflow-hidden h-60 bg-gradient-to-br from-slate-100 to-slate-200">
@@ -177,7 +182,8 @@
                                     class="w-full h-full object-cover transition-transform duration-400 group-hover:scale-[1.08]">
                             </a>
                             @if ($blog->category)
-                                <span class="absolute top-3 left-3 bg-[#0d7377]/95 backdrop-blur-sm text-white text-xs font-semibold uppercase tracking-wide px-3.5 py-1.5 rounded-full">
+                                <span
+                                    class="absolute top-3 left-3 bg-[#0d7377]/95 backdrop-blur-sm text-white text-xs font-semibold uppercase tracking-wide px-3.5 py-1.5 rounded-full">
                                     {{ $blog->category->name }}
                                 </span>
                             @endif
@@ -185,7 +191,8 @@
                                 $wordCount = str_word_count(strip_tags($blog->content));
                                 $readingTime = ceil($wordCount / 200);
                             @endphp
-                            <span class="absolute top-3 right-3 bg-emerald-700/95 backdrop-blur-sm text-white text-[0.7rem] font-semibold px-2.5 py-1 rounded-full">
+                            <span
+                                class="absolute top-3 right-3 bg-emerald-700/95 backdrop-blur-sm text-white text-[0.7rem] font-semibold px-2.5 py-1 rounded-full">
                                 {{ $readingTime }} min read
                             </span>
                         </div>
@@ -206,7 +213,8 @@
                             </p>
 
                             <!-- Meta -->
-                            <div class="flex flex-wrap items-center gap-4 py-4 border-y border-slate-100 mb-4 text-sm text-slate-400">
+                            <div
+                                class="flex flex-wrap items-center gap-4 py-4 border-y border-slate-100 mb-4 text-sm text-slate-400">
                                 @if ($blog->author)
                                     <div class="flex items-center gap-1.5">
                                         <i class="fa-solid fa-user-circle text-[#0d7377]"></i>
@@ -224,9 +232,10 @@
                             </div>
                             @if ($blog->tags)
                                 <div class="flex flex-wrap gap-1.5 mb-4">
-                                    @foreach(array_slice(explode(',', $blog->tags), 0, 3) as $tag)
-                                        @if(trim($tag) !== '')
-                                            <span class="bg-slate-100 text-slate-600 text-[0.7rem] px-2 py-0.5 rounded border border-slate-200">
+                                    @foreach (array_slice(explode(',', $blog->tags), 0, 3) as $tag)
+                                        @if (trim($tag) !== '')
+                                            <span
+                                                class="bg-slate-100 text-slate-600 text-[0.7rem] px-2 py-0.5 rounded border border-slate-200">
                                                 #{{ trim($tag) }}
                                             </span>
                                         @endif
@@ -254,7 +263,8 @@
                         <i class="fa-regular fa-file-lines"></i>
                     </div>
                     <h2 class="text-2xl font-bold text-slate-700 mb-3">Belum ada artikel</h2>
-                    <p class="text-slate-400">Kami sedang menyiapkan artikel menarik dan bermanfaat untuk Anda.<br>Segera kembali lagi!</p>
+                    <p class="text-slate-400">Kami sedang menyiapkan artikel menarik dan bermanfaat untuk Anda.<br>Segera
+                        kembali lagi!</p>
                 </div>
             @endif
         </div>

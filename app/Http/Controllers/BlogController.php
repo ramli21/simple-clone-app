@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Blog;
 
 class BlogController extends Controller
 {
     public function index()
     {
-        $blogs = Blog::published()->latest()->paginate(6);
+        $blogs = Blog::published()->latest()->paginate(10);
+
         return view('blogs.index', compact('blogs'));
     }
 
@@ -18,7 +18,7 @@ class BlogController extends Controller
         // Try to find by slug first. If not found, allow legacy URLs using the ID (uuid)
         $blog = Blog::published()->where('slug', $slug)->first();
 
-        if (!$blog) {
+        if (! $blog) {
             // If $slug looks like an ID, try to find by id and redirect to canonical slug URL
             $byId = Blog::published()->find($slug);
             if ($byId) {
@@ -33,4 +33,3 @@ class BlogController extends Controller
         return view('blogs.show', compact('blog'));
     }
 }
-

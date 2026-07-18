@@ -166,6 +166,7 @@
                 <a href="/#services" class="mobile-link text-lg font-medium hover:text-primary">Layanan</a>
                 <a href="{{ route('products.index') }}" class="mobile-link text-lg font-medium text-primary">Produk</a>
                 <a href="/#portfolio" class="mobile-link text-lg font-medium hover:text-primary">Portofolio</a>
+                <a href="{{ route('blogs.index') }}" class="font-medium hover:text-primary transition-colors">Blog</a>
                 <a href="/#contact" class="px-6 py-2.5 bg-slate-900 text-white rounded-full font-medium">Hubungi
                     Kami</a>
             </div>
