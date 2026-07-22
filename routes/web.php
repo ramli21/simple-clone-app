@@ -13,6 +13,7 @@ use App\Http\Controllers\SitemapController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/jasa-buat-website', [HomeController::class, 'jasaBuatWebsite'])->name('services.jasa-buat-website');
 Route::get('/products', [\App\Http\Controllers\ProductPublicController::class, 'index'])->name('products.index');
 Route::get('/products/{slug}', [\App\Http\Controllers\ProductPublicController::class, 'show'])->name('products.show');
 Route::get('/products/{slug}/checkout', [\App\Http\Controllers\ProductPublicController::class, 'checkout'])->name('products.checkout.form');
