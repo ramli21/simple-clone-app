@@ -105,20 +105,20 @@
 
     <!-- 2. Social Proof / Trust Badges -->
     <!-- <section class="py-10 bg-white border-b border-slate-100">
-            <div class="container mx-auto px-4 lg:px-8">
-                <h2 class="text-center text-sm font-bold text-slate-400 uppercase tracking-widest mb-6">
-                    Telah dipercaya oleh 50+ Perusahaan dan Organisasi</h2>
-                <div
-                    class="flex flex-wrap justify-center items-center gap-8 lg:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-500 text-slate-700">
-                    
-                    <i class="fa-brands fa-aws text-4xl"></i>
-                    <i class="fa-brands fa-digital-ocean text-4xl"></i>
-                    <i class="fa-brands fa-google text-4xl"></i>
-                    <i class="fa-brands fa-microsoft text-4xl"></i>
-                    <i class="fa-brands fa-stripe text-4xl"></i>
-                </div>
-            </div>
-        </section> -->
+                    <div class="container mx-auto px-4 lg:px-8">
+                        <h2 class="text-center text-sm font-bold text-slate-400 uppercase tracking-widest mb-6">
+                            Telah dipercaya oleh 50+ Perusahaan dan Organisasi</h2>
+                        <div
+                            class="flex flex-wrap justify-center items-center gap-8 lg:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-500 text-slate-700">
+                            
+                            <i class="fa-brands fa-aws text-4xl"></i>
+                            <i class="fa-brands fa-digital-ocean text-4xl"></i>
+                            <i class="fa-brands fa-google text-4xl"></i>
+                            <i class="fa-brands fa-microsoft text-4xl"></i>
+                            <i class="fa-brands fa-stripe text-4xl"></i>
+                        </div>
+                    </div>
+                </section> -->
 
     <!-- 3. Value Proposition -->
     <section class="py-20 bg-slate-50">
@@ -298,7 +298,7 @@
 
                             <!-- Body (Summernote HTML) -->
                             <div
-                                class="p-6 sm:p-8 overflow-y-auto flex-grow prose prose-slate max-w-none prose-img:rounded-xl prose-a:text-primary">
+                                class="p-6 sm:p-8 overflow-y-auto flex-grow prose prose-slate max-w-none prose-img:rounded-xl prose-a:text-primary text-black">
                                 {!! $portfolio->story !!}
 
                                 @if (!empty($portfolio->highlights) && is_array($portfolio->highlights))
