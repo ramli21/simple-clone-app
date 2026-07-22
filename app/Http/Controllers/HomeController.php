@@ -99,6 +99,12 @@ class HomeController extends Controller
         return view('pages.services.jasa-buat-website', compact('company', 'packages', 'portfolios'));
     }
 
+    public function contact()
+    {
+        $company = CompanyProfile::first();
+        return view('pages.contact', compact('company'));
+    }
+
     private function getPackages()
     {
         return [

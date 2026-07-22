@@ -27,6 +27,7 @@ Route::get('/download', [\App\Http\Controllers\ProductDownloadController::class,
 Route::post('/download/resolve', [\App\Http\Controllers\ProductDownloadController::class, 'resolve'])->name('download.resolve');
 Route::get('/download/{token}', [\App\Http\Controllers\ProductDownloadController::class, 'download'])->name('download.one-time');
 
+Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::view('/terms-of-service', 'pages.terms')->name('terms-of-service');
 Route::view('/privacy-policy', 'privacy-policy')->name('privacy-policy');
 Route::view('/saas/sabilsys', 'products.sabilsys')->name('saas.sabilsys');

@@ -73,12 +73,12 @@
                         Jasa Pembuatan <br>
                         <span
                             class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Website
-                            & Aplikasi Web Custom</span><br>
-                        Terbaik di Indonesia
+                            & Aplikasi Web Custom</span>
                     </h1>
                     <p class="text-lg text-slate-600 mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
-                        Akhritech adalah software house berpengalaman yang siap merubah ide bisnis Anda
-                        menjadi sistem informasi, aplikasi, dan website berkinerja tinggi. Konsultasi
+                        Akhritech membantu bisnis, UMKM, dan startup membangun website, sistem
+                        informasi, dan aplikasi web custom yang cepat, aman, dan mudah dikembangkan.
+                        Konsultasi
                         gratis sekarang!
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
@@ -105,20 +105,20 @@
 
     <!-- 2. Social Proof / Trust Badges -->
     <!-- <section class="py-10 bg-white border-b border-slate-100">
-                    <div class="container mx-auto px-4 lg:px-8">
-                        <h2 class="text-center text-sm font-bold text-slate-400 uppercase tracking-widest mb-6">
-                            Telah dipercaya oleh 50+ Perusahaan dan Organisasi</h2>
-                        <div
-                            class="flex flex-wrap justify-center items-center gap-8 lg:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-500 text-slate-700">
-                            
-                            <i class="fa-brands fa-aws text-4xl"></i>
-                            <i class="fa-brands fa-digital-ocean text-4xl"></i>
-                            <i class="fa-brands fa-google text-4xl"></i>
-                            <i class="fa-brands fa-microsoft text-4xl"></i>
-                            <i class="fa-brands fa-stripe text-4xl"></i>
-                        </div>
-                    </div>
-                </section> -->
+                                            <div class="container mx-auto px-4 lg:px-8">
+                                                <h2 class="text-center text-sm font-bold text-slate-400 uppercase tracking-widest mb-6">
+                                                    Telah dipercaya oleh 50+ Perusahaan dan Organisasi</h2>
+                                                <div
+                                                    class="flex flex-wrap justify-center items-center gap-8 lg:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-500 text-slate-700">
+                                                    
+                                                    <i class="fa-brands fa-aws text-4xl"></i>
+                                                    <i class="fa-brands fa-digital-ocean text-4xl"></i>
+                                                    <i class="fa-brands fa-google text-4xl"></i>
+                                                    <i class="fa-brands fa-microsoft text-4xl"></i>
+                                                    <i class="fa-brands fa-stripe text-4xl"></i>
+                                                </div>
+                                            </div>
+                                        </section> -->
 
     <!-- 3. Value Proposition -->
     <section class="py-20 bg-slate-50">
@@ -129,8 +129,9 @@
                 <h2 class="text-3xl lg:text-4xl font-bold text-slate-900 mt-2 mb-4">Mengapa Memilih
                     Akhritech Sebagai Partner IT Anda?</h2>
                 <p class="text-lg text-slate-600">
-                    Kami memberikan solusi, bukan sekadar barisan kode. Kami berfokus pada kecepatan,
-                    keamanan, dan pertumbuhan bisnis Anda.
+                    Saya percaya bahwa membangun website atau aplikasi bukan hanya tentang menulis kode,
+                    tetapi memahami kebutuhan bisnis dan menghadirkan solusi yang benar-benar dapat
+                    digunakan.
                 </p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -140,10 +141,11 @@
                         class="w-16 h-16 bg-indigo-50 rounded-full flex items-center justify-center text-primary mx-auto mb-6">
                         <i class="fa-solid fa-code text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">Kode Bersih & Modern</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">Sistem Anda dibangun dengan
-                        standar industri terkini, membuatnya sangat cepat saat diakses dan mudah
-                        dikembangkan di masa depan.</p>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Komunikasi Langsung</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">Tidak perlu melalui sales atau
+                        project manager. Anda berdiskusi langsung dengan orang yang merancang dan
+                        mengembangkan sistem, sehingga kebutuhan dapat dipahami lebih cepat dan akurat.
+                    </p>
                 </div>
                 <div
                     class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-lg transition-all text-center">
@@ -151,10 +153,11 @@
                         class="w-16 h-16 bg-indigo-50 rounded-full flex items-center justify-center text-primary mx-auto mb-6">
                         <i class="fa-solid fa-headset text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">Garansi Support Handal</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">Anda tidak akan ditinggalkan
-                        setelah serah terima proyek. Kami memberikan garansi perbaikan bug dan dukungan
-                        teknis berkelanjutan.</p>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Dibangun dengan Standar Modern
+                    </h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">Setiap proyek dikembangkan
+                        menggunakan teknologi dan praktik terbaik agar performanya cepat, aman, mudah
+                        dirawat, dan siap dikembangkan di masa mendatang.</p>
                 </div>
                 <div
                     class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-lg transition-all text-center">
@@ -162,10 +165,10 @@
                         class="w-16 h-16 bg-indigo-50 rounded-full flex items-center justify-center text-primary mx-auto mb-6">
                         <i class="fa-solid fa-chart-line text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">Fokus Pada Konversi</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">Desain antarmuka (UI/UX) kami
-                        tidak hanya indah, tetapi dirancang secara psikologis untuk mengubah pengunjung
-                        menjadi pelanggan nyata.</p>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Dukungan Setelah Launch</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">Proyek tidak berhenti saat website
+                        selesai dipublikasikan. Saya tetap memberikan pendampingan, perbaikan bug, dan
+                        dukungan teknis agar sistem dapat berjalan dengan baik.</p>
                 </div>
             </div>
         </div>

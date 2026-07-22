@@ -153,7 +153,7 @@
                         class="font-medium hover:text-primary transition-colors">Portofolio</a>
                     <a href="{{ route('blogs.index') }}"
                         class="font-medium hover:text-primary transition-colors">Blog</a>
-                    <a href="/#contact"
+                    <a href="{{ route('contact') }}"
                         class="px-5 py-2.5 bg-slate-900 text-white rounded-full font-medium hover:bg-primary transition-all shadow-md hover:shadow-lg">
                         Hubungi Kami
                     </a>
@@ -181,7 +181,7 @@
                     class="mobile-link text-lg font-medium hover:text-primary">Portofolio</a>
                 <a href="{{ route('blogs.index') }}"
                     class="font-medium hover:text-primary transition-colors">Blog</a>
-                <a href="/#contact"
+                <a href="{{ route('contact') }}"
                     class="px-6 py-2.5 bg-slate-900 text-white rounded-full font-medium">Hubungi
                     Kami</a>
             </div>
