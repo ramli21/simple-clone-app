@@ -104,21 +104,21 @@
     </section>
 
     <!-- 2. Social Proof / Trust Badges -->
-    <section class="py-10 bg-white border-b border-slate-100">
-        <div class="container mx-auto px-4 lg:px-8">
-            <h2 class="text-center text-sm font-bold text-slate-400 uppercase tracking-widest mb-6">
-                Telah dipercaya oleh 50+ Perusahaan dan Organisasi</h2>
-            <div
-                class="flex flex-wrap justify-center items-center gap-8 lg:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-500 text-slate-700">
-                <!-- Replace with real client logos -->
-                <i class="fa-brands fa-aws text-4xl"></i>
-                <i class="fa-brands fa-digital-ocean text-4xl"></i>
-                <i class="fa-brands fa-google text-4xl"></i>
-                <i class="fa-brands fa-microsoft text-4xl"></i>
-                <i class="fa-brands fa-stripe text-4xl"></i>
+    <!-- <section class="py-10 bg-white border-b border-slate-100">
+            <div class="container mx-auto px-4 lg:px-8">
+                <h2 class="text-center text-sm font-bold text-slate-400 uppercase tracking-widest mb-6">
+                    Telah dipercaya oleh 50+ Perusahaan dan Organisasi</h2>
+                <div
+                    class="flex flex-wrap justify-center items-center gap-8 lg:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-500 text-slate-700">
+                    
+                    <i class="fa-brands fa-aws text-4xl"></i>
+                    <i class="fa-brands fa-digital-ocean text-4xl"></i>
+                    <i class="fa-brands fa-google text-4xl"></i>
+                    <i class="fa-brands fa-microsoft text-4xl"></i>
+                    <i class="fa-brands fa-stripe text-4xl"></i>
+                </div>
             </div>
-        </div>
-    </section>
+        </section> -->
 
     <!-- 3. Value Proposition -->
     <section class="py-20 bg-slate-50">
@@ -248,24 +248,89 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 @foreach ($portfolios->take(6) as $portfolio)
-                    <div
-                        class="group relative overflow-hidden rounded-2xl bg-slate-800 shadow-lg border border-slate-700 h-80">
-                        <img src="{{ $portfolio->image ?? 'https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' }}"
+                    <!-- Portfolio Card -->
+                    <div onclick="openPortfolioModal('portfolio-modal-{{ $portfolio->id }}')"
+                        class="group relative overflow-hidden rounded-2xl bg-slate-800 shadow-lg border border-slate-700 h-72 cursor-pointer">
+                        <img src="{{ str_starts_with($portfolio->image, 'http') ? $portfolio->image : $portfolio->image_url ?? 'https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' }}"
                             alt="{{ $portfolio->name }}"
-                            class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700 opacity-80 group-hover:opacity-30">
+                            class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700 opacity-80 group-hover:opacity-40">
                         <div
                             class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent p-6 flex flex-col justify-end transition-all duration-500">
-                            <div class="transform group-hover:-translate-y-4 transition duration-500">
-                                <span class="text-accent font-medium text-xs mb-1 uppercase tracking-wider block">{{ $portfolio->category }}</span>
-                                <h3 class="text-white text-xl font-bold mb-2">{{ $portfolio->name }}</h3>
+                            <span
+                                class="text-accent font-medium text-xs mb-1 uppercase tracking-wider block transform group-hover:-translate-y-2 transition duration-300">{{ $portfolio->category }}</span>
+                            <h3
+                                class="text-white text-xl font-bold transform group-hover:-translate-y-2 transition duration-300">
+                                {{ $portfolio->name }}</h3>
+                            <p
+                                class="text-white text-sm mt-3 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition duration-300 flex items-center gap-2">
+                                Lihat Detail <i class="fa-solid fa-arrow-right"></i>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Portfolio Modal -->
+                    <div id="portfolio-modal-{{ $portfolio->id }}"
+                        class="fixed inset-0 z-[60] flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300">
+                        <div class="absolute inset-0 bg-slate-900/80 backdrop-blur-sm"
+                            onclick="closePortfolioModal('portfolio-modal-{{ $portfolio->id }}')">
+                        </div>
+                        <div
+                            class="relative bg-white rounded-3xl shadow-2xl max-w-3xl w-full max-h-[90vh] flex flex-col overflow-hidden transform scale-95 transition-all duration-300 modal-content">
+                            <!-- Close Button -->
+                            <button
+                                onclick="closePortfolioModal('portfolio-modal-{{ $portfolio->id }}')"
+                                class="absolute top-4 right-4 w-10 h-10 bg-white/50 backdrop-blur-md rounded-full flex items-center justify-center text-slate-800 hover:bg-white transition-colors z-10 shadow-sm">
+                                <i class="fa-solid fa-xmark text-xl"></i>
+                            </button>
+
+                            <!-- Header / Image -->
+                            <div class="w-full h-64 sm:h-80 bg-slate-100 flex-shrink-0 relative">
+                                <img src="{{ str_starts_with($portfolio->image, 'http') ? $portfolio->image : $portfolio->image_url ?? 'https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' }}"
+                                    alt="{{ $portfolio->name }}" class="w-full h-full object-cover">
+                                <div
+                                    class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent p-6">
+                                    <span
+                                        class="text-accent font-bold text-xs uppercase tracking-widest">{{ $portfolio->category }}</span>
+                                    <h3 class="text-white text-2xl sm:text-3xl font-extrabold mt-1">
+                                        {{ $portfolio->name }}</h3>
+                                </div>
                             </div>
-                            <div class="h-0 opacity-0 group-hover:h-auto group-hover:opacity-100 transition-all duration-500 overflow-hidden">
-                                <p class="text-slate-300 text-sm line-clamp-3 mb-4">
-                                    {{ $portfolio->story }}
-                                </p>
-                                @if($portfolio->link)
-                                    <a href="{{ $portfolio->link }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-primary hover:text-white font-semibold text-sm transition-colors">
-                                        Kunjungi Website <i class="fa-solid fa-arrow-right-long"></i>
+
+                            <!-- Body (Summernote HTML) -->
+                            <div
+                                class="p-6 sm:p-8 overflow-y-auto flex-grow prose prose-slate max-w-none prose-img:rounded-xl prose-a:text-primary">
+                                {!! $portfolio->story !!}
+
+                                @if (!empty($portfolio->highlights) && is_array($portfolio->highlights))
+                                    <h4 class="mt-6 mb-4 text-lg font-bold text-slate-900">Fitur
+                                        Unggulan</h4>
+                                    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 list-none pl-0">
+                                        @foreach ($portfolio->highlights as $highlight)
+                                            <li class="flex items-start gap-2 m-0 p-0">
+                                                <i
+                                                    class="fa-solid fa-circle-check text-green-500 mt-1"></i>
+                                                <span
+                                                    class="text-slate-600 text-sm">{{ $highlight }}</span>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+                            </div>
+
+                            <!-- Footer -->
+                            <div
+                                class="p-6 border-t border-slate-100 flex justify-end gap-4 bg-slate-50 flex-shrink-0">
+                                <button
+                                    onclick="closePortfolioModal('portfolio-modal-{{ $portfolio->id }}')"
+                                    class="px-6 py-2.5 text-slate-600 font-bold hover:text-slate-900 transition-colors">
+                                    Tutup
+                                </button>
+                                @if ($portfolio->link)
+                                    <a href="{{ $portfolio->link }}" target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="px-6 py-2.5 bg-primary text-white rounded-xl font-bold hover:bg-indigo-700 transition-all shadow-md flex items-center gap-2">
+                                        Kunjungi Website <i
+                                            class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
                                     </a>
                                 @endif
                             </div>
@@ -578,6 +643,33 @@
 
 @push('scripts')
     <script>
+        // Modal Handlers for Portfolio
+        function openPortfolioModal(id) {
+            const modal = document.getElementById(id);
+            if (modal) {
+                modal.classList.remove('opacity-0', 'pointer-events-none');
+                const content = modal.querySelector('.modal-content');
+                if (content) {
+                    content.classList.remove('scale-95');
+                    content.classList.add('scale-100');
+                }
+                document.body.style.overflow = 'hidden'; // Prevent scrolling behind modal
+            }
+        }
+
+        function closePortfolioModal(id) {
+            const modal = document.getElementById(id);
+            if (modal) {
+                modal.classList.add('opacity-0', 'pointer-events-none');
+                const content = modal.querySelector('.modal-content');
+                if (content) {
+                    content.classList.add('scale-95');
+                    content.classList.remove('scale-100');
+                }
+                document.body.style.overflow = ''; // Restore scrolling
+            }
+        }
+
         function closeSuccessPopup() {
             const popup = document.getElementById('success-popup');
             const card = document.getElementById('success-card');
