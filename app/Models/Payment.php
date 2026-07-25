@@ -27,6 +27,11 @@ class Payment extends Model
         return $this->belongsTo(Product::class, 'product_id', 'id');
     }
 
+    public function brief(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(ClientBrief::class, 'payment_id', 'id');
+    }
+
     public static function generateUniqueCode(int $length = 6): string
     {
         $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';

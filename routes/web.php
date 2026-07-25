@@ -38,6 +38,11 @@ Route::post('/products/confirm-payment', [\App\Http\Controllers\ProductPublicCon
 Route::post('/products/claim-free', [\App\Http\Controllers\ProductPublicController::class, 'claimFree'])
     ->name('products.claim-free');
 
+Route::get('/client-portal/{token}', [\App\Http\Controllers\ClientPortalController::class, 'show'])->name('client-portal.show');
+Route::post('/client-portal/{token}/save-draft', [\App\Http\Controllers\ClientPortalController::class, 'saveDraft'])->name('client-portal.save-draft');
+Route::post('/client-portal/{token}/submit', [\App\Http\Controllers\ClientPortalController::class, 'submit'])->name('client-portal.submit');
+Route::post('/client-portal/{token}/upload', [\App\Http\Controllers\ClientPortalController::class, 'uploadFile'])->name('client-portal.upload');
+
 Auth::routes();
 
 Route::prefix('admin')->name('admin.')->group(function () {
@@ -46,6 +51,17 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/', [\App\Http\Controllers\Admin\PaymentAdminController::class, 'index'])->name('index');
         Route::post('/{payment}/approve', [\App\Http\Controllers\Admin\PaymentAdminController::class, 'approve'])->name('approve');
         Route::post('/{payment}/reject', [\App\Http\Controllers\Admin\PaymentAdminController::class, 'reject'])->name('reject');
+    });
+
+    Route::prefix('client-briefs')->name('client-briefs.')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Admin\ClientBriefAdminController::class, 'index'])->name('index');
+        Route::get('/create', [\App\Http\Controllers\Admin\ClientBriefAdminController::class, 'create'])->name('create');
+        Route::post('/', [\App\Http\Controllers\Admin\ClientBriefAdminController::class, 'store'])->name('store');
+        Route::get('/{id}', [\App\Http\Controllers\Admin\ClientBriefAdminController::class, 'show'])->name('show');
+        Route::post('/{id}/status', [\App\Http\Controllers\Admin\ClientBriefAdminController::class, 'updateStatus'])->name('update-status');
+        Route::get('/{id}/download-zip', [\App\Http\Controllers\Admin\ClientBriefAdminController::class, 'downloadZip'])->name('download-zip');
+        Route::get('/{id}/export-pdf', [\App\Http\Controllers\Admin\ClientBriefAdminController::class, 'exportPdf'])->name('export-pdf');
+        Route::delete('/{id}', [\App\Http\Controllers\Admin\ClientBriefAdminController::class, 'destroy'])->name('destroy');
     });
 
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
