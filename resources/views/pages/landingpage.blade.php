@@ -11,8 +11,7 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:title"
-        content="Jasa Pembuatan Website & Aplikasi Web Custom Terbaik di Indonesia | Akhritech">
+    <meta property="og:title" content="Jasa Pembuatan Website & Aplikasi Web Custom Terbaik di Indonesia | Akhritech">
     <meta property="og:description"
         content="Akhritech adalah software house berpengalaman yang siap merubah ide bisnis Anda menjadi sistem informasi, aplikasi, dan website berkinerja tinggi. Konsultasi gratis sekarang!">
     <meta property="og:image" content="{{ asset('images/akhritech-banner.png') }}">
@@ -20,8 +19,7 @@
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="{{ url()->current() }}">
-    <meta property="twitter:title"
-        content="Jasa Pembuatan Website & Aplikasi Web Custom Terbaik di Indonesia | Akhritech">
+    <meta property="twitter:title" content="Jasa Pembuatan Website & Aplikasi Web Custom Terbaik di Indonesia | Akhritech">
     <meta property="twitter:description"
         content="Akhritech adalah software house berpengalaman yang siap merubah ide bisnis Anda menjadi sistem informasi, aplikasi, dan website berkinerja tinggi. Konsultasi gratis sekarang!">
     <meta property="twitter:image" content="{{ asset('images/akhritech-banner.png') }}">
@@ -68,11 +66,9 @@
                         class="inline-block px-4 py-1.5 rounded-full bg-indigo-100 text-primary font-semibold text-sm mb-6 border border-indigo-200">
                         🚀 Partner Transformasi Digital Bisnis Anda
                     </div>
-                    <h1
-                        class="text-4xl lg:text-5xl xl:text-6xl font-extrabold text-slate-900 leading-tight mb-6">
+                    <h1 class="text-4xl lg:text-5xl xl:text-6xl font-extrabold text-slate-900 leading-tight mb-6">
                         Jasa Pembuatan <br>
-                        <span
-                            class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Website
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Website
                             & Aplikasi Web Custom</span>
                     </h1>
                     <p class="text-lg text-slate-600 mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
@@ -105,20 +101,20 @@
 
     <!-- 2. Social Proof / Trust Badges -->
     <!-- <section class="py-10 bg-white border-b border-slate-100">
-                                            <div class="container mx-auto px-4 lg:px-8">
-                                                <h2 class="text-center text-sm font-bold text-slate-400 uppercase tracking-widest mb-6">
-                                                    Telah dipercaya oleh 50+ Perusahaan dan Organisasi</h2>
-                                                <div
-                                                    class="flex flex-wrap justify-center items-center gap-8 lg:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-500 text-slate-700">
-                                                    
-                                                    <i class="fa-brands fa-aws text-4xl"></i>
-                                                    <i class="fa-brands fa-digital-ocean text-4xl"></i>
-                                                    <i class="fa-brands fa-google text-4xl"></i>
-                                                    <i class="fa-brands fa-microsoft text-4xl"></i>
-                                                    <i class="fa-brands fa-stripe text-4xl"></i>
-                                                </div>
-                                            </div>
-                                        </section> -->
+                                                    <div class="container mx-auto px-4 lg:px-8">
+                                                        <h2 class="text-center text-sm font-bold text-slate-400 uppercase tracking-widest mb-6">
+                                                            Telah dipercaya oleh 50+ Perusahaan dan Organisasi</h2>
+                                                        <div
+                                                            class="flex flex-wrap justify-center items-center gap-8 lg:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-500 text-slate-700">
+                                                            
+                                                            <i class="fa-brands fa-aws text-4xl"></i>
+                                                            <i class="fa-brands fa-digital-ocean text-4xl"></i>
+                                                            <i class="fa-brands fa-google text-4xl"></i>
+                                                            <i class="fa-brands fa-microsoft text-4xl"></i>
+                                                            <i class="fa-brands fa-stripe text-4xl"></i>
+                                                        </div>
+                                                    </div>
+                                                </section> -->
 
     <!-- 3. Value Proposition -->
     <section class="py-20 bg-slate-50">
@@ -193,8 +189,7 @@
                     <div
                         class="bg-slate-50 rounded-3xl p-10 border border-slate-200 hover:border-primary transition-all duration-300 flex flex-col h-full relative group">
                         @if ($package['highlight'])
-                            <div
-                                class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                            <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                                 <span
                                     class="bg-primary text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-md uppercase tracking-wide">
                                     Paling Sering Digunakan
@@ -280,8 +275,7 @@
                         <div
                             class="relative bg-white rounded-3xl shadow-2xl max-w-3xl w-full max-h-[90vh] flex flex-col overflow-hidden transform scale-95 transition-all duration-300 modal-content">
                             <!-- Close Button -->
-                            <button
-                                onclick="closePortfolioModal('portfolio-modal-{{ $portfolio->id }}')"
+                            <button onclick="closePortfolioModal('portfolio-modal-{{ $portfolio->id }}')"
                                 class="absolute top-4 right-4 w-10 h-10 bg-white/50 backdrop-blur-md rounded-full flex items-center justify-center text-slate-800 hover:bg-white transition-colors z-10 shadow-sm">
                                 <i class="fa-solid fa-xmark text-xl"></i>
                             </button>
@@ -310,10 +304,8 @@
                                     <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 list-none pl-0">
                                         @foreach ($portfolio->highlights as $highlight)
                                             <li class="flex items-start gap-2 m-0 p-0">
-                                                <i
-                                                    class="fa-solid fa-circle-check text-green-500 mt-1"></i>
-                                                <span
-                                                    class="text-slate-600 text-sm">{{ $highlight }}</span>
+                                                <i class="fa-solid fa-circle-check text-green-500 mt-1"></i>
+                                                <span class="text-slate-600 text-sm">{{ $highlight }}</span>
                                             </li>
                                         @endforeach
                                     </ul>
@@ -321,19 +313,15 @@
                             </div>
 
                             <!-- Footer -->
-                            <div
-                                class="p-6 border-t border-slate-100 flex justify-end gap-4 bg-slate-50 flex-shrink-0">
-                                <button
-                                    onclick="closePortfolioModal('portfolio-modal-{{ $portfolio->id }}')"
+                            <div class="p-6 border-t border-slate-100 flex justify-end gap-4 bg-slate-50 flex-shrink-0">
+                                <button onclick="closePortfolioModal('portfolio-modal-{{ $portfolio->id }}')"
                                     class="px-6 py-2.5 text-slate-600 font-bold hover:text-slate-900 transition-colors">
                                     Tutup
                                 </button>
                                 @if ($portfolio->link)
-                                    <a href="{{ $portfolio->link }}" target="_blank"
-                                        rel="noopener noreferrer"
+                                    <a href="{{ $portfolio->link }}" target="_blank" rel="noopener noreferrer"
                                         class="px-6 py-2.5 bg-primary text-white rounded-xl font-bold hover:bg-indigo-700 transition-all shadow-md flex items-center gap-2">
-                                        Kunjungi Website <i
-                                            class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                                        Kunjungi Website <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
                                     </a>
                                 @endif
                             </div>
@@ -367,8 +355,7 @@
                     class="bg-white rounded-3xl shadow-xl flex flex-col lg:flex-row overflow-hidden border border-slate-100 group hover:shadow-2xl transition-all">
                     <div class="lg:w-2/5 h-64 lg:h-auto relative bg-slate-100">
                         <img src="{{ asset('./images/akhritech_travel.jpeg') }}"
-                            alt="Dashboard SabilSys ERP Travel Umroh"
-                            class="w-full h-full object-cover">
+                            alt="Dashboard SabilSys ERP Travel Umroh" class="w-full h-full object-cover">
                     </div>
                     <div class="lg:w-3/5 p-8 flex flex-col justify-between">
                         <div>
@@ -392,6 +379,38 @@
                         <a href="{{ route('saas.sabilsys') }}"
                             class="text-primary font-bold flex items-center gap-2 group-hover:text-indigo-800 mt-4">
                             Eksplorasi SabilSys <i
+                                class="fa-solid fa-arrow-right transform group-hover:translate-x-1 transition-all"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- AkhriShop -->
+                <div
+                    class="bg-white rounded-3xl shadow-xl flex flex-col lg:flex-row overflow-hidden border border-slate-100 group hover:shadow-2xl transition-all">
+                    <div class="lg:w-2/5 h-64 lg:h-auto relative bg-slate-100">
+                        <img src="{{ asset('./images/akhrishop_image.png') }}" alt="Dashboard AkhriShop E-Commerce"
+                            class="w-full h-full object-cover">
+                    </div>
+                    <div class="lg:w-3/5 p-8 flex flex-col justify-between">
+                        <div>
+                            <span
+                                class="px-3 py-1 bg-indigo-50 text-primary text-xs font-bold rounded-full mb-4 inline-block">SaaS
+                                E-Commerce</span>
+                            <h3 class="text-2xl font-bold text-slate-900 mb-3">AkhriShop - E-Commerce Platform</h3>
+                            <p class="text-slate-600 text-sm mb-4">Platform e-commerce terintegrasi untuk bisnis online.
+                                Menyediakan solusi lengkap dari manajemen produk, pesanan, hingga pembayaran dalam satu
+                                sistem yang mudah digunakan.</p>
+                            <ul class="space-y-2 mb-6">
+                                <li class="text-sm text-slate-500"><i
+                                        class="fa-solid fa-check text-green-500 mr-2"></i>Arsitektur
+                                    Skalabel</li>
+                                <li class="text-sm text-slate-500"><i
+                                        class="fa-solid fa-check text-green-500 mr-2"></i>Keamanan Data
+                                    Enkripsi</li>
+                            </ul>
+                        </div>
+                        <a href="{{ route('saas.akhrishop') }}"
+                            class="text-primary font-bold flex items-center gap-2 group-hover:text-indigo-800 mt-4">
+                            Eksplorasi AkhriShop <i
                                 class="fa-solid fa-arrow-right transform group-hover:translate-x-1 transition-all"></i>
                         </a>
                     </div>
@@ -431,22 +450,19 @@
                                     alt="{{ $product->name }}"
                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                             @else
-                                <div
-                                    class="w-full h-full flex items-center justify-center text-slate-400">
+                                <div class="w-full h-full flex items-center justify-center text-slate-400">
                                     No Image</div>
                             @endif
                         </div>
                         <div class="p-6 flex flex-col flex-grow">
                             <span
                                 class="text-xs text-primary font-bold uppercase tracking-wider block mb-2">{{ $product->category }}</span>
-                            <h3
-                                class="text-lg font-bold mb-2 text-slate-900 group-hover:text-primary transition-colors">
+                            <h3 class="text-lg font-bold mb-2 text-slate-900 group-hover:text-primary transition-colors">
                                 {{ $product->name }}</h3>
                             <p class="text-slate-500 text-sm mb-4 line-clamp-2">
                                 {{ $product->short_description }}</p>
 
-                            <div
-                                class="mt-auto pt-4 border-t border-slate-100 flex items-center justify-between">
+                            <div class="mt-auto pt-4 border-t border-slate-100 flex items-center justify-between">
                                 <span class="text-xl font-bold text-slate-900">
                                     {{ $product->final_price > 0 ? 'Rp ' . number_format($product->final_price, 0, ',', '.') : 'Gratis' }}
                                 </span>
@@ -480,11 +496,9 @@
             <div class="space-y-4">
                 <details
                     class="group bg-white rounded-xl shadow-sm border border-slate-200 open:ring-1 open:ring-primary/20 transition-all">
-                    <summary
-                        class="flex items-center justify-between p-6 font-bold cursor-pointer text-slate-900">
+                    <summary class="flex items-center justify-between p-6 font-bold cursor-pointer text-slate-900">
                         Berapa lama proses pembuatan website atau aplikasi di Akhritech?
-                        <i
-                            class="fa-solid fa-chevron-down text-slate-400 group-open:-rotate-180 transition-transform"></i>
+                        <i class="fa-solid fa-chevron-down text-slate-400 group-open:-rotate-180 transition-transform"></i>
                     </summary>
                     <div class="px-6 pb-6 text-slate-600 text-sm leading-relaxed">
                         Waktu pengerjaan bergantung pada kompleksitas fitur. Untuk landing page sekitar
@@ -494,11 +508,9 @@
                 </details>
                 <details
                     class="group bg-white rounded-xl shadow-sm border border-slate-200 open:ring-1 open:ring-primary/20 transition-all">
-                    <summary
-                        class="flex items-center justify-between p-6 font-bold cursor-pointer text-slate-900">
+                    <summary class="flex items-center justify-between p-6 font-bold cursor-pointer text-slate-900">
                         Berapa biaya jasa pembuatan aplikasi berbasis web?
-                        <i
-                            class="fa-solid fa-chevron-down text-slate-400 group-open:-rotate-180 transition-transform"></i>
+                        <i class="fa-solid fa-chevron-down text-slate-400 group-open:-rotate-180 transition-transform"></i>
                     </summary>
                     <div class="px-6 pb-6 text-slate-600 text-sm leading-relaxed">
                         Biaya bervariasi tergantung fitur dan skala sistem. Kami sangat transparan
@@ -508,11 +520,9 @@
                 </details>
                 <details
                     class="group bg-white rounded-xl shadow-sm border border-slate-200 open:ring-1 open:ring-primary/20 transition-all">
-                    <summary
-                        class="flex items-center justify-between p-6 font-bold cursor-pointer text-slate-900">
+                    <summary class="flex items-center justify-between p-6 font-bold cursor-pointer text-slate-900">
                         Apakah Akhritech menyediakan maintenance setelah aplikasi selesai?
-                        <i
-                            class="fa-solid fa-chevron-down text-slate-400 group-open:-rotate-180 transition-transform"></i>
+                        <i class="fa-solid fa-chevron-down text-slate-400 group-open:-rotate-180 transition-transform"></i>
                     </summary>
                     <div class="px-6 pb-6 text-slate-600 text-sm leading-relaxed">
                         Ya, kami memberikan dukungan teknis (support) dan jaminan perbaikan bug
@@ -526,8 +536,7 @@
 
     <!-- 9. Final CTA & Contact Section -->
     <section id="contact" class="py-24 bg-slate-900 text-white relative overflow-hidden">
-        <div
-            class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10">
         </div>
         <div class="container mx-auto px-4 lg:px-8 max-w-6xl relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -580,8 +589,7 @@
                         <div class="mb-5">
                             <label class="block text-sm font-bold text-slate-700 mb-2">WhatsApp /
                                 Telepon</label>
-                            <input type="tel" id="contact-whatsapp" name="whatsapp_number"
-                                required
+                            <input type="tel" id="contact-whatsapp" name="whatsapp_number" required
                                 class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all">
                             <p id="err-whatsapp_number" class="hidden mt-1 text-xs text-red-500"></p>
                         </div>
@@ -611,11 +619,10 @@
                         <button type="submit" id="submit-btn"
                             class="w-full bg-primary text-white font-bold py-4 rounded-xl hover:bg-indigo-700 transition-all shadow-lg flex items-center justify-center gap-2">
                             <span id="submit-label">Kirim Pesan Sekarang</span>
-                            <i id="submit-spinner"
-                                class="hidden fa-solid fa-circle-notch fa-spin"></i>
+                            <i id="submit-spinner" class="hidden fa-solid fa-circle-notch fa-spin"></i>
                         </button>
-                        <p class="text-center text-xs text-slate-500 mt-4"><i
-                                class="fa-solid fa-lock mr-1"></i> Data Anda 100% aman dan
+                        <p class="text-center text-xs text-slate-500 mt-4"><i class="fa-solid fa-lock mr-1"></i> Data Anda
+                            100% aman dan
                             dirahasiakan.</p>
                     </form>
                 </div>
@@ -629,8 +636,7 @@
         <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"></div>
         <div id="success-card"
             class="relative bg-white rounded-3xl shadow-2xl p-10 max-w-sm w-full text-center scale-90 transition-all duration-300">
-            <div
-                class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-5">
+            <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-5">
                 <i class="fa-solid fa-check text-4xl text-green-500"></i>
             </div>
             <h3 class="text-2xl font-bold text-slate-900 mb-2">Berhasil Terkirim!</h3>
@@ -747,4 +753,3 @@
         }
     </script>
 @endpush
-

@@ -47,9 +47,14 @@
                     </h1>
 
                     <p class="mt-6 max-w-xl text-base leading-8 text-slate-300 sm:text-lg">
-                        Bangun toko online yang cepat, aman, dan siap scale dengan katalog dinamis,
-                        pembayaran otomatis, logistik terintegrasi, serta database eksklusif single tenant untuk toko Anda.
+                        Digitalisasikan bisnis toko online Anda agar penjualan naik, operasional lebih rapi,
+                        dan customer experience semakin maksimal dari katalog hingga pengiriman.
                     </p>
+
+                    <div
+                        class="mt-4 rounded-2xl border border-emerald-400/20 bg-emerald-500/10 px-4 py-3 text-sm font-medium text-emerald-100">
+                        “Digitalisasikan bisnis toko online Anda untuk meningkatkan penjualan dan memudahkan operasional.”
+                    </div>
 
                     <div class="mt-8 flex flex-col gap-4 sm:flex-row">
                         <a href="#harga"
@@ -60,6 +65,13 @@
                             class="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 px-7 py-3.5 text-base font-semibold text-white transition hover:border-indigo-300 hover:bg-white/10">
                             Lihat fitur utama
                         </a>
+                    </div>
+
+                    <div
+                        class="mt-5 rounded-2xl border border-indigo-400/20 bg-white/5 p-4 text-sm text-slate-200 backdrop-blur-sm">
+                        <p class="font-semibold text-white">Biaya perpanjangan tahunan:</p>
+                        <p class="mt-1">Rp 1.250.000 untuk server dan domain, dengan ketentuan jika domain lebih dari Rp
+                            250.000 maka ada biaya tahunan tambahan sesuai selisihnya.</p>
                     </div>
 
                     <div class="mt-8 flex flex-wrap items-center gap-6 text-sm text-slate-300">
@@ -178,7 +190,8 @@
                     class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
                     <div
                         class="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-100 text-xl text-indigo-600">
-                        <i class="fa-solid fa-boxes-stacked"></i></div>
+                        <i class="fa-solid fa-boxes-stacked"></i>
+                    </div>
                     <h3 class="mb-3 text-xl font-bold text-slate-900">Katalog & Varian</h3>
                     <p class="text-slate-600">Dukungan multi-varian (warna, ukuran), galeri foto & video, badge promo, dan
                         filter interaktif untuk pengalaman belanja yang lebih optimal.</p>
@@ -188,7 +201,8 @@
                     class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
                     <div
                         class="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-100 text-xl text-emerald-600">
-                        <i class="fa-solid fa-warehouse"></i></div>
+                        <i class="fa-solid fa-warehouse"></i>
+                    </div>
                     <h3 class="mb-3 text-xl font-bold text-slate-900">Multi-Gudang</h3>
                     <p class="text-slate-600">Daftarkan banyak alamat gudang dengan penandaan Gudang Utama untuk origin
                         pengiriman RajaOngkir dan pengelolaan stok yang lebih presisi.</p>
@@ -198,7 +212,8 @@
                     class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
                     <div
                         class="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-cyan-100 text-xl text-cyan-600">
-                        <i class="fa-solid fa-truck-fast"></i></div>
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </div>
                     <h3 class="mb-3 text-xl font-bold text-slate-900">RajaOngkir Engine</h3>
                     <p class="text-slate-600">Autocomplete pencarian kelurahan, kecamatan, kota, kalkulasi ongkir otomatis,
                         dan fallback rate cerdas untuk menjaga pengalaman checkout tetap lancar.</p>
@@ -208,7 +223,8 @@
                     class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
                     <div
                         class="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-amber-100 text-xl text-amber-600">
-                        <i class="fa-solid fa-tag"></i></div>
+                        <i class="fa-solid fa-tag"></i>
+                    </div>
                     <h3 class="mb-3 text-xl font-bold text-slate-900">Subsidi Ongkir Produk</h3>
                     <p class="text-slate-600">Setiap produk dapat diberikan subsidi ongkir langsung untuk menurunkan biaya
                         pengiriman dan meningkatkan conversion rate.</p>
@@ -218,7 +234,8 @@
                     class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
                     <div
                         class="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-violet-100 text-xl text-violet-600">
-                        <i class="fa-solid fa-qrcode"></i></div>
+                        <i class="fa-solid fa-qrcode"></i>
+                    </div>
                     <h3 class="mb-3 text-xl font-bold text-slate-900">GoQRIS Gateway</h3>
                     <p class="text-slate-600">Generate QRIS dinamis otomatis, auto-checking polling status tanpa konfirmasi
                         manual, dan transaksi lebih cepat dan aman.</p>
@@ -228,7 +245,8 @@
                     class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
                     <div
                         class="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-rose-100 text-xl text-rose-600">
-                        <i class="fa-solid fa-building-columns"></i></div>
+                        <i class="fa-solid fa-building-columns"></i>
+                    </div>
                     <h3 class="mb-3 text-xl font-bold text-slate-900">Transfer Bank Manual</h3>
                     <p class="text-slate-600">Nomor rekening dinamis tampil di checkout, email, tracking order, dan
                         WhatsApp untuk mempermudah konfirmasi pembayaran pelanggan.</p>
@@ -238,7 +256,8 @@
                     class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
                     <div
                         class="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-sky-100 text-xl text-sky-600">
-                        <i class="fa-solid fa-box-open"></i></div>
+                        <i class="fa-solid fa-box-open"></i>
+                    </div>
                     <h3 class="mb-3 text-xl font-bold text-slate-900">Cek Resi Multi-Kurir</h3>
                     <p class="text-slate-600">Pelacakan resi 12+ ekspedisi nasional secara live dengan timeline perjalanan
                         paket agar customer selalu update.</p>
@@ -248,7 +267,8 @@
                     class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
                     <div
                         class="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-lime-100 text-xl text-lime-600">
-                        <i class="fa-solid fa-rotate-left"></i></div>
+                        <i class="fa-solid fa-rotate-left"></i>
+                    </div>
                     <h3 class="mb-3 text-xl font-bold text-slate-900">Cashless Return System</h3>
                     <p class="text-slate-600">Pengajuan retur dalam 48 jam, upload foto/video kendala, dan resi retur
                         otomatis tanpa biaya ongkir untuk pengalaman yang lebih ramah.</p>
@@ -258,7 +278,8 @@
                     class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
                     <div
                         class="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-teal-100 text-xl text-teal-600">
-                        <i class="fa-brands fa-whatsapp"></i></div>
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </div>
                     <h3 class="mb-3 text-xl font-bold text-slate-900">WhatsApp Automation</h3>
                     <p class="text-slate-600">Notifikasi dua arah kepada pelanggan dan admin di setiap perubahan status
                         transaksi agar komunikasi lebih cepat dan terstruktur.</p>
@@ -268,7 +289,8 @@
                     class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
                     <div
                         class="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-orange-100 text-xl text-orange-600">
-                        <i class="fa-solid fa-file-excel"></i></div>
+                        <i class="fa-solid fa-file-excel"></i>
+                    </div>
                     <h3 class="mb-3 text-xl font-bold text-slate-900">Bulk Excel/CSV Import</h3>
                     <p class="text-slate-600">Template unduhan otomatis, validasi data, background queue, dan notifikasi
                         progres menjadikan import produk lebih cepat tanpa kehilangan data.</p>
@@ -278,7 +300,8 @@
                     class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
                     <div
                         class="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-fuchsia-100 text-xl text-fuchsia-600">
-                        <i class="fa-solid fa-sliders"></i></div>
+                        <i class="fa-solid fa-sliders"></i>
+                    </div>
                     <h3 class="mb-3 text-xl font-bold text-slate-900">Livewire Admin Settings</h3>
                     <p class="text-slate-600">5 tab pengaturan terpusat (Profil Toko, Gudang, Bank, Payment QRIS, API Keys)
                         dengan auto-caching untuk operasional yang rapi dan konsisten.</p>
@@ -288,7 +311,8 @@
                     class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
                     <div
                         class="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-red-100 text-xl text-red-600">
-                        <i class="fa-solid fa-shield-halved"></i></div>
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
                     <h3 class="mb-3 text-xl font-bold text-slate-900">Role & Authentication</h3>
                     <p class="text-slate-600">Sistem login, registrasi, lupa password, reset password, serta middleware
                         keamanan superadmin untuk kontrol akses yang aman dan profesional.</p>
@@ -308,7 +332,8 @@
                         <div class="flex gap-4">
                             <div
                                 class="mt-1 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-500/20 text-indigo-300">
-                                <i class="fa-solid fa-server"></i></div>
+                                <i class="fa-solid fa-server"></i>
+                            </div>
                             <div>
                                 <h3 class="text-lg font-bold">Server yang memadai</h3>
                                 <p class="text-slate-300">Didesain untuk trafik toko online yang aktif, dengan performa
@@ -318,7 +343,8 @@
                         <div class="flex gap-4">
                             <div
                                 class="mt-1 flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/20 text-emerald-300">
-                                <i class="fa-solid fa-database"></i></div>
+                                <i class="fa-solid fa-database"></i>
+                            </div>
                             <div>
                                 <h3 class="text-lg font-bold">Single tenant database</h3>
                                 <p class="text-slate-300">Database eksklusif hanya untuk toko pelanggan Anda, tanpa campur
@@ -328,7 +354,8 @@
                         <div class="flex gap-4">
                             <div
                                 class="mt-1 flex h-10 w-10 items-center justify-center rounded-lg bg-amber-500/20 text-amber-300">
-                                <i class="fa-solid fa-globe"></i></div>
+                                <i class="fa-solid fa-globe"></i>
+                            </div>
                             <div>
                                 <h3 class="text-lg font-bold">Domain dan nama brand siap online</h3>
                                 <p class="text-slate-300">Sudah termasuk domain .com/.id, dengan subsidi Rp 250.000 untuk
@@ -391,8 +418,10 @@
                 <div class="mt-8 rounded-2xl bg-slate-50 p-5 text-left">
                     <h3 class="text-lg font-bold text-slate-900">Catatan penting</h3>
                     <ul class="mt-4 space-y-3 text-slate-600">
+                        <li class="flex gap-3"><i class="fa-solid fa-circle-check mt-1 text-emerald-500"></i><span>Biaya
+                                perpanjangan tahunan sebesar Rp 1.250.000 untuk server dan domain.</span></li>
                         <li class="flex gap-3"><i class="fa-solid fa-circle-check mt-1 text-emerald-500"></i><span>Jika
-                                harga domain pilihan Anda di atas Rp 250.000, maka ada biaya tambahan sesuai
+                                harga domain pilihan Anda di atas Rp 250.000, maka ada biaya tahunan tambahan sesuai
                                 selisihnya.</span></li>
                         <li class="flex gap-3"><i class="fa-solid fa-circle-check mt-1 text-emerald-500"></i><span>Server
                                 yang disediakan sudah memadai untuk kebutuhan operasional toko online.</span></li>
@@ -400,7 +429,26 @@
                                 class="fa-solid fa-circle-check mt-1 text-emerald-500"></i><span>Database single tenant
                                 berarti hanya milik satu pelanggan dan secara eksklusif tidak dibagi antar tenant.</span>
                         </li>
+                        <li class="flex gap-3"><i
+                                class="fa-solid fa-circle-check mt-1 text-emerald-500"></i><span>Aplikasi dapat di-upgrade
+                                atau ditambahkan fitur sesuai kebutuhan bisnis, dengan biaya disesuaikan berdasarkan modul
+                                yang ditambahkan.</span></li>
+                        <li class="flex gap-3"><i class="fa-solid fa-circle-check mt-1 text-emerald-500"></i><span>Siap
+                                untuk integrasi dengan Payment Gateway, KiriminAja (untuk resi otomatis), dan pihak ketiga
+                                lainnya sesuai kebutuhan, dengan biaya tambahan yang berlaku.</span></li>
                     </ul>
+                </div>
+
+                <div class="mt-8 rounded-2xl border border-dashed border-indigo-200 bg-indigo-50 p-5 text-left">
+                    <h3 class="text-lg font-bold text-slate-900">Upgrade & Integrasi Tambahan</h3>
+                    <p class="mt-3 text-slate-600">Aplikasi ini dapat dikembangkan sesuai kebutuhan bisnis Anda, mulai dari
+                        penambahan modul, fitur khusus, hingga integrasi dengan sistem eksternal. Biaya upgrade atau
+                        integrasi disesuaikan dengan kompleksitas dan fitur yang ditambahkan.</p>
+                    <div class="mt-4 flex flex-wrap gap-2 text-xs font-semibold text-slate-700">
+                        <span class="rounded-full bg-white px-3 py-1.5 border border-slate-200">Payment Gateway</span>
+                        <span class="rounded-full bg-white px-3 py-1.5 border border-slate-200">KiriminAja</span>
+                        <span class="rounded-full bg-white px-3 py-1.5 border border-slate-200">API Pihak Ketiga</span>
+                    </div>
                 </div>
 
                 <div class="mt-8 flex flex-col gap-4 sm:flex-row">
