@@ -29,6 +29,7 @@ Route::get('/download/{token}', [\App\Http\Controllers\ProductDownloadController
 Route::view('/terms-of-service', 'pages.terms')->name('terms-of-service');
 Route::view('/privacy-policy', 'privacy-policy')->name('privacy-policy');
 Route::view('/saas/sabilsys', 'products.sabilsys')->name('saas.sabilsys');
+Route::view('/saas/akhrishop', 'products.saas.akhrishop')->name('saas.akhrishop');
 Route::post('/inquiry', [HomeController::class, 'inquiry'])->name('inquiry.store');
 Route::get('/blogs', [PublicBlogController::class, 'index'])->name('blogs.index');
 Route::get('/blogs/{slug}', [PublicBlogController::class, 'show'])->name('blogs.show');

@@ -45,6 +45,12 @@ class SitemapController extends Controller
                 'lastmod'    => now()->toIso8601String(),
             ],
             [
+                'loc'        => url('/saas/akhrishop'),
+                'priority'   => '0.9',
+                'changefreq' => 'weekly',
+                'lastmod'    => now()->toIso8601String(),
+            ],
+            [
                 'loc'        => url('/terms-of-service'),
                 'priority'   => '0.3',
                 'changefreq' => 'yearly',
