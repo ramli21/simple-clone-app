@@ -13,6 +13,7 @@ use App\Http\Controllers\SitemapController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/jasa-buat-website', [HomeController::class, 'jasaBuatWebsite'])->name('services.jasa-buat-website');
 Route::get('/products', [\App\Http\Controllers\ProductPublicController::class, 'index'])->name('products.index');
 Route::get('/products/{slug}', [\App\Http\Controllers\ProductPublicController::class, 'show'])->name('products.show');
 Route::get('/products/{slug}/checkout', [\App\Http\Controllers\ProductPublicController::class, 'checkout'])->name('products.checkout.form');
@@ -26,6 +27,7 @@ Route::get('/download', [\App\Http\Controllers\ProductDownloadController::class,
 Route::post('/download/resolve', [\App\Http\Controllers\ProductDownloadController::class, 'resolve'])->name('download.resolve');
 Route::get('/download/{token}', [\App\Http\Controllers\ProductDownloadController::class, 'download'])->name('download.one-time');
 
+Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::view('/terms-of-service', 'pages.terms')->name('terms-of-service');
 Route::view('/privacy-policy', 'privacy-policy')->name('privacy-policy');
 Route::view('/saas/sabilsys', 'products.sabilsys')->name('saas.sabilsys');

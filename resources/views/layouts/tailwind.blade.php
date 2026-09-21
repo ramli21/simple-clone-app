@@ -11,11 +11,13 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
 
     <!-- FontAwesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- TailwindCSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -80,7 +82,8 @@
         }
     </style>
 
-    <script src="https://www.google.com/recaptcha/api.js?render={{ env('RECAPTCHA_SITE_KEY') }}" async defer></script>
+    <script src="https://www.google.com/recaptcha/api.js?render={{ env('RECAPTCHA_SITE_KEY') }}" async
+        defer></script>
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DGDJKW7E3Y"></script>
@@ -118,8 +121,8 @@
 
     <!-- Google Tag Manager (noscript) -->
     <noscript>
-        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W6KW4DSK" height="0" width="0"
-            style="display:none;visibility:hidden"></iframe>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W6KW4DSK" height="0"
+            width="0" style="display:none;visibility:hidden"></iframe>
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
 
@@ -128,7 +131,8 @@
         <div class="container mx-auto px-4 lg:px-8">
             <div class="flex justify-between items-center">
                 <!-- Logo -->
-                <a href="{{ route('home') }}" class="text-2xl font-bold text-slate-900 flex items-center gap-2 group">
+                <a href="{{ route('home') }}"
+                    class="text-2xl font-bold text-slate-900 flex items-center gap-2 group">
                     <div
                         class="w-10 h-10 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform">
                         <img src="{{ asset('./images/logo-square.png') }}" alt="Logo Akhritech" />
@@ -138,22 +142,26 @@
 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="{{ route('home') }}" class="font-medium hover:text-primary transition-colors">Beranda</a>
+                    <a href="{{ route('home') }}"
+                        class="font-medium hover:text-primary transition-colors">Beranda</a>
                     {{-- <a href="/#about" class="font-medium hover:text-primary transition-colors">Tentang</a> --}}
-                    <a href="/#services" class="font-medium hover:text-primary transition-colors">Layanan</a>
+                    <a href="{{ route('services.jasa-buat-website') }}"
+                        class="font-medium hover:text-primary transition-colors">Layanan</a>
                     <a href="{{ route('products.index') }}"
                         class="font-medium hover:text-primary transition-colors text-primary">Produk</a>
-                    <a href="/#portfolio" class="font-medium hover:text-primary transition-colors">Portofolio</a>
+                    <a href="/#portfolio"
+                        class="font-medium hover:text-primary transition-colors">Portofolio</a>
                     <a href="{{ route('blogs.index') }}"
                         class="font-medium hover:text-primary transition-colors">Blog</a>
-                    <a href="/#contact"
+                    <a href="{{ route('contact') }}"
                         class="px-5 py-2.5 bg-slate-900 text-white rounded-full font-medium hover:bg-primary transition-all shadow-md hover:shadow-lg">
                         Hubungi Kami
                     </a>
                 </div>
 
                 <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="md:hidden text-2xl text-slate-900 focus:outline-none">
+                <button id="mobile-menu-btn"
+                    class="md:hidden text-2xl text-slate-900 focus:outline-none">
                     <i class="fa-solid fa-bars-staggered"></i>
                 </button>
             </div>
@@ -161,13 +169,20 @@
             <!-- Mobile Menu Dropdown -->
             <div id="mobile-menu"
                 class="hidden md:hidden absolute top-full left-0 w-full bg-white shadow-xl border-t border-slate-100 flex-col items-center py-4 space-y-4">
-                <a href="{{ route('home') }}" class="mobile-link text-lg font-medium hover:text-primary">Beranda</a>
-                <a href="/#about" class="mobile-link text-lg font-medium hover:text-primary">Tentang</a>
-                <a href="/#services" class="mobile-link text-lg font-medium hover:text-primary">Layanan</a>
-                <a href="{{ route('products.index') }}" class="mobile-link text-lg font-medium text-primary">Produk</a>
-                <a href="/#portfolio" class="mobile-link text-lg font-medium hover:text-primary">Portofolio</a>
-                <a href="{{ route('blogs.index') }}" class="font-medium hover:text-primary transition-colors">Blog</a>
-                <a href="/#contact" class="px-6 py-2.5 bg-slate-900 text-white rounded-full font-medium">Hubungi
+                <a href="{{ route('home') }}"
+                    class="mobile-link text-lg font-medium hover:text-primary">Beranda</a>
+                <a href="/#about"
+                    class="mobile-link text-lg font-medium hover:text-primary">Tentang</a>
+                <a href="/#services"
+                    class="mobile-link text-lg font-medium hover:text-primary">Layanan</a>
+                <a href="{{ route('products.index') }}"
+                    class="mobile-link text-lg font-medium text-primary">Produk</a>
+                <a href="/#portfolio"
+                    class="mobile-link text-lg font-medium hover:text-primary">Portofolio</a>
+                <a href="{{ route('blogs.index') }}"
+                    class="font-medium hover:text-primary transition-colors">Blog</a>
+                <a href="{{ route('contact') }}"
+                    class="px-6 py-2.5 bg-slate-900 text-white rounded-full font-medium">Hubungi
                     Kami</a>
             </div>
         </div>
@@ -182,15 +197,18 @@
         <div class="container mx-auto px-4 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-center gap-6">
                 <div class="flex items-center gap-2">
-                    <div class="w-8 h-8 rounded-md flex items-center justify-center text-white text-sm">
+                    <div
+                        class="w-8 h-8 rounded-md flex items-center justify-center text-white text-sm">
                         <img src="{{ asset('./images/logo-square.png') }}" alt="Logo Akhritech" />
                     </div>
                     <span class="text-xl font-bold text-white">Akhritech</span>
                 </div>
                 <div class="flex gap-8 text-sm">
-                    <a href="{{ route('privacy-policy') }}" class="hover:text-white transition-colors">Privacy
+                    <a href="{{ route('privacy-policy') }}"
+                        class="hover:text-white transition-colors">Privacy
                         Policy</a>
-                    <a href="{{ route('terms-of-service') }}" class="hover:text-white transition-colors">Terms of
+                    <a href="{{ route('terms-of-service') }}"
+                        class="hover:text-white transition-colors">Terms of
                         Service</a>
                     {{-- <a href="#" class="hover:text-white transition-colors">Support</a> --}}
                 </div>
@@ -204,7 +222,8 @@
     <!-- Floating WhatsApp Button -->
     <a href="https://wa.me/{{ companyProfile()->phone }}?text=Halo%20Akhritech,%20saya%20ingin%20bertanya%20lebih%20lanjut"
         target="_blank" rel="noopener noreferrer" id="wa-float-btn"
-        class="fixed bottom-20 right-6 z-50 flex items-center gap-3 group" aria-label="Chat via WhatsApp">
+        class="fixed bottom-20 right-6 z-50 flex items-center gap-3 group"
+        aria-label="Chat via WhatsApp">
 
         {{-- Tooltip --}}
         <span
@@ -228,10 +247,12 @@
 
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
-                navbar.classList.add('fixed', 'shadow-lg', 'bg-white/90', 'backdrop-blur-md', 'py-2');
+                navbar.classList.add('fixed', 'shadow-lg', 'bg-white/90', 'backdrop-blur-md',
+                    'py-2');
                 navbar.classList.remove('py-4', 'bg-white/0');
             } else {
-                navbar.classList.remove('fixed', 'shadow-lg', 'bg-white/90', 'backdrop-blur-md', 'py-2');
+                navbar.classList.remove('fixed', 'shadow-lg', 'bg-white/90', 'backdrop-blur-md',
+                    'py-2');
                 navbar.classList.add('py-4', 'bg-white/0');
                 // Remove fixed positioning styling at top if needed, 
                 // but usually keeping it fixed ensures smooth transition back to transparent state if handled via CSS class manipulation
@@ -257,6 +278,9 @@
             });
         });
     </script>
+
+    @stack('scripts')
 </body>
 
 </html>
+

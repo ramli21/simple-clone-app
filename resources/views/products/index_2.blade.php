@@ -3,9 +3,9 @@
 @push('metadata')
     <title>Produk Digital & SaaS Boilerplate Profesional | Akhritech</title>
     <meta name="description"
-        content="Percepat pengembangan aplikasi Anda dengan koleksi Web Theme, Laravel Starter Kit, Boilerplate, dan Micro-SaaS siap pakai dari Akhritech. Kode berkualitas, bersih, dan mudah dikustomisasi untuk proyek web Anda.">
-    <meta name="keywords"
-        content="Laravel starter kit, web boilerplate, SaaS template, landing page theme, Laravel 13 boilerplate, kode sumber aplikasi, produk digital web, Akhritech, web development tools, ready-to-use software">
+        content="Temukan Laravel Boilerplate, Starter Kit, Web Theme, Dashboard Admin Template, dan SaaS siap pakai untuk mempercepat pengembangan aplikasi web Anda.">
+    <!-- <meta name="keywords"
+            content="Laravel starter kit, web boilerplate, SaaS template, landing page theme, Laravel 13 boilerplate, kode sumber aplikasi, produk digital web, Akhritech, web development tools, ready-to-use software"> -->
     <meta name="author" content="Akhritech">
     <meta name="robots" content="index, follow">
 
@@ -31,9 +31,12 @@
         <div class="container mx-auto px-4 lg:px-8">
             <!-- Header -->
             <div class="text-center max-w-3xl mx-auto mb-12">
-                <span class="text-primary font-bold tracking-wider uppercase text-sm">Akhritech Marketplace</span>
-                <h2 class="text-3xl lg:text-4xl font-bold text-slate-900 mt-2 mb-4">Jelajahi Koleksi Produk Premium</h2>
-                <p class="text-slate-600 text-lg">Temukan desain website yang sempurna untuk proyek Anda. Semua produk
+                <span class="text-primary font-bold tracking-wider uppercase text-sm">Akhritech
+                    Marketplace</span>
+                <h2 class="text-3xl lg:text-4xl font-bold text-slate-900 mt-2 mb-4">Jelajahi Koleksi
+                    Produk Premium</h2>
+                <p class="text-slate-600 text-lg">Temukan desain website yang sempurna untuk proyek
+                    Anda. Semua produk
                     dibangun
                     dengan kode bersih, responsif, dan mudah dikustomisasi.</p>
             </div>
@@ -71,7 +74,9 @@
 
                         $price = (int) ($product->price ?? 0);
                         $finalPrice = (int) ($product->final_price ?? ($product->price ?? 0));
-                        $hasDiscount = !empty($product->discount_percentage) && (int) $product->discount_percentage > 0;
+                        $hasDiscount =
+                            !empty($product->discount_percentage) &&
+                            (int) $product->discount_percentage > 0;
 
                         $formattedPrice = 'Rp' . number_format($price, 0, ',', '.');
                         $formattedFinalPrice = 'Rp' . number_format($finalPrice, 0, ',', '.');
@@ -86,7 +91,8 @@
                                     class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500"
                                     loading="lazy" />
                             @else
-                                <div class="w-full h-full bg-slate-100 flex items-center justify-center text-slate-400">
+                                <div
+                                    class="w-full h-full bg-slate-100 flex items-center justify-center text-slate-400">
                                     No Image
                                 </div>
                             @endif
@@ -94,7 +100,8 @@
                             <div
                                 class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
                                 @if (!empty($product->preview_url))
-                                    <a href="{{ $product->preview_url }}" target="_blank" rel="noopener noreferrer"
+                                    <a href="{{ $product->preview_url }}" target="_blank"
+                                        rel="noopener noreferrer"
                                         class="px-4 py-2 bg-white text-slate-900 rounded-lg font-bold text-sm hover:bg-slate-100">
                                         Preview
                                     </a>
@@ -128,14 +135,16 @@
 
                                 <div class="text-right">
                                     @if ($hasDiscount)
-                                        <div class="text-xs text-slate-400 line-through">{{ $formattedPrice }}</div>
+                                        <div class="text-xs text-slate-400 line-through">
+                                            {{ $formattedPrice }}</div>
                                     @endif
                                     <div class="font-bold text-green-600">
                                         {{ $finalPrice == 0 ? 'Free' : $formattedFinalPrice }}</div>
                                 </div>
                             </div>
 
-                            <p class="text-slate-500 text-sm mb-4 line-clamp-2">{{ $product->short_description }}</p>
+                            <p class="text-slate-500 text-sm mb-4 line-clamp-2">
+                                {{ $product->short_description }}</p>
 
                             <div class="flex flex-wrap gap-2 mb-6">
                                 @if (!empty($category))
@@ -150,7 +159,8 @@
                                 @endif
                             </div>
 
-                            <div class="flex items-center justify-between border-t border-slate-100 pt-4">
+                            <div
+                                class="flex items-center justify-between border-t border-slate-100 pt-4">
                                 <div class="flex items-center gap-2 text-slate-500 text-xs">
                                     <i class="fa-solid fa-cart-shopping text-slate-400"></i>
                                     <span>Terjual {{ (int) ($product->sales_count ?? 0) }}x</span>
@@ -168,7 +178,8 @@
 
             <!-- Empty State -->
             <div id="no-results" class="hidden text-center py-20">
-                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-100 mb-4">
+                <div
+                    class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-100 mb-4">
                     <i class="fa-solid fa-magnifying-glass text-slate-400 text-2xl"></i>
                 </div>
                 <h3 class="text-xl font-bold text-slate-900 mb-2">Tidak ada produk ditemukan</h3>
@@ -186,26 +197,33 @@
             filterBtns.forEach((btn) => {
                 btn.addEventListener('click', () => {
                     filterBtns.forEach((b) => {
-                        b.classList.remove('active', 'bg-primary', 'text-white',
+                        b.classList.remove('active', 'bg-primary',
+                            'text-white',
                             'border-primary');
-                        b.classList.add('bg-white', 'text-slate-600', 'border-slate-200');
+                        b.classList.add('bg-white', 'text-slate-600',
+                            'border-slate-200');
                     });
 
-                    btn.classList.remove('bg-white', 'text-slate-600', 'border-slate-200');
-                    btn.classList.add('active', 'bg-primary', 'text-white', 'border-primary');
+                    btn.classList.remove('bg-white', 'text-slate-600',
+                        'border-slate-200');
+                    btn.classList.add('active', 'bg-primary', 'text-white',
+                        'border-primary');
 
                     const filterValue = btn.getAttribute('data-filter');
                     let visibleCount = 0;
 
                     cards.forEach((card) => {
-                        const cardCategory = card.getAttribute('data-category');
-                        const shouldShow = filterValue === 'all' || cardCategory ===
+                        const cardCategory = card.getAttribute(
+                            'data-category');
+                        const shouldShow = filterValue === 'all' ||
+                            cardCategory ===
                             filterValue;
 
                         if (shouldShow) {
                             card.classList.remove('hidden');
                             card.style.opacity = '0';
-                            setTimeout(() => (card.style.opacity = '1'), 50);
+                            setTimeout(() => (card.style.opacity = '1'),
+                                50);
                             visibleCount++;
                         } else {
                             card.classList.add('hidden');
@@ -222,3 +240,4 @@
         });
     </script>
 @endsection
+
