@@ -59,11 +59,16 @@
                     <div class="mt-8 flex flex-col gap-4 sm:flex-row">
                         <a href="#harga"
                             class="inline-flex items-center justify-center rounded-xl bg-indigo-500 px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-indigo-500/30 transition hover:-translate-y-0.5 hover:bg-indigo-400">
-                            Mulai dari Rp 3.500.000
+                            Mulai dari Rp 2.500.000
                         </a>
                         <a href="#fitur"
                             class="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 px-7 py-3.5 text-base font-semibold text-white transition hover:border-indigo-300 hover:bg-white/10">
                             Lihat fitur utama
+                        </a>
+                        <a href="https://shop.akhritech.com" target="_blank" rel="noopener noreferrer"
+                            class="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 px-7 py-3.5 text-base font-semibold text-white transition hover:border-indigo-300 hover:bg-white/10">
+                            Live Demo
+                            <i class="fa-solid fa-arrow-up-right-from-square ml-2 text-sm"></i>
                         </a>
                     </div>
 
@@ -367,9 +372,9 @@
 
                 <div class="rounded-3xl border border-slate-700 bg-slate-800/70 p-6 shadow-2xl shadow-slate-950/40">
                     <div class="rounded-2xl border border-indigo-500/30 bg-indigo-500/10 p-5">
-                        <p class="text-sm uppercase tracking-[0.2em] text-indigo-200">Harga launch</p>
+                        <p class="text-sm uppercase tracking-[0.2em] text-indigo-200">Harga launch (promo)</p>
                         <div class="mt-4 flex items-end gap-3">
-                            <span class="text-5xl font-black text-white">Rp 3,5 jt</span>
+                            <span class="text-5xl font-black text-white">Rp 2,5 jt</span>
                             <span class="pb-2 text-slate-300">/ sekali bayar</span>
                         </div>
                         <p class="mt-4 text-slate-200">Sebelum biaya tambahan domain apabila harga domain lebih dari
@@ -409,7 +414,11 @@
                 <div class="text-center">
                     <p class="text-sm font-semibold uppercase tracking-[0.2em] text-indigo-600">Starter Ecommerce</p>
                     <div class="mt-4 flex items-end justify-center gap-2">
-                        <span class="text-5xl font-black text-slate-900">Rp 3,5 jt</span>
+                        <span class="text-5xl font-black text-slate-900"><span
+                                class="text-3xl block font-normal line-through">Rp 3.500.000</span>
+                            <b>Rp
+                                2,5
+                                jt</b></span>
                     </div>
                     <p class="mt-3 text-slate-500">Sudah termasuk domain .com / .id, server layak pakai, dan single tenant
                         database eksklusif.</p>
@@ -419,7 +428,7 @@
                     <h3 class="text-lg font-bold text-slate-900">Catatan penting</h3>
                     <ul class="mt-4 space-y-3 text-slate-600">
                         <li class="flex gap-3"><i class="fa-solid fa-circle-check mt-1 text-emerald-500"></i><span>Biaya
-                                perpanjangan tahunan sebesar Rp 1.250.000 untuk server dan domain.</span></li>
+                                perpanjangan tahun selanjutnya sebesar Rp 1.250.000 untuk server dan domain.</span></li>
                         <li class="flex gap-3"><i class="fa-solid fa-circle-check mt-1 text-emerald-500"></i><span>Jika
                                 harga domain pilihan Anda di atas Rp 250.000, maka ada biaya tahunan tambahan sesuai
                                 selisihnya.</span></li>
