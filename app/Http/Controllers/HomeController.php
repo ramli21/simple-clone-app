@@ -7,7 +7,9 @@ use App\Models\CompanyProfile;
 use App\Models\Inquiry;
 use App\Models\Portfolio;
 use App\Models\Product;
+use App\Services\FonnteWhatsAppService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
@@ -26,7 +28,7 @@ class HomeController extends Controller
         return view('pages.landingpage', compact('company', 'packages', 'portfolios', 'products'));
     }
 
-    public function inquiry(Request $request)
+    public function inquiry(Request $request, FonnteWhatsAppService $whatsapp)
     {
         // Validasi data yang masuk
         $validated = $request->validate([
@@ -43,9 +45,8 @@ class HomeController extends Controller
             ],
             'email' => [
                 'required',
-                'string',
-                'min:3', // Minimal 3 karakter agar tidak terlalu pendek (misal: "A")
-                'max:30', // Batas maksimal yang wajar untuk subjek
+                'email',
+                'max:255',
                 function ($attribute, $value, $fail) {
                     if ($value != strip_tags($value)) {
                         $fail('Email tidak boleh mengandung HTML.');
@@ -79,9 +80,15 @@ class HomeController extends Controller
         $company = CompanyProfile::first();
 
         $inquiry = Inquiry::create($validated);
+        $whatsapp->notifyNewInquiry($inquiry);
 
-        if (env('APP_ENV') == 'production' && $company->email) {
-            Mail::to($company->email)->send(new InqueryForwarderMailer($inquiry));
+        $adminEmail = config('services.inquiry.admin_email') ?: $company?->email;
+        if ($adminEmail) {
+            Mail::to($adminEmail)->send(new InqueryForwarderMailer($inquiry));
+        } else {
+            Log::warning('Inquiry email notification skipped because no admin email is configured.', [
+                'inquiry_id' => $inquiry->id,
+            ]);
         }
 
         return response()->json([
@@ -114,22 +121,20 @@ class HomeController extends Controller
                 'tagline' => 'Paket Terlaris',
                 'timeline' => '1-2 Minggu',
                 'description' => 'Sebuah halaman web yang dirancang untuk memperkenalkan produk atau layanan tertentu, dengan fokus pada konversi pengunjung menjadi pelanggan.',
-                'price' => 'Rp 950.000',
-                'discount' => '15%',
-                'discounted_price' => 'Rp 800.000',
-                'domains' => ['.web.id', '.biz.id', '.my.id'],
+                'price' => 'Rp 2.500.000',
+                'discount' => '20%',
+                'discounted_price' => 'Rp 2.000.000',
+                'domains' => ['.com', '.id'],
                 'features' => [
-                    'Desain responsif yang menarik',
-                    '1 Halaman / Landing Page',
-                    'Contact Form',
-                    'Free Hosting',
-                    'Free Domain (pilihan terbatas) 1 tahun pertama',
-                    'SSL Certificate',
-                    'Konten yang disesuaikan dengan kebutuhan bisnis',
-                    'Integrasi dengan media sosial',
-                    'Optimasi SEO dasar',
-                    'Dukungan teknis selama 1 bulan',
-                    'Jaminan lifetime support untuk perbaikan bug dan masalah teknis terkait hosting',
+                    'Desain Eksklusif & Responsif (Tampilan Sempurna di HP & Laptop)',
+                    '1 Halaman High-Converting Landing Page (Fokus Penjualan / Leads)',
+                    'Struktur Copywriting Penjualan & Layout Persuasif',
+                    'Integrasi Tombol WhatsApp Direct & Formulir Kontak',
+                    'Gratis Domain .com / .id (1 Tahun Pertama)',
+                    'Gratis Hosting Cepat & Akses SSL (HTTPS Security)',
+                    'Optimasi Kecepatan Loading & SEO Dasar (Mudah Ditemukan di Google)',
+                    'Integrasi Piksel & Media Sosial (Instagram, TikTok, FB)',
+                    'Garansi Teknis & Pemeliharaan Bug selama 1 Bulan',
                 ],
             ],
             [
@@ -138,24 +143,21 @@ class HomeController extends Controller
                 'tagline' => 'Terpopuler',
                 'timeline' => '2-4 Minggu',
                 'description' => 'Sebuah situs web yang memberikan informasi lengkap tentang perusahaan, termasuk sejarah, visi, misi, produk atau layanan, dan kontak.',
-                'price' => 'Rp 2.150.000',
+                'price' => 'Rp 5.000.000',
                 'discount' => '30%',
-                'discounted_price' => 'Rp 1.500.000',
-                'domains' => ['.com', '.id', '.web.id', '.biz.id', '.my.id'],
+                'discounted_price' => 'Rp 3.500.000',
+                'domains' => ['.com', '.id', '.co.id', '.net', '.org'],
                 'features' => [
-                    'Desain profesional yang mencerminkan identitas perusahaan',
-                    'Konten yang disusun secara strategis untuk menarik klien potensial',
-                    '5 Halaman (Home, About, Services, Blog, Contact)',
-                    'Responsive & Modern Design',
-                    'Blog/News Section',
-                    'Contact Form & Inquiry System',
-                    'Admin Panel Dasar',
-                    'Free Hosting Premium',
-                    'Free Domain (pilihan terbatas) 1 tahun pertama',
-                    'SSL Certificate + Email Hosting',
-                    'Optimasi SEO untuk meningkatkan visibilitas online',
-                    'Dukungan teknis selama 3 bulan',
-                    'Jaminan lifetime support untuk perbaikan bug dan masalah teknis terkait hosting',
+                    'Desain Premium & Eksklusif (Disesuaikan Branding Perusahaan)',
+                    'Hingga 5-7 Halaman Utama (Home, About, Products/Services, Gallery/Clients, Blog, Contact)',
+                    'Struktur Konten Strategis untuk Meningkatkan Kredibilitas & Kepercayaan Klien B2B',
+                    'Integrasi Katalog Produk / Portofolio Proyek (Downloadable PDF Brochure)',
+                    'Formulir Penawaran Harga / Inquiry System & WhatsApp Business Direct',
+                    'Gratis Domain .com / .co.id / .id / dan lainnya (1 Tahun Pertama)',
+                    'Gratis Hosting Premium Cepat + SSL (HTTPS Security) + Email Bisnis Custom (nama@perusahaan.com)',
+                    'Optimasi SEO Lokal & Kecepatan Loading (Siap Tampil di Google Search)',
+                    'Sistem Manajemen Konten / Admin Panel (Mudah Edit Teks & Upload Berita Mandiri)',
+                    'Garansi Teknis & Pemeliharaan Bug selama 3 Bulan',
                 ],
             ],
         ];

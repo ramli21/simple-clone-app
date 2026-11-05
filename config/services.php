@@ -41,4 +41,14 @@ return [
         'project_name' => env('GOQRIS_PROJECT_NAME', env('APP_NAME', 'Akhritech')),
     ],
 
+    'fonnte' => [
+        'token' => env('FONNTE_TOKEN'),
+        'admin_number' => env('FONNTE_ADMIN_NUMBER'),
+        'country_code' => env('FONNTE_COUNTRY_CODE', '62'),
+    ],
+
+    'inquiry' => [
+        'admin_email' => env('INQUIRY_ADMIN_EMAIL'),
+    ],
+
 ];

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\ProductDownloadLink;
 use App\Models\Payment;
 use App\Models\Product;
+use App\Services\FonnteWhatsAppService;
 use App\Services\GoQrisService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -37,7 +38,7 @@ class ProductPublicController extends Controller
         return view('products.show_2', compact('product', 'categories'));
     }
 
-    public function confirmPayment(Request $request)
+    public function confirmPayment(Request $request, FonnteWhatsAppService $whatsapp)
     {
         $validated = $request->validate(
             [
@@ -91,6 +92,8 @@ class ProductPublicController extends Controller
             ]);
         }
 
+        $whatsapp->notifyProductOrder($payment, 'Bukti pembayaran produk diterima');
+
         // Generate download token (do not email yet, as status is pending and needs admin approval)
         $downloadToken = $payment->setNewOneTimeDownloadToken();
 
@@ -101,7 +104,7 @@ class ProductPublicController extends Controller
         ]);
     }
 
-    public function claimFree(Request $request)
+    public function claimFree(Request $request, FonnteWhatsAppService $whatsapp)
     {
         $validated = $request->validate([
             'product_id' => ['required', 'uuid', 'exists:products,id'],
@@ -134,6 +137,7 @@ class ProductPublicController extends Controller
 
         // Increment sales count (since it's approved)
         $product->increment('sales_count');
+        $whatsapp->notifyProductOrder($payment);
 
         return response()->json([
             'ok' => true,
@@ -152,7 +156,7 @@ class ProductPublicController extends Controller
         return view('products.checkout', compact('product'));
     }
 
-    public function processCheckout(Request $request, GoQrisService $goQrisService)
+    public function processCheckout(Request $request, GoQrisService $goQrisService, FonnteWhatsAppService $whatsapp)
     {
         $validated = $request->validate([
             'product_id' => ['required', 'uuid', 'exists:products,id'],
@@ -188,6 +192,7 @@ class ProductPublicController extends Controller
             // Generate download token
             $downloadToken = $payment->setNewOneTimeDownloadToken();
             $product->increment('sales_count');
+            $whatsapp->notifyProductOrder($payment);
 
             // Send email with download link
             Mail::to($payment->email)->send(new ProductDownloadLink($payment, $downloadToken));
@@ -242,6 +247,8 @@ class ProductPublicController extends Controller
                 ]);
             }
         }
+
+        $whatsapp->notifyProductOrder($payment);
 
         return redirect()->route('products.payment', ['payment_id' => $payment->id]);
     }
@@ -316,4 +323,3 @@ class ProductPublicController extends Controller
         ]);
     }
 }
-

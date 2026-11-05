@@ -587,9 +587,16 @@
                             <p id="err-name" class="hidden mt-1 text-xs text-red-500"></p>
                         </div>
                         <div class="mb-5">
+                            <label class="block text-sm font-bold text-slate-700 mb-2">Email</label>
+                            <input type="email" id="contact-email" name="email" required maxlength="255"
+                                autocomplete="email"
+                                class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all">
+                            <p id="err-email" class="hidden mt-1 text-xs text-red-500"></p>
+                        </div>
+                        <div class="mb-5">
                             <label class="block text-sm font-bold text-slate-700 mb-2">WhatsApp /
                                 Telepon</label>
-                            <input type="tel" id="contact-whatsapp" name="whatsapp_number" required
+                            <input type="tel" id="contact-whatsapp" name="whatsapp_number" required maxlength="16"
                                 class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all">
                             <p id="err-whatsapp_number" class="hidden mt-1 text-xs text-red-500"></p>
                         </div>
@@ -606,7 +613,6 @@
                                 </option>
                                 <option value="Lainnya">Konsultasi Lainnya</option>
                             </select>
-                            <input type="hidden" name="email" value="no-email@akhritech.com" />
                         </div>
                         <div class="mb-6">
                             <label class="block text-sm font-bold text-slate-700 mb-2">Ceritakan
@@ -705,7 +711,6 @@
 
             try {
                 const formData = new FormData(form);
-                formData.set('email', formData.get('whatsapp_number') + '@no-email.com');
 
                 const response = await fetch('{{ route('inquiry.store') }}', {
                     method: 'POST',

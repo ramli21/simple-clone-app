@@ -112,8 +112,13 @@
                                 <span id="err-whatsapp_number" class="text-red-500 text-xs mt-1 hidden"></span>
                             </div>
                             
-                            <!-- Hidden email field for compatibility with backend validation if needed -->
-                            <input type="hidden" name="email" value="no-email@akhritech.com" />
+                            <div>
+                                <label for="email" class="block text-sm font-semibold text-slate-700 mb-2">Email *</label>
+                                <input type="email" id="email" name="email" required maxlength="255" autocomplete="email"
+                                    class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
+                                    placeholder="nama@email.com">
+                                <span id="err-email" class="text-red-500 text-xs mt-1 hidden"></span>
+                            </div>
                         </div>
 
                         <div>
@@ -194,7 +199,6 @@
 
             try {
                 const formData = new FormData(form);
-                formData.set('email', formData.get('whatsapp_number') + '@no-email.com');
 
                 const response = await fetch('{{ route('inquiry.store') }}', {
                     method: 'POST',
